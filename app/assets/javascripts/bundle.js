@@ -603,8 +603,21 @@ __webpack_require__.r(__webpack_exports__);
 
 
 document.addEventListener("DOMContentLoaded", function () {
+  var store;
+
+  if (window.currentUser) {
+    var preloadedState = {
+      session: {
+        currentUser: window.currentUser
+      }
+    };
+    store = Object(_store_store__WEBPACK_IMPORTED_MODULE_3__["default"])(preloadedState);
+    delete window.currentUser;
+  } else {
+    store = Object(_store_store__WEBPACK_IMPORTED_MODULE_3__["default"])();
+  }
+
   var root = document.getElementById("root");
-  var store = Object(_store_store__WEBPACK_IMPORTED_MODULE_3__["default"])();
   window.store = store;
   window.UserAPI = _util_user_api_util__WEBPACK_IMPORTED_MODULE_4__;
   window.SessionAPI = _util_session_api_util__WEBPACK_IMPORTED_MODULE_5__;
