@@ -1,9 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 const Greeting = ({ currentUser, logout }) => {
   const sessionLinks = () => (
     <div>
+      <NavLink exact activeClassName="active" to="/" >Home</NavLink>
+      <br></br>
       <Link to="/login">Login</Link>
       &nbsp;or&nbsp;
       <Link to="/signup">Sign up!</Link>
