@@ -409,7 +409,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var _nullUser = Object.freeze({
-  id: null
+  currentUser: null
 });
 
 var sessionReducer = function sessionReducer() {
