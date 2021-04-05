@@ -18,5 +18,10 @@ export const fetchUser = id => dispatch => (
   UserAPI.fetchUser(id).then(user => dispatch(receiveUser(user))),
   err => dispatch(receiveErrors(err.responseJSON))
 );
+
+export const updateUserInfo = user => dispatch => (
+  UserAPI.updateUser(user).then(user => dispatch(receiveUser(user))),
+  err => dispatch(receiveErrors(err.responseJSON))
+);
     
 

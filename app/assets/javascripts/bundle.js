@@ -158,7 +158,7 @@ var logout = function logout() {
 /*!******************************************!*\
   !*** ./frontend/actions/user_actions.js ***!
   \******************************************/
-/*! exports provided: RECEIVE_USER, RECEIVE_USER_ERRORS, receiveErrors, fetchUser */
+/*! exports provided: RECEIVE_USER, RECEIVE_USER_ERRORS, receiveErrors, fetchUser, updateUserInfo */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -167,6 +167,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_USER_ERRORS", function() { return RECEIVE_USER_ERRORS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveErrors", function() { return receiveErrors; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUser", function() { return fetchUser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateUserInfo", function() { return updateUserInfo; });
 /* harmony import */ var _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/user_api_util */ "./frontend/util/user_api_util.js");
 
 var RECEIVE_USER = "RECEIVE_USER";
@@ -188,6 +189,15 @@ var receiveErrors = function receiveErrors(errors) {
 var fetchUser = function fetchUser(id) {
   return function (dispatch) {
     return _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchUser"](id).then(function (user) {
+      return dispatch(receiveUser(user));
+    }), function (err) {
+      return dispatch(receiveErrors(err.responseJSON));
+    };
+  };
+};
+var updateUserInfo = function updateUserInfo(user) {
+  return function (dispatch) {
+    return _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["updateUser"](user).then(function (user) {
       return dispatch(receiveUser(user));
     }), function (err) {
       return dispatch(receiveErrors(err.responseJSON));
@@ -647,14 +657,16 @@ document.addEventListener("DOMContentLoaded", function () {
   var root = document.getElementById("root");
   react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_root__WEBPACK_IMPORTED_MODULE_2__["default"], {
     store: store
-  }), root); // window.store = store;
-  // window.UserAPI = UserAPI;
-  // window.SessionAPI = SessionAPI;
-  // window.fetchUser = fetchUser;
-  // window.signup = signup;
-  // window.login = login;
-  // window.logout = logout;
-  // window.receiveCurrentUser = receiveCurrentUser;
+  }), root);
+  window.store = store;
+  window.UserAPI = _util_user_api_util__WEBPACK_IMPORTED_MODULE_4__;
+  window.SessionAPI = _util_session_api_util__WEBPACK_IMPORTED_MODULE_5__;
+  window.fetchUser = _frontend_actions_user_actions__WEBPACK_IMPORTED_MODULE_6__["fetchUser"];
+  window.signup = _frontend_actions_session_actions__WEBPACK_IMPORTED_MODULE_7__["signup"];
+  window.login = _frontend_actions_session_actions__WEBPACK_IMPORTED_MODULE_7__["login"];
+  window.logout = _frontend_actions_session_actions__WEBPACK_IMPORTED_MODULE_7__["logout"];
+  window.updateUserInfo = _frontend_actions_user_actions__WEBPACK_IMPORTED_MODULE_6__["updateUserInfo"];
+  window.receiveCurrentUser = _frontend_actions_session_actions__WEBPACK_IMPORTED_MODULE_7__["receiveCurrentUser"];
 });
 
 /***/ }),
@@ -1000,13 +1012,14 @@ var logout = function logout() {
 /*!****************************************!*\
   !*** ./frontend/util/user_api_util.js ***!
   \****************************************/
-/*! exports provided: fetchAllUsers, fetchUser */
+/*! exports provided: fetchAllUsers, fetchUser, updateUser */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllUsers", function() { return fetchAllUsers; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUser", function() { return fetchUser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateUser", function() { return updateUser; });
 var fetchAllUsers = function fetchAllUsers() {
   return $.ajax({
     method: "GET",
@@ -1017,6 +1030,15 @@ var fetchUser = function fetchUser(id) {
   return $.ajax({
     method: "GET",
     url: "/api/users/".concat(id)
+  });
+};
+var updateUser = function updateUser(user) {
+  return $.ajax({
+    method: "PATCH",
+    url: "/api/users/".concat(user.id),
+    data: {
+      user: user
+    }
   });
 };
 
