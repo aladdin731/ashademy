@@ -420,7 +420,7 @@ var sessionReducer = function sessionReducer() {
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
       return {
-        id: action.currentUser.id
+        currentUser: action.currentUser
       };
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["LOGOUT_CURRENT_USER"]:
@@ -492,10 +492,9 @@ var usersReducer = function usersReducer() {
     case _actions_user_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_USER"]:
       nextState = _defineProperty({}, action.user.id, action.user);
       return nextState;
-
-    case _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_CURRENT_USER"]:
-      nextState[action.currentUser.id] = action.currentUser;
-      return nextState;
+    // case RECEIVE_CURRENT_USER:
+    //   nextState[action.currentUser.id] = action.currentUser;
+    //   return nextState;
 
     default:
       return state;
