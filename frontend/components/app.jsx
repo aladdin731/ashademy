@@ -8,9 +8,14 @@ import {
   HashRouter
 } from 'react-router-dom';
 
+import GreetingContainer from "./greeting/greeting_container";
+
 const App = () => (
   <div>
-    <h1>this is app!</h1>
+    <header>
+      <h1>This is app!</h1>
+      <GreetingContainer />
+    </header>
   </div>
 );
 
