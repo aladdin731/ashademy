@@ -2,3 +2,10 @@
   ↳ bin/rails:9
   [1m[35m (78.9ms)[0m  [1m[35mCREATE DATABASE "ashademy_test" ENCODING = 'unicode'[0m
   ↳ bin/rails:9
+Started GET "/" for ::1 at 2021-04-05 10:31:18 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 1280ms (Views: 1277.9ms | ActiveRecord: 0.0ms)
+
+
