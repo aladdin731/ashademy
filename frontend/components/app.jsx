@@ -13,6 +13,7 @@ import Home from './home/home';
 import SignUpFormContainer from './session_form/signup_form_container';
 import LogInFormContainer from './session_form/login_form_container';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
+import Footer from './footer/footer';
 
 const App = () => (
   <div>
@@ -24,6 +25,7 @@ const App = () => (
     <Route exact path="/" component={Home} />
     <AuthRoute exact path="/login" component={LogInFormContainer} />
     <AuthRoute exact path="/signup" component={SignUpFormContainer} />
+    <Footer />
   </div>
 );
 

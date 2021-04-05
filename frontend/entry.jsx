@@ -19,13 +19,13 @@ document.addEventListener("DOMContentLoaded", () => {
         store = configureStore();
     }
     const root = document.getElementById("root");
-    window.store = store;
-    window.UserAPI = UserAPI;
-    window.SessionAPI = SessionAPI;
-    window.fetchUser = fetchUser;
-    window.signup = signup;
-    window.login = login;
-    window.logout = logout;
-    window.receiveCurrentUser = receiveCurrentUser;
     ReactDOM.render(<Root store={store} />, root);
+    // window.store = store;
+    // window.UserAPI = UserAPI;
+    // window.SessionAPI = SessionAPI;
+    // window.fetchUser = fetchUser;
+    // window.signup = signup;
+    // window.login = login;
+    // window.logout = logout;
+    // window.receiveCurrentUser = receiveCurrentUser;
 })
