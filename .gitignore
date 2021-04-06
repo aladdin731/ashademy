@@ -11,4 +11,3 @@ config/application.yml
 .DS_Store
 npm-debug.log
 
-/public/assets
