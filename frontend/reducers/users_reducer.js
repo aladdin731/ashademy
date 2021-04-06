@@ -8,7 +8,6 @@ const usersReducer = (state = {}, action) => {
   switch(action.type) {
     // 之后可能根据需要改进
     case RECEIVE_USERS:
-      //console.log("action", action);
       // return action.users;
       return Object.assign({}, action.users, state);
     case RECEIVE_USER:
