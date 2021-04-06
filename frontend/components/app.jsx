@@ -21,10 +21,13 @@ const App = () => (
       <h1>Welcome to ashademy!</h1>
       <GreetingContainer />
     </header>
-
-    <Route exact path="/" component={Home} />
-    <AuthRoute exact path="/login" component={LogInFormContainer} />
-    <AuthRoute exact path="/signup" component={SignUpFormContainer} />
+    <Switch>
+      <AuthRoute exact path="/login" component={LogInFormContainer} />
+      <AuthRoute exact path="/signup" component={SignUpFormContainer} />
+      <Route exact path="/" component={Home} />
+      <Redirect to="/"/>
+    </Switch>
+    
     <Footer />
   </div>
 );

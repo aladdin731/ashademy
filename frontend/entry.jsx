@@ -6,6 +6,7 @@ import * as UserAPI from './util/user_api_util';
 import * as SessionAPI from './util/session_api_util';
 import {fetchUser, updateUserInfo} from '../frontend/actions/user_actions';
 import {receiveCurrentUser, logoutCurrentUser, signup, login, logout} from '../frontend/actions/session_actions';
+import {clearErrors} from './actions/session_actions.js';
 
 document.addEventListener("DOMContentLoaded", () => {
     let store;
@@ -29,4 +30,5 @@ document.addEventListener("DOMContentLoaded", () => {
     window.logout = logout;
     window.updateUserInfo = updateUserInfo;
     window.receiveCurrentUser = receiveCurrentUser;
+    window.clearErrors = clearErrors;
 })
