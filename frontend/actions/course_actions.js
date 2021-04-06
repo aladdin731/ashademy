@@ -30,9 +30,7 @@ export const fetchCourses = () => dispatch =>
     CourseAPI.fetchCourses().then((courses) => dispatch(receiveCourses(courses)))
 
 
-// export const fetchCourse = (courseId) => dispatch => (
-//     CourseAPI.fetchCourse(courseId).then((payload) => dispatch(receiveCourse(payload)))
-// )
+
 export const fetchCourse = (courseId) => (dispatch) => (
     CourseAPI.fetchCourse(courseId)
     .then(payload => {

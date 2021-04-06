@@ -146,10 +146,7 @@ var fetchCourses = function fetchCourses() {
       return dispatch(receiveCourses(courses));
     });
   };
-}; // export const fetchCourse = (courseId) => dispatch => (
-//     CourseAPI.fetchCourse(courseId).then((payload) => dispatch(receiveCourse(payload)))
-// )
-
+};
 var fetchCourse = function fetchCourse(courseId) {
   return function (dispatch) {
     return _util_course_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchCourse"](courseId).then(function (payload) {
