@@ -4,7 +4,7 @@ import {RECEIVE_USER} from '../actions/user_actions';
 
 const courseReducer = (state = {}, action) => {
   Object.freeze(state);
-  const nextState = Object.assign({}, state);
+  let nextState;
   switch (action.type){
     case RECEIVE_ALL_COURSES:
       return Object.assign({}, action.courses, state);
@@ -14,9 +14,8 @@ const courseReducer = (state = {}, action) => {
     case REMOVE_COURSE:
         delete nextState[action.payload.course.id]
         return nextState;
-    // case RECEIVE_USER:
-    //     nextState[state.entities.courses]= action.payload.courses  
-    //     return nextState;
+    case RECEIVE_USER:
+        return action.payload.courses;
     default:
       return state;
   }

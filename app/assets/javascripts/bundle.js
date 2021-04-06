@@ -887,7 +887,7 @@ var courseReducer = function courseReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
-  var nextState = Object.assign({}, state);
+  var nextState;
 
   switch (action.type) {
     case _actions_course_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_COURSES"]:
@@ -900,9 +900,9 @@ var courseReducer = function courseReducer() {
     case _actions_course_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_COURSE"]:
       delete nextState[action.payload.course.id];
       return nextState;
-    // case RECEIVE_USER:
-    //     nextState[state.entities.courses]= action.payload.courses  
-    //     return nextState;
+
+    case _actions_user_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_USER"]:
+      return action.payload.courses;
 
     default:
       return state;
