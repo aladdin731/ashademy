@@ -295,10 +295,10 @@ var receiveUsers = function receiveUsers(users) {
   };
 };
 
-var receiveUser = function receiveUser(user) {
+var receiveUser = function receiveUser(payload) {
   return {
     type: RECEIVE_USER,
-    user: user
+    payload: payload
   };
 };
 
@@ -319,8 +319,8 @@ var fetchUsers = function fetchUsers() {
 };
 var fetchUser = function fetchUser(userId) {
   return function (dispatch) {
-    return _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchUser"](userId).then(function (user) {
-      dispatch(receiveUser(user));
+    return _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchUser"](userId).then(function (payload) {
+      dispatch(receiveUser(payload));
     }).fail(function (err) {
       dispatch(receiveErrors(err.responseJSON));
     });
@@ -336,8 +336,8 @@ var fetchUser = function fetchUser(userId) {
 
 var updateUserInfo = function updateUserInfo(user) {
   return function (dispatch) {
-    return _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["updateUser"](user).then(function (user) {
-      dispatch(receiveUser(user));
+    return _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["updateUser"](user).then(function (payload) {
+      dispatch(receiveUser(payload));
     }).fail(function (err) {
       dispatch(receiveErrors(err.responseJSON));
     });
@@ -1048,7 +1048,7 @@ var sessionReducer = function sessionReducer() {
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
       return {
-        currentUser: action.currentUser
+        currentUser: action.currentUser.user
       };
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["LOGOUT_CURRENT_USER"]:
@@ -1157,7 +1157,7 @@ var usersReducer = function usersReducer() {
     case _actions_user_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_USER"]:
       // nextState = {[action.user.id]: action.user};
       // return nextState;
-      return _defineProperty({}, action.user.id, action.user);
+      return _defineProperty({}, action.payload.user.id, action.payload.user);
     // case RECEIVE_CURRENT_USER:
     //   nextState[action.currentUser.id] = action.currentUser;
     //   return nextState;
