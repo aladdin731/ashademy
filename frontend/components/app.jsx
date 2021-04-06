@@ -16,6 +16,8 @@ import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import Footer from './footer/footer';
 import CourseDetailContainer from '../components/course/course_detail_container';
 import CourseIndexContainer from '../components/course/course_index_container';
+import DashboardContainer from '../components/dashboard/dashboard_container';
+
 
 const App = () => (
   <div>
@@ -28,6 +30,7 @@ const App = () => (
       <AuthRoute exact path="/signup" component={SignUpFormContainer} />
       <Route exact path="/" component={CourseIndexContainer} />
       <Route path="/courses/:courseId" component={CourseDetailContainer}/>
+      <ProtectedRoute path="/dashboard" component={DashboardContainer}/>
       <Redirect to="/"/>
     </Switch>
     
