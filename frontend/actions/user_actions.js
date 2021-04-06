@@ -1,10 +1,15 @@
 import * as UserAPI from '../util/user_api_util';
 
+export const RECEIVE_USERS = "RECEIVE_USERS";
 export const RECEIVE_USER = "RECEIVE_USER";
 export const RECEIVE_USER_ERRORS = 'RECEIVE_USER_ERRORS';
 
+const receiveUsers = users => ({
+    type: RECEIVE_USERS,
+    users
+})
 
-const receiveUser = user => ({
+const receiveUser = (user) => ({
     type: RECEIVE_USER,
     user 
 })
@@ -14,14 +19,37 @@ export const receiveErrors = errors => ({
   errors
 });
 
-export const fetchUser = id => dispatch => (
-  UserAPI.fetchUser(id).then(user => dispatch(receiveUser(user))),
+export const fetchUsers = () => dispatch => (
+  UserAPI.fetchUsers().then(users => dispatch(receiveUsers(users))),
   err => dispatch(receiveErrors(err.responseJSON))
 );
 
-export const updateUserInfo = user => dispatch => (
-  UserAPI.updateUser(user).then(user => dispatch(receiveUser(user))),
-  err => dispatch(receiveErrors(err.responseJSON))
-);
+export const fetchUser = (userId) => (dispatch) => (
+    UserAPI.fetchUser(userId)
+    .then(user => {
+        dispatch(receiveUser(user))
+    })
+    .fail(err => {
+        dispatch(receiveErrors(err.responseJSON))
+    })
+)
+
+// export const fetchUser = id => dispatch => (
+//   UserAPI.fetchUser(id).then(payload => dispatch(receiveUser(payload))),
+//   err => dispatch(receiveErrors(err.responseJSON))
+// );
+
+// export const updateUserInfo = user => dispatch => (
+//   UserAPI.updateUser(user).then(payload => dispatch(receiveUser(payload))),
+//   err => dispatch(receiveErrors(err.responseJSON))
+// );
     
-
+export const updateUserInfo = (user) => (dispatch) => (
+    UserAPI.updateUser(user)
+    .then(user => {
+        dispatch(receiveUser(user))
+    })
+    .fail(err => {
+        dispatch(receiveErrors(err.responseJSON))
+    })
+)

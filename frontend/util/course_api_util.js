@@ -5,33 +5,33 @@ export const fetchCourses = () => (
     })
 )
 
-export const fetchCourse = (postId) => (
+export const fetchCourse = (courseId) => (
     $.ajax({
         method:"GET",
-        url: `/api/courses/${postId}`,
+        url: `/api/courses/${courseId}`,
     })
 )
 
-export const createCourse = (post) => (
+export const createCourse = (course) => (
     $.ajax({
         method:"POST",
         url: "/api/courses",
-        data:{post}
+        data:{course}
     })
 )
 
-export const updateCourse = (post) => (
+export const updateCourse = (course) => (
     $.ajax({
         method:"PATCH",
-        url: `/api/courses/${post.id}`,
-        data:{post}
+        url: `/api/courses/${course.id}`,
+        data:{course}
     })
 )
 
-export const deleteCourse = (postId) => (
+export const deleteCourse = (courseId) => (
     $.ajax({
         method:"DELETE",
-        url: `/api/courses/${postId}`,
+        url: `/api/courses/${courseId}`,
     })
 )
 

@@ -30,12 +30,22 @@ export const fetchCourses = () => dispatch =>
     CourseAPI.fetchCourses().then((courses) => dispatch(receiveCourses(courses)))
 
 
-export const fetchCourse = (courseId) => dispatch => (
-    CourseAPI.fetchCourse(courseId).then((payload) => dispatch(receiveCourse(payload)))
+// export const fetchCourse = (courseId) => dispatch => (
+//     CourseAPI.fetchCourse(courseId).then((payload) => dispatch(receiveCourse(payload)))
+// )
+export const fetchCourse = (courseId) => (dispatch) => (
+    CourseAPI.fetchCourse(courseId)
+    .then(payload => {
+        dispatch(receiveCourse(payload))
+        return payload.course;
+    })
+    .fail(err => {
+        dispatch(receiveCourseErrors(err.responseJSON))
+    })
 )
 
 export const createCourse = (course) => (dispatch) => (
-    APIUtil.createCourse(course)
+    CourseAPI.createCourse(course)
     .then(payload => {
         dispatch(receiveCourse(payload))
         return payload.course;
@@ -46,7 +56,7 @@ export const createCourse = (course) => (dispatch) => (
 )
 
 export const updateCourse = (course) => (dispatch) => (
-    APIUtil.updateCourse(course)
+    CourseAPI.updateCourse(course)
     .then(payload => {
         dispatch(receiveCourse(payload))
         return payload.course;
@@ -55,8 +65,6 @@ export const updateCourse = (course) => (dispatch) => (
         dispatch(receiveCourseErrors(err.responseJSON))
     })
 )
-
-
 
 export const deleteCourse = (courseId) => dispatch => (
     CourseAPI.deleteCourse(courseId).then(() => dispatch(removeCourse(courseId)))
