@@ -8,8 +8,10 @@ class SessionForm extends React.Component {
       password: ''
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    // Errors should clear when moving between /signup and /login.
     this.props.clearErrors();
   }
+
 
   update(field) {
     return e => this.setState({
@@ -60,6 +62,7 @@ class SessionForm extends React.Component {
             <input type="submit" value={this.props.formType} />
           </div>
         </form>
+        <button onClick={this.props.handleDemo}>Log In as Demo User</button>
       </div>
     );
   }

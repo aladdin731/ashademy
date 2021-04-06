@@ -8,12 +8,15 @@
 
 # Course.create!({course_name: "react", description: "best react course", course_type:"Frontend", mentor_id: 5, image_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png', tag_1:"tag1", tag_2:"tag2"})
 User.destroy_all
+User.create!({username: "Demo User", password:"123123"})
 User.create!({username:"user1", password:"123123"})
 User.create!({username:"user2", password:"123123"})
 User.create!({username:"user3", password:"123123"})
 User.create!({username:"user4", password:"123123"})
 User.create!({username:"user5", password:"123123"})
 User.create!({username:"user6", password:"123123"})
+
+
 
 CourseTag.destroy_all
 
