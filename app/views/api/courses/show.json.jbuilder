@@ -17,3 +17,6 @@ else
 end
 
 
+json.instructor do 
+  json.partial! "api/users/user", user: @course.instructor
+end 
