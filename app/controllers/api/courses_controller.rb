@@ -6,7 +6,7 @@ class Api::CoursesController < ApplicationController
 
 
     def create 
-        @course = course.new(course_params)
+        @course = Course.new(course_params)
         if @course.save 
             if !Tag.pluck(:tag_name).any?{|tag_name| tag_name == tag_params[:tag_1]}
                 tag1 = Tag.create!(tag_name: tag_params[:tag_1])
@@ -32,19 +32,34 @@ class Api::CoursesController < ApplicationController
         end
     end
 
+    def update
+        @course = course.find(params[:id])
+        if @course.update_attributes(course_params)
+            render :show
+        else 
+            render json: @course.errors.full_messages, status: 404
+        end
+    end
+
 
     def show 
         @course = course.find(params[:id])
         render :show
     end
 
+    def destroy
+        @course = course.find(params[:id])
+        @course.destroy
+        render :show
+    end
+
     private
     def tag_params 
-        params.require(:tag).permit(:tag_1, :tag_2, :tag_3)
+        params.require(:course).permit(:tag_1, :tag_2, :tag_3)
     end
 
     def course_params
-        params.require(:course).permit(:course_name, :description, :type, :mentor_id, :image_url)
+        params.require(:course).permit(:course_name, :description, :course_type, :mentor_id, :image_url)
     end
 
 end

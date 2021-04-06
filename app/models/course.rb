@@ -12,15 +12,15 @@ class Course < ApplicationRecord
         'System Design',
     ].sort.freeze
 
-    validates :course_name, :description, :type, :image_url, presence:true 
+    validates :course_name, :description, :course_type, presence:true 
     validates :course_name, uniqueness:true 
-    validates :type, inclusion: {in: TYPES}
+    validates :course_type, inclusion: { in: TYPES }
 
-    belongs_to :instructor 
+    belongs_to :instructor,
         foreign_key: :mentor_id,
         class_name: 'User'
 
-    has_many :course_tags
+    has_many :course_tags,
         foreign_key: :course_id,
         class_name: 'CourseTag'
 

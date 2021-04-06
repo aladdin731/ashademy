@@ -86,6 +86,104 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./frontend/actions/course_actions.js":
+/*!********************************************!*\
+  !*** ./frontend/actions/course_actions.js ***!
+  \********************************************/
+/*! exports provided: RECEIVE_ALL_COURSES, RECEIVE_COURSE, RECEIVE_COURSE_ERRORS, REMOVE_COURSE, receiveCourseErrors, fetchCourses, fetchCourse, createCourse, updateCourse, deleteCourse */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ALL_COURSES", function() { return RECEIVE_ALL_COURSES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_COURSE", function() { return RECEIVE_COURSE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_COURSE_ERRORS", function() { return RECEIVE_COURSE_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_COURSE", function() { return REMOVE_COURSE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveCourseErrors", function() { return receiveCourseErrors; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCourses", function() { return fetchCourses; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCourse", function() { return fetchCourse; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createCourse", function() { return createCourse; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateCourse", function() { return updateCourse; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteCourse", function() { return deleteCourse; });
+/* harmony import */ var _util_course_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/course_api_util */ "./frontend/util/course_api_util.js");
+
+var RECEIVE_ALL_COURSES = "RECEIVE_ALL_COURSES";
+var RECEIVE_COURSE = "RECEIVE_COURSE";
+var RECEIVE_COURSE_ERRORS = "RECEIVE_COURSE_ERRORS";
+var REMOVE_COURSE = "REMOVE_COURSE";
+
+var receiveCourses = function receiveCourses(courses) {
+  return {
+    type: RECEIVE_ALL_COURSES,
+    courses: courses
+  };
+};
+
+var receiveCourse = function receiveCourse(payload) {
+  return {
+    type: RECEIVE_COURSE,
+    payload: payload
+  };
+};
+
+var receiveCourseErrors = function receiveCourseErrors(errors) {
+  return {
+    type: RECEIVE_COURSE_ERRORS,
+    errors: errors
+  };
+};
+
+var removeCourse = function removeCourse(courseId) {
+  return {
+    type: REMOVE_COURSE,
+    courseId: courseId
+  };
+};
+
+var fetchCourses = function fetchCourses() {
+  return function (dispatch) {
+    return _util_course_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchCourses"]().then(function (courses) {
+      return dispatch(receiveCourses(courses));
+    });
+  };
+};
+var fetchCourse = function fetchCourse(courseId) {
+  return function (dispatch) {
+    return _util_course_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchCourse"](courseId).then(function (payload) {
+      return dispatch(receiveCourse(payload));
+    });
+  };
+};
+var createCourse = function createCourse(course) {
+  return function (dispatch) {
+    return APIUtil.createCourse(course).then(function (payload) {
+      dispatch(receiveCourse(payload));
+      return payload.course;
+    }).fail(function (err) {
+      dispatch(receiveCourseErrors(err.responseJSON));
+    });
+  };
+};
+var updateCourse = function updateCourse(course) {
+  return function (dispatch) {
+    return APIUtil.updateCourse(course).then(function (payload) {
+      dispatch(receiveCourse(payload));
+      return payload.course;
+    }).fail(function (err) {
+      dispatch(receiveCourseErrors(err.responseJSON));
+    });
+  };
+};
+var deleteCourse = function deleteCourse(courseId) {
+  return function (dispatch) {
+    return _util_course_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteCourse"](courseId).then(function () {
+      return dispatch(removeCourse(courseId));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/session_actions.js":
 /*!*********************************************!*\
   !*** ./frontend/actions/session_actions.js ***!
@@ -671,6 +769,75 @@ document.addEventListener("DOMContentLoaded", function () {
 
 /***/ }),
 
+/***/ "./frontend/reducers/course_errors_reducer.js":
+/*!****************************************************!*\
+  !*** ./frontend/reducers/course_errors_reducer.js ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_course_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../actions/course_actions */ "./frontend/actions/course_actions.js");
+
+
+var courseErrorReducer = function courseErrorReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _actions_course_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_COURSE_ERRORS"]:
+      return action.errors;
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (courseErrorReducer);
+
+/***/ }),
+
+/***/ "./frontend/reducers/courses_reducer.js":
+/*!**********************************************!*\
+  !*** ./frontend/reducers/courses_reducer.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_course_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/course_actions */ "./frontend/actions/course_actions.js");
+
+
+var courseReducer = function courseReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+  var nextState = Object.assign({}, state);
+
+  switch (action.type) {
+    case _actions_course_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_COURSES"]:
+      return Object.assign({}, action.courses, state);
+
+    case _actions_course_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_COURSE"]:
+      nextState[action.payload.course.id] = action.payload.course;
+      return nextState;
+
+    case _actions_course_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_COURSE"]:
+      delete nextState[action.payload.course.id];
+      return nextState;
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (courseReducer);
+
+/***/ }),
+
 /***/ "./frontend/reducers/entities_reducer.js":
 /*!***********************************************!*\
   !*** ./frontend/reducers/entities_reducer.js ***!
@@ -682,10 +849,16 @@ document.addEventListener("DOMContentLoaded", function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducers/users_reducer.js");
+/* harmony import */ var _courses_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./courses_reducer */ "./frontend/reducers/courses_reducer.js");
+/* harmony import */ var _tags_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./tags_reducer */ "./frontend/reducers/tags_reducer.js");
+
+
 
 
 var entitiesReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
-  users: _users_reducer__WEBPACK_IMPORTED_MODULE_1__["default"]
+  users: _users_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
+  courses: _courses_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
+  tags: _tags_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (entitiesReducer);
 
@@ -703,12 +876,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _session_errors_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./session_errors_reducer */ "./frontend/reducers/session_errors_reducer.js");
 /* harmony import */ var _user_errors_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./user_errors_reducer */ "./frontend/reducers/user_errors_reducer.js");
+/* harmony import */ var _course_errors_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./course_errors_reducer */ "./frontend/reducers/course_errors_reducer.js");
+
 
 
 
 var errorsReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   session: _session_errors_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
-  users: _user_errors_reducer__WEBPACK_IMPORTED_MODULE_2__["default"]
+  users: _user_errors_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
+  courses: _course_errors_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (errorsReducer);
 
@@ -809,6 +985,38 @@ var sessionReducer = function sessionReducer() {
 
 /***/ }),
 
+/***/ "./frontend/reducers/tags_reducer.js":
+/*!*******************************************!*\
+  !*** ./frontend/reducers/tags_reducer.js ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_course_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../actions/course_actions */ "./frontend/actions/course_actions.js");
+
+
+var tagsReducer = function tagsReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+  var nextState = Object.assign({}, state);
+
+  switch (action.type) {
+    case _actions_course_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_COURSE"]:
+      nextState = action.payload.tags;
+      return nextState;
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (tagsReducer);
+
+/***/ }),
+
 /***/ "./frontend/reducers/user_errors_reducer.js":
 /*!**************************************************!*\
   !*** ./frontend/reducers/user_errors_reducer.js ***!
@@ -904,6 +1112,59 @@ var configureStore = function configureStore() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (configureStore);
+
+/***/ }),
+
+/***/ "./frontend/util/course_api_util.js":
+/*!******************************************!*\
+  !*** ./frontend/util/course_api_util.js ***!
+  \******************************************/
+/*! exports provided: fetchCourses, fetchCourse, createCourse, updateCourse, deleteCourse */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCourses", function() { return fetchCourses; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCourse", function() { return fetchCourse; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createCourse", function() { return createCourse; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateCourse", function() { return updateCourse; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteCourse", function() { return deleteCourse; });
+var fetchCourses = function fetchCourses() {
+  return $.ajax({
+    method: "GET",
+    url: "/api/courses"
+  });
+};
+var fetchCourse = function fetchCourse(postId) {
+  return $.ajax({
+    method: "GET",
+    url: "/api/courses/".concat(postId)
+  });
+};
+var createCourse = function createCourse(post) {
+  return $.ajax({
+    method: "POST",
+    url: "/api/courses",
+    data: {
+      post: post
+    }
+  });
+};
+var updateCourse = function updateCourse(post) {
+  return $.ajax({
+    method: "PATCH",
+    url: "/api/courses/".concat(post.id),
+    data: {
+      post: post
+    }
+  });
+};
+var deleteCourse = function deleteCourse(postId) {
+  return $.ajax({
+    method: "DELETE",
+    url: "/api/courses/".concat(postId)
+  });
+};
 
 /***/ }),
 
