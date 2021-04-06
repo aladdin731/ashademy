@@ -7,7 +7,7 @@ import * as SessionAPI from './util/session_api_util';
 import {fetchUser, fetchUsers, updateUserInfo} from '../frontend/actions/user_actions';
 import {receiveCurrentUser, logoutCurrentUser, signup, login, logout} from '../frontend/actions/session_actions';
 import {clearErrors} from './actions/session_actions.js';
-import {fetchCourses, fetchCourse} from './actions/course_actions.js';
+import {fetchCourses, fetchCourse, createCourse, updateCourse, deleteCourse} from './actions/course_actions'
 
 document.addEventListener("DOMContentLoaded", () => {
     let store;
@@ -35,4 +35,9 @@ document.addEventListener("DOMContentLoaded", () => {
     window.updateUserInfo = updateUserInfo;
     window.receiveCurrentUser = receiveCurrentUser;
     window.clearErrors = clearErrors;
+    window.fetchCourses = fetchCourses;
+    window.fetchCourse = fetchCourse;
+    window.createCourse = createCourse;
+    window.updateCourse = updateCourse;
+    window.deleteCourse = deleteCourse;
 })

@@ -8,15 +8,10 @@ const usersReducer = (state = {}, action) => {
     // 之后可能根据需要改进
     case RECEIVE_USERS:
       //console.log("action", action);
-      return action.users;
-      // return Object.assign({}, action.users, state);
+      // return action.users;
+      return Object.assign({}, action.users, state);
     case RECEIVE_USER:
-      // nextState = {[action.user.id]: action.user};
-      // return nextState;
       return {[action.payload.user.id]: action.payload.user};
-    // case RECEIVE_CURRENT_USER:
-    //   nextState[action.currentUser.id] = action.currentUser;
-    //   return nextState;
     default:
       return state;
   }

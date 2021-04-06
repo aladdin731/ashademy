@@ -7,7 +7,7 @@ import courseErrorReducer from './course_errors_reducer'
 const errorsReducer = combineReducers({
   session: sessionErrorsReducer,
   users: userErrorsReducer,
-  courses: courseErrorReducer
+  courses: courseErrorReducer,
 });
 
 

@@ -90,7 +90,7 @@
 /*!********************************************!*\
   !*** ./frontend/actions/course_actions.js ***!
   \********************************************/
-/*! exports provided: RECEIVE_ALL_COURSES, RECEIVE_COURSE, RECEIVE_COURSE_ERRORS, REMOVE_COURSE, receiveCourseErrors, fetchCourses, fetchCourse, createCourse, updateCourse, deleteCourse */
+/*! exports provided: RECEIVE_ALL_COURSES, RECEIVE_COURSE, RECEIVE_COURSE_ERRORS, REMOVE_COURSE, receiveErrors, fetchCourses, fetchCourse, createCourse, updateCourse, deleteCourse */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -99,7 +99,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_COURSE", function() { return RECEIVE_COURSE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_COURSE_ERRORS", function() { return RECEIVE_COURSE_ERRORS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_COURSE", function() { return REMOVE_COURSE; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveCourseErrors", function() { return receiveCourseErrors; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveErrors", function() { return receiveErrors; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCourses", function() { return fetchCourses; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCourse", function() { return fetchCourse; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createCourse", function() { return createCourse; });
@@ -126,7 +126,7 @@ var receiveCourse = function receiveCourse(payload) {
   };
 };
 
-var receiveCourseErrors = function receiveCourseErrors(errors) {
+var receiveErrors = function receiveErrors(errors) {
   return {
     type: RECEIVE_COURSE_ERRORS,
     errors: errors
@@ -154,9 +154,8 @@ var fetchCourse = function fetchCourse(courseId) {
   return function (dispatch) {
     return _util_course_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchCourse"](courseId).then(function (payload) {
       dispatch(receiveCourse(payload));
-      return payload.course;
     }).fail(function (err) {
-      dispatch(receiveCourseErrors(err.responseJSON));
+      dispatch(receiveErrors(err.responseJSON));
     });
   };
 };
@@ -164,9 +163,8 @@ var createCourse = function createCourse(course) {
   return function (dispatch) {
     return _util_course_api_util__WEBPACK_IMPORTED_MODULE_0__["createCourse"](course).then(function (payload) {
       dispatch(receiveCourse(payload));
-      return payload.course;
     }).fail(function (err) {
-      dispatch(receiveCourseErrors(err.responseJSON));
+      dispatch(receiveErrors(err.responseJSON));
     });
   };
 };
@@ -174,16 +172,17 @@ var updateCourse = function updateCourse(course) {
   return function (dispatch) {
     return _util_course_api_util__WEBPACK_IMPORTED_MODULE_0__["updateCourse"](course).then(function (payload) {
       dispatch(receiveCourse(payload));
-      return payload.course;
     }).fail(function (err) {
-      dispatch(receiveCourseErrors(err.responseJSON));
+      dispatch(receiveErrors(err.responseJSON));
     });
   };
 };
 var deleteCourse = function deleteCourse(courseId) {
   return function (dispatch) {
     return _util_course_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteCourse"](courseId).then(function () {
-      return dispatch(removeCourse(courseId));
+      dispatch(removeCourse(courseId));
+    }).fail(function (err) {
+      dispatch(receiveErrors(err.responseJSON));
     });
   };
 };
@@ -325,15 +324,7 @@ var fetchUser = function fetchUser(userId) {
       dispatch(receiveErrors(err.responseJSON));
     });
   };
-}; // export const fetchUser = id => dispatch => (
-//   UserAPI.fetchUser(id).then(payload => dispatch(receiveUser(payload))),
-//   err => dispatch(receiveErrors(err.responseJSON))
-// );
-// export const updateUserInfo = user => dispatch => (
-//   UserAPI.updateUser(user).then(payload => dispatch(receiveUser(payload))),
-//   err => dispatch(receiveErrors(err.responseJSON))
-// );
-
+};
 var updateUserInfo = function updateUserInfo(user) {
   return function (dispatch) {
     return _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["updateUser"](user).then(function (payload) {
@@ -792,7 +783,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _util_session_api_util__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./util/session_api_util */ "./frontend/util/session_api_util.js");
 /* harmony import */ var _frontend_actions_user_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../frontend/actions/user_actions */ "./frontend/actions/user_actions.js");
 /* harmony import */ var _frontend_actions_session_actions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../frontend/actions/session_actions */ "./frontend/actions/session_actions.js");
-/* harmony import */ var _actions_course_actions_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./actions/course_actions.js */ "./frontend/actions/course_actions.js");
+/* harmony import */ var _actions_course_actions__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./actions/course_actions */ "./frontend/actions/course_actions.js");
 
 
 
@@ -827,14 +818,19 @@ document.addEventListener("DOMContentLoaded", function () {
   window.SessionAPI = _util_session_api_util__WEBPACK_IMPORTED_MODULE_5__;
   window.fetchUser = _frontend_actions_user_actions__WEBPACK_IMPORTED_MODULE_6__["fetchUser"];
   window.fetchUsers = _frontend_actions_user_actions__WEBPACK_IMPORTED_MODULE_6__["fetchUsers"];
-  window.fetchCourses = _actions_course_actions_js__WEBPACK_IMPORTED_MODULE_8__["fetchCourses"];
-  window.fetchCourse = _actions_course_actions_js__WEBPACK_IMPORTED_MODULE_8__["fetchCourse"];
+  window.fetchCourses = _actions_course_actions__WEBPACK_IMPORTED_MODULE_8__["fetchCourses"];
+  window.fetchCourse = _actions_course_actions__WEBPACK_IMPORTED_MODULE_8__["fetchCourse"];
   window.signup = _frontend_actions_session_actions__WEBPACK_IMPORTED_MODULE_7__["signup"];
   window.login = _frontend_actions_session_actions__WEBPACK_IMPORTED_MODULE_7__["login"];
   window.logout = _frontend_actions_session_actions__WEBPACK_IMPORTED_MODULE_7__["logout"];
   window.updateUserInfo = _frontend_actions_user_actions__WEBPACK_IMPORTED_MODULE_6__["updateUserInfo"];
   window.receiveCurrentUser = _frontend_actions_session_actions__WEBPACK_IMPORTED_MODULE_7__["receiveCurrentUser"];
   window.clearErrors = _frontend_actions_session_actions__WEBPACK_IMPORTED_MODULE_7__["clearErrors"];
+  window.fetchCourses = _actions_course_actions__WEBPACK_IMPORTED_MODULE_8__["fetchCourses"];
+  window.fetchCourse = _actions_course_actions__WEBPACK_IMPORTED_MODULE_8__["fetchCourse"];
+  window.createCourse = _actions_course_actions__WEBPACK_IMPORTED_MODULE_8__["createCourse"];
+  window.updateCourse = _actions_course_actions__WEBPACK_IMPORTED_MODULE_8__["updateCourse"];
+  window.deleteCourse = _actions_course_actions__WEBPACK_IMPORTED_MODULE_8__["deleteCourse"];
 });
 
 /***/ }),
@@ -859,6 +855,9 @@ var courseErrorReducer = function courseErrorReducer() {
   switch (action.type) {
     case _actions_course_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_COURSE_ERRORS"]:
       return action.errors;
+
+    case _actions_course_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_COURSE"]:
+      return [];
 
     default:
       return state;
@@ -887,7 +886,7 @@ var courseReducer = function courseReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
-  var nextState;
+  var nextState = Object.assign({}, state);
 
   switch (action.type) {
     case _actions_course_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_COURSES"]:
@@ -898,7 +897,7 @@ var courseReducer = function courseReducer() {
       return nextState;
 
     case _actions_course_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_COURSE"]:
-      delete nextState[action.payload.course.id];
+      delete nextState[action.courseId];
       return nextState;
 
     case _actions_user_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_USER"]:
@@ -1151,16 +1150,11 @@ var usersReducer = function usersReducer() {
     // 之后可能根据需要改进
     case _actions_user_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_USERS"]:
       //console.log("action", action);
-      return action.users;
-    // return Object.assign({}, action.users, state);
+      // return action.users;
+      return Object.assign({}, action.users, state);
 
     case _actions_user_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_USER"]:
-      // nextState = {[action.user.id]: action.user};
-      // return nextState;
       return _defineProperty({}, action.payload.user.id, action.payload.user);
-    // case RECEIVE_CURRENT_USER:
-    //   nextState[action.currentUser.id] = action.currentUser;
-    //   return nextState;
 
     default:
       return state;

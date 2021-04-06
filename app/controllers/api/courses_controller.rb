@@ -33,7 +33,7 @@ class Api::CoursesController < ApplicationController
     end
 
     def update
-        @course = course.find(params[:id])
+        @course = Course.find(params[:id])
         if @course.update_attributes(course_params)
             render :show
         else 
@@ -43,12 +43,12 @@ class Api::CoursesController < ApplicationController
 
 
     def show 
-        @course = course.find(params[:id])
+        @course = Course.find(params[:id])
         render :show
     end
 
     def destroy
-        @course = course.find(params[:id])
+        @course = Course.find(params[:id])
         @course.destroy
         render :show
     end

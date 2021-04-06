@@ -1,10 +1,9 @@
 import { RECEIVE_ALL_COURSES, RECEIVE_COURSE, REMOVE_COURSE} from '../actions/course_actions';
 import {RECEIVE_USER} from '../actions/user_actions';
 
-
 const courseReducer = (state = {}, action) => {
   Object.freeze(state);
-  let nextState;
+  const nextState = Object.assign({}, state);
   switch (action.type){
     case RECEIVE_ALL_COURSES:
       return Object.assign({}, action.courses, state);
@@ -12,7 +11,7 @@ const courseReducer = (state = {}, action) => {
       nextState[action.payload.course.id] = action.payload.course;
       return nextState;
     case REMOVE_COURSE:
-        delete nextState[action.payload.course.id]
+        delete nextState[action.courseId]
         return nextState;
     case RECEIVE_USER:
         return action.payload.courses;

@@ -16,7 +16,7 @@ const receiveCourse = (payload) => ({
     payload
 })
 
-export const receiveCourseErrors = (errors) => ({
+export const receiveErrors = (errors) => ({
     type: RECEIVE_COURSE_ERRORS,
     errors
 })
@@ -37,10 +37,9 @@ export const fetchCourse = (courseId) => (dispatch) => (
     CourseAPI.fetchCourse(courseId)
     .then(payload => {
         dispatch(receiveCourse(payload))
-        return payload.course;
     })
     .fail(err => {
-        dispatch(receiveCourseErrors(err.responseJSON))
+        dispatch(receiveErrors(err.responseJSON))
     })
 )
 
@@ -48,10 +47,9 @@ export const createCourse = (course) => (dispatch) => (
     CourseAPI.createCourse(course)
     .then(payload => {
         dispatch(receiveCourse(payload))
-        return payload.course;
     })
     .fail(err => {
-        dispatch(receiveCourseErrors(err.responseJSON))
+        dispatch(receiveErrors(err.responseJSON))
     })
 )
 
@@ -59,13 +57,19 @@ export const updateCourse = (course) => (dispatch) => (
     CourseAPI.updateCourse(course)
     .then(payload => {
         dispatch(receiveCourse(payload))
-        return payload.course;
     })
     .fail(err => {
-        dispatch(receiveCourseErrors(err.responseJSON))
+        dispatch(receiveErrors(err.responseJSON))
     })
 )
 
-export const deleteCourse = (courseId) => dispatch => (
-    CourseAPI.deleteCourse(courseId).then(() => dispatch(removeCourse(courseId)))
+
+export const deleteCourse = (courseId) => (dispatch) => (
+    CourseAPI.deleteCourse(courseId)
+    .then(() => {
+        dispatch(removeCourse(courseId))
+    })
+    .fail(err => {
+        dispatch(receiveErrors(err.responseJSON))
+    })
 )
