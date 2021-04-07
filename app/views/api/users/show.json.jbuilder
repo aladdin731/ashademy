@@ -1,5 +1,6 @@
 json.user do 
     json.partial! "api/users/user", user: @user
+    json.courseIds @user.courses.pluck(:id)
 end 
 
 if @user.courses.length != 0 

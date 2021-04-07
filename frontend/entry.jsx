@@ -5,9 +5,10 @@ import configureStore from './store/store';
 import * as UserAPI from './util/user_api_util';
 import * as SessionAPI from './util/session_api_util';
 import {fetchUser, fetchUsers, updateUserInfo} from '../frontend/actions/user_actions';
-import {receiveCurrentUser, logoutCurrentUser, signup, login, logout} from '../frontend/actions/session_actions';
+import {receiveCurrentUser, signup, login, logout} from '../frontend/actions/session_actions';
 import {clearErrors} from './actions/session_actions.js';
-import {fetchCourses, fetchCourse, createCourse, updateCourse, deleteCourse} from './actions/course_actions'
+import {updateCourse, deleteCourse, createCourse, fetchCourses, fetchCourse} from './actions/course_actions';
+import * as CourseAPI from './util/course_api_util';
 
 document.addEventListener("DOMContentLoaded", () => {
     let store;
@@ -35,9 +36,8 @@ document.addEventListener("DOMContentLoaded", () => {
     window.updateUserInfo = updateUserInfo;
     window.receiveCurrentUser = receiveCurrentUser;
     window.clearErrors = clearErrors;
-    window.fetchCourses = fetchCourses;
-    window.fetchCourse = fetchCourse;
     window.createCourse = createCourse;
     window.updateCourse = updateCourse;
     window.deleteCourse = deleteCourse;
+    window.CourseAPI = CourseAPI;
 })

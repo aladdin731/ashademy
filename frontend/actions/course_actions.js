@@ -11,10 +11,10 @@ const receiveCourses = (courses) => ({
     courses
 })
 
-const receiveCourse = (payload) => ({
-    type: RECEIVE_COURSE,
-    payload
-})
+export const fetchCourses = () => dispatch => 
+    CourseAPI.fetchCourses().then((courses) => 
+    dispatch(receiveCourses(courses)))
+
 
 export const receiveErrors = (errors) => ({
     type: RECEIVE_COURSE_ERRORS,
@@ -26,10 +26,10 @@ const removeCourse = courseId => ({
     courseId 
 })
 
-export const fetchCourses = () => dispatch => 
-    CourseAPI.fetchCourses().then((courses) => dispatch(receiveCourses(courses)))
-
-
+const receiveCourse = (payload) => ({
+    type: RECEIVE_COURSE,
+    payload
+})
 
 export const fetchCourse = (courseId) => (dispatch) => (
     CourseAPI.fetchCourse(courseId)

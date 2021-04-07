@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 
 
 class CourseDetail extends React.Component{
@@ -8,14 +8,9 @@ class CourseDetail extends React.Component{
     this.props.fetchCourse(this.props.match.params.courseId);
   }
 
-//   componentDidUpdate(prevProps){
-//     if (prevProps.match.params.courseId !== this.props.match.params.pokemonId){
-//       this.props.requestSinglePokemon(this.props.match.params.pokemonId)
-//     }
-//   }
 
   render(){
-    if (!this.props.course) return null;
+    if (!this.props.instructor) return null;
     return (
       <section>
         <figure>
@@ -25,12 +20,12 @@ class CourseDetail extends React.Component{
           <li><h2>{this.props.course.courseName}</h2></li>
           <li>Type: {this.props.course.courseType}</li>
           <li>Description: {this.props.course.description}</li>
-          <li>Instructor: {this.props.instructor.join("")}</li>
-          <li>Tags: {this.props.tags.join(', ')}</li>
+          <li>Instructor: {this.props.instructor.username}</li>
+          <li>Tags: {this.props.tags.join(' ')}</li>
         </ul>
       </section>
     )
   }
 }
 
-export default CourseDetail;
+export default withRouter(CourseDetail);

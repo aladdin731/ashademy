@@ -6,7 +6,8 @@ const courseReducer = (state = {}, action) => {
   const nextState = Object.assign({}, state);
   switch (action.type){
     case RECEIVE_ALL_COURSES:
-      return Object.assign({}, action.courses, state);
+      // return Object.assign({}, action.courses, state);
+      return action.courses;
     case RECEIVE_COURSE:
       nextState[action.payload.course.id] = action.payload.course;
       return nextState;
@@ -14,7 +15,8 @@ const courseReducer = (state = {}, action) => {
         delete nextState[action.courseId]
         return nextState;
     case RECEIVE_USER:
-        return action.payload.courses;
+        return Object.assign({}, state, action.payload.courses);
+        // return action.payload.courses;
     default:
       return state;
   }

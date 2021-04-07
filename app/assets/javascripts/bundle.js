@@ -90,7 +90,7 @@
 /*!********************************************!*\
   !*** ./frontend/actions/course_actions.js ***!
   \********************************************/
-/*! exports provided: RECEIVE_ALL_COURSES, RECEIVE_COURSE, RECEIVE_COURSE_ERRORS, REMOVE_COURSE, receiveErrors, fetchCourses, fetchCourse, createCourse, updateCourse, deleteCourse */
+/*! exports provided: RECEIVE_ALL_COURSES, RECEIVE_COURSE, RECEIVE_COURSE_ERRORS, REMOVE_COURSE, fetchCourses, receiveErrors, fetchCourse, createCourse, updateCourse, deleteCourse */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -99,8 +99,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_COURSE", function() { return RECEIVE_COURSE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_COURSE_ERRORS", function() { return RECEIVE_COURSE_ERRORS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_COURSE", function() { return REMOVE_COURSE; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveErrors", function() { return receiveErrors; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCourses", function() { return fetchCourses; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveErrors", function() { return receiveErrors; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCourse", function() { return fetchCourse; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createCourse", function() { return createCourse; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateCourse", function() { return updateCourse; });
@@ -119,13 +119,13 @@ var receiveCourses = function receiveCourses(courses) {
   };
 };
 
-var receiveCourse = function receiveCourse(payload) {
-  return {
-    type: RECEIVE_COURSE,
-    payload: payload
+var fetchCourses = function fetchCourses() {
+  return function (dispatch) {
+    return _util_course_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchCourses"]().then(function (courses) {
+      return dispatch(receiveCourses(courses));
+    });
   };
 };
-
 var receiveErrors = function receiveErrors(errors) {
   return {
     type: RECEIVE_COURSE_ERRORS,
@@ -140,13 +140,13 @@ var removeCourse = function removeCourse(courseId) {
   };
 };
 
-var fetchCourses = function fetchCourses() {
-  return function (dispatch) {
-    return _util_course_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchCourses"]().then(function (courses) {
-      return dispatch(receiveCourses(courses));
-    });
+var receiveCourse = function receiveCourse(payload) {
+  return {
+    type: RECEIVE_COURSE,
+    payload: payload
   };
 };
+
 var fetchCourse = function fetchCourse(courseId) {
   return function (dispatch) {
     return _util_course_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchCourse"](courseId).then(function (payload) {
@@ -449,27 +449,22 @@ var CourseDetail = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchCourse(this.props.match.params.courseId);
-    } //   componentDidUpdate(prevProps){
-    //     if (prevProps.match.params.courseId !== this.props.match.params.pokemonId){
-    //       this.props.requestSinglePokemon(this.props.match.params.pokemonId)
-    //     }
-    //   }
-
+    }
   }, {
     key: "render",
     value: function render() {
-      if (!this.props.course) return null;
+      if (!this.props.instructor) return null;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("figure", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: this.props.course.imageUrl,
         alt: this.props.course.courseName
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, this.props.course.courseName)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Type: ", this.props.course.courseType), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Description: ", this.props.course.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Instructor: ", this.props.instructor.join("")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Tags: ", this.props.tags.join(', '))));
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, this.props.course.courseName)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Type: ", this.props.course.courseType), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Description: ", this.props.course.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Instructor: ", this.props.instructor.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Tags: ", this.props.tags.join(' '))));
     }
   }]);
 
   return CourseDetail;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (CourseDetail);
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(CourseDetail));
 
 /***/ }),
 
@@ -492,11 +487,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
+  var course = state.entities.courses[ownProps.match.params.courseId];
+  var instructor = Object(_reducers_selectors__WEBPACK_IMPORTED_MODULE_3__["selectCourseInstructor"])(course, state);
+  var tags = Object(_reducers_selectors__WEBPACK_IMPORTED_MODULE_3__["selectCourseTagsNames"])(state);
   return {
-    course: state.entities.courses[ownProps.match.params.courseId],
-    tags: Object(_reducers_selectors__WEBPACK_IMPORTED_MODULE_3__["selectCourseTagsNames"])(state),
+    course: course,
+    tags: tags,
     // instructor: Object.values(state.entities.users)[0].username
-    instructor: Object(_reducers_selectors__WEBPACK_IMPORTED_MODULE_3__["selectCourseInstructor"])(state)
+    instructor: instructor
   };
 };
 
@@ -770,6 +768,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/user_actions */ "./frontend/actions/user_actions.js");
 /* harmony import */ var _dashboard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./dashboard */ "./frontend/components/dashboard/dashboard.jsx");
+/* harmony import */ var _reducers_selectors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../reducers/selectors */ "./frontend/reducers/selectors.js");
+
 
 
 
@@ -777,7 +777,8 @@ __webpack_require__.r(__webpack_exports__);
 var mapStateToProps = function mapStateToProps(state) {
   return {
     currentUser: state.session.currentUser,
-    courses: Object.values(state.entities.courses)
+    // courses: Object.values(state.entities.courses),
+    courses: Object(_reducers_selectors__WEBPACK_IMPORTED_MODULE_3__["selectCoursesForCurrentUser"])(state)
   };
 };
 
@@ -1242,6 +1243,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _frontend_actions_user_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../frontend/actions/user_actions */ "./frontend/actions/user_actions.js");
 /* harmony import */ var _frontend_actions_session_actions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../frontend/actions/session_actions */ "./frontend/actions/session_actions.js");
 /* harmony import */ var _actions_course_actions__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./actions/course_actions */ "./frontend/actions/course_actions.js");
+/* harmony import */ var _util_course_api_util__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./util/course_api_util */ "./frontend/util/course_api_util.js");
+
 
 
 
@@ -1284,11 +1287,10 @@ document.addEventListener("DOMContentLoaded", function () {
   window.updateUserInfo = _frontend_actions_user_actions__WEBPACK_IMPORTED_MODULE_6__["updateUserInfo"];
   window.receiveCurrentUser = _frontend_actions_session_actions__WEBPACK_IMPORTED_MODULE_7__["receiveCurrentUser"];
   window.clearErrors = _frontend_actions_session_actions__WEBPACK_IMPORTED_MODULE_7__["clearErrors"];
-  window.fetchCourses = _actions_course_actions__WEBPACK_IMPORTED_MODULE_8__["fetchCourses"];
-  window.fetchCourse = _actions_course_actions__WEBPACK_IMPORTED_MODULE_8__["fetchCourse"];
   window.createCourse = _actions_course_actions__WEBPACK_IMPORTED_MODULE_8__["createCourse"];
   window.updateCourse = _actions_course_actions__WEBPACK_IMPORTED_MODULE_8__["updateCourse"];
   window.deleteCourse = _actions_course_actions__WEBPACK_IMPORTED_MODULE_8__["deleteCourse"];
+  window.CourseAPI = _util_course_api_util__WEBPACK_IMPORTED_MODULE_9__;
 });
 
 /***/ }),
@@ -1348,7 +1350,8 @@ var courseReducer = function courseReducer() {
 
   switch (action.type) {
     case _actions_course_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_COURSES"]:
-      return Object.assign({}, action.courses, state);
+      // return Object.assign({}, action.courses, state);
+      return action.courses;
 
     case _actions_course_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_COURSE"]:
       nextState[action.payload.course.id] = action.payload.course;
@@ -1359,7 +1362,8 @@ var courseReducer = function courseReducer() {
       return nextState;
 
     case _actions_user_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_USER"]:
-      return action.payload.courses;
+      return Object.assign({}, state, action.payload.courses);
+    // return action.payload.courses;
 
     default:
       return state;
@@ -1452,24 +1456,27 @@ var rootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])(
 /*!****************************************!*\
   !*** ./frontend/reducers/selectors.js ***!
   \****************************************/
-/*! exports provided: selectCourseTagsNames, selectCourseInstructor */
+/*! exports provided: selectCourseTagsNames, selectCourseInstructor, selectCoursesForCurrentUser */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectCourseTagsNames", function() { return selectCourseTagsNames; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectCourseInstructor", function() { return selectCourseInstructor; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectCoursesForCurrentUser", function() { return selectCoursesForCurrentUser; });
 var selectCourseTagsNames = function selectCourseTagsNames(state) {
   var tagNames = Object.values(state.entities.tags).map(function (tag) {
     return tag.tagName;
   });
   return tagNames;
 };
-var selectCourseInstructor = function selectCourseInstructor(state) {
-  var instructor = Object.values(state.entities.users).map(function (user) {
-    return user.username;
+var selectCourseInstructor = function selectCourseInstructor(course, state) {
+  return state.entities.users[course.mentorId];
+};
+var selectCoursesForCurrentUser = function selectCoursesForCurrentUser(state) {
+  return state.session.currentUser.courseIds.map(function (courseId) {
+    return state.entities.courses[courseId];
   });
-  return instructor;
 };
 
 /***/ }),
@@ -1630,21 +1637,24 @@ var usersReducer = function usersReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
-  var nextState;
+  var nextState = Object.assign({}, state);
 
   switch (action.type) {
     // 之后可能根据需要改进
+    case _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_CURRENT_USER"]:
+      return Object.assign({}, state, _defineProperty({}, action.currentUser.user.id, action.currentUser.user));
+
     case _actions_user_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_USERS"]:
       return Object.assign({}, action.users, state);
 
     case _actions_user_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_USER"]:
-      return _defineProperty({}, action.payload.user.id, action.payload.user);
+      nextState[action.payload.user.id] = action.payload.user;
+      return nextState;
 
     case _actions_course_actions__WEBPACK_IMPORTED_MODULE_2__["RECEIVE_COURSE"]:
-      return _defineProperty({}, action.payload.instructor.id, action.payload.instructor);
+      nextState[action.payload.instructor.id] = action.payload.instructor; // nextState[action.payload.course.mentor_id].courseIds.push(action.payload.course.id);
 
-    case _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_CURRENT_USER"]:
-      return Object.assign({}, state, _defineProperty({}, action.currentUser.user.id, action.currentUser.user));
+      return nextState;
 
     default:
       return state;

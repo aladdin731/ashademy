@@ -4,11 +4,14 @@ import CourseDetail from './course_detail';
 import {selectCourseTagsNames, selectCourseInstructor} from "../../reducers/selectors";
 
 const mapStateToProps = (state, ownProps) => {
+  const course = state.entities.courses[ownProps.match.params.courseId]
+  const instructor = selectCourseInstructor(course, state);
+  const tags = selectCourseTagsNames(state);
   return {
-    course: state.entities.courses[ownProps.match.params.courseId],
-    tags: selectCourseTagsNames(state),
+    course,
+    tags,
     // instructor: Object.values(state.entities.users)[0].username
-    instructor: selectCourseInstructor(state)
+    instructor
   }
 }
 
