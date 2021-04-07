@@ -1086,9 +1086,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     fetchUser: function fetchUser(currentUserId) {
       return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_1__["fetchUser"])(currentUserId));
     },
-    fetchCourses: function fetchCourses() {
-      return dispatch(Object(_actions_course_actions__WEBPACK_IMPORTED_MODULE_4__["fetchCourses"])());
-    },
+    // fetchCourses: () => dispatch(fetchCourses()),
     deleteCourse: function deleteCourse(courseId) {
       return dispatch(Object(_actions_course_actions__WEBPACK_IMPORTED_MODULE_4__["deleteCourse"])(courseId));
     }
