@@ -1,8 +1,6 @@
 import React from 'react';
 import CourseIndexItem from './course_index_item';
 
-
-
 class CourseIndex extends React.Component{
   constructor(props){
     super(props)
@@ -13,7 +11,7 @@ class CourseIndex extends React.Component{
   }
   
   render(){
-
+    if(!this.props.courses) return null;
     return (
       <div >
         <ul>

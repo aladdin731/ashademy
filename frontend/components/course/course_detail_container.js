@@ -6,10 +6,10 @@ import {selectCourseTagsNames, selectCourseInstructor} from "../../reducers/sele
 const mapStateToProps = (state, {match}) => {
   const courseId = parseInt(match.params.courseId);
   const course = state.entities.courses[courseId] || {};
-  const instructor = state.entities.users[course.mentor_id];
+  const instructor = state.entities.users[course.mentorId];
   const tags = selectCourseTagsNames(state);
   return {
-    courseId, course, tags, instructor
+    courseId, course, instructor, tags
   }
 }
 

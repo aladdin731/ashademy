@@ -8,12 +8,15 @@ class CourseDetail extends React.Component{
   }
 
   componentDidMount(){
+
     this.props.fetchCourse(this.props.courseId);
   }
 
 
   render(){
-    if (!this.props.course) return null;
+
+    if (!this.props.course || !this.props.instructor) return null;
+
     return (
       <section>
         <figure>
@@ -23,7 +26,7 @@ class CourseDetail extends React.Component{
           <li><h2>{this.props.course.courseName}</h2></li>
           <li>Type: {this.props.course.courseType}</li>
           <li>Description: {this.props.course.description}</li>
-          <li>Instructor: {this.props.instructor}</li>
+          <li>Instructor: {this.props.instructor.username}</li>
           <li>Tags: {this.props.tags.join(' ')}</li>
         </ul>
       </section>
