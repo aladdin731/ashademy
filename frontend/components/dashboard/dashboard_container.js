@@ -8,9 +8,8 @@ import {deleteCourse, fetchCourses} from '../../actions/course_actions';
 const mapStateToProps = state => {
     const currentUser = state.session.currentUser;
     const courses = selectCoursesForCurrentUser(state, currentUser);
-    const user = state.entities.users;
     return {
-        currentUser, courses, user 
+        currentUser, courses 
     }
 }
 
