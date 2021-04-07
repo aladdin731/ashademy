@@ -7,22 +7,22 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # Course.create!({course_name: "react", description: "best react course", course_type:"Frontend", mentor_id: 5, image_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png', tag_1:"tag1", tag_2:"tag2"})
-User.destroy_all
-User.create!({username: "Demo User", password:"123123"})
-User.create!({username:"user1", password:"123123"})
-User.create!({username:"user2", password:"123123"})
-User.create!({username:"user3", password:"123123"})
-User.create!({username:"user4", password:"123123"})
-User.create!({username:"user5", password:"123123"})
-User.create!({username:"user6", password:"123123"})
+User.delete_all
+u1 = User.create!({username: "Demo User", password:"123123"})
+u2 = User.create!({username:"user2", password:"123123"})
+u3 = User.create!({username:"user3", password:"123123"})
+u4 = User.create!({username:"user4", password:"123123"})
+u5 = User.create!({username:"user5", password:"123123"})
+u6 = User.create!({username:"user6", password:"123123"})
+u7 = User.create!({username:"user7", password:"123123"})
 
 
-
+Course.delete_all
 CourseTag.destroy_all
 
-  Tag.destroy_all
+Tag.destroy_all
 
-  Course.destroy_all
+
 
 
   courses = {
@@ -30,7 +30,7 @@ CourseTag.destroy_all
       'course_name' => 'python',
       'description' => "best python course",
       'course_type' => "Frontend",
-      'mentor_id' => 1,
+      'mentor_id' => u1.id,
       'image_url' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png',
       'tags' => [
      'tag1_haha',
@@ -41,7 +41,7 @@ CourseTag.destroy_all
       'course_name' => 'redux',
       'description' => "best redux course",
       'course_type' => "Frontend",
-      'mentor_id' => 2,
+      'mentor_id' => u1.id,
       'image_url' => 'https://miro.medium.com/max/800/1*4sxOPaVNwxrfZ9uxVbUaKg.jpeg',
       'tags' => [
      'tag1_haha',
@@ -52,7 +52,7 @@ CourseTag.destroy_all
       'course_name' => 'rails',
       'description' => "best rails course",
       'course_type' => "Backend",
-      'mentor_id' => 3,
+      'mentor_id' => u2.id,
       'image_url' => 'https://hackernoon.com/drafts/3b3t3yqt.png',
       'tags' => [
      'tag1_zozo',
@@ -63,7 +63,7 @@ CourseTag.destroy_all
       'course_name' => 'ruby',
       'description' => "best ruby course",
       'course_type' => "Backend",
-      'mentor_id' => 3,
+      'mentor_id' => u2.id,
       'image_url' => 'https://portswigger.net/cms/images/f5/d7/61c1d398bde7-article-main.jpg',
       'tags' => [
      'tag1_zozo',
@@ -74,7 +74,7 @@ CourseTag.destroy_all
       'course_name' => 'resume',
       'description' => "best resume course",
       'course_type' => "Resume",
-      'mentor_id' => 6,
+      'mentor_id' => u3.id,
       'image_url' => 'https://image.slidesharecdn.com/presentation-150219211039-conversion-gate01/95/professional-resume-open-door-to-oportunity-3-638.jpg?cb=1424380396',
       'tags' => [
      'tag1_tutu',

@@ -19760,3 +19760,1658 @@ Processing by Api::CoursesController#index as JSON
 Completed 200 OK in 14ms (Views: 12.5ms | ActiveRecord: 1.4ms)
 
 
+Started GET "/" for ::1 at 2021-04-07 09:45:41 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "pX1E+WCCeRI8vz2o2q0toQ=="], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8
+  Rendered api/users/_user.json.jbuilder (1.1ms)
+  Rendered static_pages/root.html.erb within layouts/application (13.2ms)
+Completed 200 OK in 63ms (Views: 60.2ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api/courses" for ::1 at 2021-04-07 09:45:41 -0700
+Processing by Api::CoursesController#index as JSON
+  Rendering api/courses/index.json.jbuilder
+  [1m[36mCourse Load (2.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  ↳ app/views/api/courses/index.json.jbuilder:1
+  Rendered api/courses/index.json.jbuilder (14.0ms)
+Completed 200 OK in 24ms (Views: 21.2ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/api/courses/3" for ::1 at 2021-04-07 09:45:59 -0700
+Processing by Api::CoursesController#show as JSON
+  Parameters: {"id"=>"3"}
+  [1m[36mCourse Load (0.9ms)[0m  [1m[34mSELECT  "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/courses_controller.rb:46
+  Rendering api/courses/show.json.jbuilder
+  [1m[36mTag Load (0.6ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "course_tags" ON "tags"."id" = "course_tags"."tag_id" WHERE "course_tags"."course_id" = $1[0m  [["course_id", 3]]
+  ↳ app/views/api/courses/show.json.jbuilder:7
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/api/courses/show.json.jbuilder:21
+  Rendered api/users/_user.json.jbuilder (0.3ms)
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "courses"."id" FROM "courses" WHERE "courses"."mentor_id" = $1[0m  [["mentor_id", 3]]
+  ↳ app/views/api/courses/show.json.jbuilder:22
+  Rendered api/courses/show.json.jbuilder (7.7ms)
+Completed 200 OK in 19ms (Views: 15.2ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/api/courses" for ::1 at 2021-04-07 09:46:09 -0700
+Processing by Api::CoursesController#index as JSON
+  Rendering api/courses/index.json.jbuilder
+  [1m[36mCourse Load (0.9ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  ↳ app/views/api/courses/index.json.jbuilder:1
+  Rendered api/courses/index.json.jbuilder (3.4ms)
+Completed 200 OK in 11ms (Views: 10.0ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/api/courses/4" for ::1 at 2021-04-07 09:46:10 -0700
+Processing by Api::CoursesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[36mCourse Load (0.5ms)[0m  [1m[34mSELECT  "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/api/courses_controller.rb:46
+  Rendering api/courses/show.json.jbuilder
+  [1m[36mTag Load (0.5ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "course_tags" ON "tags"."id" = "course_tags"."tag_id" WHERE "course_tags"."course_id" = $1[0m  [["course_id", 4]]
+  ↳ app/views/api/courses/show.json.jbuilder:7
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/api/courses/show.json.jbuilder:21
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "courses"."id" FROM "courses" WHERE "courses"."mentor_id" = $1[0m  [["mentor_id", 3]]
+  ↳ app/views/api/courses/show.json.jbuilder:22
+  Rendered api/courses/show.json.jbuilder (8.4ms)
+Completed 200 OK in 18ms (Views: 15.4ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/api/courses" for ::1 at 2021-04-07 09:46:26 -0700
+Processing by Api::CoursesController#index as JSON
+  Rendering api/courses/index.json.jbuilder
+  [1m[36mCourse Load (0.4ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  ↳ app/views/api/courses/index.json.jbuilder:1
+  Rendered api/courses/index.json.jbuilder (3.2ms)
+Completed 200 OK in 11ms (Views: 10.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/courses/5" for ::1 at 2021-04-07 09:46:28 -0700
+Processing by Api::CoursesController#show as JSON
+  Parameters: {"id"=>"5"}
+  [1m[36mCourse Load (0.8ms)[0m  [1m[34mSELECT  "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/courses_controller.rb:46
+  Rendering api/courses/show.json.jbuilder
+  [1m[36mTag Load (0.8ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "course_tags" ON "tags"."id" = "course_tags"."tag_id" WHERE "course_tags"."course_id" = $1[0m  [["course_id", 5]]
+  ↳ app/views/api/courses/show.json.jbuilder:7
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/api/courses/show.json.jbuilder:21
+  Rendered api/users/_user.json.jbuilder (0.6ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "courses"."id" FROM "courses" WHERE "courses"."mentor_id" = $1[0m  [["mentor_id", 6]]
+  ↳ app/views/api/courses/show.json.jbuilder:22
+  Rendered api/courses/show.json.jbuilder (8.6ms)
+Completed 200 OK in 19ms (Views: 15.9ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/api/courses" for ::1 at 2021-04-07 09:46:35 -0700
+Processing by Api::CoursesController#index as JSON
+  Rendering api/courses/index.json.jbuilder
+  [1m[36mCourse Load (0.3ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  ↳ app/views/api/courses/index.json.jbuilder:1
+  Rendered api/courses/index.json.jbuilder (2.3ms)
+Completed 200 OK in 10ms (Views: 9.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for ::1 at 2021-04-07 09:53:23 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "pX1E+WCCeRI8vz2o2q0toQ=="], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8
+  Rendered api/users/_user.json.jbuilder (3.4ms)
+  Rendered static_pages/root.html.erb within layouts/application (25.1ms)
+Completed 200 OK in 116ms (Views: 109.4ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/api/courses" for ::1 at 2021-04-07 09:53:24 -0700
+Processing by Api::CoursesController#index as JSON
+  Rendering api/courses/index.json.jbuilder
+  [1m[36mCourse Load (2.6ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  ↳ app/views/api/courses/index.json.jbuilder:1
+  Rendered api/courses/index.json.jbuilder (8.4ms)
+Completed 200 OK in 19ms (Views: 15.7ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/api/courses/5" for ::1 at 2021-04-07 09:53:44 -0700
+Processing by Api::CoursesController#show as JSON
+  Parameters: {"id"=>"5"}
+  [1m[36mCourse Load (2.0ms)[0m  [1m[34mSELECT  "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/courses_controller.rb:46
+  Rendering api/courses/show.json.jbuilder
+  [1m[36mTag Load (2.1ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "course_tags" ON "tags"."id" = "course_tags"."tag_id" WHERE "course_tags"."course_id" = $1[0m  [["course_id", 5]]
+  ↳ app/views/api/courses/show.json.jbuilder:7
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/api/courses/show.json.jbuilder:21
+  Rendered api/users/_user.json.jbuilder (0.5ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "courses"."id" FROM "courses" WHERE "courses"."mentor_id" = $1[0m  [["mentor_id", 6]]
+  ↳ app/views/api/courses/show.json.jbuilder:22
+  Rendered api/courses/show.json.jbuilder (17.3ms)
+Completed 200 OK in 33ms (Views: 23.1ms | ActiveRecord: 6.5ms)
+
+
+Started GET "/api/courses" for ::1 at 2021-04-07 09:53:46 -0700
+Processing by Api::CoursesController#index as JSON
+  Rendering api/courses/index.json.jbuilder
+  [1m[36mCourse Load (0.3ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  ↳ app/views/api/courses/index.json.jbuilder:1
+  Rendered api/courses/index.json.jbuilder (3.1ms)
+Completed 200 OK in 11ms (Views: 10.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/courses/19" for ::1 at 2021-04-07 09:53:49 -0700
+Processing by Api::CoursesController#show as JSON
+  Parameters: {"id"=>"19"}
+  [1m[36mCourse Load (0.8ms)[0m  [1m[34mSELECT  "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2[0m  [["id", 19], ["LIMIT", 1]]
+  ↳ app/controllers/api/courses_controller.rb:46
+  Rendering api/courses/show.json.jbuilder
+  [1m[36mTag Load (0.4ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "course_tags" ON "tags"."id" = "course_tags"."tag_id" WHERE "course_tags"."course_id" = $1[0m  [["course_id", 19]]
+  ↳ app/views/api/courses/show.json.jbuilder:7
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/courses/show.json.jbuilder:21
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "courses"."id" FROM "courses" WHERE "courses"."mentor_id" = $1[0m  [["mentor_id", 1]]
+  ↳ app/views/api/courses/show.json.jbuilder:22
+  Rendered api/courses/show.json.jbuilder (9.2ms)
+Completed 200 OK in 20ms (Views: 15.9ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/api/courses" for ::1 at 2021-04-07 09:53:59 -0700
+Processing by Api::CoursesController#index as JSON
+  Rendering api/courses/index.json.jbuilder
+  [1m[36mCourse Load (0.3ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  ↳ app/views/api/courses/index.json.jbuilder:1
+  Rendered api/courses/index.json.jbuilder (3.0ms)
+Completed 200 OK in 12ms (Views: 11.0ms | ActiveRecord: 0.3ms)
+
+
+Started DELETE "/api/courses/17" for ::1 at 2021-04-07 09:54:29 -0700
+Processing by Api::CoursesController#destroy as JSON
+  Parameters: {"id"=>"17"}
+  [1m[36mCourse Load (0.3ms)[0m  [1m[34mSELECT  "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2[0m  [["id", 17], ["LIMIT", 1]]
+  ↳ app/controllers/api/courses_controller.rb:51
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/courses_controller.rb:52
+  [1m[36mCourse Destroy (6.4ms)[0m  [1m[31mDELETE FROM "courses" WHERE "courses"."id" = $1[0m  [["id", 17]]
+  ↳ app/controllers/api/courses_controller.rb:52
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/courses_controller.rb:52
+  Rendering api/courses/show.json.jbuilder
+  [1m[36mTag Load (0.4ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "course_tags" ON "tags"."id" = "course_tags"."tag_id" WHERE "course_tags"."course_id" = $1[0m  [["course_id", 17]]
+  ↳ app/views/api/courses/show.json.jbuilder:7
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/api/courses/show.json.jbuilder:21
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "courses"."id" FROM "courses" WHERE "courses"."mentor_id" = $1[0m  [["mentor_id", 3]]
+  ↳ app/views/api/courses/show.json.jbuilder:22
+  Rendered api/courses/show.json.jbuilder (7.6ms)
+Completed 200 OK in 31ms (Views: 13.7ms | ActiveRecord: 9.1ms)
+
+
+Started DELETE "/api/courses/18" for ::1 at 2021-04-07 09:54:32 -0700
+Processing by Api::CoursesController#destroy as JSON
+  Parameters: {"id"=>"18"}
+  [1m[36mCourse Load (0.4ms)[0m  [1m[34mSELECT  "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2[0m  [["id", 18], ["LIMIT", 1]]
+  ↳ app/controllers/api/courses_controller.rb:51
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/courses_controller.rb:52
+  [1m[36mCourse Destroy (1.1ms)[0m  [1m[31mDELETE FROM "courses" WHERE "courses"."id" = $1[0m  [["id", 18]]
+  ↳ app/controllers/api/courses_controller.rb:52
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/courses_controller.rb:52
+  Rendering api/courses/show.json.jbuilder
+  [1m[36mTag Load (0.5ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "course_tags" ON "tags"."id" = "course_tags"."tag_id" WHERE "course_tags"."course_id" = $1[0m  [["course_id", 18]]
+  ↳ app/views/api/courses/show.json.jbuilder:7
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/api/courses/show.json.jbuilder:21
+  Rendered api/users/_user.json.jbuilder (0.6ms)
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "courses"."id" FROM "courses" WHERE "courses"."mentor_id" = $1[0m  [["mentor_id", 3]]
+  ↳ app/views/api/courses/show.json.jbuilder:22
+  Rendered api/courses/show.json.jbuilder (8.4ms)
+Completed 200 OK in 22ms (Views: 14.3ms | ActiveRecord: 3.7ms)
+
+
+Started DELETE "/api/courses/19" for ::1 at 2021-04-07 09:54:39 -0700
+Processing by Api::CoursesController#destroy as JSON
+  Parameters: {"id"=>"19"}
+  [1m[36mCourse Load (0.3ms)[0m  [1m[34mSELECT  "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2[0m  [["id", 19], ["LIMIT", 1]]
+  ↳ app/controllers/api/courses_controller.rb:51
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/courses_controller.rb:52
+  [1m[36mCourse Destroy (0.3ms)[0m  [1m[31mDELETE FROM "courses" WHERE "courses"."id" = $1[0m  [["id", 19]]
+  ↳ app/controllers/api/courses_controller.rb:52
+  [1m[35m (5.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/courses_controller.rb:52
+  Rendering api/courses/show.json.jbuilder
+  [1m[36mTag Load (0.5ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "course_tags" ON "tags"."id" = "course_tags"."tag_id" WHERE "course_tags"."course_id" = $1[0m  [["course_id", 19]]
+  ↳ app/views/api/courses/show.json.jbuilder:7
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/courses/show.json.jbuilder:21
+  Rendered api/users/_user.json.jbuilder (0.6ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "courses"."id" FROM "courses" WHERE "courses"."mentor_id" = $1[0m  [["mentor_id", 1]]
+  ↳ app/views/api/courses/show.json.jbuilder:22
+  Rendered api/courses/show.json.jbuilder (9.6ms)
+Completed 200 OK in 26ms (Views: 16.3ms | ActiveRecord: 7.1ms)
+
+
+Started DELETE "/api/courses/20" for ::1 at 2021-04-07 09:54:43 -0700
+Processing by Api::CoursesController#destroy as JSON
+  Parameters: {"id"=>"20"}
+  [1m[36mCourse Load (0.4ms)[0m  [1m[34mSELECT  "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/api/courses_controller.rb:51
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/courses_controller.rb:52
+  [1m[36mCourse Destroy (0.5ms)[0m  [1m[31mDELETE FROM "courses" WHERE "courses"."id" = $1[0m  [["id", 20]]
+  ↳ app/controllers/api/courses_controller.rb:52
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/courses_controller.rb:52
+  Rendering api/courses/show.json.jbuilder
+  [1m[36mTag Load (0.7ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "course_tags" ON "tags"."id" = "course_tags"."tag_id" WHERE "course_tags"."course_id" = $1[0m  [["course_id", 20]]
+  ↳ app/views/api/courses/show.json.jbuilder:7
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/api/courses/show.json.jbuilder:21
+  Rendered api/users/_user.json.jbuilder (1.2ms)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "courses"."id" FROM "courses" WHERE "courses"."mentor_id" = $1[0m  [["mentor_id", 3]]
+  ↳ app/views/api/courses/show.json.jbuilder:22
+  Rendered api/courses/show.json.jbuilder (12.3ms)
+Completed 200 OK in 29ms (Views: 18.8ms | ActiveRecord: 3.9ms)
+
+
+Started GET "/" for ::1 at 2021-04-07 09:54:48 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "pX1E+WCCeRI8vz2o2q0toQ=="], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8
+  Rendered api/users/_user.json.jbuilder (0.5ms)
+  Rendered static_pages/root.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 38ms (Views: 35.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/courses" for ::1 at 2021-04-07 09:54:49 -0700
+Processing by Api::CoursesController#index as JSON
+  Rendering api/courses/index.json.jbuilder
+  [1m[36mCourse Load (0.6ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  ↳ app/views/api/courses/index.json.jbuilder:1
+  Rendered api/courses/index.json.jbuilder (3.1ms)
+Completed 200 OK in 11ms (Views: 10.6ms | ActiveRecord: 0.6ms)
+
+
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Destroy (4.5ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 6]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Destroy (0.2ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 7]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Destroy (0.2ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 2]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Destroy (0.1ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 13]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Destroy (0.1ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 8]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Destroy (0.3ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 9]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Destroy (0.2ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 3]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Destroy (0.1ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 14]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Destroy (0.1ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 11]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Destroy (0.2ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 10]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Destroy (0.1ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 1]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Destroy (0.1ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 12]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Destroy (0.2ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 4]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Destroy (0.2ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 5]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:11
+  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Demo User"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:11
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "sKQe6KZhHQLUJXo3OXh0tw=="], ["LIMIT", 1]]
+  ↳ db/seeds.rb:11
+  [1m[36mUser Create (3.2ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "Demo User"], ["password_digest", "$2a$12$uBzeeF07e16sv2HoiBrLPO5d62TOb0ujVfBGTys0hJF4rLqA00JXe"], ["session_token", "sKQe6KZhHQLUJXo3OXh0tw=="], ["created_at", "2021-04-07 16:55:44.388013"], ["updated_at", "2021-04-07 16:55:44.388013"]]
+  ↳ db/seeds.rb:11
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:11
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:12
+  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "user2"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:12
+  [1m[36mUser Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "8ztmI4aEADzxW+sL8/lzaw=="], ["LIMIT", 1]]
+  ↳ db/seeds.rb:12
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "user2"], ["password_digest", "$2a$12$bobGRDrv2Dc2prIjHftwleKnhJvHHf/YBec.Yg0wa.cOcqPFjN2xy"], ["session_token", "8ztmI4aEADzxW+sL8/lzaw=="], ["created_at", "2021-04-07 16:55:44.605581"], ["updated_at", "2021-04-07 16:55:44.605581"]]
+  ↳ db/seeds.rb:12
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:12
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:13
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "user3"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:13
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "I3OpKfm9KYd9pRommQdYtQ=="], ["LIMIT", 1]]
+  ↳ db/seeds.rb:13
+  [1m[36mUser Create (2.7ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "user3"], ["password_digest", "$2a$12$uaabL7VF4dcBchFGdkgN2un/8of/txHDea8297Lo6MReunqDdOSWi"], ["session_token", "I3OpKfm9KYd9pRommQdYtQ=="], ["created_at", "2021-04-07 16:55:44.818814"], ["updated_at", "2021-04-07 16:55:44.818814"]]
+  ↳ db/seeds.rb:13
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:13
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:14
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "user4"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:14
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "BrdTQyzOK1PGVtNM5yXanQ=="], ["LIMIT", 1]]
+  ↳ db/seeds.rb:14
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "user4"], ["password_digest", "$2a$12$r0vGG1W0WtAo3.458OKnNOjDwCbQrHr/1uuM72zLxhjV9yt9PElrq"], ["session_token", "BrdTQyzOK1PGVtNM5yXanQ=="], ["created_at", "2021-04-07 16:55:45.034359"], ["updated_at", "2021-04-07 16:55:45.034359"]]
+  ↳ db/seeds.rb:14
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:14
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:15
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "user5"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:15
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "4v65xRBmAERnZLd0TVm3WQ=="], ["LIMIT", 1]]
+  ↳ db/seeds.rb:15
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "user5"], ["password_digest", "$2a$12$dLefdG.MEzyYF/MnPRidOuCu6nlAGE6dBzvQXihHWLbQaT8OJQqRe"], ["session_token", "4v65xRBmAERnZLd0TVm3WQ=="], ["created_at", "2021-04-07 16:55:45.241612"], ["updated_at", "2021-04-07 16:55:45.241612"]]
+  ↳ db/seeds.rb:15
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:15
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:16
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "user6"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:16
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "xY9QfiiSjfov+r4CtRledg=="], ["LIMIT", 1]]
+  ↳ db/seeds.rb:16
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "user6"], ["password_digest", "$2a$12$6ymPKRqhjXnDN/jldqm6B.N4N.pjs3.zxbV.GwJd62T/kuqlVyiuy"], ["session_token", "xY9QfiiSjfov+r4CtRledg=="], ["created_at", "2021-04-07 16:55:45.448270"], ["updated_at", "2021-04-07 16:55:45.448270"]]
+  ↳ db/seeds.rb:16
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:16
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:17
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "user7"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:17
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "/2qYFpCZtoJiNJFIW9ra+g=="], ["LIMIT", 1]]
+  ↳ db/seeds.rb:17
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "user7"], ["password_digest", "$2a$12$wh8ShzC0NGXc94LntfMVlesI3gY0F8CFvxaV13T8XdqsZK0/1fKnS"], ["session_token", "/2qYFpCZtoJiNJFIW9ra+g=="], ["created_at", "2021-04-07 16:55:45.654865"], ["updated_at", "2021-04-07 16:55:45.654865"]]
+  ↳ db/seeds.rb:17
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:17
+  [1m[36mCourseTag Load (0.5ms)[0m  [1m[34mSELECT "course_tags".* FROM "course_tags"[0m
+  ↳ db/seeds.rb:21
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:21
+  [1m[36mCourseTag Destroy (0.4ms)[0m  [1m[31mDELETE FROM "course_tags" WHERE "course_tags"."id" = $1[0m  [["id", 1]]
+  ↳ db/seeds.rb:21
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:21
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:21
+  [1m[36mCourseTag Destroy (0.2ms)[0m  [1m[31mDELETE FROM "course_tags" WHERE "course_tags"."id" = $1[0m  [["id", 2]]
+  ↳ db/seeds.rb:21
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:21
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:21
+  [1m[36mCourseTag Destroy (0.2ms)[0m  [1m[31mDELETE FROM "course_tags" WHERE "course_tags"."id" = $1[0m  [["id", 3]]
+  ↳ db/seeds.rb:21
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:21
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:21
+  [1m[36mCourseTag Destroy (0.2ms)[0m  [1m[31mDELETE FROM "course_tags" WHERE "course_tags"."id" = $1[0m  [["id", 4]]
+  ↳ db/seeds.rb:21
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:21
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:21
+  [1m[36mCourseTag Destroy (0.2ms)[0m  [1m[31mDELETE FROM "course_tags" WHERE "course_tags"."id" = $1[0m  [["id", 5]]
+  ↳ db/seeds.rb:21
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:21
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:21
+  [1m[36mCourseTag Destroy (0.1ms)[0m  [1m[31mDELETE FROM "course_tags" WHERE "course_tags"."id" = $1[0m  [["id", 6]]
+  ↳ db/seeds.rb:21
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:21
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:21
+  [1m[36mCourseTag Destroy (0.1ms)[0m  [1m[31mDELETE FROM "course_tags" WHERE "course_tags"."id" = $1[0m  [["id", 7]]
+  ↳ db/seeds.rb:21
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:21
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:21
+  [1m[36mCourseTag Destroy (0.1ms)[0m  [1m[31mDELETE FROM "course_tags" WHERE "course_tags"."id" = $1[0m  [["id", 8]]
+  ↳ db/seeds.rb:21
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:21
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:21
+  [1m[36mCourseTag Destroy (0.2ms)[0m  [1m[31mDELETE FROM "course_tags" WHERE "course_tags"."id" = $1[0m  [["id", 9]]
+  ↳ db/seeds.rb:21
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:21
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:21
+  [1m[36mCourseTag Destroy (0.2ms)[0m  [1m[31mDELETE FROM "course_tags" WHERE "course_tags"."id" = $1[0m  [["id", 10]]
+  ↳ db/seeds.rb:21
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:21
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:21
+  [1m[36mCourseTag Destroy (0.2ms)[0m  [1m[31mDELETE FROM "course_tags" WHERE "course_tags"."id" = $1[0m  [["id", 11]]
+  ↳ db/seeds.rb:21
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:21
+  [1m[36mTag Load (0.5ms)[0m  [1m[34mSELECT "tags".* FROM "tags"[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:23
+  [1m[36mTag Destroy (0.3ms)[0m  [1m[31mDELETE FROM "tags" WHERE "tags"."id" = $1[0m  [["id", 1]]
+  ↳ db/seeds.rb:23
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:23
+  [1m[36mTag Destroy (0.2ms)[0m  [1m[31mDELETE FROM "tags" WHERE "tags"."id" = $1[0m  [["id", 2]]
+  ↳ db/seeds.rb:23
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:23
+  [1m[36mTag Destroy (0.2ms)[0m  [1m[31mDELETE FROM "tags" WHERE "tags"."id" = $1[0m  [["id", 3]]
+  ↳ db/seeds.rb:23
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:23
+  [1m[36mTag Destroy (0.2ms)[0m  [1m[31mDELETE FROM "tags" WHERE "tags"."id" = $1[0m  [["id", 4]]
+  ↳ db/seeds.rb:23
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:23
+  [1m[36mTag Destroy (0.2ms)[0m  [1m[31mDELETE FROM "tags" WHERE "tags"."id" = $1[0m  [["id", 5]]
+  ↳ db/seeds.rb:23
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:23
+  [1m[36mTag Destroy (0.2ms)[0m  [1m[31mDELETE FROM "tags" WHERE "tags"."id" = $1[0m  [["id", 6]]
+  ↳ db/seeds.rb:23
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:23
+  [1m[36mTag Destroy (0.2ms)[0m  [1m[31mDELETE FROM "tags" WHERE "tags"."id" = $1[0m  [["id", 7]]
+  ↳ db/seeds.rb:23
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:23
+  [1m[36mTag Destroy (0.2ms)[0m  [1m[31mDELETE FROM "tags" WHERE "tags"."id" = $1[0m  [["id", 8]]
+  ↳ db/seeds.rb:23
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:23
+  [1m[36mCourse Load (0.5ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  ↳ db/seeds.rb:25
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:25
+  [1m[36mCourse Destroy (0.3ms)[0m  [1m[31mDELETE FROM "courses" WHERE "courses"."id" = $1[0m  [["id", 5]]
+  ↳ db/seeds.rb:25
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:25
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:25
+  [1m[36mCourse Destroy (0.2ms)[0m  [1m[31mDELETE FROM "courses" WHERE "courses"."id" = $1[0m  [["id", 4]]
+  ↳ db/seeds.rb:25
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:25
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:25
+  [1m[36mCourse Destroy (0.2ms)[0m  [1m[31mDELETE FROM "courses" WHERE "courses"."id" = $1[0m  [["id", 3]]
+  ↳ db/seeds.rb:25
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:25
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:89
+  [1m[36mCourse Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "courses" WHERE "courses"."course_name" = $1 LIMIT $2[0m  [["course_name", "python"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:89
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:89
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ db/seeds.rb:89
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Destroy (0.8ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 15]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Destroy (0.3ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 16]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Destroy (0.4ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 17]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Destroy (0.3ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 18]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Destroy (0.3ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 19]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Destroy (0.3ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 20]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Destroy (0.3ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 21]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:11
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Demo User"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:11
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "3CLRRx2lPmyJwdEV/3cryg=="], ["LIMIT", 1]]
+  ↳ db/seeds.rb:11
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "Demo User"], ["password_digest", "$2a$12$zaWdM/GpkHD85myc39Wu1.rREd0FZ4kLwAoh3HZQOqHwj0cB1mmyu"], ["session_token", "3CLRRx2lPmyJwdEV/3cryg=="], ["created_at", "2021-04-07 16:56:09.449528"], ["updated_at", "2021-04-07 16:56:09.449528"]]
+  ↳ db/seeds.rb:11
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:11
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:12
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "user2"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:12
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "3utMiJZLm/YAKXqeAXsw4A=="], ["LIMIT", 1]]
+  ↳ db/seeds.rb:12
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "user2"], ["password_digest", "$2a$12$lfhtkUboO1AUu7hRMY1x4OgUGNYxD.ncG0xEVOnG/jq2BggEqJNky"], ["session_token", "3utMiJZLm/YAKXqeAXsw4A=="], ["created_at", "2021-04-07 16:56:09.656641"], ["updated_at", "2021-04-07 16:56:09.656641"]]
+  ↳ db/seeds.rb:12
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:12
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:13
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "user3"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:13
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "r0vwKnf7foOKrlsJVJqGQg=="], ["LIMIT", 1]]
+  ↳ db/seeds.rb:13
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "user3"], ["password_digest", "$2a$12$KMhgaku6QDoz.LLezOGKpu1onGzDlOKs.hAsxTDT5kqeB8QBip.G6"], ["session_token", "r0vwKnf7foOKrlsJVJqGQg=="], ["created_at", "2021-04-07 16:56:09.873103"], ["updated_at", "2021-04-07 16:56:09.873103"]]
+  ↳ db/seeds.rb:13
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:13
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:14
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "user4"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:14
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "hqOqbnWIm7scYC8XW9CB4w=="], ["LIMIT", 1]]
+  ↳ db/seeds.rb:14
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "user4"], ["password_digest", "$2a$12$/471YuztkS2F2W2Q6fGdYOiZOdV4H8rIteNDtTmucQaqWrdvpYP0a"], ["session_token", "hqOqbnWIm7scYC8XW9CB4w=="], ["created_at", "2021-04-07 16:56:10.088491"], ["updated_at", "2021-04-07 16:56:10.088491"]]
+  ↳ db/seeds.rb:14
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:14
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:15
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "user5"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:15
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "vIBBhFcwYz+Dty0iz7O5Mg=="], ["LIMIT", 1]]
+  ↳ db/seeds.rb:15
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "user5"], ["password_digest", "$2a$12$9H..ebxQxaj4P4bcSsemi.GPyWBDr.MaSetRHWVBgd.2nOnaN/z8y"], ["session_token", "vIBBhFcwYz+Dty0iz7O5Mg=="], ["created_at", "2021-04-07 16:56:10.299657"], ["updated_at", "2021-04-07 16:56:10.299657"]]
+  ↳ db/seeds.rb:15
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:15
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:16
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "user6"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:16
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "MjxlNIKBINIpz1oDa69xfg=="], ["LIMIT", 1]]
+  ↳ db/seeds.rb:16
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "user6"], ["password_digest", "$2a$12$SR5oGKEMNi42ai2xlmXpIOEvz9681J5the/9zWhPN7q4qiuBUZFE6"], ["session_token", "MjxlNIKBINIpz1oDa69xfg=="], ["created_at", "2021-04-07 16:56:10.515866"], ["updated_at", "2021-04-07 16:56:10.515866"]]
+  ↳ db/seeds.rb:16
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:16
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:17
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "user7"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:17
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "/rOXmgqAroVS7dYJPqTzBA=="], ["LIMIT", 1]]
+  ↳ db/seeds.rb:17
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "user7"], ["password_digest", "$2a$12$yWCHUV5eMAJdb.XO8qbqU.t5MaTN4yCv/afTtcEVbegADW3Aapdai"], ["session_token", "/rOXmgqAroVS7dYJPqTzBA=="], ["created_at", "2021-04-07 16:56:10.730777"], ["updated_at", "2021-04-07 16:56:10.730777"]]
+  ↳ db/seeds.rb:17
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:17
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[36mCourseTag Load (0.5ms)[0m  [1m[34mSELECT "course_tags".* FROM "course_tags"[0m
+  ↳ db/seeds.rb:21
+  [1m[36mTag Load (0.5ms)[0m  [1m[34mSELECT "tags".* FROM "tags"[0m
+  ↳ db/seeds.rb:23
+  [1m[36mCourse Load (0.5ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  ↳ db/seeds.rb:25
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:89
+  [1m[36mCourse Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "courses" WHERE "courses"."course_name" = $1 LIMIT $2[0m  [["course_name", "python"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:89
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:89
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ db/seeds.rb:89
+Started GET "/" for ::1 at 2021-04-07 09:57:10 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "pX1E+WCCeRI8vz2o2q0toQ=="], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8
+  Rendered static_pages/root.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 47ms (Views: 43.7ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api/courses" for ::1 at 2021-04-07 09:57:11 -0700
+Processing by Api::CoursesController#index as JSON
+  Rendering api/courses/index.json.jbuilder
+  [1m[36mCourse Load (1.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  ↳ app/views/api/courses/index.json.jbuilder:1
+  Rendered api/courses/index.json.jbuilder (2.7ms)
+Completed 200 OK in 12ms (Views: 10.8ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/" for ::1 at 2021-04-07 09:57:14 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "pX1E+WCCeRI8vz2o2q0toQ=="], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8
+  Rendered static_pages/root.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 27ms (Views: 24.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/courses" for ::1 at 2021-04-07 09:57:14 -0700
+Processing by Api::CoursesController#index as JSON
+  Rendering api/courses/index.json.jbuilder
+  [1m[36mCourse Load (1.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  ↳ app/views/api/courses/index.json.jbuilder:1
+  Rendered api/courses/index.json.jbuilder (2.9ms)
+Completed 200 OK in 11ms (Views: 9.4ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/" for ::1 at 2021-04-07 09:57:15 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "pX1E+WCCeRI8vz2o2q0toQ=="], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8
+  Rendered static_pages/root.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 32ms (Views: 29.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/courses" for ::1 at 2021-04-07 09:57:15 -0700
+Processing by Api::CoursesController#index as JSON
+  Rendering api/courses/index.json.jbuilder
+  [1m[36mCourse Load (0.6ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  ↳ app/views/api/courses/index.json.jbuilder:1
+  Rendered api/courses/index.json.jbuilder (1.9ms)
+Completed 200 OK in 9ms (Views: 8.4ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/api/session" for ::1 at 2021-04-07 09:57:46 -0700
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"user"=>{"username"=>"Demo User", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Demo User"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:14
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:30
+  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "Demo User"], ["id", 22], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["session_token", "1phwj9S60Gw4pogeMvZb/g=="], ["id", 22], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30
+  [1m[36mUser Update (2.4ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "1phwj9S60Gw4pogeMvZb/g=="], ["updated_at", "2021-04-07 16:57:46.784736"], ["id", 22]]
+  ↳ app/models/user.rb:30
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:30
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "courses"."id" FROM "courses" WHERE "courses"."mentor_id" = $1[0m  [["mentor_id", 22]]
+  ↳ app/views/api/users/show.json.jbuilder:3
+  [1m[36mCourse Load (0.5ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."mentor_id" = $1[0m  [["mentor_id", 22]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+  Rendered api/users/show.json.jbuilder (11.2ms)
+Completed 200 OK in 247ms (Views: 17.6ms | ActiveRecord: 6.6ms)
+
+
+Started GET "/api/courses" for ::1 at 2021-04-07 09:57:46 -0700
+Processing by Api::CoursesController#index as JSON
+  Rendering api/courses/index.json.jbuilder
+  [1m[36mCourse Load (0.3ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  ↳ app/views/api/courses/index.json.jbuilder:1
+  Rendered api/courses/index.json.jbuilder (1.1ms)
+Completed 200 OK in 7ms (Views: 6.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for ::1 at 2021-04-07 09:58:33 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "1phwj9S60Gw4pogeMvZb/g=="], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8
+  Rendered api/users/_user.json.jbuilder (0.5ms)
+  Rendered static_pages/root.html.erb within layouts/application (6.6ms)
+Completed 200 OK in 60ms (Views: 57.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/courses" for ::1 at 2021-04-07 09:58:33 -0700
+Processing by Api::CoursesController#index as JSON
+  Rendering api/courses/index.json.jbuilder
+  [1m[36mCourse Load (0.4ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  ↳ app/views/api/courses/index.json.jbuilder:1
+  Rendered api/courses/index.json.jbuilder (2.4ms)
+Completed 200 OK in 10ms (Views: 9.2ms | ActiveRecord: 0.4ms)
+
+
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[36mCourseTag Load (0.6ms)[0m  [1m[34mSELECT "course_tags".* FROM "course_tags"[0m
+  ↳ db/seeds.rb:21
+  [1m[36mTag Load (0.8ms)[0m  [1m[34mSELECT "tags".* FROM "tags"[0m
+  ↳ db/seeds.rb:23
+  [1m[36mCourse Load (0.5ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  ↳ db/seeds.rb:25
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:89
+  [1m[36mCourse Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "courses" WHERE "courses"."course_name" = $1 LIMIT $2[0m  [["course_name", "python"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:89
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:89
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ db/seeds.rb:89
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Destroy (0.4ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 22]]
+  ↳ db/seeds.rb:10
+  [1m[35m (2.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Destroy (0.2ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 23]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Destroy (0.2ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 24]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Destroy (0.2ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 25]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Destroy (0.2ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 26]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Destroy (0.4ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 27]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Destroy (0.2ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 28]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:11
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Demo User"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:11
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "FzllFaWDs4JGidG+JHy/Mw=="], ["LIMIT", 1]]
+  ↳ db/seeds.rb:11
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "Demo User"], ["password_digest", "$2a$12$wpDdZTwoXlWyA4Hx5xX52ud25R8sqyL/dCSNjQKHVCzJSjzmlDLCq"], ["session_token", "FzllFaWDs4JGidG+JHy/Mw=="], ["created_at", "2021-04-07 17:04:24.089356"], ["updated_at", "2021-04-07 17:04:24.089356"]]
+  ↳ db/seeds.rb:11
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:11
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:12
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "user2"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:12
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "7e890fHXCfn6iVf2ug1EHg=="], ["LIMIT", 1]]
+  ↳ db/seeds.rb:12
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "user2"], ["password_digest", "$2a$12$wsF6CVaBDR8PLl8ilVmQuezk/2BHT5qnrvCu6R6/4/MprXPcc/t6q"], ["session_token", "7e890fHXCfn6iVf2ug1EHg=="], ["created_at", "2021-04-07 17:04:24.297329"], ["updated_at", "2021-04-07 17:04:24.297329"]]
+  ↳ db/seeds.rb:12
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:12
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:13
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "user3"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:13
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "/HAVvY28si6Tcbfi28R5Uw=="], ["LIMIT", 1]]
+  ↳ db/seeds.rb:13
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "user3"], ["password_digest", "$2a$12$L.4ho6mWB55AxFoPrdALf.ftiSlfsd9pnw8BxDLUUP8Ct31BjEkTC"], ["session_token", "/HAVvY28si6Tcbfi28R5Uw=="], ["created_at", "2021-04-07 17:04:24.503495"], ["updated_at", "2021-04-07 17:04:24.503495"]]
+  ↳ db/seeds.rb:13
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:13
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:14
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "user4"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:14
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "EkSK6VZbj9PFej3xzzbh4g=="], ["LIMIT", 1]]
+  ↳ db/seeds.rb:14
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "user4"], ["password_digest", "$2a$12$9cjx7x5IYm4w2qSkwzyXu.phlhvWsbKvD5NFoVocfBcLzE.rp6Gsi"], ["session_token", "EkSK6VZbj9PFej3xzzbh4g=="], ["created_at", "2021-04-07 17:04:24.712013"], ["updated_at", "2021-04-07 17:04:24.712013"]]
+  ↳ db/seeds.rb:14
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:14
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:15
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "user5"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:15
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "xkgsPUONyHU93nVLstVCyg=="], ["LIMIT", 1]]
+  ↳ db/seeds.rb:15
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "user5"], ["password_digest", "$2a$12$X6iRH/HdGAtXYnj4EFheme0zT2O9YjE2k2ALJtbMcY2mO7PLd9.mm"], ["session_token", "xkgsPUONyHU93nVLstVCyg=="], ["created_at", "2021-04-07 17:04:24.918483"], ["updated_at", "2021-04-07 17:04:24.918483"]]
+  ↳ db/seeds.rb:15
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:15
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:16
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "user6"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:16
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "I5a3ykhjIN/lnr+NeR55JA=="], ["LIMIT", 1]]
+  ↳ db/seeds.rb:16
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "user6"], ["password_digest", "$2a$12$SxpmNTeP7KF4gS0ArwMMn.bQQM6w7N4dh2l/Zx0pIZadKRrmeoHZe"], ["session_token", "I5a3ykhjIN/lnr+NeR55JA=="], ["created_at", "2021-04-07 17:04:25.124279"], ["updated_at", "2021-04-07 17:04:25.124279"]]
+  ↳ db/seeds.rb:16
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:16
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:17
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "user7"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:17
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "0Wl/lkiZDzGrBtpN6HTTlA=="], ["LIMIT", 1]]
+  ↳ db/seeds.rb:17
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "user7"], ["password_digest", "$2a$12$6i0j.31g2e6BRP5vxlg2NOONgTMbaTOXzl.Lt5wl.RihfmT0jXr5a"], ["session_token", "0Wl/lkiZDzGrBtpN6HTTlA=="], ["created_at", "2021-04-07 17:04:25.330053"], ["updated_at", "2021-04-07 17:04:25.330053"]]
+  ↳ db/seeds.rb:17
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:17
+  [1m[36mCourseTag Load (0.5ms)[0m  [1m[34mSELECT "course_tags".* FROM "course_tags"[0m
+  ↳ db/seeds.rb:21
+  [1m[36mTag Load (0.7ms)[0m  [1m[34mSELECT "tags".* FROM "tags"[0m
+  ↳ db/seeds.rb:23
+  [1m[36mCourse Load (0.6ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  ↳ db/seeds.rb:25
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:89
+  [1m[36mCourse Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "courses" WHERE "courses"."course_name" = $1 LIMIT $2[0m  [["course_name", "python"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:89
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:89
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ db/seeds.rb:89
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Destroy (0.4ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 29]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Destroy (0.2ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 30]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Destroy (0.2ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 31]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Destroy (0.2ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 32]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Destroy (0.3ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 33]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Destroy (0.2ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 34]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Destroy (0.2ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 35]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:11
+  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Demo User"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:11
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "UXPdUYehLlXPR1b+eKhncQ=="], ["LIMIT", 1]]
+  ↳ db/seeds.rb:11
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "Demo User"], ["password_digest", "$2a$12$v9lWqRM5WDauVQHOlGHxPe9EpX5dlellli76keBcNkvQcWbPy3F5u"], ["session_token", "UXPdUYehLlXPR1b+eKhncQ=="], ["created_at", "2021-04-07 17:05:13.915979"], ["updated_at", "2021-04-07 17:05:13.915979"]]
+  ↳ db/seeds.rb:11
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:11
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:12
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "user2"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:12
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "B6KDtmCYx2nMQswGqA2hxQ=="], ["LIMIT", 1]]
+  ↳ db/seeds.rb:12
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "user2"], ["password_digest", "$2a$12$qrQ6Dz70KgG5pIz61YXz0O.C2LEGf/yepHlljZnbWcliqpXkCoSGm"], ["session_token", "B6KDtmCYx2nMQswGqA2hxQ=="], ["created_at", "2021-04-07 17:05:14.128549"], ["updated_at", "2021-04-07 17:05:14.128549"]]
+  ↳ db/seeds.rb:12
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:12
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:13
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "user3"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:13
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "H0jddOJGSdqeQZJEwpWHqw=="], ["LIMIT", 1]]
+  ↳ db/seeds.rb:13
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "user3"], ["password_digest", "$2a$12$OgJwsFyqe72G4y45FfPXR.pIh7NIbIdMVe9AQGlXrcCYx9t1WucY2"], ["session_token", "H0jddOJGSdqeQZJEwpWHqw=="], ["created_at", "2021-04-07 17:05:14.334417"], ["updated_at", "2021-04-07 17:05:14.334417"]]
+  ↳ db/seeds.rb:13
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:13
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:14
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "user4"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:14
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "5iKb6yrj8q2sYlrpwHZFzQ=="], ["LIMIT", 1]]
+  ↳ db/seeds.rb:14
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "user4"], ["password_digest", "$2a$12$Mqdf8y1LFYt0lPPQdMICG.fJa2D19M351iE/oyyy/0OGmEEPCeaUq"], ["session_token", "5iKb6yrj8q2sYlrpwHZFzQ=="], ["created_at", "2021-04-07 17:05:14.543732"], ["updated_at", "2021-04-07 17:05:14.543732"]]
+  ↳ db/seeds.rb:14
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:14
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:15
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "user5"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:15
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "/aEE9QwlwHoE65JwwxBQ5A=="], ["LIMIT", 1]]
+  ↳ db/seeds.rb:15
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "user5"], ["password_digest", "$2a$12$07WKbn0zmVRquwPY33a7IO/jiOQ1MX3OatR9PxBJsdvogJzlQnLaa"], ["session_token", "/aEE9QwlwHoE65JwwxBQ5A=="], ["created_at", "2021-04-07 17:05:14.749888"], ["updated_at", "2021-04-07 17:05:14.749888"]]
+  ↳ db/seeds.rb:15
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:15
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:16
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "user6"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:16
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "cdEkh7LryDZ1+D4XHK5I3w=="], ["LIMIT", 1]]
+  ↳ db/seeds.rb:16
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "user6"], ["password_digest", "$2a$12$ZwiHdWyAnGKj6ASoOszhyOi6sB6zyx1CL0DNvRHDtALrLHzNH7fla"], ["session_token", "cdEkh7LryDZ1+D4XHK5I3w=="], ["created_at", "2021-04-07 17:05:14.955794"], ["updated_at", "2021-04-07 17:05:14.955794"]]
+  ↳ db/seeds.rb:16
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:16
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:17
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "user7"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:17
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "8ArzIkwtprfRXJLXKlT1Sw=="], ["LIMIT", 1]]
+  ↳ db/seeds.rb:17
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "user7"], ["password_digest", "$2a$12$51zYyKS56Io6EjQ6r5LIYeEvkQqxzOBP3Hc3nM2Gijr6adQ/72AMe"], ["session_token", "8ArzIkwtprfRXJLXKlT1Sw=="], ["created_at", "2021-04-07 17:05:15.161982"], ["updated_at", "2021-04-07 17:05:15.161982"]]
+  ↳ db/seeds.rb:17
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:17
+  [1m[36mCourseTag Load (0.5ms)[0m  [1m[34mSELECT "course_tags".* FROM "course_tags"[0m
+  ↳ db/seeds.rb:21
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Destroy (0.4ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 36]]
+  ↳ db/seeds.rb:10
+  [1m[35m (3.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Destroy (0.3ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 37]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Destroy (0.2ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 38]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Destroy (0.2ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 39]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Destroy (0.2ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 40]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Destroy (0.2ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 41]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mUser Destroy (0.2ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 42]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:11
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Demo User"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:11
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "TPsRp+KEz+embF+q96hpKQ=="], ["LIMIT", 1]]
+  ↳ db/seeds.rb:11
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "Demo User"], ["password_digest", "$2a$12$9JYdalf3GtsljxqB67WcK.OXrXKqbiivJviXizVC226qtFJoCBLG2"], ["session_token", "TPsRp+KEz+embF+q96hpKQ=="], ["created_at", "2021-04-07 17:05:43.486654"], ["updated_at", "2021-04-07 17:05:43.486654"]]
+  ↳ db/seeds.rb:11
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:11
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:12
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "user2"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:12
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "c/kX6MUUSRNrX+D0e3CoOQ=="], ["LIMIT", 1]]
+  ↳ db/seeds.rb:12
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "user2"], ["password_digest", "$2a$12$rTuYyhZixmDSVwXsaqXw.OztEH9WmHzTMu8PeV9mzMe95NbN9NSYu"], ["session_token", "c/kX6MUUSRNrX+D0e3CoOQ=="], ["created_at", "2021-04-07 17:05:43.696876"], ["updated_at", "2021-04-07 17:05:43.696876"]]
+  ↳ db/seeds.rb:12
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:12
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:13
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "user3"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:13
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "y5SauHLdCwout3iYdiSdLg=="], ["LIMIT", 1]]
+  ↳ db/seeds.rb:13
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "user3"], ["password_digest", "$2a$12$F93SndsbYgaP2su.ZYDQtOFd2zG.BGfWZGvnlvYLXOngT9ifJW9Am"], ["session_token", "y5SauHLdCwout3iYdiSdLg=="], ["created_at", "2021-04-07 17:05:43.904367"], ["updated_at", "2021-04-07 17:05:43.904367"]]
+  ↳ db/seeds.rb:13
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:13
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:14
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "user4"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:14
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "xphV9rydJV63waTD+kyj4A=="], ["LIMIT", 1]]
+  ↳ db/seeds.rb:14
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "user4"], ["password_digest", "$2a$12$Dm8M22VAf98tsBDw41ExGOJqOXsiqpOR1XwIHZ2R62JEtGH.OzMBi"], ["session_token", "xphV9rydJV63waTD+kyj4A=="], ["created_at", "2021-04-07 17:05:44.113706"], ["updated_at", "2021-04-07 17:05:44.113706"]]
+  ↳ db/seeds.rb:14
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:14
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:15
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "user5"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:15
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "P+8PFkauDwqih2imAKnGxQ=="], ["LIMIT", 1]]
+  ↳ db/seeds.rb:15
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "user5"], ["password_digest", "$2a$12$D5PN2AM82wk.jEd8b6pjXeJC/MgcSv/IK1Go3YH7BxSQTl4y1Jo9i"], ["session_token", "P+8PFkauDwqih2imAKnGxQ=="], ["created_at", "2021-04-07 17:05:44.319663"], ["updated_at", "2021-04-07 17:05:44.319663"]]
+  ↳ db/seeds.rb:15
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:15
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:16
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "user6"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:16
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "ZY3ZBtFAH9OXo8HW/nhp4g=="], ["LIMIT", 1]]
+  ↳ db/seeds.rb:16
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "user6"], ["password_digest", "$2a$12$gRRLtFoB8fCccYRmJ0mdk.J6B/6cd52C63pTGv2lNelFLnHj6VZrW"], ["session_token", "ZY3ZBtFAH9OXo8HW/nhp4g=="], ["created_at", "2021-04-07 17:05:44.527416"], ["updated_at", "2021-04-07 17:05:44.527416"]]
+  ↳ db/seeds.rb:16
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:16
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:17
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "user7"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:17
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "M7o1oJvFcOI+alGBceeU1w=="], ["LIMIT", 1]]
+  ↳ db/seeds.rb:17
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "user7"], ["password_digest", "$2a$12$QMmS4mvnUilHPx3lxaxsQ.f8WMh5wT4A246GaIPYEJRd6WVDAufqi"], ["session_token", "M7o1oJvFcOI+alGBceeU1w=="], ["created_at", "2021-04-07 17:05:44.734826"], ["updated_at", "2021-04-07 17:05:44.734826"]]
+  ↳ db/seeds.rb:17
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:17
+  [1m[36mCourseTag Load (0.4ms)[0m  [1m[34mSELECT "course_tags".* FROM "course_tags"[0m
+  ↳ db/seeds.rb:21
+  [1m[36mTag Load (0.5ms)[0m  [1m[34mSELECT "tags".* FROM "tags"[0m
+  ↳ db/seeds.rb:23
+  [1m[36mCourse Load (0.6ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  ↳ db/seeds.rb:25
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:89
+  [1m[36mCourse Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "courses" WHERE "courses"."course_name" = $1 LIMIT $2[0m  [["course_name", "python"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:89
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:89
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ db/seeds.rb:89
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[36mUser Destroy (1.8ms)[0m  [1m[31mDELETE FROM "users"[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:11
+  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Demo User"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:11
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "im8T65Ez8O/gHUqZBAyfpA=="], ["LIMIT", 1]]
+  ↳ db/seeds.rb:11
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "Demo User"], ["password_digest", "$2a$12$XlO5qNbdF1Jf3Q95KYudYOlX5uFFW.k.GdsQWTEw77s8GQDC3wZZ6"], ["session_token", "im8T65Ez8O/gHUqZBAyfpA=="], ["created_at", "2021-04-07 17:09:29.618813"], ["updated_at", "2021-04-07 17:09:29.618813"]]
+  ↳ db/seeds.rb:11
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:11
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:12
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "user2"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:12
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "bfVA/eWj4cbO7/DCX2EHlg=="], ["LIMIT", 1]]
+  ↳ db/seeds.rb:12
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "user2"], ["password_digest", "$2a$12$vg8dUmo4dMNYYrsZOgcfMeUOCQVXKHZfr4u5wg.y5q7CkF3.CLRUe"], ["session_token", "bfVA/eWj4cbO7/DCX2EHlg=="], ["created_at", "2021-04-07 17:09:29.828753"], ["updated_at", "2021-04-07 17:09:29.828753"]]
+  ↳ db/seeds.rb:12
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:12
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:13
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "user3"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:13
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "OVsixoXeh7QoBfFf24tjcQ=="], ["LIMIT", 1]]
+  ↳ db/seeds.rb:13
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "user3"], ["password_digest", "$2a$12$8veLeBs7d0M6.O.QNcYDWOpaoziVnvqyOHO7OfJdXXV1L7/72EZcm"], ["session_token", "OVsixoXeh7QoBfFf24tjcQ=="], ["created_at", "2021-04-07 17:09:30.037069"], ["updated_at", "2021-04-07 17:09:30.037069"]]
+  ↳ db/seeds.rb:13
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:13
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:14
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "user4"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:14
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "OaSSLUUyuPngoLNKb3O3+w=="], ["LIMIT", 1]]
+  ↳ db/seeds.rb:14
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "user4"], ["password_digest", "$2a$12$I2xjMVYMQDEzvfIYc8BSu.CAt.5DRFLAr8o731mJUrqqEzLqlrSXK"], ["session_token", "OaSSLUUyuPngoLNKb3O3+w=="], ["created_at", "2021-04-07 17:09:30.243430"], ["updated_at", "2021-04-07 17:09:30.243430"]]
+  ↳ db/seeds.rb:14
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:14
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:15
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "user5"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:15
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "5YVUEkha1UmSllyAjgfVog=="], ["LIMIT", 1]]
+  ↳ db/seeds.rb:15
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "user5"], ["password_digest", "$2a$12$2WzG/kMbtia3U/IlCtMMwuSKuT7joZ4e2lb/wZFcb13Zz4xarOYjC"], ["session_token", "5YVUEkha1UmSllyAjgfVog=="], ["created_at", "2021-04-07 17:09:30.452975"], ["updated_at", "2021-04-07 17:09:30.452975"]]
+  ↳ db/seeds.rb:15
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:15
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:16
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "user6"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:16
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "12t4N/+U/KtcXhQI+7u1lw=="], ["LIMIT", 1]]
+  ↳ db/seeds.rb:16
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "user6"], ["password_digest", "$2a$12$hJ8nJ6qiJ94fJYl4dM4ht.ekgpxJUMXhDiawMp3K/l17bJ42xQyBK"], ["session_token", "12t4N/+U/KtcXhQI+7u1lw=="], ["created_at", "2021-04-07 17:09:30.659329"], ["updated_at", "2021-04-07 17:09:30.659329"]]
+  ↳ db/seeds.rb:16
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:16
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:17
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "user7"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:17
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "nzbF1NL1S17oa6yLZatSOQ=="], ["LIMIT", 1]]
+  ↳ db/seeds.rb:17
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "user7"], ["password_digest", "$2a$12$TLJEiFOQHrDAf/UtFCazIuJaWgH369xWzKMN8pV9E4fDTLKkaCX3e"], ["session_token", "nzbF1NL1S17oa6yLZatSOQ=="], ["created_at", "2021-04-07 17:09:30.865202"], ["updated_at", "2021-04-07 17:09:30.865202"]]
+  ↳ db/seeds.rb:17
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:17
+  [1m[36mCourse Destroy (0.7ms)[0m  [1m[31mDELETE FROM "courses"[0m
+  ↳ db/seeds.rb:20
+  [1m[36mCourseTag Load (0.4ms)[0m  [1m[34mSELECT "course_tags".* FROM "course_tags"[0m
+  ↳ db/seeds.rb:21
+  [1m[36mTag Load (0.5ms)[0m  [1m[34mSELECT "tags".* FROM "tags"[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:89
+  [1m[36mCourse Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "courses" WHERE "courses"."course_name" = $1 LIMIT $2[0m  [["course_name", "python"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:89
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 50], ["LIMIT", 1]]
+  ↳ db/seeds.rb:89
+  [1m[36mCourse Create (4.0ms)[0m  [1m[32mINSERT INTO "courses" ("course_name", "description", "course_type", "image_url", "mentor_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["course_name", "python"], ["description", "best python course"], ["course_type", "Frontend"], ["image_url", "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png"], ["mentor_id", 50]]
+  ↳ db/seeds.rb:89
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:89
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."tag_name" = $1[0m  [["tag_name", "tag1_haha"]]
+  ↳ db/seeds.rb:97
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:98
+  [1m[36mTag Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "tags" WHERE "tags"."tag_name" = $1 LIMIT $2[0m  [["tag_name", "tag1_haha"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:98
+  [1m[36mTag Create (1.2ms)[0m  [1m[32mINSERT INTO "tags" ("tag_name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["tag_name", "tag1_haha"], ["created_at", "2021-04-07 17:09:30.918518"], ["updated_at", "2021-04-07 17:09:30.918518"]]
+  ↳ db/seeds.rb:98
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:98
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT  "tags".* FROM "tags" WHERE "tags"."tag_name" = $1 LIMIT $2[0m  [["tag_name", "tag1_haha"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:100
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:100
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT  "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2[0m  [["id", 21], ["LIMIT", 1]]
+  ↳ db/seeds.rb:100
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT  "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ db/seeds.rb:100
+  [1m[36mCourseTag Create (0.9ms)[0m  [1m[32mINSERT INTO "course_tags" ("course_id", "tag_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["course_id", 21], ["tag_id", 9], ["created_at", "2021-04-07 17:09:30.939224"], ["updated_at", "2021-04-07 17:09:30.939224"]]
+  ↳ db/seeds.rb:100
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:100
+  [1m[36mTag Load (0.3ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."tag_name" = $1[0m  [["tag_name", "tag2_lala"]]
+  ↳ db/seeds.rb:97
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:98
+  [1m[36mTag Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "tags" WHERE "tags"."tag_name" = $1 LIMIT $2[0m  [["tag_name", "tag2_lala"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:98
+  [1m[36mTag Create (0.3ms)[0m  [1m[32mINSERT INTO "tags" ("tag_name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["tag_name", "tag2_lala"], ["created_at", "2021-04-07 17:09:30.944493"], ["updated_at", "2021-04-07 17:09:30.944493"]]
+  ↳ db/seeds.rb:98
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:98
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT  "tags".* FROM "tags" WHERE "tags"."tag_name" = $1 LIMIT $2[0m  [["tag_name", "tag2_lala"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:100
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:100
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT  "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2[0m  [["id", 21], ["LIMIT", 1]]
+  ↳ db/seeds.rb:100
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT  "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ db/seeds.rb:100
+  [1m[36mCourseTag Create (0.3ms)[0m  [1m[32mINSERT INTO "course_tags" ("course_id", "tag_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["course_id", 21], ["tag_id", 10], ["created_at", "2021-04-07 17:09:30.949600"], ["updated_at", "2021-04-07 17:09:30.949600"]]
+  ↳ db/seeds.rb:100
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:100
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:89
+  [1m[36mCourse Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "courses" WHERE "courses"."course_name" = $1 LIMIT $2[0m  [["course_name", "redux"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:89
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 50], ["LIMIT", 1]]
+  ↳ db/seeds.rb:89
+  [1m[36mCourse Create (0.4ms)[0m  [1m[32mINSERT INTO "courses" ("course_name", "description", "course_type", "image_url", "mentor_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["course_name", "redux"], ["description", "best redux course"], ["course_type", "Frontend"], ["image_url", "https://miro.medium.com/max/800/1*4sxOPaVNwxrfZ9uxVbUaKg.jpeg"], ["mentor_id", 50]]
+  ↳ db/seeds.rb:89
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:89
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."tag_name" = $1[0m  [["tag_name", "tag1_haha"]]
+  ↳ db/seeds.rb:97
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT  "tags".* FROM "tags" WHERE "tags"."tag_name" = $1 LIMIT $2[0m  [["tag_name", "tag1_haha"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:100
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:100
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT  "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  ↳ db/seeds.rb:100
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT  "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ db/seeds.rb:100
+  [1m[36mCourseTag Create (0.3ms)[0m  [1m[32mINSERT INTO "course_tags" ("course_id", "tag_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["course_id", 22], ["tag_id", 9], ["created_at", "2021-04-07 17:09:30.960239"], ["updated_at", "2021-04-07 17:09:30.960239"]]
+  ↳ db/seeds.rb:100
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:100
+  [1m[36mTag Load (0.3ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."tag_name" = $1[0m  [["tag_name", "tag2_lolo"]]
+  ↳ db/seeds.rb:97
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:98
+  [1m[36mTag Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "tags" WHERE "tags"."tag_name" = $1 LIMIT $2[0m  [["tag_name", "tag2_lolo"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:98
+  [1m[36mTag Create (0.5ms)[0m  [1m[32mINSERT INTO "tags" ("tag_name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["tag_name", "tag2_lolo"], ["created_at", "2021-04-07 17:09:30.964295"], ["updated_at", "2021-04-07 17:09:30.964295"]]
+  ↳ db/seeds.rb:98
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:98
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT  "tags".* FROM "tags" WHERE "tags"."tag_name" = $1 LIMIT $2[0m  [["tag_name", "tag2_lolo"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:100
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:100
+  [1m[36mCourse Load (0.3ms)[0m  [1m[34mSELECT  "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  ↳ db/seeds.rb:100
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT  "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ db/seeds.rb:100
+  [1m[36mCourseTag Create (0.2ms)[0m  [1m[32mINSERT INTO "course_tags" ("course_id", "tag_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["course_id", 22], ["tag_id", 11], ["created_at", "2021-04-07 17:09:30.969019"], ["updated_at", "2021-04-07 17:09:30.969019"]]
+  ↳ db/seeds.rb:100
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:100
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:89
+  [1m[36mCourse Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "courses" WHERE "courses"."course_name" = $1 LIMIT $2[0m  [["course_name", "rails"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:89
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 51], ["LIMIT", 1]]
+  ↳ db/seeds.rb:89
+  [1m[36mCourse Create (0.3ms)[0m  [1m[32mINSERT INTO "courses" ("course_name", "description", "course_type", "image_url", "mentor_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["course_name", "rails"], ["description", "best rails course"], ["course_type", "Backend"], ["image_url", "https://hackernoon.com/drafts/3b3t3yqt.png"], ["mentor_id", 51]]
+  ↳ db/seeds.rb:89
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:89
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."tag_name" = $1[0m  [["tag_name", "tag1_zozo"]]
+  ↳ db/seeds.rb:97
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:98
+  [1m[36mTag Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "tags" WHERE "tags"."tag_name" = $1 LIMIT $2[0m  [["tag_name", "tag1_zozo"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:98
+  [1m[36mTag Create (0.3ms)[0m  [1m[32mINSERT INTO "tags" ("tag_name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["tag_name", "tag1_zozo"], ["created_at", "2021-04-07 17:09:30.976870"], ["updated_at", "2021-04-07 17:09:30.976870"]]
+  ↳ db/seeds.rb:98
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:98
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT  "tags".* FROM "tags" WHERE "tags"."tag_name" = $1 LIMIT $2[0m  [["tag_name", "tag1_zozo"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:100
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:100
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT  "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2[0m  [["id", 23], ["LIMIT", 1]]
+  ↳ db/seeds.rb:100
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT  "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ db/seeds.rb:100
+  [1m[36mCourseTag Create (0.4ms)[0m  [1m[32mINSERT INTO "course_tags" ("course_id", "tag_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["course_id", 23], ["tag_id", 12], ["created_at", "2021-04-07 17:09:30.981748"], ["updated_at", "2021-04-07 17:09:30.981748"]]
+  ↳ db/seeds.rb:100
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:100
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."tag_name" = $1[0m  [["tag_name", "tag2_gogo"]]
+  ↳ db/seeds.rb:97
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:98
+  [1m[36mTag Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "tags" WHERE "tags"."tag_name" = $1 LIMIT $2[0m  [["tag_name", "tag2_gogo"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:98
+  [1m[36mTag Create (0.2ms)[0m  [1m[32mINSERT INTO "tags" ("tag_name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["tag_name", "tag2_gogo"], ["created_at", "2021-04-07 17:09:30.985747"], ["updated_at", "2021-04-07 17:09:30.985747"]]
+  ↳ db/seeds.rb:98
+  [1m[35m (5.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:98
+  [1m[36mTag Load (0.3ms)[0m  [1m[34mSELECT  "tags".* FROM "tags" WHERE "tags"."tag_name" = $1 LIMIT $2[0m  [["tag_name", "tag2_gogo"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:100
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:100
+  [1m[36mCourse Load (0.3ms)[0m  [1m[34mSELECT  "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2[0m  [["id", 23], ["LIMIT", 1]]
+  ↳ db/seeds.rb:100
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT  "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ db/seeds.rb:100
+  [1m[36mCourseTag Create (0.3ms)[0m  [1m[32mINSERT INTO "course_tags" ("course_id", "tag_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["course_id", 23], ["tag_id", 13], ["created_at", "2021-04-07 17:09:30.995326"], ["updated_at", "2021-04-07 17:09:30.995326"]]
+  ↳ db/seeds.rb:100
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:100
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:89
+  [1m[36mCourse Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "courses" WHERE "courses"."course_name" = $1 LIMIT $2[0m  [["course_name", "ruby"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:89
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 51], ["LIMIT", 1]]
+  ↳ db/seeds.rb:89
+  [1m[36mCourse Create (0.2ms)[0m  [1m[32mINSERT INTO "courses" ("course_name", "description", "course_type", "image_url", "mentor_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["course_name", "ruby"], ["description", "best ruby course"], ["course_type", "Backend"], ["image_url", "https://portswigger.net/cms/images/f5/d7/61c1d398bde7-article-main.jpg"], ["mentor_id", 51]]
+  ↳ db/seeds.rb:89
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:89
+  [1m[36mTag Load (0.1ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."tag_name" = $1[0m  [["tag_name", "tag1_zozo"]]
+  ↳ db/seeds.rb:97
+  [1m[36mTag Load (0.1ms)[0m  [1m[34mSELECT  "tags".* FROM "tags" WHERE "tags"."tag_name" = $1 LIMIT $2[0m  [["tag_name", "tag1_zozo"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:100
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:100
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT  "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2[0m  [["id", 24], ["LIMIT", 1]]
+  ↳ db/seeds.rb:100
+  [1m[36mTag Load (0.1ms)[0m  [1m[34mSELECT  "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ db/seeds.rb:100
+  [1m[36mCourseTag Create (0.3ms)[0m  [1m[32mINSERT INTO "course_tags" ("course_id", "tag_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["course_id", 24], ["tag_id", 12], ["created_at", "2021-04-07 17:09:31.002335"], ["updated_at", "2021-04-07 17:09:31.002335"]]
+  ↳ db/seeds.rb:100
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:100
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."tag_name" = $1[0m  [["tag_name", "tag2_gogo"]]
+  ↳ db/seeds.rb:97
+  [1m[36mTag Load (0.1ms)[0m  [1m[34mSELECT  "tags".* FROM "tags" WHERE "tags"."tag_name" = $1 LIMIT $2[0m  [["tag_name", "tag2_gogo"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:100
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:100
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT  "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2[0m  [["id", 24], ["LIMIT", 1]]
+  ↳ db/seeds.rb:100
+  [1m[36mTag Load (0.1ms)[0m  [1m[34mSELECT  "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  ↳ db/seeds.rb:100
+  [1m[36mCourseTag Create (0.3ms)[0m  [1m[32mINSERT INTO "course_tags" ("course_id", "tag_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["course_id", 24], ["tag_id", 13], ["created_at", "2021-04-07 17:09:31.006386"], ["updated_at", "2021-04-07 17:09:31.006386"]]
+  ↳ db/seeds.rb:100
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:100
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:89
+  [1m[36mCourse Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "courses" WHERE "courses"."course_name" = $1 LIMIT $2[0m  [["course_name", "resume"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:89
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 52], ["LIMIT", 1]]
+  ↳ db/seeds.rb:89
+  [1m[36mCourse Create (0.2ms)[0m  [1m[32mINSERT INTO "courses" ("course_name", "description", "course_type", "image_url", "mentor_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["course_name", "resume"], ["description", "best resume course"], ["course_type", "Resume"], ["image_url", "https://image.slidesharecdn.com/presentation-150219211039-conversion-gate01/95/professional-resume-open-door-to-oportunity-3-638.jpg?cb=1424380396"], ["mentor_id", 52]]
+  ↳ db/seeds.rb:89
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:89
+  [1m[36mTag Load (0.1ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."tag_name" = $1[0m  [["tag_name", "tag1_tutu"]]
+  ↳ db/seeds.rb:97
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:98
+  [1m[36mTag Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "tags" WHERE "tags"."tag_name" = $1 LIMIT $2[0m  [["tag_name", "tag1_tutu"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:98
+  [1m[36mTag Create (0.3ms)[0m  [1m[32mINSERT INTO "tags" ("tag_name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["tag_name", "tag1_tutu"], ["created_at", "2021-04-07 17:09:31.011953"], ["updated_at", "2021-04-07 17:09:31.011953"]]
+  ↳ db/seeds.rb:98
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:98
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT  "tags".* FROM "tags" WHERE "tags"."tag_name" = $1 LIMIT $2[0m  [["tag_name", "tag1_tutu"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:100
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:100
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT  "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2[0m  [["id", 25], ["LIMIT", 1]]
+  ↳ db/seeds.rb:100
+  [1m[36mTag Load (0.1ms)[0m  [1m[34mSELECT  "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ db/seeds.rb:100
+  [1m[36mCourseTag Create (0.2ms)[0m  [1m[32mINSERT INTO "course_tags" ("course_id", "tag_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["course_id", 25], ["tag_id", 14], ["created_at", "2021-04-07 17:09:31.015589"], ["updated_at", "2021-04-07 17:09:31.015589"]]
+  ↳ db/seeds.rb:100
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:100
+  [1m[36mTag Load (0.1ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."tag_name" = $1[0m  [["tag_name", "tag2_zuzu"]]
+  ↳ db/seeds.rb:97
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:98
+  [1m[36mTag Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "tags" WHERE "tags"."tag_name" = $1 LIMIT $2[0m  [["tag_name", "tag2_zuzu"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:98
+  [1m[36mTag Create (0.2ms)[0m  [1m[32mINSERT INTO "tags" ("tag_name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["tag_name", "tag2_zuzu"], ["created_at", "2021-04-07 17:09:31.017995"], ["updated_at", "2021-04-07 17:09:31.017995"]]
+  ↳ db/seeds.rb:98
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:98
+  [1m[36mTag Load (0.1ms)[0m  [1m[34mSELECT  "tags".* FROM "tags" WHERE "tags"."tag_name" = $1 LIMIT $2[0m  [["tag_name", "tag2_zuzu"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:100
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:100
+  [1m[36mCourse Load (0.1ms)[0m  [1m[34mSELECT  "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2[0m  [["id", 25], ["LIMIT", 1]]
+  ↳ db/seeds.rb:100
+  [1m[36mTag Load (0.1ms)[0m  [1m[34mSELECT  "tags".* FROM "tags" WHERE "tags"."id" = $1 LIMIT $2[0m  [["id", 15], ["LIMIT", 1]]
+  ↳ db/seeds.rb:100
+  [1m[36mCourseTag Create (0.2ms)[0m  [1m[32mINSERT INTO "course_tags" ("course_id", "tag_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["course_id", 25], ["tag_id", 15], ["created_at", "2021-04-07 17:09:31.020634"], ["updated_at", "2021-04-07 17:09:31.020634"]]
+  ↳ db/seeds.rb:100
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:100
+Started GET "/" for ::1 at 2021-04-07 10:09:36 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (7.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "1phwj9S60Gw4pogeMvZb/g=="], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8
+  Rendered static_pages/root.html.erb within layouts/application (45.8ms)
+Completed 200 OK in 88ms (Views: 51.6ms | ActiveRecord: 33.8ms)
+
+
+Started GET "/api/courses" for ::1 at 2021-04-07 10:09:36 -0700
+Processing by Api::CoursesController#index as JSON
+  Rendering api/courses/index.json.jbuilder
+  [1m[36mCourse Load (2.3ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  ↳ app/views/api/courses/index.json.jbuilder:1
+  Rendered api/courses/index.json.jbuilder (27.5ms)
+Completed 200 OK in 41ms (Views: 20.1ms | ActiveRecord: 16.7ms)
+
+
+Started GET "/api/courses/21" for ::1 at 2021-04-07 10:09:46 -0700
+Processing by Api::CoursesController#show as JSON
+  Parameters: {"id"=>"21"}
+  [1m[36mCourse Load (0.6ms)[0m  [1m[34mSELECT  "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2[0m  [["id", 21], ["LIMIT", 1]]
+  ↳ app/controllers/api/courses_controller.rb:40
+  Rendering api/courses/show.json.jbuilder
+  [1m[36mTag Load (0.8ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "course_tags" ON "tags"."id" = "course_tags"."tag_id" WHERE "course_tags"."course_id" = $1[0m  [["course_id", 21]]
+  ↳ app/views/api/courses/show.json.jbuilder:7
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 50], ["LIMIT", 1]]
+  ↳ app/views/api/courses/show.json.jbuilder:21
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "courses"."id" FROM "courses" WHERE "courses"."mentor_id" = $1[0m  [["mentor_id", 50]]
+  ↳ app/views/api/courses/show.json.jbuilder:22
+  Rendered api/courses/show.json.jbuilder (42.5ms)
+Completed 200 OK in 56ms (Views: 43.9ms | ActiveRecord: 10.2ms)
+
+
+Started GET "/api/courses" for ::1 at 2021-04-07 10:09:55 -0700
+Processing by Api::CoursesController#index as JSON
+  Rendering api/courses/index.json.jbuilder
+  [1m[36mCourse Load (0.4ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  ↳ app/views/api/courses/index.json.jbuilder:1
+  Rendered api/courses/index.json.jbuilder (2.5ms)
+Completed 200 OK in 11ms (Views: 10.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/courses/22" for ::1 at 2021-04-07 10:09:56 -0700
+Processing by Api::CoursesController#show as JSON
+  Parameters: {"id"=>"22"}
+  [1m[36mCourse Load (0.9ms)[0m  [1m[34mSELECT  "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  ↳ app/controllers/api/courses_controller.rb:40
+  Rendering api/courses/show.json.jbuilder
+  [1m[36mTag Load (0.6ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "course_tags" ON "tags"."id" = "course_tags"."tag_id" WHERE "course_tags"."course_id" = $1[0m  [["course_id", 22]]
+  ↳ app/views/api/courses/show.json.jbuilder:7
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 50], ["LIMIT", 1]]
+  ↳ app/views/api/courses/show.json.jbuilder:21
+  Rendered api/users/_user.json.jbuilder (1.0ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "courses"."id" FROM "courses" WHERE "courses"."mentor_id" = $1[0m  [["mentor_id", 50]]
+  ↳ app/views/api/courses/show.json.jbuilder:22
+  Rendered api/courses/show.json.jbuilder (8.3ms)
+Completed 200 OK in 19ms (Views: 15.7ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/api/courses" for ::1 at 2021-04-07 10:09:59 -0700
+Processing by Api::CoursesController#index as JSON
+  Rendering api/courses/index.json.jbuilder
+  [1m[36mCourse Load (0.5ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  ↳ app/views/api/courses/index.json.jbuilder:1
+  Rendered api/courses/index.json.jbuilder (3.1ms)
+Completed 200 OK in 11ms (Views: 10.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/courses/23" for ::1 at 2021-04-07 10:10:00 -0700
+Processing by Api::CoursesController#show as JSON
+  Parameters: {"id"=>"23"}
+  [1m[36mCourse Load (0.5ms)[0m  [1m[34mSELECT  "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2[0m  [["id", 23], ["LIMIT", 1]]
+  ↳ app/controllers/api/courses_controller.rb:40
+  Rendering api/courses/show.json.jbuilder
+  [1m[36mTag Load (0.6ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "course_tags" ON "tags"."id" = "course_tags"."tag_id" WHERE "course_tags"."course_id" = $1[0m  [["course_id", 23]]
+  ↳ app/views/api/courses/show.json.jbuilder:7
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 51], ["LIMIT", 1]]
+  ↳ app/views/api/courses/show.json.jbuilder:21
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "courses"."id" FROM "courses" WHERE "courses"."mentor_id" = $1[0m  [["mentor_id", 51]]
+  ↳ app/views/api/courses/show.json.jbuilder:22
+  Rendered api/courses/show.json.jbuilder (8.8ms)
+Completed 200 OK in 19ms (Views: 16.4ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/api/courses" for ::1 at 2021-04-07 10:10:02 -0700
+Processing by Api::CoursesController#index as JSON
+  Rendering api/courses/index.json.jbuilder
+  [1m[36mCourse Load (0.3ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  ↳ app/views/api/courses/index.json.jbuilder:1
+  Rendered api/courses/index.json.jbuilder (2.2ms)
+Completed 200 OK in 11ms (Views: 10.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/courses/25" for ::1 at 2021-04-07 10:10:03 -0700
+Processing by Api::CoursesController#show as JSON
+  Parameters: {"id"=>"25"}
+  [1m[36mCourse Load (1.1ms)[0m  [1m[34mSELECT  "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2[0m  [["id", 25], ["LIMIT", 1]]
+  ↳ app/controllers/api/courses_controller.rb:40
+  Rendering api/courses/show.json.jbuilder
+  [1m[36mTag Load (0.4ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "course_tags" ON "tags"."id" = "course_tags"."tag_id" WHERE "course_tags"."course_id" = $1[0m  [["course_id", 25]]
+  ↳ app/views/api/courses/show.json.jbuilder:7
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 52], ["LIMIT", 1]]
+  ↳ app/views/api/courses/show.json.jbuilder:21
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "courses"."id" FROM "courses" WHERE "courses"."mentor_id" = $1[0m  [["mentor_id", 52]]
+  ↳ app/views/api/courses/show.json.jbuilder:22
+  Rendered api/courses/show.json.jbuilder (7.0ms)
+Completed 200 OK in 16ms (Views: 12.8ms | ActiveRecord: 2.1ms)
+
+

@@ -20,12 +20,6 @@ class Api::CoursesController < ApplicationController
             else
                 CourseTag.create!(course_id: @course.id, tag_id: Tag.find_by(tag_name: tag_params[:tag_2]).id)
             end
-            if !Tag.pluck(:tag_name).any?{|tag_name| tag_name == tag_params[:tag_3]}
-                tag3 = Tag.create!(tag_name: tag_params[:tag_3])
-                CourseTag.create!(course_id: @course.id, tag_id: tag3.id)
-            else
-                CourseTag.create!(course_id: @course.id, tag_id: Tag.find_by(tag_name: tag_params[:tag_3]).id)
-            end
             render :show
         else
             render json: @course.errors.full_messages, status: 404
@@ -55,7 +49,7 @@ class Api::CoursesController < ApplicationController
 
     private
     def tag_params 
-        params.require(:course).permit(:tag_1, :tag_2, :tag_3)
+        params.require(:course).permit(:tag_1, :tag_2)
     end
 
     def course_params
