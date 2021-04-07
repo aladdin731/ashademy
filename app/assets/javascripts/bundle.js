@@ -564,6 +564,7 @@ var CourseIndex = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchCourses();
+      this.props.fetchUsers();
     }
   }, {
     key: "render",
@@ -597,6 +598,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_course_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../actions/course_actions */ "./frontend/actions/course_actions.js");
 /* harmony import */ var _course_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./course_index */ "./frontend/components/course/course_index.jsx");
+/* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/user_actions */ "./frontend/actions/user_actions.js");
+
 
 
 
@@ -612,6 +615,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     fetchCourses: function fetchCourses() {
       return dispatch(Object(_actions_course_actions__WEBPACK_IMPORTED_MODULE_1__["fetchCourses"])());
+    },
+    fetchUsers: function fetchUsers() {
+      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_3__["fetchUsers"])());
     }
   };
 };
@@ -696,10 +702,10 @@ var CourseIndexItem = /*#__PURE__*/function (_React$Component) {
 
 /***/ }),
 
-/***/ "./frontend/components/dashboard/dashboard.jsx":
-/*!*****************************************************!*\
-  !*** ./frontend/components/dashboard/dashboard.jsx ***!
-  \*****************************************************/
+/***/ "./frontend/components/dashboard/course_form.jsx":
+/*!*******************************************************!*\
+  !*** ./frontend/components/dashboard/course_form.jsx ***!
+  \*******************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -707,7 +713,145 @@ var CourseIndexItem = /*#__PURE__*/function (_React$Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _course_course_index_item__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../course/course_index_item */ "./frontend/components/course/course_index_item.jsx");
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+var CourseForm = /*#__PURE__*/function (_React$Component) {
+  _inherits(CourseForm, _React$Component);
+
+  var _super = _createSuper(CourseForm);
+
+  function CourseForm(props) {
+    var _this;
+
+    _classCallCheck(this, CourseForm);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      course_name: "",
+      description: "",
+      course_type: "Frontend",
+      image_url: "",
+      tag_1: "",
+      tag_2: ""
+    };
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(CourseForm, [{
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      e.preventDefault();
+      var mentorId = this.props.currentUser.id;
+      var course = Object.assign({}, this.state, {
+        mentor_id: mentorId
+      });
+      this.setState({
+        course_name: "",
+        description: "",
+        course_type: "Frontend",
+        image_url: "",
+        tag_1: "",
+        tag_2: ""
+      });
+      this.props.createCourse(course);
+    }
+  }, {
+    key: "update",
+    value: function update(property) {
+      var _this2 = this;
+
+      return function (e) {
+        return _this2.setState(_defineProperty({}, property, e.target.value));
+      };
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        onSubmit: this.handleSubmit
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        value: this.state.course_name,
+        placeholder: "Name",
+        onChange: this.update("course_name")
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        value: this.state.image_url,
+        placeholder: "Image Url",
+        onChange: this.update("image_url")
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+        value: this.state.course_type,
+        onChange: this.update("course_type")
+      }, COURSE_TYPES.map(function (type, i) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+          value: type,
+          key: i
+        }, type);
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        value: this.state.description,
+        placeholder: "Description",
+        onChange: this.update("description")
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        value: this.state.tag_1,
+        placeholder: "Tag 1",
+        onChange: this.update("tag_1")
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        value: this.state.tag_2,
+        placeholder: "Tag 2",
+        onChange: this.update("tag_2")
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Create Course")));
+    }
+  }]);
+
+  return CourseForm;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(CourseForm));
+
+/***/ }),
+
+/***/ "./frontend/components/dashboard/course_info.jsx":
+/*!*******************************************************!*\
+  !*** ./frontend/components/dashboard/course_info.jsx ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -733,15 +877,134 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+var CourseInfo = /*#__PURE__*/function (_React$Component) {
+  _inherits(CourseInfo, _React$Component);
+
+  var _super = _createSuper(CourseInfo);
+
+  function CourseInfo(props) {
+    _classCallCheck(this, CourseInfo);
+
+    return _super.call(this, props);
+  }
+
+  _createClass(CourseInfo, [{
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          course = _this$props.course,
+          deleteCourse = _this$props.deleteCourse;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: course.imageUrl
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, course.courseName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: function onClick() {
+          return deleteCourse(course.id);
+        }
+      }, "Delete")));
+    }
+  }]);
+
+  return CourseInfo;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (CourseInfo);
+
+/***/ }),
+
+/***/ "./frontend/components/dashboard/create_course_form_container.js":
+/*!***********************************************************************!*\
+  !*** ./frontend/components/dashboard/create_course_form_container.js ***!
+  \***********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_course_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/course_actions */ "./frontend/actions/course_actions.js");
+/* harmony import */ var _course_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./course_form */ "./frontend/components/dashboard/course_form.jsx");
+/* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/user_actions */ "./frontend/actions/user_actions.js");
+
+
+
+
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    currentUser: state.session.currentUser
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    createCourse: function createCourse(course) {
+      return dispatch(Object(_actions_course_actions__WEBPACK_IMPORTED_MODULE_1__["createCourse"])(course));
+    },
+    fetchUser: function fetchUser(id) {
+      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_3__["fetchUser"])(id));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_course_form__WEBPACK_IMPORTED_MODULE_2__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/dashboard/dashboard.jsx":
+/*!*****************************************************!*\
+  !*** ./frontend/components/dashboard/dashboard.jsx ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _course_info__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./course_info */ "./frontend/components/dashboard/course_info.jsx");
+/* harmony import */ var _create_course_form_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./create_course_form_container */ "./frontend/components/dashboard/create_course_form_container.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
 var Dashboard = /*#__PURE__*/function (_React$Component) {
   _inherits(Dashboard, _React$Component);
 
   var _super = _createSuper(Dashboard);
 
   function Dashboard(props) {
+    var _this;
+
     _classCallCheck(this, Dashboard);
 
-    return _super.call(this, props);
+    _this = _super.call(this, props);
+    _this.state = {
+      addCourse: false
+    };
+    _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(Dashboard, [{
@@ -750,15 +1013,35 @@ var Dashboard = /*#__PURE__*/function (_React$Component) {
       this.props.fetchUser(this.props.currentUser.id);
     }
   }, {
+    key: "handleClick",
+    value: function handleClick(e) {
+      e.preventDefault();
+      this.setState({
+        addCourse: !this.state.addCourse
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      var courses = this.props.courses;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.courses.map(function (course) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_course_course_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
-          key: course.id,
-          course: course
-        });
-      }));
+      if (!this.props.currentUser || !this.props.courses) return null;
+      var form = this.state.addCourse ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_create_course_form_container__WEBPACK_IMPORTED_MODULE_2__["default"], null) : "";
+      var _this$props = this.props,
+          courses = _this$props.courses,
+          deleteCourse = _this$props.deleteCourse;
+      console.log(courses);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, courses.map(function (course) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          key: course.id
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: course.imageUrl
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, course.courseName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: function onClick() {
+            return deleteCourse(course.id);
+          }
+        }, "Delete"));
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.handleClick
+      }, "Add Course"), form);
     }
   }]);
 
@@ -782,16 +1065,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/user_actions */ "./frontend/actions/user_actions.js");
 /* harmony import */ var _dashboard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./dashboard */ "./frontend/components/dashboard/dashboard.jsx");
 /* harmony import */ var _reducers_selectors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../reducers/selectors */ "./frontend/reducers/selectors.js");
+/* harmony import */ var _actions_course_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/course_actions */ "./frontend/actions/course_actions.js");
+
 
 
 
 
 
 var mapStateToProps = function mapStateToProps(state) {
+  var currentUser = state.session.currentUser;
+  var courses = Object(_reducers_selectors__WEBPACK_IMPORTED_MODULE_3__["selectCoursesForCurrentUser"])(state, currentUser);
+  var user = state.entities.users;
   return {
-    currentUser: state.session.currentUser,
-    // courses: Object.values(state.entities.courses),
-    courses: Object(_reducers_selectors__WEBPACK_IMPORTED_MODULE_3__["selectCoursesForCurrentUser"])(state)
+    currentUser: currentUser,
+    courses: courses,
+    user: user
   };
 };
 
@@ -799,6 +1087,12 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     fetchUser: function fetchUser(currentUserId) {
       return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_1__["fetchUser"])(currentUserId));
+    },
+    fetchCourses: function fetchCourses() {
+      return dispatch(Object(_actions_course_actions__WEBPACK_IMPORTED_MODULE_4__["fetchCourses"])());
+    },
+    deleteCourse: function deleteCourse(courseId) {
+      return dispatch(Object(_actions_course_actions__WEBPACK_IMPORTED_MODULE_4__["deleteCourse"])(courseId));
     }
   };
 };
@@ -1482,10 +1776,11 @@ var selectCourseTagsNames = function selectCourseTagsNames(state) {
   });
   return tagNames;
 };
-var selectCoursesForCurrentUser = function selectCoursesForCurrentUser(state) {
-  return state.session.currentUser.courseIds.map(function (courseId) {
+var selectCoursesForCurrentUser = function selectCoursesForCurrentUser(state, currentUser) {
+  var user = state.entities.users[currentUser.id];
+  return user ? user.courseIds.map(function (courseId) {
     return state.entities.courses[courseId];
-  });
+  }) : [];
 };
 
 /***/ }),
@@ -1533,6 +1828,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
+/* harmony import */ var _actions_course_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/course_actions */ "./frontend/actions/course_actions.js");
+
 
 
 var _nullUser = Object.freeze({
@@ -1552,6 +1849,8 @@ var sessionReducer = function sessionReducer() {
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["LOGOUT_CURRENT_USER"]:
       return _nullUser;
+    // case RECEIVE_ALL_COURSES:
+    //   return { currentUser: action.currentUser.user };
 
     default:
       return state;
@@ -1661,8 +1960,13 @@ var usersReducer = function usersReducer() {
       return nextState;
 
     case _actions_course_actions__WEBPACK_IMPORTED_MODULE_2__["RECEIVE_COURSE"]:
-      nextState[action.payload.instructor.id] = action.payload.instructor; // nextState[action.payload.course.mentor_id].courseIds.push(action.payload.course.id);
+      nextState[action.payload.instructor.id] = action.payload.instructor;
+      return nextState;
 
+    case _actions_course_actions__WEBPACK_IMPORTED_MODULE_2__["REMOVE_COURSE"]:
+      var arr = Object.values(nextState)[0].courseIds; // specific number to delete
+
+      arr.splice(arr.indexOf(action.courseId), 1);
       return nextState;
 
     default:

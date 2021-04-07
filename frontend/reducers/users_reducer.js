@@ -1,6 +1,6 @@
 import { RECEIVE_USER, RECEIVE_USERS } from '../actions/user_actions';
 import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
-import {RECEIVE_COURSE} from '../actions/course_actions';
+import {RECEIVE_COURSE, REMOVE_COURSE} from '../actions/course_actions';
 
 const usersReducer = (state = {}, action) => {
   Object.freeze(state);
@@ -16,7 +16,11 @@ const usersReducer = (state = {}, action) => {
       return nextState;
     case RECEIVE_COURSE:
       nextState[action.payload.instructor.id] = action.payload.instructor;
-      // nextState[action.payload.course.mentor_id].courseIds.push(action.payload.course.id);
+      return nextState;
+    case REMOVE_COURSE:
+      let arr = Object.values(nextState)[0].courseIds;
+      // specific number to delete
+      arr.splice(arr.indexOf(action.courseId), 1);
       return nextState;
     default:
       return state;

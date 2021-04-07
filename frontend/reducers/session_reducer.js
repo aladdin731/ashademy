@@ -3,6 +3,8 @@ import {
   LOGOUT_CURRENT_USER,
 } from '../actions/session_actions';
 
+import 
+{RECEIVE_ALL_COURSES} from '../actions/course_actions'
 const _nullUser = Object.freeze({
   currentUser: null
 });
@@ -14,6 +16,8 @@ const sessionReducer = (state = _nullUser, action) => {
       return { currentUser: action.currentUser.user };
     case LOGOUT_CURRENT_USER:
       return _nullUser;
+    // case RECEIVE_ALL_COURSES:
+    //   return { currentUser: action.currentUser.user };
     default:
       return state;
   }

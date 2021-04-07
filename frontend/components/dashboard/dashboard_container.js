@@ -2,16 +2,22 @@ import {connect} from 'react-redux';
 import {fetchUser} from '../../actions/user_actions'
 import Dashboard from './dashboard';
 import {selectCoursesForCurrentUser} from '../../reducers/selectors';
+import {deleteCourse, fetchCourses} from '../../actions/course_actions';
 
 
-const mapStateToProps = state => ({
-    currentUser: state.session.currentUser,
-    // courses: Object.values(state.entities.courses),
-    courses: selectCoursesForCurrentUser(state)
-})
+const mapStateToProps = state => {
+    const currentUser = state.session.currentUser;
+    const courses = selectCoursesForCurrentUser(state, currentUser);
+    const user = state.entities.users;
+    return {
+        currentUser, courses, user 
+    }
+}
 
 const mapDispatchToProps = dispatch => ({
-    fetchUser: (currentUserId) => dispatch(fetchUser(currentUserId))
+    fetchUser: (currentUserId) => dispatch(fetchUser(currentUserId)),
+    fetchCourses: () => dispatch(fetchCourses()),
+    deleteCourse: courseId => dispatch(deleteCourse(courseId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)

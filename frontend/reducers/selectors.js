@@ -9,8 +9,10 @@ export const selectCourseTagsNames = (state) => {
 
 
 
-export const selectCoursesForCurrentUser = (state) => {
-  return state.session.currentUser.courseIds.map(courseId => state.entities.courses[courseId]);
+export const selectCoursesForCurrentUser = (state, currentUser) => {
+  const user = state.entities.users[currentUser.id];
+  return user ? user.courseIds.map(courseId => 
+    state.entities.courses[courseId]) : [];
 };
 
 
