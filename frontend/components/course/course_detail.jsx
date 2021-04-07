@@ -19,11 +19,11 @@ class CourseDetail extends React.Component{
     return (
       <section>
         <figure>
-          <img src={this.props.course.imageUrl} alt={this.props.course.course_name} />
+          <img src={this.props.course.imageUrl} alt={this.props.course.courseName} />
         </figure>
         <ul>   
           <li><h2>{this.props.course.courseName}</h2></li>
-          <li>Type: {this.props.course.course_type}</li>
+          <li>Type: {this.props.course.courseType}</li>
           <li>Description: {this.props.course.description}</li>
           <li>Instructor: {this.props.instructor.join("")}</li>
           <li>Tags: {this.props.tags.join(', ')}</li>

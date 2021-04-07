@@ -10,9 +10,8 @@ class CourseIndexItem extends React.Component{
     return(
       <li >
         <Link to={`/courses/${this.props.course.id}`}>
-          <span>{this.props.course.id}</span>
           <img src={this.props.course.imageUrl}/>
-          <span>{this.props.course.course_name}</span>
+          <h3>{this.props.course.courseName}</h3>
         </Link>
       </li>
     )

@@ -4,7 +4,6 @@ import CourseIndexItem from '../course/course_index_item'
 class Dashboard extends React.Component{
     constructor(props){
         super(props);
-
     }
 
     componentDidMount(){
@@ -12,8 +11,7 @@ class Dashboard extends React.Component{
     }
 
     render(){
-        if (!this.props.courses) return null;
-        const{courses, currentUser} = this.props;
+        const{courses} = this.props;
         return(
             <div>
                 {

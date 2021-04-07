@@ -6,11 +6,11 @@ import Dashboard from './dashboard';
 const mapStateToProps = state => ({
     currentUser: state.session.currentUser,
     courses: Object.values(state.entities.courses),
-    
 })
 
 const mapDispatchToProps = dispatch => ({
-    fetchUser: (currentUserId) => fetchUser(currentUserId)
+    fetchUser: (currentUserId) => dispatch(fetchUser(currentUserId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)
+

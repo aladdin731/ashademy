@@ -1,10 +1,8 @@
-export const selectAllCourses = (state) => {
-  return Object.values(state.entities.courses)
-}
+
 
 export const selectCourseTagsNames = (state) => {
   const tagNames = Object.values(state.entities.tags).map(tag=> {
-    return tag.tag_name;
+    return tag.tagName;
   })
   return tagNames;
 }
