@@ -25,10 +25,16 @@ class Dashboard extends React.Component{
     render(){
         if(!this.props.currentUser || !this.props.courses) return null;
         const form = this.state.addCourse ? <CreateCourseFormContainer /> : ""
-        const {courses, deleteCourse} = this.props;
-        console.log(courses)
+        const {currentUser, courses, deleteCourse, updateUserInfo} = this.props;
+        let photo;
+        if (!currentUser.imageUrl){
+            photo = <button>Add a photo</button>
+        }else {
+            photo = <img src={currentUser.imageUrl} alt={currentUser.username} />
+        }
         return(
             <div>
+                {photo} 
                 {
                 courses.map(course => (
                     <li key={course.id}>

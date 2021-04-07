@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import {fetchUser} from '../../actions/user_actions'
+import {fetchUser, updateUserInfo} from '../../actions/user_actions'
 import Dashboard from './dashboard';
 import {selectCoursesForCurrentUser} from '../../reducers/selectors';
 import {deleteCourse, fetchCourses} from '../../actions/course_actions';
@@ -16,7 +16,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
     fetchUser: (currentUserId) => dispatch(fetchUser(currentUserId)),
     // fetchCourses: () => dispatch(fetchCourses()),
-    deleteCourse: courseId => dispatch(deleteCourse(courseId))
+    deleteCourse: courseId => dispatch(deleteCourse(courseId)),
+    updateUserInfo: user =>dispatch(updateUserInfo(user))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)

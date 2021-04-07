@@ -1026,10 +1026,22 @@ var Dashboard = /*#__PURE__*/function (_React$Component) {
       if (!this.props.currentUser || !this.props.courses) return null;
       var form = this.state.addCourse ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_create_course_form_container__WEBPACK_IMPORTED_MODULE_2__["default"], null) : "";
       var _this$props = this.props,
+          currentUser = _this$props.currentUser,
           courses = _this$props.courses,
-          deleteCourse = _this$props.deleteCourse;
-      console.log(courses);
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, courses.map(function (course) {
+          deleteCourse = _this$props.deleteCourse,
+          updateUserInfo = _this$props.updateUserInfo;
+      var photo;
+
+      if (!currentUser.imageUrl) {
+        photo = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Add a photo");
+      } else {
+        photo = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: currentUser.imageUrl,
+          alt: currentUser.username
+        });
+      }
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, photo, courses.map(function (course) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: course.id
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -1089,6 +1101,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     // fetchCourses: () => dispatch(fetchCourses()),
     deleteCourse: function deleteCourse(courseId) {
       return dispatch(Object(_actions_course_actions__WEBPACK_IMPORTED_MODULE_4__["deleteCourse"])(courseId));
+    },
+    updateUserInfo: function updateUserInfo(user) {
+      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_1__["updateUserInfo"])(user));
     }
   };
 };
