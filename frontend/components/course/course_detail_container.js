@@ -3,24 +3,20 @@ import {fetchCourse} from './../../actions/course_actions';
 import CourseDetail from './course_detail';
 import {selectCourseTagsNames, selectCourseInstructor} from "../../reducers/selectors";
 
-const mapStateToProps = (state, ownProps) => {
-  const course = state.entities.courses[ownProps.match.params.courseId]
-  const instructor = selectCourseInstructor(course, state);
+const mapStateToProps = (state, {match}) => {
+  const courseId = parseInt(match.params.courseId);
+  const course = state.entities.courses[courseId] || {};
+  const instructor = state.entities.users[course.mentor_id];
   const tags = selectCourseTagsNames(state);
   return {
-    course,
-    tags,
-    // instructor: Object.values(state.entities.users)[0].username
-    instructor
+    courseId, course, tags, instructor
   }
 }
 
 
-const mapDispatchToProps = (dispatch) => {
-  return{
+const mapDispatchToProps = (dispatch) => ({
     fetchCourse: (courseId) => dispatch(fetchCourse(courseId)) 
-  }
-}
+})
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(CourseDetail)

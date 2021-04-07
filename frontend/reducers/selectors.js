@@ -7,9 +7,7 @@ export const selectCourseTagsNames = (state) => {
   return tagNames;
 }
 
-export const selectCourseInstructor = (course, state) => {
-  return state.entities.users[course.mentorId]
-}
+
 
 export const selectCoursesForCurrentUser = (state) => {
   return state.session.currentUser.courseIds.map(courseId => state.entities.courses[courseId]);

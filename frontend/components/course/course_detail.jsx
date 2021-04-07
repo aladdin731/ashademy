@@ -3,14 +3,17 @@ import { Route, withRouter } from 'react-router-dom';
 
 
 class CourseDetail extends React.Component{
+  constructor(props) {
+    super(props);
+  }
 
   componentDidMount(){
-    this.props.fetchCourse(this.props.match.params.courseId);
+    this.props.fetchCourse(this.props.courseId);
   }
 
 
   render(){
-    if (!this.props.instructor) return null;
+    if (!this.props.course) return null;
     return (
       <section>
         <figure>
@@ -20,7 +23,7 @@ class CourseDetail extends React.Component{
           <li><h2>{this.props.course.courseName}</h2></li>
           <li>Type: {this.props.course.courseType}</li>
           <li>Description: {this.props.course.description}</li>
-          <li>Instructor: {this.props.instructor.username}</li>
+          <li>Instructor: {this.props.instructor}</li>
           <li>Tags: {this.props.tags.join(' ')}</li>
         </ul>
       </section>
@@ -28,4 +31,4 @@ class CourseDetail extends React.Component{
   }
 }
 
-export default withRouter(CourseDetail);
+export default CourseDetail;
