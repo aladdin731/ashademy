@@ -8,12 +8,13 @@ const usersReducer = (state = {}, action) => {
   switch(action.type) {
     // 之后可能根据需要改进
     case RECEIVE_USERS:
-      // return action.users;
       return Object.assign({}, action.users, state);
     case RECEIVE_USER:
       return {[action.payload.user.id]: action.payload.user};
     case RECEIVE_COURSE:
       return {[action.payload.instructor.id]: action.payload.instructor};
+    case RECEIVE_CURRENT_USER:
+      return Object.assign({}, state, { [action.currentUser.user.id]: action.currentUser.user });
     default:
       return state;
   }

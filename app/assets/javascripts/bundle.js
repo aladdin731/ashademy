@@ -1635,7 +1635,6 @@ var usersReducer = function usersReducer() {
   switch (action.type) {
     // 之后可能根据需要改进
     case _actions_user_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_USERS"]:
-      // return action.users;
       return Object.assign({}, action.users, state);
 
     case _actions_user_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_USER"]:
@@ -1643,6 +1642,9 @@ var usersReducer = function usersReducer() {
 
     case _actions_course_actions__WEBPACK_IMPORTED_MODULE_2__["RECEIVE_COURSE"]:
       return _defineProperty({}, action.payload.instructor.id, action.payload.instructor);
+
+    case _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_CURRENT_USER"]:
+      return Object.assign({}, state, _defineProperty({}, action.currentUser.user.id, action.currentUser.user));
 
     default:
       return state;
