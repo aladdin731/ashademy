@@ -15,30 +15,34 @@ class Greeting extends React.Component {
     // }
 
     render () {
-      const {currentUser, logout} = this.props;
+      const {currentUser, logout, openModal} = this.props;
       const sessionLinks = () => (
       <div>
-        <h1>This is greeting container</h1>
+
         <NavLink exact activeClassName="active" to="/" >Main Button with logo</NavLink>
         <br></br>
-        <Link to="/login">Login</Link>
-        &nbsp;or&nbsp;
-        <Link to="/signup">Sign up!</Link>
+        <nav className="login-signup">
+          <button onClick={() => openModal('login')}>Login</button>
+          &nbsp;or&nbsp;
+          <button onClick={() => openModal('signup')}>Signup</button>
+        </nav>
       </div>
     );
     const personalGreeting = () => (
       <div>
-        <h1>This is greeting container</h1>
+        <hgroup className="header-group">
+          <h2 className="header-name">Hi, {currentUser.username}!</h2>
+          <button className="header-button" onClick={logout}>Log Out</button>
+        </hgroup>
         <NavLink exact activeClassName="active" to="/" >Main Button with logo</NavLink>
         <br></br>
          <NavLink exact activeClassName="active" to="/dashboard" >Dashboard</NavLink>
         
         <h2>Hi, {currentUser.username}!</h2>
-        <button onClick={logout}>Log Out</button>
       </div>
     );
 
-    return currentUser ? personalGreeting() : sessionLinks();
+    return currentUser ? personalGreeting(currentUser, logout) : sessionLinks()
     }
 };
 

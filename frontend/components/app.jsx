@@ -17,17 +17,17 @@ import Footer from './footer/footer';
 import CourseDetailContainer from '../components/course/course_detail_container';
 import CourseIndexContainer from '../components/course/course_index_container';
 import DashboardContainer from '../components/dashboard/dashboard_container';
+import Modal from './modal/modal';
 
 
 const App = () => (
   <div>
+    <Modal />
     <header>
       <h1>Welcome to ashademy!</h1>
       <GreetingContainer />
     </header>
     <Switch>
-      <AuthRoute exact path="/login" component={LogInFormContainer} />
-      <AuthRoute exact path="/signup" component={SignUpFormContainer} />
       <Route exact path="/" component={CourseIndexContainer} />
       <Route path="/courses/:courseId" component={CourseDetailContainer}/>
       <ProtectedRoute path="/dashboard" component={DashboardContainer}/>
@@ -39,3 +39,6 @@ const App = () => (
 );
 
 export default App;
+
+      // <AuthRoute exact path="/login" component={LogInFormContainer} />
+      // <AuthRoute exact path="/signup" component={SignUpFormContainer} />

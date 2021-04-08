@@ -4,12 +4,13 @@ import { Link } from 'react-router-dom';
 import { login } from '../../actions/session_actions';
 import SessionForm from './session_form';
 import {clearErrors} from '../../actions/session_actions';
+import { openModal, closeModal } from '../../actions/modal_actions';
 
 const mapStateToProps = ({ errors }) => {
   return {
     errors: errors.session,
     formType: 'login',
-    navLink: <Link to="/signup">sign up instead</Link>,
+    // navLink: <Link to="/signup">sign up instead</Link>,
   };
 };
 
@@ -17,7 +18,13 @@ const mapDispatchToProps = dispatch => {
   return {
     handleDemo: () => dispatch(login({username: "Demo User", password:"123123"})),
     processForm: (user) => dispatch(login(user)),
-    clearErrors: () => dispatch(clearErrors())
+    clearErrors: () => dispatch(clearErrors()),
+    otherForm: (
+      <button onClick={() => dispatch(openModal('signup'))}>
+        Signup
+      </button>
+    ),
+    closeModal: () => dispatch(closeModal())
   };
 };
 
