@@ -33266,3 +33266,372 @@ Processing by Api::SessionsController#create as JSON
 Completed 200 OK in 222ms (Views: 8.8ms | ActiveRecord: 2.8ms)
 
 
+Started GET "/" for ::1 at 2021-04-07 17:40:51 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "RUB5Yj18uGjyA87gvwWRUA=="], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8
+  Rendered api/users/_user.json.jbuilder (0.9ms)
+  Rendered static_pages/root.html.erb within layouts/application (10.1ms)
+Completed 200 OK in 379ms (Views: 375.3ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/api/users" for ::1 at 2021-04-07 17:40:52 -0700
+Started GET "/api/courses" for ::1 at 2021-04-07 17:40:52 -0700
+Processing by Api::CoursesController#index as JSON
+  Rendering api/courses/index.json.jbuilder
+  [1m[36mCourse Load (1.1ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  ↳ app/views/api/courses/index.json.jbuilder:1
+  Rendered api/courses/index.json.jbuilder (4.7ms)
+Completed 200 OK in 16ms (Views: 14.4ms | ActiveRecord: 1.1ms)
+
+
+Processing by Api::UsersController#index as JSON
+  Rendering api/users/index.json.jbuilder
+  [1m[36mUser Load (1.9ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/api/users/index.json.jbuilder:2
+  Rendered api/users/_user.json.jbuilder (0.9ms)
+  Rendered api/users/_user.json.jbuilder (0.1ms)
+  Rendered api/users/_user.json.jbuilder (0.0ms)
+  Rendered api/users/_user.json.jbuilder (0.0ms)
+  Rendered api/users/_user.json.jbuilder (0.1ms)
+  Rendered api/users/_user.json.jbuilder (0.1ms)
+  Rendered api/users/_user.json.jbuilder (0.1ms)
+  Rendered api/users/_user.json.jbuilder (0.1ms)
+  Rendered api/users/_user.json.jbuilder (0.1ms)
+  Rendered api/users/index.json.jbuilder (16.6ms)
+Completed 200 OK in 29ms (Views: 27.0ms | ActiveRecord: 1.9ms)
+
+
+Started DELETE "/api/session" for ::1 at 2021-04-07 17:40:53 -0700
+Processing by Api::SessionsController#destroy as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "RUB5Yj18uGjyA87gvwWRUA=="], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:30
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "Demo User"], ["id", 50], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["session_token", "0EkGbAGYgYh0J5kFdBbRbw=="], ["id", 50], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30
+  [1m[36mUser Update (1.4ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "0EkGbAGYgYh0J5kFdBbRbw=="], ["updated_at", "2021-04-08 00:40:53.400069"], ["id", 50]]
+  ↳ app/models/user.rb:30
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:30
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/_user.json.jbuilder (1.0ms)
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "courses"."id" FROM "courses" WHERE "courses"."mentor_id" = $1[0m  [["mentor_id", 50]]
+  ↳ app/views/api/users/show.json.jbuilder:3
+  [1m[36mCourse Load (0.3ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."mentor_id" = $1[0m  [["mentor_id", 50]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+  Rendered api/users/show.json.jbuilder (6.7ms)
+Completed 200 OK in 26ms (Views: 13.0ms | ActiveRecord: 5.3ms)
+
+
+Started POST "/api/session" for ::1 at 2021-04-07 17:40:54 -0700
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"user"=>{"username"=>"Demo User", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Demo User"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:14
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:30
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "Demo User"], ["id", 50], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30
+  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["session_token", "xW6ioUyEAtbUMO4lwQ+uqw=="], ["id", 50], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30
+  [1m[36mUser Update (0.4ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "xW6ioUyEAtbUMO4lwQ+uqw=="], ["updated_at", "2021-04-08 00:40:54.406645"], ["id", 50]]
+  ↳ app/models/user.rb:30
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:30
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/_user.json.jbuilder (0.3ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "courses"."id" FROM "courses" WHERE "courses"."mentor_id" = $1[0m  [["mentor_id", 50]]
+  ↳ app/views/api/users/show.json.jbuilder:3
+  [1m[36mCourse Load (0.5ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."mentor_id" = $1[0m  [["mentor_id", 50]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+  Rendered api/users/show.json.jbuilder (4.4ms)
+Completed 200 OK in 216ms (Views: 9.3ms | ActiveRecord: 3.1ms)
+
+
+Started DELETE "/api/session" for ::1 at 2021-04-07 17:40:57 -0700
+Processing by Api::SessionsController#destroy as JSON
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "xW6ioUyEAtbUMO4lwQ+uqw=="], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:30
+  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "Demo User"], ["id", 50], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["session_token", "LPT4WpR6RnKSDkH6lr1Zsw=="], ["id", 50], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30
+  [1m[36mUser Update (0.5ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "LPT4WpR6RnKSDkH6lr1Zsw=="], ["updated_at", "2021-04-08 00:40:57.231382"], ["id", 50]]
+  ↳ app/models/user.rb:30
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:30
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "courses"."id" FROM "courses" WHERE "courses"."mentor_id" = $1[0m  [["mentor_id", 50]]
+  ↳ app/views/api/users/show.json.jbuilder:3
+  [1m[36mCourse Load (0.4ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."mentor_id" = $1[0m  [["mentor_id", 50]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+  Rendered api/users/show.json.jbuilder (4.0ms)
+Completed 200 OK in 20ms (Views: 10.3ms | ActiveRecord: 3.7ms)
+
+
+Started GET "/" for ::1 at 2021-04-07 17:41:04 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 345ms (Views: 342.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/courses" for ::1 at 2021-04-07 17:41:05 -0700
+Started GET "/api/users" for ::1 at 2021-04-07 17:41:05 -0700
+Processing by Api::CoursesController#index as JSON
+Processing by Api::UsersController#index as JSON
+  Rendering api/courses/index.json.jbuilder
+  Rendering api/users/index.json.jbuilder
+  [1m[36mCourse Load (8.9ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  ↳ app/views/api/courses/index.json.jbuilder:1
+  Rendered api/courses/index.json.jbuilder (11.3ms)
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/api/users/index.json.jbuilder:2
+Completed 200 OK in 22ms (Views: 13.3ms | ActiveRecord: 8.9ms)
+
+
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+  Rendered api/users/_user.json.jbuilder (0.1ms)
+  Rendered api/users/_user.json.jbuilder (0.1ms)
+  Rendered api/users/_user.json.jbuilder (0.1ms)
+  Rendered api/users/_user.json.jbuilder (0.1ms)
+  Rendered api/users/_user.json.jbuilder (0.1ms)
+  Rendered api/users/_user.json.jbuilder (0.1ms)
+  Rendered api/users/_user.json.jbuilder (0.1ms)
+  Rendered api/users/_user.json.jbuilder (0.1ms)
+  Rendered api/users/index.json.jbuilder (19.1ms)
+Completed 200 OK in 36ms (Views: 33.7ms | ActiveRecord: 2.1ms)
+
+
+Started POST "/api/session" for ::1 at 2021-04-07 17:41:11 -0700
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"user"=>{"username"=>"safd", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "safd"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:14
+Completed 401 Unauthorized in 2ms (Views: 0.4ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/api/session" for ::1 at 2021-04-07 17:41:12 -0700
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"user"=>{"username"=>"Demo User", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Demo User"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:14
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:30
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "Demo User"], ["id", 50], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30
+  [1m[36mUser Exists (0.7ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["session_token", "J2TrRuc64YuNBKtEGzEAPw=="], ["id", 50], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30
+  [1m[36mUser Update (0.5ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "J2TrRuc64YuNBKtEGzEAPw=="], ["updated_at", "2021-04-08 00:41:12.766900"], ["id", 50]]
+  ↳ app/models/user.rb:30
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:30
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "courses"."id" FROM "courses" WHERE "courses"."mentor_id" = $1[0m  [["mentor_id", 50]]
+  ↳ app/views/api/users/show.json.jbuilder:3
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."mentor_id" = $1[0m  [["mentor_id", 50]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+  Rendered api/users/show.json.jbuilder (4.9ms)
+Completed 200 OK in 219ms (Views: 9.9ms | ActiveRecord: 3.0ms)
+
+
+Started DELETE "/api/session" for ::1 at 2021-04-07 17:41:30 -0700
+Processing by Api::SessionsController#destroy as JSON
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "J2TrRuc64YuNBKtEGzEAPw=="], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:30
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "Demo User"], ["id", 50], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["session_token", "RTRlmnJjf2W5di/zF+wOkQ=="], ["id", 50], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30
+  [1m[36mUser Update (0.5ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "RTRlmnJjf2W5di/zF+wOkQ=="], ["updated_at", "2021-04-08 00:41:30.435147"], ["id", 50]]
+  ↳ app/models/user.rb:30
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:30
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/_user.json.jbuilder (0.3ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "courses"."id" FROM "courses" WHERE "courses"."mentor_id" = $1[0m  [["mentor_id", 50]]
+  ↳ app/views/api/users/show.json.jbuilder:3
+  [1m[36mCourse Load (0.5ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."mentor_id" = $1[0m  [["mentor_id", 50]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+  Rendered api/users/show.json.jbuilder (4.5ms)
+Completed 200 OK in 18ms (Views: 9.9ms | ActiveRecord: 3.0ms)
+
+
+Started POST "/api/session" for ::1 at 2021-04-07 17:41:32 -0700
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"user"=>{"username"=>"Demo User", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Demo User"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:14
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:30
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "Demo User"], ["id", 50], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30
+  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["session_token", "nMrfDafY1yIGbw3a8yE1qQ=="], ["id", 50], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "nMrfDafY1yIGbw3a8yE1qQ=="], ["updated_at", "2021-04-08 00:41:33.015851"], ["id", 50]]
+  ↳ app/models/user.rb:30
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:30
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/_user.json.jbuilder (1.0ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "courses"."id" FROM "courses" WHERE "courses"."mentor_id" = $1[0m  [["mentor_id", 50]]
+  ↳ app/views/api/users/show.json.jbuilder:3
+  [1m[36mCourse Load (0.3ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."mentor_id" = $1[0m  [["mentor_id", 50]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+  Rendered api/users/show.json.jbuilder (5.0ms)
+Completed 200 OK in 219ms (Views: 9.5ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/" for ::1 at 2021-04-07 17:41:57 -0700
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "nMrfDafY1yIGbw3a8yE1qQ=="], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+  Rendered static_pages/root.html.erb within layouts/application (4.7ms)
+Completed 200 OK in 378ms (Views: 374.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/courses" for ::1 at 2021-04-07 17:41:58 -0700
+Processing by Api::CoursesController#index as JSON
+Started GET "/api/users" for ::1 at 2021-04-07 17:41:58 -0700
+  Rendering api/courses/index.json.jbuilder
+Processing by Api::UsersController#index as JSON
+  [1m[36mCourse Load (2.7ms)[0m  [1m[34mSELECT "courses".* FROM "courses"[0m
+  ↳ app/views/api/courses/index.json.jbuilder:1
+  Rendered api/courses/index.json.jbuilder (7.1ms)
+Completed 200 OK in 17ms (Views: 13.8ms | ActiveRecord: 2.7ms)
+
+
+  Rendering api/users/index.json.jbuilder
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/api/users/index.json.jbuilder:2
+  Rendered api/users/_user.json.jbuilder (0.9ms)
+  Rendered api/users/_user.json.jbuilder (0.1ms)
+  Rendered api/users/_user.json.jbuilder (0.1ms)
+  Rendered api/users/_user.json.jbuilder (0.1ms)
+  Rendered api/users/_user.json.jbuilder (0.1ms)
+  Rendered api/users/_user.json.jbuilder (0.1ms)
+  Rendered api/users/_user.json.jbuilder (0.1ms)
+  Rendered api/users/_user.json.jbuilder (0.1ms)
+  Rendered api/users/_user.json.jbuilder (0.1ms)
+  Rendered api/users/index.json.jbuilder (20.7ms)
+Completed 200 OK in 33ms (Views: 30.8ms | ActiveRecord: 1.4ms)
+
+
+Started DELETE "/api/session" for ::1 at 2021-04-07 17:41:59 -0700
+Processing by Api::SessionsController#destroy as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "nMrfDafY1yIGbw3a8yE1qQ=="], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:30
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "Demo User"], ["id", 50], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["session_token", "lCerwlqt+yMueZxD2qXL9Q=="], ["id", 50], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30
+  [1m[36mUser Update (0.5ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "lCerwlqt+yMueZxD2qXL9Q=="], ["updated_at", "2021-04-08 00:41:59.783038"], ["id", 50]]
+  ↳ app/models/user.rb:30
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:30
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/_user.json.jbuilder (0.5ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "courses"."id" FROM "courses" WHERE "courses"."mentor_id" = $1[0m  [["mentor_id", 50]]
+  ↳ app/views/api/users/show.json.jbuilder:3
+  [1m[36mCourse Load (0.3ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."mentor_id" = $1[0m  [["mentor_id", 50]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+  Rendered api/users/show.json.jbuilder (5.1ms)
+Completed 200 OK in 21ms (Views: 12.0ms | ActiveRecord: 3.0ms)
+
+
+Started POST "/api/session" for ::1 at 2021-04-07 17:42:02 -0700
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"user"=>{"username"=>"Demo User", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Demo User"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:14
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:30
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "Demo User"], ["id", 50], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30
+  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["session_token", "EiqixhQ2SZ/ISvCYdcnMOA=="], ["id", 50], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30
+  [1m[36mUser Update (0.6ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "EiqixhQ2SZ/ISvCYdcnMOA=="], ["updated_at", "2021-04-08 00:42:02.628539"], ["id", 50]]
+  ↳ app/models/user.rb:30
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:30
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/_user.json.jbuilder (0.2ms)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "courses"."id" FROM "courses" WHERE "courses"."mentor_id" = $1[0m  [["mentor_id", 50]]
+  ↳ app/views/api/users/show.json.jbuilder:3
+  [1m[36mCourse Load (0.4ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."mentor_id" = $1[0m  [["mentor_id", 50]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+  Rendered api/users/show.json.jbuilder (4.4ms)
+Completed 200 OK in 220ms (Views: 9.7ms | ActiveRecord: 3.5ms)
+
+
+Started DELETE "/api/session" for ::1 at 2021-04-07 17:43:37 -0700
+Processing by Api::SessionsController#destroy as JSON
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "EiqixhQ2SZ/ISvCYdcnMOA=="], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:30
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "Demo User"], ["id", 50], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["session_token", "mzmiNitxjBlQ7Wh09lDFDw=="], ["id", 50], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30
+  [1m[36mUser Update (0.6ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "mzmiNitxjBlQ7Wh09lDFDw=="], ["updated_at", "2021-04-08 00:43:37.659089"], ["id", 50]]
+  ↳ app/models/user.rb:30
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:30
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/_user.json.jbuilder (0.3ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "courses"."id" FROM "courses" WHERE "courses"."mentor_id" = $1[0m  [["mentor_id", 50]]
+  ↳ app/views/api/users/show.json.jbuilder:3
+  [1m[36mCourse Load (0.7ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."mentor_id" = $1[0m  [["mentor_id", 50]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+  Rendered api/users/show.json.jbuilder (7.6ms)
+Completed 200 OK in 26ms (Views: 14.1ms | ActiveRecord: 3.8ms)
+
+
+Started POST "/api/session" for ::1 at 2021-04-07 17:43:41 -0700
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"user"=>{"username"=>"sa", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "sa"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:14
+Completed 401 Unauthorized in 2ms (Views: 1.0ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/api/session" for ::1 at 2021-04-07 17:43:44 -0700
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"user"=>{"username"=>"Demo User", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Demo User"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:14
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:30
+  [1m[36mUser Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "Demo User"], ["id", 50], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30
+  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["session_token", "AenGkNw8iKUbPdqI7VP7Yg=="], ["id", 50], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30
+  [1m[36mUser Update (0.5ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "AenGkNw8iKUbPdqI7VP7Yg=="], ["updated_at", "2021-04-08 00:43:44.440518"], ["id", 50]]
+  ↳ app/models/user.rb:30
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:30
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/_user.json.jbuilder (0.4ms)
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT "courses"."id" FROM "courses" WHERE "courses"."mentor_id" = $1[0m  [["mentor_id", 50]]
+  ↳ app/views/api/users/show.json.jbuilder:3
+  [1m[36mCourse Load (0.2ms)[0m  [1m[34mSELECT "courses".* FROM "courses" WHERE "courses"."mentor_id" = $1[0m  [["mentor_id", 50]]
+  ↳ app/views/api/users/show.json.jbuilder:6
+  Rendered api/users/show.json.jbuilder (6.5ms)
+Completed 200 OK in 223ms (Views: 11.5ms | ActiveRecord: 4.2ms)
+
+

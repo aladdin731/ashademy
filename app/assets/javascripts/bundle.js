@@ -1239,9 +1239,7 @@ var Greeting = /*#__PURE__*/function (_React$Component) {
       var personalGreeting = function personalGreeting() {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hgroup", {
           className: "header-group"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
-          className: "header-name"
-        }, "Hi, ", currentUser.username, "!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           className: "header-button",
           onClick: logout
         }, "Log Out")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
@@ -1614,9 +1612,7 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
         value: this.props.formType
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          return _this3.props.handleDemo().then(function () {
-            return _this3.props.closeModal();
-          });
+          return _this3.props.handleDemo().then(_this3.props.closeModal());
         }
       }, "Log In as Demo User"));
     }
