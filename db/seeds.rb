@@ -19,11 +19,7 @@ u7 = User.create!({username:"user7", password:"123123"})
 
 Course.delete_all
 CourseTag.destroy_all
-
 Tag.destroy_all
-
-
-
 
   courses = {
     '1' => {
@@ -100,6 +96,30 @@ Tag.destroy_all
             CourseTag.create!(course_id: course.id, tag_id: Tag.find_by(tag_name: tag).id)
         end
     end
+
+   last_year = Date.today.prev_year.year
+
+    Request.destroy_all
+    Request.create!(
+      course_id: Course.last.id,
+      mentee_id: User.first.id,
+      start_time: Date.parse("#{last_year.to_s}-01-01"),
+      end_time: Date.parse("#{last_year.to_s}-01-02"),
+      status: 'APPROVED'
+    )
+    Request.create!(
+      course_id: Course.first.id,
+      mentee_id: User.last.id,
+      start_time: Date.parse("#{last_year.to_s}-01-01"),
+      end_time: Date.parse("#{last_year.to_s}-01-02"),
+      status: 'PENDING'
+    )
+
+
+
+
+
+
 
 
 
