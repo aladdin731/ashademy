@@ -1,4 +1,9 @@
-
+export const fetchRequests = () => (
+    $.ajax({
+        method:"GET",
+        url: "/api/requests",
+    })
+)
 
 export const createRequest = request => (
     $.ajax({

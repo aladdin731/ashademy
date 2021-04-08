@@ -23,9 +23,9 @@ class Dashboard extends React.Component{
     }
 
     render(){
-        if(!this.props.currentUser || !this.props.courses) return null;
+        if(!this.props.courses || !this.props.requests || !this.props.receivedRequests) return null;
         const form = this.state.addCourse ? <CreateCourseFormContainer /> : ""
-        const {currentUser, courses, deleteCourse, updateUserInfo} = this.props;
+        const {currentUser, courses, deleteCourse, updateUserInfo, updateRequest, requests, receivedRequests} = this.props;
         let photo;
         if (!currentUser.imageUrl){
             photo = <button>Add a photo</button>
@@ -35,17 +35,35 @@ class Dashboard extends React.Component{
         return(
             <div>
                 {photo} 
-                {
-                courses.map(course => (
-                    <li key={course.id}>
-                        <img src={course.imageUrl}/>
-                        <h3>{course.courseName}</h3>
-                        <button onClick={() => deleteCourse(course.id)}>Delete</button>
-                    </li>
-                 ))
-                }
-                <button onClick={this.handleClick}>Add Course</button>
-                {form}
+                <div>
+                    {courses.map(course => (
+                        <li key={course.id}>
+                            <img src={course.imageUrl}/>
+                            <h3>{course.courseName}</h3>
+                            <button onClick={() => deleteCourse(course.id)}>Delete</button>
+                        </li>
+                    ))}
+                    <button onClick={this.handleClick}>Add Course</button>
+                    {form}
+                </div>
+                <div>
+                    {requests.map(request => (
+                        <li key={request.id}>
+                            <h3>Start From: {request.startTime}</h3>
+                            <h3>End To: {request.endTime}</h3>
+                            <h3>End To: {request.status}</h3>
+                        </li>
+                    ))}
+                </div>
+                <div>
+                    {receivedRequests.map(request => (
+                        <li key={request.id}>
+                            <h3>Start From: {request.startTime}</h3>
+                            <h3>End To: {request.endTime}</h3>
+                            <h3>End To: {request.status}</h3>
+                        </li>
+                    ))}
+                </div>
             </div>
         )
     }

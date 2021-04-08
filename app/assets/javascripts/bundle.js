@@ -219,24 +219,28 @@ var closeModal = function closeModal() {
 /*!*********************************************!*\
   !*** ./frontend/actions/request_actions.js ***!
   \*********************************************/
-/*! exports provided: RECEIVE_REQUEST, RECEIVE_REQUEST_ERRORS, receiveErrors, createRequest, updateRequest */
+/*! exports provided: RECEIVE_REQUEST, RECEIVE_REQUESTS, RECEIVE_REQUEST_ERRORS, receiveErrors, fetchRequests, createRequest, updateRequest */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_REQUEST", function() { return RECEIVE_REQUEST; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_REQUESTS", function() { return RECEIVE_REQUESTS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_REQUEST_ERRORS", function() { return RECEIVE_REQUEST_ERRORS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveErrors", function() { return receiveErrors; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchRequests", function() { return fetchRequests; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createRequest", function() { return createRequest; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateRequest", function() { return updateRequest; });
 /* harmony import */ var _util_request_ai_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/request_ai_util */ "./frontend/util/request_ai_util.js");
 
 var RECEIVE_REQUEST = "RECEIVE_REQUEST";
+var RECEIVE_REQUESTS = "RECEIVE_REQUESTS";
 var RECEIVE_REQUEST_ERRORS = "RECEIVE_REQUEST_ERRORS";
-var receiveErrors = function receiveErrors(errors) {
+
+var receiveRequests = function receiveRequests(requests) {
   return {
-    type: RECEIVE_REQUEST_ERRORS,
-    errors: errors
+    type: RECEIVE_REQUESTS,
+    requests: requests
   };
 };
 
@@ -247,6 +251,19 @@ var receiveRequest = function receiveRequest(payload) {
   };
 };
 
+var receiveErrors = function receiveErrors(errors) {
+  return {
+    type: RECEIVE_REQUEST_ERRORS,
+    errors: errors
+  };
+};
+var fetchRequests = function fetchRequests() {
+  return function (dispatch) {
+    return _util_request_ai_util__WEBPACK_IMPORTED_MODULE_0__["fetchRequests"]().then(function (requests) {
+      return dispatch(receiveRequests(requests));
+    });
+  };
+};
 var createRequest = function createRequest(request) {
   return function (dispatch) {
     return _util_request_ai_util__WEBPACK_IMPORTED_MODULE_0__["createRequest"](request).then(function (payload) {
@@ -642,6 +659,7 @@ var CourseIndex = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       this.props.fetchCourses();
       this.props.fetchUsers();
+      this.props.fetchRequests();
     }
   }, {
     key: "render",
@@ -676,6 +694,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_course_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../actions/course_actions */ "./frontend/actions/course_actions.js");
 /* harmony import */ var _course_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./course_index */ "./frontend/components/course/course_index.jsx");
 /* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/user_actions */ "./frontend/actions/user_actions.js");
+/* harmony import */ var _actions_request_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/request_actions */ "./frontend/actions/request_actions.js");
+
 
 
 
@@ -695,6 +715,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     fetchUsers: function fetchUsers() {
       return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_3__["fetchUsers"])());
+    },
+    fetchRequests: function fetchRequests() {
+      return dispatch(Object(_actions_request_actions__WEBPACK_IMPORTED_MODULE_4__["fetchRequests"])());
     }
   };
 };
@@ -1100,13 +1123,16 @@ var Dashboard = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      if (!this.props.currentUser || !this.props.courses) return null;
+      if (!this.props.courses || !this.props.requests || !this.props.receivedRequests) return null;
       var form = this.state.addCourse ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_create_course_form_container__WEBPACK_IMPORTED_MODULE_2__["default"], null) : "";
       var _this$props = this.props,
           currentUser = _this$props.currentUser,
           courses = _this$props.courses,
           deleteCourse = _this$props.deleteCourse,
-          updateUserInfo = _this$props.updateUserInfo;
+          updateUserInfo = _this$props.updateUserInfo,
+          updateRequest = _this$props.updateRequest,
+          requests = _this$props.requests,
+          receivedRequests = _this$props.receivedRequests;
       var photo;
 
       if (!currentUser.imageUrl) {
@@ -1118,7 +1144,7 @@ var Dashboard = /*#__PURE__*/function (_React$Component) {
         });
       }
 
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, photo, courses.map(function (course) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, photo, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, courses.map(function (course) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: course.id
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -1130,7 +1156,15 @@ var Dashboard = /*#__PURE__*/function (_React$Component) {
         }, "Delete"));
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.handleClick
-      }, "Add Course"), form);
+      }, "Add Course"), form), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, requests.map(function (request) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          key: request.id
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Start From: ", request.startTime), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "End To: ", request.endTime), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "End To: ", request.status));
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, receivedRequests.map(function (request) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          key: request.id
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Start From: ", request.startTime), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "End To: ", request.endTime), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "End To: ", request.status));
+      })));
     }
   }]);
 
@@ -1155,6 +1189,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _dashboard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./dashboard */ "./frontend/components/dashboard/dashboard.jsx");
 /* harmony import */ var _reducers_selectors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../reducers/selectors */ "./frontend/reducers/selectors.js");
 /* harmony import */ var _actions_course_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/course_actions */ "./frontend/actions/course_actions.js");
+/* harmony import */ var _actions_request_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/request_actions */ "./frontend/actions/request_actions.js");
+
 
 
 
@@ -1164,9 +1200,13 @@ __webpack_require__.r(__webpack_exports__);
 var mapStateToProps = function mapStateToProps(state) {
   var currentUser = state.session.currentUser;
   var courses = Object(_reducers_selectors__WEBPACK_IMPORTED_MODULE_3__["selectCoursesForCurrentUser"])(state, currentUser);
+  var requests = Object(_reducers_selectors__WEBPACK_IMPORTED_MODULE_3__["selectRequestsForCurrentUser"])(state, currentUser);
+  var receivedRequests = Object(_reducers_selectors__WEBPACK_IMPORTED_MODULE_3__["selectReceivedRequestsForCurrentUser"])(state, currentUser);
   return {
     currentUser: currentUser,
-    courses: courses
+    courses: courses,
+    requests: requests,
+    receivedRequests: receivedRequests
   };
 };
 
@@ -1175,12 +1215,14 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     fetchUser: function fetchUser(currentUserId) {
       return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_1__["fetchUser"])(currentUserId));
     },
-    // fetchCourses: () => dispatch(fetchCourses()),
     deleteCourse: function deleteCourse(courseId) {
       return dispatch(Object(_actions_course_actions__WEBPACK_IMPORTED_MODULE_4__["deleteCourse"])(courseId));
     },
     updateUserInfo: function updateUserInfo(user) {
       return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_1__["updateUserInfo"])(user));
+    },
+    updateRequest: function updateRequest(request) {
+      return dispatch(Object(_actions_request_actions__WEBPACK_IMPORTED_MODULE_5__["updateRequest"])(request));
     }
   };
 };
@@ -2040,6 +2082,9 @@ var requestReducer = function requestReducer() {
   var nextState = Object.assign({}, state);
 
   switch (action.type) {
+    case _actions_request_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_REQUESTS"]:
+      return action.requests;
+
     case _actions_request_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_REQUEST"]:
       nextState[action.payload.request.id] = action.payload.request;
       return nextState;
@@ -2089,13 +2134,15 @@ var rootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])(
 /*!****************************************!*\
   !*** ./frontend/reducers/selectors.js ***!
   \****************************************/
-/*! exports provided: selectCourseTagsNames, selectCoursesForCurrentUser */
+/*! exports provided: selectCourseTagsNames, selectCoursesForCurrentUser, selectRequestsForCurrentUser, selectReceivedRequestsForCurrentUser */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectCourseTagsNames", function() { return selectCourseTagsNames; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectCoursesForCurrentUser", function() { return selectCoursesForCurrentUser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectRequestsForCurrentUser", function() { return selectRequestsForCurrentUser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectReceivedRequestsForCurrentUser", function() { return selectReceivedRequestsForCurrentUser; });
 var selectCourseTagsNames = function selectCourseTagsNames(state) {
   var tagNames = Object.values(state.entities.tags).map(function (tag) {
     return tag.tagName;
@@ -2108,6 +2155,30 @@ var selectCoursesForCurrentUser = function selectCoursesForCurrentUser(state, cu
     return state.entities.courses[courseId];
   }) : [];
 };
+var selectRequestsForCurrentUser = function selectRequestsForCurrentUser(state, currentUser) {
+  var user = state.entities.users[currentUser.id];
+  return user ? user.requestIds.map(function (requestId) {
+    return state.entities.requests[requestId];
+  }) : [];
+};
+var selectReceivedRequestsForCurrentUser = function selectReceivedRequestsForCurrentUser(state, currentUser) {
+  var user = state.entities.users[currentUser.id];
+  return user ? user.receivedRequestsids.map(function (requestId) {
+    return state.entities.requests[requestId];
+  }) : [];
+}; // this way is not corrent because even state is empty, the courses is {}, it is still true 
+// so it will not cause an error but it show [], which is nothing, so can not show the courses
+// export const selectCoursesForCurrentUser = (state, currentUser) => {
+//   return state.entities.courses ? []: currentUser.courseIds.map(courseId => 
+//     state.entities.courses[courseId]);
+// };
+// this way is not correct because the currentUser is always there 
+// because we use bootstrap as long as we logged in 
+// so it is wrong because when courses are empty we can not do courseId for {}!
+// export const selectCoursesForCurrentUser = (state, currentUser) => {
+//   return currentUser ? currentUser.courseIds.map(courseId => 
+//     state.entities.courses[courseId]) : [];
+// };
 
 /***/ }),
 
@@ -2414,13 +2485,20 @@ var deleteCourse = function deleteCourse(courseId) {
 /*!******************************************!*\
   !*** ./frontend/util/request_ai_util.js ***!
   \******************************************/
-/*! exports provided: createRequest, updateRequest */
+/*! exports provided: fetchRequests, createRequest, updateRequest */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchRequests", function() { return fetchRequests; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createRequest", function() { return createRequest; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateRequest", function() { return updateRequest; });
+var fetchRequests = function fetchRequests() {
+  return $.ajax({
+    method: "GET",
+    url: "/api/requests"
+  });
+};
 var createRequest = function createRequest(request) {
   return $.ajax({
     method: "POST",

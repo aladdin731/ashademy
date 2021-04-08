@@ -21,6 +21,7 @@ Course.delete_all
 CourseTag.destroy_all
 Tag.destroy_all
 
+
   courses = {
     '1' => {
       'course_name' => 'python',
@@ -96,6 +97,8 @@ Tag.destroy_all
             CourseTag.create!(course_id: course.id, tag_id: Tag.find_by(tag_name: tag).id)
         end
     end
+
+
 
    last_year = Date.today.prev_year.year
 

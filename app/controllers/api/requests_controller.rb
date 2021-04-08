@@ -1,4 +1,10 @@
 class Api::RequestsController < ApplicationController
+
+    def index
+        @requests = Request.all 
+        render :index 
+    end
+    
     def create
         @request = Request.new(request_params)
         if @request.save 
