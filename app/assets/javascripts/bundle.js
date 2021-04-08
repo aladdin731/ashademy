@@ -215,6 +215,59 @@ var closeModal = function closeModal() {
 
 /***/ }),
 
+/***/ "./frontend/actions/request_actions.js":
+/*!*********************************************!*\
+  !*** ./frontend/actions/request_actions.js ***!
+  \*********************************************/
+/*! exports provided: RECEIVE_REQUEST, RECEIVE_REQUEST_ERRORS, receiveErrors, createRequest, updateRequest */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_REQUEST", function() { return RECEIVE_REQUEST; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_REQUEST_ERRORS", function() { return RECEIVE_REQUEST_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveErrors", function() { return receiveErrors; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createRequest", function() { return createRequest; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateRequest", function() { return updateRequest; });
+/* harmony import */ var _util_request_ai_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/request_ai_util */ "./frontend/util/request_ai_util.js");
+
+var RECEIVE_REQUEST = "RECEIVE_REQUEST";
+var RECEIVE_REQUEST_ERRORS = "RECEIVE_REQUEST_ERRORS";
+var receiveErrors = function receiveErrors(errors) {
+  return {
+    type: RECEIVE_REQUEST_ERRORS,
+    errors: errors
+  };
+};
+
+var receiveRequest = function receiveRequest(payload) {
+  return {
+    type: RECEIVE_REQUEST,
+    payload: payload
+  };
+};
+
+var createRequest = function createRequest(request) {
+  return function (dispatch) {
+    return _util_request_ai_util__WEBPACK_IMPORTED_MODULE_0__["createRequest"](request).then(function (payload) {
+      dispatch(receiveRequest(payload));
+    }).fail(function (err) {
+      dispatch(receiveErrors(err.responseJSON));
+    });
+  };
+};
+var updateRequest = function updateRequest(request) {
+  return function (dispatch) {
+    return _util_request_ai_util__WEBPACK_IMPORTED_MODULE_0__["updateRequest"](request).then(function (payload) {
+      dispatch(receiveRequest(payload));
+    }).fail(function (err) {
+      dispatch(receiveErrors(err.responseJSON));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/session_actions.js":
 /*!*********************************************!*\
   !*** ./frontend/actions/session_actions.js ***!
@@ -1709,6 +1762,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_course_actions__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./actions/course_actions */ "./frontend/actions/course_actions.js");
 /* harmony import */ var _util_course_api_util__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./util/course_api_util */ "./frontend/util/course_api_util.js");
 /* harmony import */ var _util_request_ai_util_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./util/request_ai_util.js */ "./frontend/util/request_ai_util.js");
+/* harmony import */ var _actions_request_actions__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./actions/request_actions */ "./frontend/actions/request_actions.js");
+
 
 
 
@@ -1758,6 +1813,8 @@ document.addEventListener("DOMContentLoaded", function () {
   window.deleteCourse = _actions_course_actions__WEBPACK_IMPORTED_MODULE_8__["deleteCourse"];
   window.CourseAPI = _util_course_api_util__WEBPACK_IMPORTED_MODULE_9__;
   window.RequestAPI = _util_request_ai_util_js__WEBPACK_IMPORTED_MODULE_10__;
+  window.updateRequest = _actions_request_actions__WEBPACK_IMPORTED_MODULE_11__["updateRequest"];
+  window.createRequest = _actions_request_actions__WEBPACK_IMPORTED_MODULE_11__["createRequest"];
 });
 
 /***/ }),
@@ -1854,6 +1911,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducers/users_reducer.js");
 /* harmony import */ var _courses_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./courses_reducer */ "./frontend/reducers/courses_reducer.js");
 /* harmony import */ var _tags_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./tags_reducer */ "./frontend/reducers/tags_reducer.js");
+/* harmony import */ var _requests_reducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./requests_reducer */ "./frontend/reducers/requests_reducer.js");
+
 
 
 
@@ -1861,7 +1920,8 @@ __webpack_require__.r(__webpack_exports__);
 var entitiesReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   users: _users_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
   courses: _courses_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
-  tags: _tags_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
+  tags: _tags_reducer__WEBPACK_IMPORTED_MODULE_3__["default"],
+  requests: _requests_reducer__WEBPACK_IMPORTED_MODULE_4__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (entitiesReducer);
 
@@ -1880,6 +1940,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _session_errors_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./session_errors_reducer */ "./frontend/reducers/session_errors_reducer.js");
 /* harmony import */ var _user_errors_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./user_errors_reducer */ "./frontend/reducers/user_errors_reducer.js");
 /* harmony import */ var _course_errors_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./course_errors_reducer */ "./frontend/reducers/course_errors_reducer.js");
+/* harmony import */ var _requests_errors_reducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./requests_errors_reducer */ "./frontend/reducers/requests_errors_reducer.js");
+
 
 
 
@@ -1887,7 +1949,8 @@ __webpack_require__.r(__webpack_exports__);
 var errorsReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   session: _session_errors_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
   users: _user_errors_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
-  courses: _course_errors_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
+  courses: _course_errors_reducer__WEBPACK_IMPORTED_MODULE_3__["default"],
+  requests: _requests_errors_reducer__WEBPACK_IMPORTED_MODULE_4__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (errorsReducer);
 
@@ -1920,6 +1983,76 @@ function modalReducer() {
       return state;
   }
 }
+
+/***/ }),
+
+/***/ "./frontend/reducers/requests_errors_reducer.js":
+/*!******************************************************!*\
+  !*** ./frontend/reducers/requests_errors_reducer.js ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_request_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../actions/request_actions */ "./frontend/actions/request_actions.js");
+
+
+var requestErrorReducer = function requestErrorReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _actions_request_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_REQUEST_ERRORS"]:
+      return action.errors;
+
+    case _actions_request_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_REQUEST"]:
+      return [];
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (requestErrorReducer);
+
+/***/ }),
+
+/***/ "./frontend/reducers/requests_reducer.js":
+/*!***********************************************!*\
+  !*** ./frontend/reducers/requests_reducer.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_request_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/request_actions */ "./frontend/actions/request_actions.js");
+/* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/user_actions */ "./frontend/actions/user_actions.js");
+
+
+
+var requestReducer = function requestReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+  var nextState = Object.assign({}, state);
+
+  switch (action.type) {
+    case _actions_request_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_REQUEST"]:
+      nextState[action.payload.request.id] = action.payload.request;
+      return nextState;
+
+    case _actions_user_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_USER"]:
+      return Object.assign({}, state, action.payload.requests, action.payload.receivedRequests);
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (requestReducer);
 
 /***/ }),
 
@@ -2147,7 +2280,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/user_actions */ "./frontend/actions/user_actions.js");
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
 /* harmony import */ var _actions_course_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/course_actions */ "./frontend/actions/course_actions.js");
+/* harmony import */ var _actions_request_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../actions/request_actions */ "./frontend/actions/request_actions.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -2160,7 +2295,6 @@ var usersReducer = function usersReducer() {
   var nextState = Object.assign({}, state);
 
   switch (action.type) {
-    // 之后可能根据需要改进
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_CURRENT_USER"]:
       return Object.assign({}, state, _defineProperty({}, action.currentUser.user.id, action.currentUser.user));
 
@@ -2179,6 +2313,11 @@ var usersReducer = function usersReducer() {
       var arr = Object.values(nextState)[0].courseIds; // specific number to delete
 
       arr.splice(arr.indexOf(action.courseId), 1);
+      return nextState;
+
+    case _actions_request_actions__WEBPACK_IMPORTED_MODULE_3__["RECEIVE_REQUEST"]:
+      nextState[action.payload.sender.id] = action.payload.sender;
+      nextState[action.payload.receiver.id] = action.payload.receiver;
       return nextState;
 
     default:

@@ -10,6 +10,7 @@ import {clearErrors} from './actions/session_actions.js';
 import {updateCourse, deleteCourse, createCourse, fetchCourses, fetchCourse} from './actions/course_actions';
 import * as CourseAPI from './util/course_api_util';
 import * as RequestAPI from './util/request_ai_util.js';
+import {createRequest, updateRequest} from './actions/request_actions'
 
 document.addEventListener("DOMContentLoaded", () => {
     let store;
@@ -42,4 +43,6 @@ document.addEventListener("DOMContentLoaded", () => {
     window.deleteCourse = deleteCourse;
     window.CourseAPI = CourseAPI;
     window.RequestAPI = RequestAPI;
+    window.updateRequest = updateRequest;
+    window.createRequest = createRequest;
 })

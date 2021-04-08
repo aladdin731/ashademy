@@ -1,7 +1,6 @@
 class Api::RequestsController < ApplicationController
     def create
         @request = Request.new(request_params)
-        @request.mentee_id = current_user.id 
         if @request.save 
             render :show
         else
@@ -22,6 +21,6 @@ class Api::RequestsController < ApplicationController
 
   private 
   def request_params
-    params.require(:request).permit(:course_id, :start_time, :end_time, :status)
+    params.require(:request).permit(:course_id, :start_time, :end_time, :status, :mentee_id)
   end
 end
