@@ -385,7 +385,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_course_course_detail_container__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../components/course/course_detail_container */ "./frontend/components/course/course_detail_container.js");
 /* harmony import */ var _components_course_course_index_container__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../components/course/course_index_container */ "./frontend/components/course/course_index_container.js");
 /* harmony import */ var _components_dashboard_dashboard_container__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../components/dashboard/dashboard_container */ "./frontend/components/dashboard/dashboard_container.js");
-/* harmony import */ var _modal_modal__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./modal/modal */ "./frontend/components/modal/modal.jsx");
+/* harmony import */ var _modal_modal__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./modal/modal */ "./frontend/components/modal/modal.jsx");
 
 
 
@@ -401,7 +401,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var App = function App() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modal_modal__WEBPACK_IMPORTED_MODULE_13__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Welcome to ashademy!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_greeting_greeting_container__WEBPACK_IMPORTED_MODULE_3__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modal_modal__WEBPACK_IMPORTED_MODULE_12__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Welcome to ashademy!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_greeting_greeting_container__WEBPACK_IMPORTED_MODULE_3__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     exact: true,
     path: "/",
     component: _components_course_course_index_container__WEBPACK_IMPORTED_MODULE_10__["default"]
@@ -1708,6 +1708,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _frontend_actions_session_actions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../frontend/actions/session_actions */ "./frontend/actions/session_actions.js");
 /* harmony import */ var _actions_course_actions__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./actions/course_actions */ "./frontend/actions/course_actions.js");
 /* harmony import */ var _util_course_api_util__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./util/course_api_util */ "./frontend/util/course_api_util.js");
+/* harmony import */ var _util_request_ai_util_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./util/request_ai_util.js */ "./frontend/util/request_ai_util.js");
+
 
 
 
@@ -1755,6 +1757,7 @@ document.addEventListener("DOMContentLoaded", function () {
   window.updateCourse = _actions_course_actions__WEBPACK_IMPORTED_MODULE_8__["updateCourse"];
   window.deleteCourse = _actions_course_actions__WEBPACK_IMPORTED_MODULE_8__["deleteCourse"];
   window.CourseAPI = _util_course_api_util__WEBPACK_IMPORTED_MODULE_9__;
+  window.RequestAPI = _util_request_ai_util_js__WEBPACK_IMPORTED_MODULE_10__;
 });
 
 /***/ }),
@@ -1900,17 +1903,17 @@ var errorsReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"]
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return modalReducer; });
-/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/modal_actions */ "./frontend/actions/modal_actions.js");
 
 function modalReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {
-    case _actions_modal_actions__WEBPACK_IMPORTED_MODULE_1__["OPEN_MODAL"]:
+    case _actions_modal_actions__WEBPACK_IMPORTED_MODULE_0__["OPEN_MODAL"]:
       return action.modal;
 
-    case _actions_modal_actions__WEBPACK_IMPORTED_MODULE_1__["CLOSE_MODAL"]:
+    case _actions_modal_actions__WEBPACK_IMPORTED_MODULE_0__["CLOSE_MODAL"]:
       return null;
 
     default:
@@ -2263,6 +2266,38 @@ var deleteCourse = function deleteCourse(courseId) {
   return $.ajax({
     method: "DELETE",
     url: "/api/courses/".concat(courseId)
+  });
+};
+
+/***/ }),
+
+/***/ "./frontend/util/request_ai_util.js":
+/*!******************************************!*\
+  !*** ./frontend/util/request_ai_util.js ***!
+  \******************************************/
+/*! exports provided: createRequest, updateRequest */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createRequest", function() { return createRequest; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateRequest", function() { return updateRequest; });
+var createRequest = function createRequest(request) {
+  return $.ajax({
+    method: "POST",
+    url: "/api/requests",
+    data: {
+      request: request
+    }
+  });
+};
+var updateRequest = function updateRequest(request) {
+  return $.ajax({
+    method: "PATCH",
+    url: "/api/requests/".concat(request.id),
+    data: {
+      request: request
+    }
   });
 };
 
