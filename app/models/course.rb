@@ -27,6 +27,10 @@ class Course < ApplicationRecord
     has_many :tags,
         through: :course_tags,
         source: :tag 
+    
+    has_many :requests,
+        foreign_key: :course_id,
+        class_name: 'Request'
 
 
 end

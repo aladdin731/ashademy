@@ -10,6 +10,14 @@ class User < ApplicationRecord
         foreign_key: :mentor_id,
         class_name: 'Course'
     
+    has_many :requests,
+        foreign_key: :mentee_id,
+        class_name: 'Request'
+
+    has_many :received_requests,
+        through: :courses,
+        source: :requests
+    
     def self.find_by_credentials(username, password)
         user = User.find_by(username: username)
         return user if user && BCrypt::Password.new(user.password_digest).is_password?(password)

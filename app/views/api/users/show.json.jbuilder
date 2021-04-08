@@ -1,6 +1,5 @@
 json.user do 
     json.partial! "api/users/user", user: @user
-    json.courseIds @user.courses.pluck(:id) || []
 end 
 
 if @user.courses.length != 0 
@@ -14,6 +13,32 @@ if @user.courses.length != 0
 else
   json.courses ({})
 end
+
+if @user.requests.length != 0 
+  json.requests do 
+    @user.requests.each do |request| 
+      json.set! request.id do 
+        json.partial! "api/requests/request", request: request
+      end
+    end
+  end
+else
+  json.requests ({})
+end
+
+if @user.received_requests.length != 0 
+  json.received_requests do 
+    @user.received_requests.each do |received_request| 
+      json.set! received_request.id do 
+        json.partial! "api/requests/request", request: received_request
+      end
+    end
+  end
+else
+  json.received_requests ({})
+end
+
+
 
 
 

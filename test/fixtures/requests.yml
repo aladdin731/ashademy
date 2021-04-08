@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  course_id: 1
+  mentee_id: 1
+  start_time: 2021-04-08
+  end_time: 2021-04-08
+  status: MyString
+
+two:
+  course_id: 1
+  mentee_id: 1
+  start_time: 2021-04-08
+  end_time: 2021-04-08
+  status: MyString
