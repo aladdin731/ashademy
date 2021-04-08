@@ -657,9 +657,8 @@ var CourseIndex = /*#__PURE__*/function (_React$Component) {
   _createClass(CourseIndex, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchCourses();
-      this.props.fetchUsers();
-      this.props.fetchRequests();
+      this.props.fetchCourses(); // this.props.fetchUsers();
+      // this.props.fetchRequests();
     }
   }, {
     key: "render",
@@ -1156,11 +1155,11 @@ var Dashboard = /*#__PURE__*/function (_React$Component) {
         }, "Delete"));
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.handleClick
-      }, "Add Course"), form), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Received requests"), receivedRequests.map(function (request) {
+      }, "Add Course"), form), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "My requests status "), requests.map(function (request) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: request.id
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Start From: ", request.startTime), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "End To: ", request.endTime), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "End To: ", request.status));
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "My requests status "), requests.map(function (request) {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Received requests to deal with "), receivedRequests.map(function (request) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: request.id
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Start From: ", request.startTime), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "End To: ", request.endTime), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "End To: ", request.status));
@@ -2148,25 +2147,32 @@ var selectCourseTagsNames = function selectCourseTagsNames(state) {
     return tag.tagName;
   });
   return tagNames;
-};
+}; // export const selectCoursesForCurrentUser = (state, currentUser) => {
+//   const user = state.entities.users[currentUser.id];
+//   return user ? user.courseIds.map(courseId => 
+//     state.entities.courses[courseId]) : [];
+// };
+
 var selectCoursesForCurrentUser = function selectCoursesForCurrentUser(state, currentUser) {
-  var user = state.entities.users[currentUser.id];
-  return user ? user.courseIds.map(function (courseId) {
+  return Object.keys(state.entities.courses).length === 0 ? undefined : currentUser.courseIds.map(function (courseId) {
     return state.entities.courses[courseId];
-  }) : [];
+  });
 };
 var selectRequestsForCurrentUser = function selectRequestsForCurrentUser(state, currentUser) {
-  var user = state.entities.users[currentUser.id];
-  return user ? user.requestIds.map(function (requestId) {
+  return Object.keys(state.entities.requests).length === 0 ? undefined : currentUser.requestIds.map(function (requestId) {
     return state.entities.requests[requestId];
-  }) : [];
+  });
 };
 var selectReceivedRequestsForCurrentUser = function selectReceivedRequestsForCurrentUser(state, currentUser) {
-  var user = state.entities.users[currentUser.id];
-  return user ? user.receivedRequestsids.map(function (requestId) {
+  return Object.keys(state.entities.requests).length === 0 ? undefined : currentUser.receivedRequestsids.map(function (requestId) {
     return state.entities.requests[requestId];
-  }) : [];
-}; // this way is not corrent because even state is empty, the courses is {}, it is still true 
+  });
+}; // export const selectReceivedRequestsForCurrentUser = (state, currentUser) => {
+//   const user = state.entities.users[currentUser.id];
+//   return user ? user.receivedRequestsids.map(requestId => 
+//     state.entities.requests[requestId]) : [];
+// };
+// this way is not corrent because even state is empty, the courses is {}, it is still true 
 // so it will not cause an error but it show [], which is nothing, so can not show the courses
 // export const selectCoursesForCurrentUser = (state, currentUser) => {
 //   return state.entities.courses ? []: currentUser.courseIds.map(courseId => 

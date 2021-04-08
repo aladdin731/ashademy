@@ -47,17 +47,6 @@ class Dashboard extends React.Component{
                     {form}
                 </div>
                 <div>
-                    <h1>Received requests</h1>
-                    {receivedRequests.map(request => (
-                        <li key={request.id}>
-                            <h3>Start From: {request.startTime}</h3>
-                            <h3>End To: {request.endTime}</h3>
-                            <h3>End To: {request.status}</h3>
-                            
-                        </li>
-                    ))}
-                </div>
-                <div>
                     <h1>My requests status </h1>
                     {requests.map(request => (
                         <li key={request.id}>
@@ -67,6 +56,18 @@ class Dashboard extends React.Component{
                         </li>
                     ))}
                 </div>
+                <div>
+                    <h1>Received requests to deal with </h1>
+                    {receivedRequests.map(request => (
+                        <li key={request.id}>
+                            <h3>Start From: {request.startTime}</h3>
+                            <h3>End To: {request.endTime}</h3>
+                            <h3>End To: {request.status}</h3>
+                        </li>
+                    ))}
+                </div>
+
+
                 
             </div>
         )
@@ -74,3 +75,4 @@ class Dashboard extends React.Component{
 }
 
 export default Dashboard;
+

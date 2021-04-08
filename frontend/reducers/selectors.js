@@ -8,23 +8,33 @@ export const selectCourseTagsNames = (state) => {
 }
 
 
+// export const selectCoursesForCurrentUser = (state, currentUser) => {
+//   const user = state.entities.users[currentUser.id];
+//   return user ? user.courseIds.map(courseId => 
+//     state.entities.courses[courseId]) : [];
+// };
+
 export const selectCoursesForCurrentUser = (state, currentUser) => {
-  const user = state.entities.users[currentUser.id];
-  return user ? user.courseIds.map(courseId => 
-    state.entities.courses[courseId]) : [];
+  return Object.keys(state.entities.courses).length === 0 ? 
+  undefined : currentUser.courseIds.map(courseId => state.entities.courses[courseId])
 };
 
 export const selectRequestsForCurrentUser = (state, currentUser) => {
-  const user = state.entities.users[currentUser.id];
-  return user ? user.requestIds.map(requestId => 
-    state.entities.requests[requestId]) : [];
+  return Object.keys(state.entities.requests).length === 0 ? 
+  undefined : currentUser.requestIds.map(requestId => state.entities.requests[requestId])
 };
 
+
 export const selectReceivedRequestsForCurrentUser = (state, currentUser) => {
-  const user = state.entities.users[currentUser.id];
-  return user ? user.receivedRequestsids.map(requestId => 
-    state.entities.requests[requestId]) : [];
+  return Object.keys(state.entities.requests).length === 0 ? 
+  undefined : currentUser.receivedRequestsids.map(requestId => state.entities.requests[requestId])
 };
+
+// export const selectReceivedRequestsForCurrentUser = (state, currentUser) => {
+//   const user = state.entities.users[currentUser.id];
+//   return user ? user.receivedRequestsids.map(requestId => 
+//     state.entities.requests[requestId]) : [];
+// };
 
 
 
