@@ -12,3 +12,6 @@ json.receiver do
     json.partial! "api/users/user", user: @request.receiver
 end 
 
+json.course do 
+    json.extract! @request.course, :id, :course_name, :description, :course_type, :image_url, :mentor_id
+end 

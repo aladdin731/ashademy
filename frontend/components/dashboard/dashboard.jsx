@@ -56,7 +56,7 @@ class Dashboard extends React.Component{
     }
 
     render(){
-        if(!this.props.requests || !this.props.receivedRequests) return null;
+        if(!this.props.courses || !this.props.requests || !this.props.receivedRequests) return null;
         const form = this.state.addCourse ? <CreateCourseFormContainer /> : ""
         const {currentUser, courses, deleteCourse, updateRequest, requests, receivedRequests} = this.props;
         const photo = this.state.wantToChangeProfile ? 

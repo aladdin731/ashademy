@@ -5,15 +5,6 @@ export const selectCourseTagsNames = (state) => {
   return tagNames;
 }
 
-// export const selectCoursesForCurrentUser = (state, currentUser) => {
-//   // when we refresh the index page and then go to dashboard, then the users section is empty
-//   // the course section is always not empty
-//   // Boolean([]) === true 
-//   // Boolean(undefined) === false 
-//   const user = state.entities.users[currentUser.id];
-//   return user ? user.courseIds.map(courseId => 
-//     state.entities.courses[courseId]) : [];
-// };
 
 export const selectCoursesForCurrentUser = (state, currentUser) => {
   const user = state.entities.users[currentUser.id];
@@ -42,6 +33,16 @@ export const selectReceivedRequestsForCurrentUser = (state, currentUser) => {
   }
 };
 
+
+// export const selectCoursesForCurrentUser = (state, currentUser) => {
+//   // when we refresh the index page and then go to dashboard, then the users section is empty
+//   // the course section is always not empty
+//   // Boolean([]) === true 
+//   // Boolean(undefined) === false 
+//   const user = state.entities.users[currentUser.id];
+//   return user ? user.courseIds.map(courseId => 
+//     state.entities.courses[courseId]) : [];
+// };
 
 
 

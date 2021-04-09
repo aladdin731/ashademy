@@ -1165,7 +1165,7 @@ var Dashboard = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      if (!this.props.requests || !this.props.receivedRequests) return null;
+      if (!this.props.courses || !this.props.requests || !this.props.receivedRequests) return null;
       var form = this.state.addCourse ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_create_course_form_container__WEBPACK_IMPORTED_MODULE_2__["default"], null) : "";
       var _this$props = this.props,
           currentUser = _this$props.currentUser,
@@ -1965,6 +1965,8 @@ var courseErrorReducer = function courseErrorReducer() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_course_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/course_actions */ "./frontend/actions/course_actions.js");
 /* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/user_actions */ "./frontend/actions/user_actions.js");
+/* harmony import */ var _actions_request_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/request_actions */ "./frontend/actions/request_actions.js");
+
 
 
 
@@ -1990,6 +1992,10 @@ var courseReducer = function courseReducer() {
     case _actions_user_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_USER"]:
       return Object.assign({}, state, action.payload.courses);
     // return action.payload.courses;
+
+    case _actions_request_actions__WEBPACK_IMPORTED_MODULE_2__["RECEIVE_REQUEST"]:
+      nextState[action.payload.course.id] = action.payload.course;
+      return nextState;
 
     default:
       return state;
@@ -2208,16 +2214,7 @@ var selectCourseTagsNames = function selectCourseTagsNames(state) {
     return tag.tagName;
   });
   return tagNames;
-}; // export const selectCoursesForCurrentUser = (state, currentUser) => {
-//   // when we refresh the index page and then go to dashboard, then the users section is empty
-//   // the course section is always not empty
-//   // Boolean([]) === true 
-//   // Boolean(undefined) === false 
-//   const user = state.entities.users[currentUser.id];
-//   return user ? user.courseIds.map(courseId => 
-//     state.entities.courses[courseId]) : [];
-// };
-
+};
 var selectCoursesForCurrentUser = function selectCoursesForCurrentUser(state, currentUser) {
   var user = state.entities.users[currentUser.id];
 
@@ -2250,7 +2247,15 @@ var selectReceivedRequestsForCurrentUser = function selectReceivedRequestsForCur
   } else {
     return [];
   }
-};
+}; // export const selectCoursesForCurrentUser = (state, currentUser) => {
+//   // when we refresh the index page and then go to dashboard, then the users section is empty
+//   // the course section is always not empty
+//   // Boolean([]) === true 
+//   // Boolean(undefined) === false 
+//   const user = state.entities.users[currentUser.id];
+//   return user ? user.courseIds.map(courseId => 
+//     state.entities.courses[courseId]) : [];
+// };
 
 /***/ }),
 
