@@ -1,6 +1,4 @@
 import React from 'react';
-import { Route, withRouter } from 'react-router-dom';
-
 
 class CourseDetail extends React.Component{
   constructor(props) {
@@ -38,8 +36,9 @@ class CourseDetail extends React.Component{
 
   render(){
     if (!this.props.course || !this.props.instructor) return null;
-    return (
-      <section>
+    let form = this.props.instructor.id === this.props.currentUser.id ? 
+    <h3>This course if made by you!</h3> : 
+    (<div>
       <h3>Make Request</h3>
         <form onSubmit={this.handleSubmit}>
           <label>Start Date
@@ -59,6 +58,10 @@ class CourseDetail extends React.Component{
           </label>
           <input type="submit" />
         </form>
+    </div>)
+    return (
+      <section>
+        {form}
         <figure>
           <img src={this.props.course.imageUrl} alt={this.props.course.courseName} />
         </figure>
