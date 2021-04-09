@@ -9,6 +9,8 @@ class Dashboard extends React.Component{
             addCourse: false
         }
         this.handleClick = this.handleClick.bind(this);
+        // this.acceptRequest(e, id) = this.acceptRequest(e, id).bind(this);
+        // this.denyRequest(e, id) = this.denyRequest(e, id).bind(this);
     }
 
     componentDidMount(){
@@ -21,6 +23,17 @@ class Dashboard extends React.Component{
             addCourse: !this.state.addCourse 
         })
     }
+
+    // acceptRequest(e, id){
+    //     e.preventDefault();
+    //     this.props.updateRequest({id: id, status:"APPROVED"})
+    // }
+
+
+    // denyRequest(e, id){
+    //     e.preventDefault();
+    //     this.props.updateRequest({id: id, status:"DENIED"})
+    // }
 
     render(){
         if(!this.props.courses || !this.props.requests || !this.props.receivedRequests) return null;
@@ -63,6 +76,8 @@ class Dashboard extends React.Component{
                             <h3>Start From: {request.startTime}</h3>
                             <h3>End To: {request.endTime}</h3>
                             <h3>End To: {request.status}</h3>
+                            <button onClick={() => updateRequest({id:request.id, status:"APPROVED"})}>Accept</button>
+                            <button onClick={() => updateRequest({id:request.id, status:"DENIED"})}>Deny</button>
                         </li>
                     ))}
                 </div>

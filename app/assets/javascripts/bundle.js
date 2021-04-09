@@ -1102,7 +1102,9 @@ var Dashboard = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       addCourse: false
     };
-    _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this));
+    _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this)); // this.acceptRequest(e, id) = this.acceptRequest(e, id).bind(this);
+    // this.denyRequest(e, id) = this.denyRequest(e, id).bind(this);
+
     return _this;
   }
 
@@ -1118,7 +1120,15 @@ var Dashboard = /*#__PURE__*/function (_React$Component) {
       this.setState({
         addCourse: !this.state.addCourse
       });
-    }
+    } // acceptRequest(e, id){
+    //     e.preventDefault();
+    //     this.props.updateRequest({id: id, status:"APPROVED"})
+    // }
+    // denyRequest(e, id){
+    //     e.preventDefault();
+    //     this.props.updateRequest({id: id, status:"DENIED"})
+    // }
+
   }, {
     key: "render",
     value: function render() {
@@ -1162,7 +1172,21 @@ var Dashboard = /*#__PURE__*/function (_React$Component) {
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Received requests to deal with "), receivedRequests.map(function (request) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: request.id
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Start From: ", request.startTime), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "End To: ", request.endTime), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "End To: ", request.status));
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Start From: ", request.startTime), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "End To: ", request.endTime), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "End To: ", request.status), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: function onClick() {
+            return updateRequest({
+              id: request.id,
+              status: "APPROVED"
+            });
+          }
+        }, "Accept"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: function onClick() {
+            return updateRequest({
+              id: request.id,
+              status: "DENIED"
+            });
+          }
+        }, "Deny"));
       })));
     }
   }]);
