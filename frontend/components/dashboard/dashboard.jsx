@@ -56,7 +56,7 @@ class Dashboard extends React.Component{
     }
 
     render(){
-        if(!this.props.courses || !this.props.requests || !this.props.receivedRequests) return null;
+        if(!this.props.requests || !this.props.receivedRequests) return null;
         const form = this.state.addCourse ? <CreateCourseFormContainer /> : ""
         const {currentUser, courses, deleteCourse, updateRequest, requests, receivedRequests} = this.props;
         const photo = this.state.wantToChangeProfile ? 
@@ -74,6 +74,7 @@ class Dashboard extends React.Component{
                 <button onClick={this.wannaChangeProfile}>Change Profile</button>
                 {photo}
                 <div>
+                    <h1>My courses</h1>
                     {courses.map(course => (
                         <li key={course.id}>
                             <img src={course.imageUrl}/>

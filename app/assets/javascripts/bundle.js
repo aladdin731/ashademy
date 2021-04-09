@@ -486,8 +486,7 @@ var App = function App() {
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_footer_footer__WEBPACK_IMPORTED_MODULE_8__["default"], null));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (App); // <AuthRoute exact path="/login" component={LogInFormContainer} />
-// <AuthRoute exact path="/signup" component={SignUpFormContainer} />
+/* harmony default export */ __webpack_exports__["default"] = (App);
 
 /***/ }),
 
@@ -1166,7 +1165,7 @@ var Dashboard = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      if (!this.props.courses || !this.props.requests || !this.props.receivedRequests) return null;
+      if (!this.props.requests || !this.props.receivedRequests) return null;
       var form = this.state.addCourse ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_create_course_form_container__WEBPACK_IMPORTED_MODULE_2__["default"], null) : "";
       var _this$props = this.props,
           currentUser = _this$props.currentUser,
@@ -1191,7 +1190,7 @@ var Dashboard = /*#__PURE__*/function (_React$Component) {
         alt: "no profile yet"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.wannaChangeProfile
-      }, "Change Profile"), photo, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, courses.map(function (course) {
+      }, "Change Profile"), photo, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "My courses"), courses.map(function (course) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: course.id
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -2213,30 +2212,46 @@ var selectCourseTagsNames = function selectCourseTagsNames(state) {
 var selectCoursesForCurrentUser = function selectCoursesForCurrentUser(state, currentUser) {
   // when we refresh the index page and then go to dashboard, then the users section is empty
   // the course section is always not empty
+  // Boolean([]) === true 
+  // Boolean(undefined) === false 
   var user = state.entities.users[currentUser.id];
   return user ? user.courseIds.map(function (courseId) {
     return state.entities.courses[courseId];
   }) : [];
 };
 var selectRequestsForCurrentUser = function selectRequestsForCurrentUser(state, currentUser) {
-  return Object.keys(state.entities.requests).length === 0 ? undefined : currentUser.requestIds.map(function (requestId) {
-    return state.entities.requests[requestId];
-  });
+  var user = state.entities.users[currentUser.id];
+
+  if (user && user.requestIds && Object.keys(state.entities.requests).length !== 0) {
+    return user.requestIds.map(function (requestId) {
+      return state.entities.requests[requestId];
+    });
+  } else {
+    return [];
+  }
 };
 var selectReceivedRequestsForCurrentUser = function selectReceivedRequestsForCurrentUser(state, currentUser) {
-  return Object.keys(state.entities.requests).length === 0 ? undefined : currentUser.receivedRequestsids.map(function (requestId) {
-    return state.entities.requests[requestId];
-  });
-}; // can not user this way, in this way, can not show the course once we add it ???
+  var user = state.entities.users[currentUser.id];
+
+  if (user && user.receivedRequestsids && Object.keys(state.entities.requests).length !== 0) {
+    return user.receivedRequestsids.map(function (requestId) {
+      return state.entities.requests[requestId];
+    });
+  } else {
+    return [];
+  }
+}; // export const selectRequestsForCurrentUser = (state, currentUser) => {
+//   return Object.keys(state.entities.requests).length === 0 ? 
+//   undefined : currentUser.requestIds.map(requestId => state.entities.requests[requestId])
+// };
+// export const selectReceivedRequestsForCurrentUser = (state, currentUser) => {
+//   return Object.keys(state.entities.requests).length === 0 ? 
+//   undefined : currentUser.receivedRequestsids.map(requestId => state.entities.requests[requestId])
+// };
+// can not user this way, in this way, can not show the course once we add it ???
 // export const selectCoursesForCurrentUser = (state, currentUser) => {
 //   return Object.keys(state.entities.users).length === 0 ? 
 //   undefined : currentUser.courseIds.map(requestId => state.entities.courses[requestId])
-// };
-// can not do this because???
-// export const selectRequestsForCurrentUser = (state, currentUser) => {
-//   const user = state.entities.users[currentUser.id];
-//   return user ? user.requestIds.map(requestId => 
-//     state.entities.requests[requestId]) : [];
 // };
 // export const selectReceivedRequestsForCurrentUser = (state, currentUser) => {
 //   const user = state.entities.users[currentUser.id];

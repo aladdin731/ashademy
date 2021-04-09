@@ -9,21 +9,40 @@ export const selectCourseTagsNames = (state) => {
 export const selectCoursesForCurrentUser = (state, currentUser) => {
   // when we refresh the index page and then go to dashboard, then the users section is empty
   // the course section is always not empty
+  // Boolean([]) === true 
+  // Boolean(undefined) === false 
   const user = state.entities.users[currentUser.id];
   return user ? user.courseIds.map(courseId => 
     state.entities.courses[courseId]) : [];
 };
 
-
 export const selectRequestsForCurrentUser = (state, currentUser) => {
-  return Object.keys(state.entities.requests).length === 0 ? 
-  undefined : currentUser.requestIds.map(requestId => state.entities.requests[requestId])
+  const user = state.entities.users[currentUser.id];
+  if(user && user.requestIds && Object.keys(state.entities.requests).length !== 0 ) {
+    return user.requestIds.map(requestId => state.entities.requests[requestId])
+  }else {
+    return [];
+  }
 };
 
 export const selectReceivedRequestsForCurrentUser = (state, currentUser) => {
-  return Object.keys(state.entities.requests).length === 0 ? 
-  undefined : currentUser.receivedRequestsids.map(requestId => state.entities.requests[requestId])
+  const user = state.entities.users[currentUser.id];
+  if(user && user.receivedRequestsids && Object.keys(state.entities.requests).length !== 0 ) {
+    return user.receivedRequestsids.map(requestId => state.entities.requests[requestId])
+  }else {
+    return [];
+  }
 };
+
+// export const selectRequestsForCurrentUser = (state, currentUser) => {
+//   return Object.keys(state.entities.requests).length === 0 ? 
+//   undefined : currentUser.requestIds.map(requestId => state.entities.requests[requestId])
+// };
+
+// export const selectReceivedRequestsForCurrentUser = (state, currentUser) => {
+//   return Object.keys(state.entities.requests).length === 0 ? 
+//   undefined : currentUser.receivedRequestsids.map(requestId => state.entities.requests[requestId])
+// };
 
 
 // can not user this way, in this way, can not show the course once we add it ???
@@ -33,13 +52,8 @@ export const selectReceivedRequestsForCurrentUser = (state, currentUser) => {
 //   undefined : currentUser.courseIds.map(requestId => state.entities.courses[requestId])
 // };
 
-// can not do this because???
 
-// export const selectRequestsForCurrentUser = (state, currentUser) => {
-//   const user = state.entities.users[currentUser.id];
-//   return user ? user.requestIds.map(requestId => 
-//     state.entities.requests[requestId]) : [];
-// };
+
 
 // export const selectReceivedRequestsForCurrentUser = (state, currentUser) => {
 //   const user = state.entities.users[currentUser.id];
