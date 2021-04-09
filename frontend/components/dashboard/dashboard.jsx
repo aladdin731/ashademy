@@ -7,7 +7,7 @@ class Dashboard extends React.Component{
         super(props);
         this.state = {
             addCourse: false,
-            imageUrl: this.props.currentUser.imageUrl || "https://www.drshaneholmes.com/wp-content/uploads/2020/03/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
+            imageUrl: this.props.currentUser.imageUrl,
             wantToChangeProfile: false,
             currentUser: this.props.currentUser
         }

@@ -1103,7 +1103,7 @@ var Dashboard = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = {
       addCourse: false,
-      imageUrl: _this.props.currentUser.imageUrl || "https://www.drshaneholmes.com/wp-content/uploads/2020/03/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
+      imageUrl: _this.props.currentUser.imageUrl,
       wantToChangeProfile: false,
       currentUser: _this.props.currentUser
     };
