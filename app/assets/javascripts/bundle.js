@@ -285,6 +285,42 @@ var updateRequest = function updateRequest(request) {
 
 /***/ }),
 
+/***/ "./frontend/actions/review_actions.js":
+/*!********************************************!*\
+  !*** ./frontend/actions/review_actions.js ***!
+  \********************************************/
+/*! exports provided: RECEIVE_REVIEW, receiveReview, createReview */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_REVIEW", function() { return RECEIVE_REVIEW; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveReview", function() { return receiveReview; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createReview", function() { return createReview; });
+/* harmony import */ var _util_review_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/review_api_util */ "./frontend/util/review_api_util.js");
+
+var RECEIVE_REVIEW = 'RECEIVE_REVIEW';
+var receiveReview = function receiveReview(_ref) {
+  var review = _ref.review,
+      average_rating = _ref.average_rating,
+      author = _ref.author;
+  return {
+    type: RECEIVE_REVIEW,
+    review: review,
+    average_rating: average_rating,
+    author: author
+  };
+};
+var createReview = function createReview(review) {
+  return function (dispatch) {
+    return _util_review_api_util__WEBPACK_IMPORTED_MODULE_0__["createReview"](review).then(function (review) {
+      return dispatch(receiveReview(review));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/session_actions.js":
 /*!*********************************************!*\
   !*** ./frontend/actions/session_actions.js ***!
@@ -2023,6 +2059,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_course_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/course_actions */ "./frontend/actions/course_actions.js");
 /* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/user_actions */ "./frontend/actions/user_actions.js");
 /* harmony import */ var _actions_request_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/request_actions */ "./frontend/actions/request_actions.js");
+/* harmony import */ var _actions_review_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../actions/review_actions */ "./frontend/actions/review_actions.js");
+
 
 
 
@@ -2035,7 +2073,6 @@ var courseReducer = function courseReducer() {
 
   switch (action.type) {
     case _actions_course_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_COURSES"]:
-      // return Object.assign({}, action.courses, state);
       return action.courses;
 
     case _actions_course_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_COURSE"]:
@@ -2051,6 +2088,13 @@ var courseReducer = function courseReducer() {
 
     case _actions_request_actions__WEBPACK_IMPORTED_MODULE_2__["RECEIVE_REQUEST"]:
       nextState[action.payload.course.id] = action.payload.course;
+      return nextState;
+
+    case _actions_review_actions__WEBPACK_IMPORTED_MODULE_3__["RECEIVE_REVIEW"]:
+      var review = action.review,
+          average_rating = action.average_rating;
+      nextState[review.course_id].reviewIds.push(review.id);
+      nextState[review.course_id].average_rating = average_rating;
       return nextState;
 
     default:
@@ -2515,7 +2559,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
 /* harmony import */ var _actions_course_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/course_actions */ "./frontend/actions/course_actions.js");
 /* harmony import */ var _actions_request_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../actions/request_actions */ "./frontend/actions/request_actions.js");
+/* harmony import */ var _actions_review_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../actions/review_actions */ "./frontend/actions/review_actions.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -2540,6 +2586,7 @@ var usersReducer = function usersReducer() {
       return nextState;
 
     case _actions_course_actions__WEBPACK_IMPORTED_MODULE_2__["RECEIVE_COURSE"]:
+      Object.assign({}, state, action.authors);
       nextState[action.payload.instructor.id] = action.payload.instructor;
       return nextState;
 
@@ -2558,6 +2605,10 @@ var usersReducer = function usersReducer() {
     case _actions_request_actions__WEBPACK_IMPORTED_MODULE_3__["RECEIVE_REQUEST"]:
       nextState[action.payload.sender.id] = action.payload.sender;
       nextState[action.payload.receiver.id] = action.payload.receiver;
+      return nextState;
+
+    case _actions_review_actions__WEBPACK_IMPORTED_MODULE_4__["RECEIVE_REVIEW"]:
+      nextState[action.author.id] = action.author;
       return nextState;
 
     default:
@@ -2683,6 +2734,28 @@ var updateRequest = function updateRequest(request) {
     url: "/api/requests/".concat(request.id),
     data: {
       request: request
+    }
+  });
+};
+
+/***/ }),
+
+/***/ "./frontend/util/review_api_util.js":
+/*!******************************************!*\
+  !*** ./frontend/util/review_api_util.js ***!
+  \******************************************/
+/*! exports provided: createReview */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createReview", function() { return createReview; });
+var createReview = function createReview(review) {
+  return $.ajax({
+    method: 'POST',
+    url: 'api/reviews',
+    data: {
+      review: review
     }
   });
 };
