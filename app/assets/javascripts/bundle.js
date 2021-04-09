@@ -1064,6 +1064,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _create_course_form_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./create_course_form_container */ "./frontend/components/dashboard/create_course_form_container.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -1100,11 +1102,14 @@ var Dashboard = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      addCourse: false
+      addCourse: false,
+      imageUrl: _this.props.currentUser.imageUrl || "https://www.drshaneholmes.com/wp-content/uploads/2020/03/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
+      wantToChangeProfile: false,
+      currentUser: _this.props.currentUser
     };
-    _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this)); // this.acceptRequest(e, id) = this.acceptRequest(e, id).bind(this);
-    // this.denyRequest(e, id) = this.denyRequest(e, id).bind(this);
-
+    _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this));
+    _this.addProfile = _this.addProfile.bind(_assertThisInitialized(_this));
+    _this.wannaChangeProfile = _this.wannaChangeProfile.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1120,15 +1125,36 @@ var Dashboard = /*#__PURE__*/function (_React$Component) {
       this.setState({
         addCourse: !this.state.addCourse
       });
-    } // acceptRequest(e, id){
-    //     e.preventDefault();
-    //     this.props.updateRequest({id: id, status:"APPROVED"})
-    // }
-    // denyRequest(e, id){
-    //     e.preventDefault();
-    //     this.props.updateRequest({id: id, status:"DENIED"})
-    // }
+    }
+  }, {
+    key: "wannaChangeProfile",
+    value: function wannaChangeProfile(e) {
+      e.preventDefault();
+      this.setState({
+        wantToChangeProfile: !this.state.wantToChangeProfile
+      });
+    }
+  }, {
+    key: "update",
+    value: function update(property) {
+      var _this2 = this;
 
+      return function (e) {
+        return _this2.setState(_defineProperty({}, property, e.currentTarget.value));
+      };
+    }
+  }, {
+    key: "addProfile",
+    value: function addProfile(e) {
+      e.preventDefault();
+      this.props.updateUserInfo({
+        id: this.state.currentUser.id,
+        image_url: this.state.imageUrl
+      });
+      this.setState({
+        wantToChangeProfile: !this.state.wantToChangeProfile
+      });
+    }
   }, {
     key: "render",
     value: function render() {
@@ -1142,18 +1168,20 @@ var Dashboard = /*#__PURE__*/function (_React$Component) {
           updateRequest = _this$props.updateRequest,
           requests = _this$props.requests,
           receivedRequests = _this$props.receivedRequests;
-      var photo;
-
-      if (!currentUser.imageUrl) {
-        photo = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Add a photo");
-      } else {
-        photo = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-          src: currentUser.imageUrl,
-          alt: currentUser.username
-        });
-      }
-
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, photo, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, courses.map(function (course) {
+      var photo = this.state.wantToChangeProfile ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        onSubmit: this.addProfile
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        value: this.state.imageUrl,
+        onChange: this.update("imageUrl")
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Confirm"))) : "";
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: this.state.imageUrl,
+        loading: "lazy",
+        alt: "no profile yet"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.wannaChangeProfile
+      }, "Change Profile"), photo, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, courses.map(function (course) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: course.id
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {

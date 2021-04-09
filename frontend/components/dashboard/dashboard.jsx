@@ -6,11 +6,14 @@ class Dashboard extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            addCourse: false
+            addCourse: false,
+            imageUrl: this.props.currentUser.imageUrl || "https://www.drshaneholmes.com/wp-content/uploads/2020/03/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
+            wantToChangeProfile: false,
+            currentUser: this.props.currentUser
         }
         this.handleClick = this.handleClick.bind(this);
-        // this.acceptRequest(e, id) = this.acceptRequest(e, id).bind(this);
-        // this.denyRequest(e, id) = this.denyRequest(e, id).bind(this);
+        this.addProfile = this.addProfile.bind(this);
+        this.wannaChangeProfile = this.wannaChangeProfile.bind(this);
     }
 
     componentDidMount(){
@@ -24,30 +27,42 @@ class Dashboard extends React.Component{
         })
     }
 
-    // acceptRequest(e, id){
-    //     e.preventDefault();
-    //     this.props.updateRequest({id: id, status:"APPROVED"})
-    // }
+    wannaChangeProfile(e){
+        e.preventDefault();
+        this.setState({
+            wantToChangeProfile: !this.state.wantToChangeProfile
+        })
+    }
 
+    update(property) {
+        return e => this.setState({ [property]: e.currentTarget.value });
+    }
 
-    // denyRequest(e, id){
-    //     e.preventDefault();
-    //     this.props.updateRequest({id: id, status:"DENIED"})
-    // }
+    addProfile(e){
+        e.preventDefault();
+        this.props.updateUserInfo({id: this.state.currentUser.id, image_url:this.state.imageUrl})
+        this.setState({
+            wantToChangeProfile: !this.state.wantToChangeProfile
+        })
+    }
 
     render(){
         if(!this.props.courses || !this.props.requests || !this.props.receivedRequests) return null;
         const form = this.state.addCourse ? <CreateCourseFormContainer /> : ""
         const {currentUser, courses, deleteCourse, updateUserInfo, updateRequest, requests, receivedRequests} = this.props;
-        let photo;
-        if (!currentUser.imageUrl){
-            photo = <button>Add a photo</button>
-        }else {
-            photo = <img src={currentUser.imageUrl} alt={currentUser.username} />
-        }
+        const photo = this.state.wantToChangeProfile ? 
+        <div>
+            <form onSubmit={this.addProfile}>
+                <input type="text" value={this.state.imageUrl} onChange={this.update("imageUrl")}/>
+                <button>Confirm</button>
+            </form>
+        </div> : ""
+        
         return(
             <div>
-                {photo} 
+                <img src={this.state.imageUrl} loading="lazy" alt="no profile yet" />
+                <button onClick={this.wannaChangeProfile}>Change Profile</button>
+                {photo}
                 <div>
                     {courses.map(course => (
                         <li key={course.id}>
