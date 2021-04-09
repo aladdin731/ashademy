@@ -9,11 +9,13 @@ class Dashboard extends React.Component{
             addCourse: false,
             imageUrl: this.props.currentUser.imageUrl,
             wantToChangeProfile: false,
-            currentUser: this.props.currentUser
+            currentUser: this.props.currentUser,
+            originalUrl:this.props.currentUser.imageUrl
         }
         this.handleClick = this.handleClick.bind(this);
         this.addProfile = this.addProfile.bind(this);
         this.wannaChangeProfile = this.wannaChangeProfile.bind(this);
+        this.originalProfile = this.originalProfile.bind(this)
     }
 
     componentDidMount(){
@@ -46,6 +48,13 @@ class Dashboard extends React.Component{
         })
     }
 
+    originalProfile(){
+        this.setState({
+            imageUrl: this.state.originalUrl,
+            wantToChangeProfile: !this.state.wantToChangeProfile
+        })
+    }
+
     render(){
         if(!this.props.courses || !this.props.requests || !this.props.receivedRequests) return null;
         const form = this.state.addCourse ? <CreateCourseFormContainer /> : ""
@@ -56,6 +65,7 @@ class Dashboard extends React.Component{
                 <input type="text" value={this.state.imageUrl} onChange={this.update("imageUrl")}/>
                 <button>Confirm</button>
             </form>
+            <button onClick={this.originalProfile}>Don't want to change</button>
         </div> : ""
         
         return(
@@ -107,4 +117,3 @@ class Dashboard extends React.Component{
 }
 
 export default Dashboard;
-

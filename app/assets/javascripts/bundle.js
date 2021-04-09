@@ -1105,11 +1105,13 @@ var Dashboard = /*#__PURE__*/function (_React$Component) {
       addCourse: false,
       imageUrl: _this.props.currentUser.imageUrl,
       wantToChangeProfile: false,
-      currentUser: _this.props.currentUser
+      currentUser: _this.props.currentUser,
+      originalUrl: _this.props.currentUser.imageUrl
     };
     _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this));
     _this.addProfile = _this.addProfile.bind(_assertThisInitialized(_this));
     _this.wannaChangeProfile = _this.wannaChangeProfile.bind(_assertThisInitialized(_this));
+    _this.originalProfile = _this.originalProfile.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1156,6 +1158,14 @@ var Dashboard = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
+    key: "originalProfile",
+    value: function originalProfile() {
+      this.setState({
+        imageUrl: this.state.originalUrl,
+        wantToChangeProfile: !this.state.wantToChangeProfile
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       if (!this.props.courses || !this.props.requests || !this.props.receivedRequests) return null;
@@ -1174,7 +1184,9 @@ var Dashboard = /*#__PURE__*/function (_React$Component) {
         type: "text",
         value: this.state.imageUrl,
         onChange: this.update("imageUrl")
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Confirm"))) : "";
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Confirm")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.originalProfile
+      }, "Don't want to change")) : "";
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: this.state.imageUrl,
         loading: "lazy",
