@@ -76,14 +76,16 @@ class Dashboard extends React.Component{
                             <h3>Start From: {request.startTime}</h3>
                             <h3>End To: {request.endTime}</h3>
                             <h3>End To: {request.status}</h3>
-                            <button onClick={() => updateRequest({id:request.id, status:"APPROVED"})}>Accept</button>
-                            <button onClick={() => updateRequest({id:request.id, status:"DENIED"})}>Deny</button>
+                            {request.status === "PENDING" ? 
+                                (<div>
+                                    <button onClick={() => updateRequest({id:request.id, status:"APPROVED"})}>Accept</button>
+                                    <button onClick={() => updateRequest({id:request.id, status:"DENIED"})}>Deny</button>
+                                </div>
+                                ) : "" 
+                            }  
                         </li>
                     ))}
                 </div>
-
-
-                
             </div>
         )
     }
