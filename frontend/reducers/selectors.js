@@ -14,16 +14,15 @@ export const selectCoursesForCurrentUser = (state, currentUser) => {
     state.entities.courses[courseId]) : [];
 };
 
+
 export const selectRequestsForCurrentUser = (state, currentUser) => {
-  const user = state.entities.users[currentUser.id];
-  return user ? user.requestIds.map(requestId => 
-    state.entities.requests[requestId]) : [];
+  return Object.keys(state.entities.requests).length === 0 ? 
+  undefined : currentUser.requestIds.map(requestId => state.entities.requests[requestId])
 };
 
 export const selectReceivedRequestsForCurrentUser = (state, currentUser) => {
-  const user = state.entities.users[currentUser.id];
-  return user ? user.receivedRequestsids.map(requestId => 
-    state.entities.requests[requestId]) : [];
+  return Object.keys(state.entities.requests).length === 0 ? 
+  undefined : currentUser.receivedRequestsids.map(requestId => state.entities.requests[requestId])
 };
 
 
@@ -32,6 +31,20 @@ export const selectReceivedRequestsForCurrentUser = (state, currentUser) => {
 // export const selectCoursesForCurrentUser = (state, currentUser) => {
 //   return Object.keys(state.entities.users).length === 0 ? 
 //   undefined : currentUser.courseIds.map(requestId => state.entities.courses[requestId])
+// };
+
+// can not do this because???
+
+// export const selectRequestsForCurrentUser = (state, currentUser) => {
+//   const user = state.entities.users[currentUser.id];
+//   return user ? user.requestIds.map(requestId => 
+//     state.entities.requests[requestId]) : [];
+// };
+
+// export const selectReceivedRequestsForCurrentUser = (state, currentUser) => {
+//   const user = state.entities.users[currentUser.id];
+//   return user ? user.receivedRequestsids.map(requestId => 
+//     state.entities.requests[requestId]) : [];
 // };
 
 

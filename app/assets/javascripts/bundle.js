@@ -2219,20 +2219,29 @@ var selectCoursesForCurrentUser = function selectCoursesForCurrentUser(state, cu
   }) : [];
 };
 var selectRequestsForCurrentUser = function selectRequestsForCurrentUser(state, currentUser) {
-  var user = state.entities.users[currentUser.id];
-  return user ? user.requestIds.map(function (requestId) {
+  return Object.keys(state.entities.requests).length === 0 ? undefined : currentUser.requestIds.map(function (requestId) {
     return state.entities.requests[requestId];
-  }) : [];
+  });
 };
 var selectReceivedRequestsForCurrentUser = function selectReceivedRequestsForCurrentUser(state, currentUser) {
-  var user = state.entities.users[currentUser.id];
-  return user ? user.receivedRequestsids.map(function (requestId) {
+  return Object.keys(state.entities.requests).length === 0 ? undefined : currentUser.receivedRequestsids.map(function (requestId) {
     return state.entities.requests[requestId];
-  }) : [];
+  });
 }; // can not user this way, in this way, can not show the course once we add it ???
 // export const selectCoursesForCurrentUser = (state, currentUser) => {
 //   return Object.keys(state.entities.users).length === 0 ? 
 //   undefined : currentUser.courseIds.map(requestId => state.entities.courses[requestId])
+// };
+// can not do this because???
+// export const selectRequestsForCurrentUser = (state, currentUser) => {
+//   const user = state.entities.users[currentUser.id];
+//   return user ? user.requestIds.map(requestId => 
+//     state.entities.requests[requestId]) : [];
+// };
+// export const selectReceivedRequestsForCurrentUser = (state, currentUser) => {
+//   const user = state.entities.users[currentUser.id];
+//   return user ? user.receivedRequestsids.map(requestId => 
+//     state.entities.requests[requestId]) : [];
 // };
 // can not use this way because whether we refresh the index page and then go to dashboard
 // the courses section is always not empty
