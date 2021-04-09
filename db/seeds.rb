@@ -119,7 +119,7 @@ Tag.destroy_all
       status: 'APPROVED'
     )
     Request.create!(
-      course_id: Course.first.id,
+      course_id: (Course.all)[0].id,
       mentee_id: User.last.id,
       start_time: Date.parse("#{last_year.to_s}-01-01"),
       end_time: Date.parse("#{last_year.to_s}-01-02"),
