@@ -125,6 +125,13 @@ Tag.destroy_all
       end_time: Date.parse("#{last_year.to_s}-01-02"),
       status: 'PENDING'
     )
+    Request.create!(
+      course_id: (Course.all)[1].id,
+      mentee_id: User.last.id,
+      start_time: Date.parse("#{last_year.to_s}-01-01"),
+      end_time: Date.parse("#{last_year.to_s}-01-02"),
+      status: 'PENDING'
+    )
 
 
 
