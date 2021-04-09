@@ -52512,3 +52512,41 @@ Unpermitted parameter: :id
 Completed 200 OK in 27ms (Views: 16.1ms | ActiveRecord: 5.0ms)
 
 
+Started PATCH "/api/requests/2" for ::1 at 2021-04-08 18:36:23 -0700
+Processing by Api::RequestsController#update as JSON
+  Parameters: {"request"=>{"id"=>"2", "status"=>"PENDING"}, "id"=>"2"}
+  [1m[36mRequest Load (0.4ms)[0m  [1m[34mSELECT  "requests".* FROM "requests" WHERE "requests"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/requests_controller.rb:18
+Unpermitted parameter: :id
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/requests_controller.rb:19
+  [1m[36mCourse Load (0.3ms)[0m  [1m[34mSELECT  "courses".* FROM "courses" WHERE "courses"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/requests_controller.rb:19
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/api/requests_controller.rb:19
+  [1m[36mRequest Update (0.5ms)[0m  [1m[33mUPDATE "requests" SET "status" = $1, "updated_at" = $2 WHERE "requests"."id" = $3[0m  [["status", "PENDING"], ["updated_at", "2021-04-09 01:36:23.241788"], ["id", 2]]
+  ↳ app/controllers/api/requests_controller.rb:19
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/requests_controller.rb:19
+  Rendering api/requests/show.json.jbuilder
+  Rendered api/requests/_request.json.jbuilder (0.4ms)
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "courses"."id" FROM "courses" WHERE "courses"."mentor_id" = $1[0m  [["mentor_id", 7]]
+  ↳ app/views/api/users/_user.json.jbuilder:2
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "requests"."id" FROM "requests" WHERE "requests"."mentee_id" = $1[0m  [["mentee_id", 7]]
+  ↳ app/views/api/users/_user.json.jbuilder:3
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "requests"."id" FROM "requests" INNER JOIN "courses" ON "requests"."course_id" = "courses"."id" WHERE "courses"."mentor_id" = $1[0m  [["mentor_id", 7]]
+  ↳ app/views/api/users/_user.json.jbuilder:4
+  Rendered api/users/_user.json.jbuilder (5.2ms)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" INNER JOIN "courses" ON "users"."id" = "courses"."mentor_id" WHERE "courses"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/api/requests/show.json.jbuilder:12
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "courses"."id" FROM "courses" WHERE "courses"."mentor_id" = $1[0m  [["mentor_id", 1]]
+  ↳ app/views/api/users/_user.json.jbuilder:2
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "requests"."id" FROM "requests" WHERE "requests"."mentee_id" = $1[0m  [["mentee_id", 1]]
+  ↳ app/views/api/users/_user.json.jbuilder:3
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "requests"."id" FROM "requests" INNER JOIN "courses" ON "requests"."course_id" = "courses"."id" WHERE "courses"."mentor_id" = $1[0m  [["mentor_id", 1]]
+  ↳ app/views/api/users/_user.json.jbuilder:4
+  Rendered api/users/_user.json.jbuilder (4.4ms)
+  Rendered api/requests/show.json.jbuilder (15.9ms)
+Completed 200 OK in 34ms (Views: 21.1ms | ActiveRecord: 6.2ms)
+
+
