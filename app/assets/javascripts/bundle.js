@@ -1205,11 +1205,11 @@ var Dashboard = /*#__PURE__*/function (_React$Component) {
       }, "Add Course"), form), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "My requests status "), requests.map(function (request) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: request.id
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Start From: ", request.startTime), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "End To: ", request.endTime), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "End To: ", request.status));
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Start From: ", request.startTime), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "End To: ", request.endTime), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "End To: ", request.status), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Course: ", request.course), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Instructor: ", request.receiver));
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Received requests to deal with "), receivedRequests.map(function (request) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: request.id
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Start From: ", request.startTime), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "End To: ", request.endTime), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "End To: ", request.status), request.status === "PENDING" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Start From: ", request.startTime), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "End To: ", request.endTime), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Course: ", request.course), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Sender: ", request.sender), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "End To: ", request.status), request.status === "PENDING" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           onClick: function onClick() {
             return updateRequest({
               id: request.id,
@@ -1990,8 +1990,7 @@ var courseReducer = function courseReducer() {
       return nextState;
 
     case _actions_user_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_USER"]:
-      return Object.assign({}, state, action.payload.courses);
-    // return action.payload.courses;
+      return Object.assign({}, state, action.payload.courses, action.payload.requestedCourses);
 
     case _actions_request_actions__WEBPACK_IMPORTED_MODULE_2__["RECEIVE_REQUEST"]:
       nextState[action.payload.course.id] = action.payload.course;
@@ -2231,7 +2230,10 @@ var selectRequestsForCurrentUser = function selectRequestsForCurrentUser(state, 
 
   if (user && user.requestIds && Object.keys(state.entities.requests).length !== 0) {
     return user.requestIds.map(function (requestId) {
-      return state.entities.requests[requestId];
+      var request = state.entities.requests[requestId];
+      request.course = state.entities.courses[request.courseId].courseName;
+      request.receiver = request.username;
+      return request;
     });
   } else {
     return [];
@@ -2242,7 +2244,10 @@ var selectReceivedRequestsForCurrentUser = function selectReceivedRequestsForCur
 
   if (user && user.receivedRequestsids && Object.keys(state.entities.requests).length !== 0) {
     return user.receivedRequestsids.map(function (requestId) {
-      return state.entities.requests[requestId];
+      var request = state.entities.requests[requestId];
+      request.course = state.entities.courses[request.courseId].courseName;
+      request.sender = request.username;
+      return request;
     });
   } else {
     return [];

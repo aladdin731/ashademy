@@ -10,9 +10,14 @@ class User < ApplicationRecord
         foreign_key: :mentor_id,
         class_name: 'Course'
     
+    
     has_many :requests,
         foreign_key: :mentee_id,
         class_name: 'Request'
+
+    has_many :requested_courses,
+        through: :requests,
+        source: :course 
 
     has_many :received_requests,
         through: :courses,

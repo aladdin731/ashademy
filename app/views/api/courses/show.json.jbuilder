@@ -3,7 +3,6 @@ json.course do
 end
 
 
-
 if @course.tags.length != 0 
   json.tags do 
     @course.tags.each do |tag| 

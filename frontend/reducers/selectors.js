@@ -18,7 +18,12 @@ export const selectCoursesForCurrentUser = (state, currentUser) => {
 export const selectRequestsForCurrentUser = (state, currentUser) => {
   const user = state.entities.users[currentUser.id];
   if(user && user.requestIds && Object.keys(state.entities.requests).length !== 0 ) {
-    return user.requestIds.map(requestId => state.entities.requests[requestId])
+    return user.requestIds.map(requestId => {
+        let request = state.entities.requests[requestId];
+        request.course = state.entities.courses[request.courseId].courseName;
+        request.receiver = request.username;
+        return request;
+    })
   }else {
     return [];
   }
@@ -27,7 +32,12 @@ export const selectRequestsForCurrentUser = (state, currentUser) => {
 export const selectReceivedRequestsForCurrentUser = (state, currentUser) => {
   const user = state.entities.users[currentUser.id];
   if(user && user.receivedRequestsids && Object.keys(state.entities.requests).length !== 0 ) {
-    return user.receivedRequestsids.map(requestId => state.entities.requests[requestId])
+    return user.receivedRequestsids.map(requestId => {
+        let request = state.entities.requests[requestId];
+        request.course = state.entities.courses[request.courseId].courseName;
+        request.sender = request.username;
+        return request;
+    }) 
   }else {
     return [];
   }

@@ -92,6 +92,8 @@ class Dashboard extends React.Component{
                             <h3>Start From: {request.startTime}</h3>
                             <h3>End To: {request.endTime}</h3>
                             <h3>End To: {request.status}</h3>
+                            <h3>Course: {request.course}</h3>
+                            <h3>Instructor: {request.receiver}</h3>
                         </li>
                     ))}
                 </div>
@@ -101,6 +103,8 @@ class Dashboard extends React.Component{
                         <li key={request.id}>
                             <h3>Start From: {request.startTime}</h3>
                             <h3>End To: {request.endTime}</h3>
+                            <h3>Course: {request.course}</h3>
+                            <h3>Sender: {request.sender}</h3>
                             <h3>End To: {request.status}</h3>
                             {request.status === "PENDING" ? 
                                 (<div>
