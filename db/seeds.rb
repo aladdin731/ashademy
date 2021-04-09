@@ -7,6 +7,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # Course.create!({course_name: "react", description: "best react course", course_type:"Frontend", mentor_id: 5, image_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png', tag_1:"tag1", tag_2:"tag2"})
+
+
+
 User.delete_all
 u1 = User.create!({username: "Demo User", password:"123123"})
 u2 = User.create!({username:"user2", password:"123123"})
@@ -18,7 +21,9 @@ u7 = User.create!({username:"user7", password:"123123"})
 
 
 Course.delete_all
+
 CourseTag.destroy_all
+
 Tag.destroy_all
 
 
@@ -98,6 +103,9 @@ Tag.destroy_all
         end
     end
 
+    # course1 = Course.create({course_name: "course1", description:"lala", course_type:"Frontend", mentor_id:u1.id})
+    
+
 
 
    last_year = Date.today.prev_year.year
@@ -117,7 +125,6 @@ Tag.destroy_all
       end_time: Date.parse("#{last_year.to_s}-01-02"),
       status: 'PENDING'
     )
-
 
 
 

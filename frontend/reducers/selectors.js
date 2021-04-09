@@ -37,7 +37,6 @@ export const selectReceivedRequestsForCurrentUser = (state, currentUser) => {
 // };
 
 
-
 // this way is not corrent because even state is empty, the courses is {}, it is still true 
 // so it will not cause an error but it show [], which is nothing, so can not show the courses
 
