@@ -1038,10 +1038,8 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     createCourse: function createCourse(course) {
       return dispatch(Object(_actions_course_actions__WEBPACK_IMPORTED_MODULE_1__["createCourse"])(course));
-    },
-    fetchUser: function fetchUser(id) {
-      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_3__["fetchUser"])(id));
-    }
+    } // fetchUser: (id) => dispatch(fetchUser(id))
+
   };
 };
 
@@ -1174,7 +1172,6 @@ var Dashboard = /*#__PURE__*/function (_React$Component) {
           currentUser = _this$props.currentUser,
           courses = _this$props.courses,
           deleteCourse = _this$props.deleteCourse,
-          updateUserInfo = _this$props.updateUserInfo,
           updateRequest = _this$props.updateRequest,
           requests = _this$props.requests,
           receivedRequests = _this$props.receivedRequests;
@@ -1183,6 +1180,7 @@ var Dashboard = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         value: this.state.imageUrl,
+        placeholder: "Image Url",
         onChange: this.update("imageUrl")
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Confirm")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.originalProfile
@@ -2212,15 +2210,23 @@ var selectCourseTagsNames = function selectCourseTagsNames(state) {
   });
   return tagNames;
 }; // export const selectCoursesForCurrentUser = (state, currentUser) => {
-//   const user = state.entities.users[currentUser.id];
-//   return user ? user.courseIds.map(courseId => 
-//     state.entities.courses[courseId]) : [];
+//   return Object.keys(state.entities.courses).length === 0 ? 
+//   undefined : currentUser.courseIds.map(courseId => state.entities.courses[courseId])
+// };
+// export const selectRequestsForCurrentUser = (state, currentUser) => {
+//   return Object.keys(state.entities.requests).length === 0 ? 
+//   undefined : currentUser.requestIds.map(requestId => state.entities.requests[requestId])
+// };
+// export const selectReceivedRequestsForCurrentUser = (state, currentUser) => {
+//   return Object.keys(state.entities.requests).length === 0 ? 
+//   undefined : currentUser.receivedRequestsids.map(requestId => state.entities.requests[requestId])
 // };
 
 var selectCoursesForCurrentUser = function selectCoursesForCurrentUser(state, currentUser) {
-  return Object.keys(state.entities.courses).length === 0 ? undefined : currentUser.courseIds.map(function (courseId) {
+  var user = state.entities.users[currentUser.id];
+  return user ? user.courseIds.map(function (courseId) {
     return state.entities.courses[courseId];
-  });
+  }) : [];
 };
 var selectRequestsForCurrentUser = function selectRequestsForCurrentUser(state, currentUser) {
   return Object.keys(state.entities.requests).length === 0 ? undefined : currentUser.requestIds.map(function (requestId) {

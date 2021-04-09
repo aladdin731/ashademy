@@ -58,11 +58,11 @@ class Dashboard extends React.Component{
     render(){
         if(!this.props.courses || !this.props.requests || !this.props.receivedRequests) return null;
         const form = this.state.addCourse ? <CreateCourseFormContainer /> : ""
-        const {currentUser, courses, deleteCourse, updateUserInfo, updateRequest, requests, receivedRequests} = this.props;
+        const {currentUser, courses, deleteCourse, updateRequest, requests, receivedRequests} = this.props;
         const photo = this.state.wantToChangeProfile ? 
         <div>
             <form onSubmit={this.addProfile}>
-                <input type="text" value={this.state.imageUrl} onChange={this.update("imageUrl")}/>
+                <input type="text" value={this.state.imageUrl}  placeholder="Image Url" onChange={this.update("imageUrl")}/>
                 <button>Confirm</button>
             </form>
             <button onClick={this.originalProfile}>Don't want to change</button>
@@ -81,7 +81,7 @@ class Dashboard extends React.Component{
                             <button onClick={() => deleteCourse(course.id)}>Delete</button>
                         </li>
                     ))}
-                    <button onClick={this.handleClick}>Add Course</button>
+                    <button onClick={this.handleClick}>Add Course</button> 
                     {form}
                 </div>
                 <div>
