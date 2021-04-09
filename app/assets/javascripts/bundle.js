@@ -2209,38 +2209,36 @@ var selectCourseTagsNames = function selectCourseTagsNames(state) {
     return tag.tagName;
   });
   return tagNames;
-}; // export const selectCoursesForCurrentUser = (state, currentUser) => {
-//   return Object.keys(state.entities.courses).length === 0 ? 
-//   undefined : currentUser.courseIds.map(courseId => state.entities.courses[courseId])
-// };
-// export const selectRequestsForCurrentUser = (state, currentUser) => {
-//   return Object.keys(state.entities.requests).length === 0 ? 
-//   undefined : currentUser.requestIds.map(requestId => state.entities.requests[requestId])
-// };
-// export const selectReceivedRequestsForCurrentUser = (state, currentUser) => {
-//   return Object.keys(state.entities.requests).length === 0 ? 
-//   undefined : currentUser.receivedRequestsids.map(requestId => state.entities.requests[requestId])
-// };
-
+};
 var selectCoursesForCurrentUser = function selectCoursesForCurrentUser(state, currentUser) {
+  // when we refresh the index page and then go to dashboard, then the users section is empty
+  // the course section is always not empty
   var user = state.entities.users[currentUser.id];
   return user ? user.courseIds.map(function (courseId) {
     return state.entities.courses[courseId];
   }) : [];
 };
 var selectRequestsForCurrentUser = function selectRequestsForCurrentUser(state, currentUser) {
-  return Object.keys(state.entities.requests).length === 0 ? undefined : currentUser.requestIds.map(function (requestId) {
+  var user = state.entities.users[currentUser.id];
+  return user ? user.requestIds.map(function (requestId) {
     return state.entities.requests[requestId];
-  });
+  }) : [];
 };
 var selectReceivedRequestsForCurrentUser = function selectReceivedRequestsForCurrentUser(state, currentUser) {
-  return Object.keys(state.entities.requests).length === 0 ? undefined : currentUser.receivedRequestsids.map(function (requestId) {
+  var user = state.entities.users[currentUser.id];
+  return user ? user.receivedRequestsids.map(function (requestId) {
     return state.entities.requests[requestId];
-  });
-}; // export const selectReceivedRequestsForCurrentUser = (state, currentUser) => {
-//   const user = state.entities.users[currentUser.id];
-//   return user ? user.receivedRequestsids.map(requestId => 
-//     state.entities.requests[requestId]) : [];
+  }) : [];
+}; // can not user this way, in this way, can not show the course once we add it ???
+// export const selectCoursesForCurrentUser = (state, currentUser) => {
+//   return Object.keys(state.entities.users).length === 0 ? 
+//   undefined : currentUser.courseIds.map(requestId => state.entities.courses[requestId])
+// };
+// can not use this way because whether we refresh the index page and then go to dashboard
+// the courses section is always not empty
+// export const selectCoursesForCurrentUser = (state, currentUser) => {
+//   return Object.keys(state.entities.courses).length === 0 ? 
+//   undefined : currentUser.courseIds.map(courseId => state.entities.courses[courseId])
 // };
 // this way is not corrent because even state is empty, the courses is {}, it is still true 
 // so it will not cause an error but it show [], which is nothing, so can not show the courses
@@ -2254,6 +2252,11 @@ var selectReceivedRequestsForCurrentUser = function selectReceivedRequestsForCur
 // export const selectCoursesForCurrentUser = (state, currentUser) => {
 //   return currentUser ? currentUser.courseIds.map(courseId => 
 //     state.entities.courses[courseId]) : [];
+// };
+// export const selectReceivedRequestsForCurrentUser = (state, currentUser) => {
+//   const user = state.entities.users[currentUser.id];
+//   return user ? user.receivedRequestsids.map(requestId => 
+//     state.entities.requests[requestId]) : [];
 // };
 
 /***/ }),
