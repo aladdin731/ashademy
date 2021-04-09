@@ -20,7 +20,7 @@ const mapDispatchToProps = dispatch => ({
     fetchUser: (currentUserId) => dispatch(fetchUser(currentUserId)),
     deleteCourse: courseId => dispatch(deleteCourse(courseId)),
     updateUserInfo: user =>dispatch(updateUserInfo(user)),
-    updateRequest: request => dispatch(updateRequest(request))
+    updateRequest: request => dispatch(updateRequest(request)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)

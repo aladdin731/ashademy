@@ -18,9 +18,13 @@ const usersReducer = (state = {}, action) => {
       nextState[action.payload.instructor.id] = action.payload.instructor;
       return nextState;
     case REMOVE_COURSE:
-      let arr = Object.values(nextState)[0].courseIds;
-      // specific number to delete
-      arr.splice(arr.indexOf(action.courseId), 1);
+      let arr1 = Object.values(nextState)[0].courseIds;
+      arr1.splice(arr1.indexOf(action.payload.course.id), 1);
+      let arr2 = Object.values(nextState)[0].receivedRequestsids;
+      let ids = action.payload.course.receivedRequestsids;
+      for(let i = 0; i < ids.length;i++) {
+        arr2.splice(arr2.indexOf(ids[i]), 1);
+      }
       return nextState;
     case RECEIVE_REQUEST:
       nextState[action.payload.sender.id] = action.payload.sender;

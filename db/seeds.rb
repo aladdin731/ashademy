@@ -83,6 +83,17 @@ Tag.destroy_all
      'tag2_zuzu'
       ],
     },
+    '6' => {
+      'course_name' => 'test course',
+      'description' => "best test course",
+      'course_type' => "Resume",
+      'mentor_id' => u1.id,
+      'image_url' => 'https://www.testingtime.com/app/uploads/2017/07/Grundregeln_fuer_User_Testing-750x500.jpg',
+      'tags' => [
+     'tag1_tutu',
+     'tag2_zuzu'
+      ],
+    },
 
   }
 
@@ -112,7 +123,7 @@ Tag.destroy_all
 
     Request.destroy_all
     Request.create!(
-      course_id: Course.last.id,
+      course_id: (Course.all)[4].id,
       mentee_id: User.first.id,
       start_time: Date.parse("#{last_year.to_s}-01-01"),
       end_time: Date.parse("#{last_year.to_s}-01-02"),

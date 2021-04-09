@@ -21,9 +21,9 @@ export const receiveErrors = (errors) => ({
     errors
 })
 
-const removeCourse = courseId => ({
+const removeCourse = payload => ({
     type: REMOVE_COURSE,
-    courseId 
+    payload  
 })
 
 const receiveCourse = (payload) => ({
@@ -64,8 +64,8 @@ export const updateCourse = (course) => (dispatch) => (
 
 export const deleteCourse = (courseId) => (dispatch) => (
     CourseAPI.deleteCourse(courseId)
-    .then(() => {
-        dispatch(removeCourse(courseId))
+    .then((payload) => {
+        dispatch(removeCourse(payload))
     })
     .fail(err => {
         dispatch(receiveErrors(err.responseJSON))

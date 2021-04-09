@@ -133,10 +133,10 @@ var receiveErrors = function receiveErrors(errors) {
   };
 };
 
-var removeCourse = function removeCourse(courseId) {
+var removeCourse = function removeCourse(payload) {
   return {
     type: REMOVE_COURSE,
-    courseId: courseId
+    payload: payload
   };
 };
 
@@ -176,8 +176,8 @@ var updateCourse = function updateCourse(course) {
 };
 var deleteCourse = function deleteCourse(courseId) {
   return function (dispatch) {
-    return _util_course_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteCourse"](courseId).then(function () {
-      dispatch(removeCourse(courseId));
+    return _util_course_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteCourse"](courseId).then(function (payload) {
+      dispatch(removeCourse(payload));
     }).fail(function (err) {
       dispatch(receiveErrors(err.responseJSON));
     });
@@ -1205,11 +1205,11 @@ var Dashboard = /*#__PURE__*/function (_React$Component) {
       }, "Add Course"), form), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "My requests status "), requests.map(function (request) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: request.id
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Start From: ", request.startTime), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "End To: ", request.endTime), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "End To: ", request.status), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Course: ", request.course), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Instructor: ", request.receiver));
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Start From: ", request.startTime), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "End To: ", request.endTime), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Status: ", request.status), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Course: ", request.course), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Instructor: ", request.receiver));
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Received requests to deal with "), receivedRequests.map(function (request) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: request.id
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Start From: ", request.startTime), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "End To: ", request.endTime), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Course: ", request.course), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Sender: ", request.sender), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "End To: ", request.status), request.status === "PENDING" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Start From: ", request.startTime), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "End To: ", request.endTime), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Course: ", request.course), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Sender: ", request.sender), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Status: ", request.status), request.status === "PENDING" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           onClick: function onClick() {
             return updateRequest({
               id: request.id,
@@ -2137,6 +2137,8 @@ var requestErrorReducer = function requestErrorReducer() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_request_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/request_actions */ "./frontend/actions/request_actions.js");
 /* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/user_actions */ "./frontend/actions/user_actions.js");
+/* harmony import */ var _actions_course_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/course_actions */ "./frontend/actions/course_actions.js");
+
 
 
 
@@ -2156,6 +2158,28 @@ var requestReducer = function requestReducer() {
 
     case _actions_user_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_USER"]:
       return Object.assign({}, state, action.payload.requests, action.payload.receivedRequests);
+
+    case _actions_course_actions__WEBPACK_IMPORTED_MODULE_2__["RECEIVE_COURSE"]:
+      return Object.assign({}, state, action.payload.receivedRequests);
+    // case REMOVE_COURSE:
+    //   let keys = Object.keys(nextState);
+    //   for(let i = 0; i < keys.length; i++) {
+    //     if(nextState[keys[i]].courseId === action.courseId) {
+    //       delete nextState[keys[i]]
+    //     }
+    //   }
+    //   return nextState;
+
+    case _actions_course_actions__WEBPACK_IMPORTED_MODULE_2__["REMOVE_COURSE"]:
+      var keys = Object.keys(nextState);
+
+      for (var i = 0; i < keys.length; i++) {
+        if (nextState[keys[i]].courseId === action.payload.course.id) {
+          delete nextState[keys[i]];
+        }
+      }
+
+      return nextState;
 
     default:
       return state;
@@ -2463,9 +2487,15 @@ var usersReducer = function usersReducer() {
       return nextState;
 
     case _actions_course_actions__WEBPACK_IMPORTED_MODULE_2__["REMOVE_COURSE"]:
-      var arr = Object.values(nextState)[0].courseIds; // specific number to delete
+      var arr1 = Object.values(nextState)[0].courseIds;
+      arr1.splice(arr1.indexOf(action.payload.course.id), 1);
+      var arr2 = Object.values(nextState)[0].receivedRequestsids;
+      var ids = action.payload.course.receivedRequestsids;
 
-      arr.splice(arr.indexOf(action.courseId), 1);
+      for (var i = 0; i < ids.length; i++) {
+        arr2.splice(arr2.indexOf(ids[i]), 1);
+      }
+
       return nextState;
 
     case _actions_request_actions__WEBPACK_IMPORTED_MODULE_3__["RECEIVE_REQUEST"]:

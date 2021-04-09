@@ -6,7 +6,7 @@ if @user.courses.length != 0
   json.courses do 
     @user.courses.each do |course| 
       json.set! course.id do 
-        json.extract! course, :id, :course_name, :image_url 
+        json.partial! "api/courses/course", course: course 
       end
     end
   end
@@ -18,7 +18,7 @@ if @user.requested_courses.length != 0
   json.requested_courses do 
     @user.requested_courses.each do |course| 
       json.set! course.id do 
-        json.extract! course, :id, :course_name, :image_url 
+        json.partial! "api/courses/course", course: course 
       end
     end
   end
