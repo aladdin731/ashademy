@@ -32,5 +32,13 @@ class Course < ApplicationRecord
         foreign_key: :course_id,
         class_name: 'Request'
 
+    has_many :reviews,
+        foreign_key: :course_id,
+        class_name: 'Course'
+    
+    def average_rating
+        reviews.average(:rating)
+    end
+
 
 end
