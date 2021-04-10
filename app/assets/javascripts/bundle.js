@@ -646,7 +646,11 @@ var CourseDetail = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", null, form, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("figure", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: this.props.course.imageUrl,
         alt: this.props.course.courseName
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, this.props.course.courseName)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Type: ", this.props.course.courseType), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Description: ", this.props.course.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Instructor: ", this.props.instructor.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Tags: ", this.props.tags.join(' '))));
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, this.props.course.courseName)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Type: ", this.props.course.courseType), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Description: ", this.props.course.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Instructor: ", this.props.instructor.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Tags: ", this.props.tags.join(' ')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Average Rating: ", this.props.course.averageRating)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Reviews"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.props.reviews.map(function (review) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          key: review.id
+        }, review.body, " by ", review.author.username);
+      }))));
     }
   }]);
 
@@ -681,20 +685,19 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state, _ref) {
   var match = _ref.match;
-  // if we did not log in, the currentUser is null 
-  var currentUser = state.session.currentUser; // 既然点进来的就说明course和courseId一定存在
-
+  var currentUser = state.session.currentUser;
   var courseId = parseInt(match.params.courseId);
-  var course = state.entities.courses[courseId]; // 如果没登录 instructor 是undefined
-
+  var course = state.entities.courses[courseId];
   var instructor = Object.keys(state.entities.users).length !== 0 ? state.entities.users[course.mentorId] : null;
   var tags = Object(_reducers_selectors__WEBPACK_IMPORTED_MODULE_3__["selectCourseTagsNames"])(state);
+  var reviews = Object(_reducers_selectors__WEBPACK_IMPORTED_MODULE_3__["selectReviewsForCourse"])(state);
   return {
     courseId: courseId,
     course: course,
     instructor: instructor,
     tags: tags,
-    currentUser: currentUser
+    currentUser: currentUser,
+    reviews: reviews
   };
 };
 
@@ -899,7 +902,7 @@ var CourseIndexItem = /*#__PURE__*/function (_React$Component) {
         onClick: this.handleClick
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: this.props.course.imageUrl
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, this.props.course.courseName));
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, this.props.course.courseName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Average Rating: ", this.props.course.averageRating === 0 ? "No Rating Yet" : this.props.course.averageRating));
     }
   }]);
 
@@ -2030,7 +2033,6 @@ document.addEventListener("DOMContentLoaded", function () {
   window.updateRequest = _actions_request_actions__WEBPACK_IMPORTED_MODULE_11__["updateRequest"];
   window.createRequest = _actions_request_actions__WEBPACK_IMPORTED_MODULE_11__["createRequest"];
   window.createReview = _actions_review_actions__WEBPACK_IMPORTED_MODULE_12__["createReview"];
-  window.state = store.getState();
 });
 
 /***/ }),
@@ -2114,8 +2116,8 @@ var courseReducer = function courseReducer() {
     case _actions_review_actions__WEBPACK_IMPORTED_MODULE_3__["RECEIVE_REVIEW"]:
       var review = action.review,
           average_rating = action.average_rating;
-      nextState[review.course_id].reviewIds.push(review.id);
-      nextState[review.course_id].average_rating = average_rating;
+      nextState[review.courseId].reviewIds.push(review.id);
+      nextState[review.courseId].averageRating = average_rating;
       return nextState;
 
     default:
@@ -2263,6 +2265,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_request_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/request_actions */ "./frontend/actions/request_actions.js");
 /* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/user_actions */ "./frontend/actions/user_actions.js");
 /* harmony import */ var _actions_course_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/course_actions */ "./frontend/actions/course_actions.js");
+/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
+
 
 
 
@@ -2306,6 +2310,9 @@ var requestReducer = function requestReducer() {
 
       return nextState;
 
+    case _actions_session_actions__WEBPACK_IMPORTED_MODULE_3__["RECEIVE_CURRENT_USER"]:
+      return Object.assign({}, state, action.currentUser.requests, action.currentUser.receivedRequests);
+
     default:
       return state;
   }
@@ -2338,7 +2345,7 @@ var reviewsReducer = function reviewsReducer() {
 
   switch (action.type) {
     case _actions_course_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_COURSE"]:
-      return Object.assign({}, state, action.reviews);
+      return Object.assign({}, state, action.payload.reviews);
 
     case _actions_review_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_REVIEW"]:
       var review = action.review;
@@ -2386,7 +2393,7 @@ var rootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])(
 /*!****************************************!*\
   !*** ./frontend/reducers/selectors.js ***!
   \****************************************/
-/*! exports provided: selectCourseTagsNames, selectCoursesForCurrentUser, selectRequestsForCurrentUser, selectReceivedRequestsForCurrentUser */
+/*! exports provided: selectCourseTagsNames, selectCoursesForCurrentUser, selectRequestsForCurrentUser, selectReceivedRequestsForCurrentUser, selectReviewsForCourse */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2395,6 +2402,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectCoursesForCurrentUser", function() { return selectCoursesForCurrentUser; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectRequestsForCurrentUser", function() { return selectRequestsForCurrentUser; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectReceivedRequestsForCurrentUser", function() { return selectReceivedRequestsForCurrentUser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectReviewsForCourse", function() { return selectReviewsForCourse; });
 var selectCourseTagsNames = function selectCourseTagsNames(state) {
   var tagNames = Object.values(state.entities.tags).map(function (tag) {
     return tag.tagName;
@@ -2439,6 +2447,9 @@ var selectReceivedRequestsForCurrentUser = function selectReceivedRequestsForCur
   } else {
     return [];
   }
+};
+var selectReviewsForCourse = function selectReviewsForCourse(state) {
+  return Object.values(state.entities.reviews);
 }; // export const selectCoursesForCurrentUser = (state, currentUser) => {
 //   // when we refresh the index page and then go to dashboard, then the users section is empty
 //   // the course section is always not empty

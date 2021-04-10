@@ -17,6 +17,7 @@ class CourseIndexItem extends React.Component{
       <li onClick={this.handleClick}>
           <img src={this.props.course.imageUrl}/>
           <h3>{this.props.course.courseName}</h3>
+          <h3>Average Rating: {this.props.course.averageRating === 0 ? "No Rating Yet" : this.props.course.averageRating}</h3>
       </li>
     )
   }

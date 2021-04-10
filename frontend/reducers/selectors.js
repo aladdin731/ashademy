@@ -43,6 +43,10 @@ export const selectReceivedRequestsForCurrentUser = (state, currentUser) => {
   }
 };
 
+export const selectReviewsForCourse = (state) => {
+  return Object.values(state.entities.reviews);
+}
+
 
 // export const selectCoursesForCurrentUser = (state, currentUser) => {
 //   // when we refresh the index page and then go to dashboard, then the users section is empty

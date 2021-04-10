@@ -124,21 +124,21 @@ Tag.destroy_all
     Request.destroy_all
     Request.create!(
       course_id: (Course.all)[4].id,
-      mentee_id: User.first.id,
+      mentee_id: u6.id,
       start_time: Date.parse("#{last_year.to_s}-01-01"),
       end_time: Date.parse("#{last_year.to_s}-01-02"),
       status: 'APPROVED'
     )
     Request.create!(
       course_id: (Course.all)[0].id,
-      mentee_id: User.last.id,
+      mentee_id: u6.id,
       start_time: Date.parse("#{last_year.to_s}-01-01"),
       end_time: Date.parse("#{last_year.to_s}-01-02"),
       status: 'PENDING'
     )
     Request.create!(
       course_id: (Course.all)[1].id,
-      mentee_id: User.last.id,
+      mentee_id: u6.id,
       start_time: Date.parse("#{last_year.to_s}-01-01"),
       end_time: Date.parse("#{last_year.to_s}-01-02"),
       status: 'PENDING'

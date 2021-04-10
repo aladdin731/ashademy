@@ -47,5 +47,4 @@ document.addEventListener("DOMContentLoaded", () => {
     window.updateRequest = updateRequest;
     window.createRequest = createRequest;
     window.createReview = createReview;
-    window.state = store.getState();
 })

@@ -1,8 +1,5 @@
 json.course do 
-    json.extract! @course, :id, :course_name, :description, :course_type, :image_url, :mentor_id
-    json.received_requestsIds @course.requests.pluck(:id) || []
-    json.reviewIds @course.reviews.pluck(:id) || []
-    json.average_rating @course.average_rating 
+    json.partial! "api/courses/course", course: @course 
 end
 
 
@@ -36,18 +33,21 @@ else
   json.received_requests ({})
 end
 
-
-@course.reviews.includes(:author).each do |review|
-  json.reviews do
-    json.set! review.id do
-      json.partial! 'api/reviews/review', review: review
+if @course.reviews.length != 0 
+  json.reviews do 
+    @course.reviews.each do |review| 
+      json.set! review.id do 
+        json.partial! "api/reviews/review", review: review 
+        json.author do
+          json.partial! '/api/users/info', user: review.author  
+        end
+      end
     end
   end
-
-  json.authors do
-    json.set! review.author.id do
-      json.extract! review.author, :id, :username
-    end
-  end
+else
+  json.reviews ({})
 end
+
+
+
 

@@ -82,10 +82,20 @@ class CourseDetail extends React.Component{
           <li>Description: {this.props.course.description}</li>
           <li>Instructor: {this.props.instructor.username}</li>
           <li>Tags: {this.props.tags.join(' ')}</li>
+          <li>Average Rating: {this.props.course.averageRating}</li>
         </ul>
+        <div>
+          <h3>Reviews</h3>
+          <ul>
+            {this.props.reviews.map(review => <li key={review.id}>{review.body} by {review.author.username}</li>)}
+          </ul>
+          
+        </div>
       </section>
     )
   }
 }
 
 export default CourseDetail;
+
+
