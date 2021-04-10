@@ -12,7 +12,11 @@ class CourseDetail extends React.Component{
 
   componentDidMount(){
     this.props.fetchCourse(this.props.courseId);
-    this.props.fetchUser(this.props.currentUser.id);
+    if(this.props.currentUser) {
+      this.props.fetchUser(this.props.currentUser.id)
+    }else {
+      this.props.fetchUsers()
+    }
   }
 
   handleSubmit(e) {
@@ -35,10 +39,14 @@ class CourseDetail extends React.Component{
 
 
   render(){
-    if (!this.props.course || !this.props.instructor) return null;
-    let form = this.props.instructor.id === this.props.currentUser.id ? 
-    <h3>This course if made by you!</h3> : 
-    (<div>
+    if(!this.props.instructor) return null;
+    let form;
+    if(!this.props.currentUser) {
+      form = <p>Please log in to make request</p>
+    }else if (this.props.instructor.id === this.props.currentUser.id){
+      form = <h3>This course if made by you!</h3> 
+    }else {
+      form = (<div>
       <h3>Make Request</h3>
         <form onSubmit={this.handleSubmit}>
           <label>Start Date
@@ -59,6 +67,8 @@ class CourseDetail extends React.Component{
           <input type="submit" />
         </form>
     </div>)
+    }
+     
     return (
       <section>
         {form}

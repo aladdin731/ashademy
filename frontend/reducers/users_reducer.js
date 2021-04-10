@@ -6,20 +6,23 @@ import {RECEIVE_REVIEW} from '../actions/review_actions';
 
 const usersReducer = (state = {}, action) => {
   Object.freeze(state);
-  const nextState = Object.assign({}, state);
+  // let nextState = Object.assign({}, state);
+  let nextState;
   switch(action.type) {
     case RECEIVE_CURRENT_USER:
       return Object.assign({}, state, { [action.currentUser.user.id]: action.currentUser.user });
     case RECEIVE_USERS:
       return Object.assign({}, action.users, state);
     case RECEIVE_USER:
+      nextState = Object.assign({}, state);
       nextState[action.payload.user.id] = action.payload.user;
       return nextState;
     case RECEIVE_COURSE:
-      Object.assign({}, state, action.authors);
+      nextState = Object.assign({}, state, action.authors);
       nextState[action.payload.instructor.id] = action.payload.instructor;
       return nextState;
     case REMOVE_COURSE:
+      nextState = Object.assign({}, state);
       let arr1 = Object.values(nextState)[0].courseIds;
       arr1.splice(arr1.indexOf(action.payload.course.id), 1);
       let arr2 = Object.values(nextState)[0].receivedRequestsids;
@@ -29,10 +32,12 @@ const usersReducer = (state = {}, action) => {
       }
       return nextState;
     case RECEIVE_REQUEST:
+      nextState = Object.assign({}, state);
       nextState[action.payload.sender.id] = action.payload.sender;
       nextState[action.payload.receiver.id] = action.payload.receiver;
       return nextState;
     case RECEIVE_REVIEW:
+      nextState = Object.assign({}, state);
       nextState[action.author.id] = action.author;
       return nextState;
     default:

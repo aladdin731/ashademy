@@ -34,10 +34,10 @@ class Course < ApplicationRecord
 
     has_many :reviews,
         foreign_key: :course_id,
-        class_name: 'Course'
+        class_name: 'Review'
     
     def average_rating
-        reviews.average(:rating)
+        self.reviews.length > 0 ?  self.reviews.average(:rating) : 0;
     end
 
 

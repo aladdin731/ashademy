@@ -7,6 +7,6 @@ class Review < ApplicationRecord
         class_name: 'Course'
 
     belongs_to :author,
-        foreign_key: :reviewer_id
+        foreign_key: :reviewer_id,
         class_name: 'User'
 end
