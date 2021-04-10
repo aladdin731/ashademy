@@ -4,7 +4,11 @@ class User < ApplicationRecord
     validates :password, length:{minimum: 6, allow_nil: true}
 
     attr_reader :password 
-    after_initialize :ensure_session_token 
+    after_initialize :ensure_session_token, :ensure_profile 
+
+    def ensure_profile
+        self.image_url ||= "http://5b0988e595225.cdn.sohucs.com/images/20190420/2e40ad9c68e7497284e2e4f9e910c1f0.jpeg"
+    end
 
     has_many :courses,
         foreign_key: :mentor_id,
