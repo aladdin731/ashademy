@@ -606,6 +606,7 @@ var CourseDetail = /*#__PURE__*/function (_React$Component) {
         end_time: ""
       });
       this.props.createRequest(request);
+      alert("Submitted!");
     }
   }, {
     key: "update",
