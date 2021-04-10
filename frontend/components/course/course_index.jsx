@@ -19,7 +19,7 @@ class CourseIndex extends React.Component{
         <ul>
           {
               this.props.courses.map(course => (
-                  <CourseIndexItem key={course.id} course={course}/>))
+                  <CourseIndexItem fetchCourse={this.props.fetchCourse} key={course.id} course={course}/>))
           }
         </ul>
       </div>

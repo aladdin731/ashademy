@@ -37,9 +37,9 @@ if @course.reviews.length != 0
   json.reviews do 
     @course.reviews.each do |review| 
       json.set! review.id do 
-        json.partial! "api/reviews/review", review: review 
+        json.partial! '/api/reviews/review', review: review
         json.author do
-          json.partial! '/api/users/info', user: review.author  
+          json.partial! '/api/users/info', user: review.author
         end
       end
     end

@@ -47,16 +47,16 @@ export const selectReviewsForCourse = (state) => {
   return Object.values(state.entities.reviews);
 }
 
+// export const selectReviewsForCourse = (state, courseId) => {
+//   const course = state.entities.courses[courseId];
+//   if(course && Object.keys(state.entities.reviews).length !== 0 ) {
+//     return course.reviewIds.map(reviewId => state.entities.reviews[reviewId]) 
+//   }else {
+//     return [];
+//   }
+// }
 
-// export const selectCoursesForCurrentUser = (state, currentUser) => {
-//   // when we refresh the index page and then go to dashboard, then the users section is empty
-//   // the course section is always not empty
-//   // Boolean([]) === true 
-//   // Boolean(undefined) === false 
-//   const user = state.entities.users[currentUser.id];
-//   return user ? user.courseIds.map(courseId => 
-//     state.entities.courses[courseId]) : [];
-// };
+
 
 
 

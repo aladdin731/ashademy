@@ -623,7 +623,7 @@ var CourseDetail = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      if (!this.props.instructor) return null;
+      if (!this.props.instructor || !this.props.reviews) return null;
       var requestForm;
 
       if (!this.props.currentUser) {
@@ -659,12 +659,12 @@ var CourseDetail = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, requestForm, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("figure", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: this.props.course.imageUrl,
         alt: this.props.course.courseName
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, this.props.course.courseName)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Type: ", this.props.course.courseType), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Description: ", this.props.course.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Instructor: ", this.props.instructor.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Tags: ", this.props.tags.join(' ')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Average Rating: ", this.props.course.averageRating)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Reviews"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.props.reviews.map(function (review) {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, this.props.course.courseName)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Type: ", this.props.course.courseType), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Description: ", this.props.course.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Instructor: ", this.props.instructor.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Tags: ", this.props.tags.join(' ')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Average Rating: ", this.props.course.averageRating === 0 ? "No Rating Yet" : this.props.course.averageRating)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Reviews"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.props.reviews.map(function (review, i) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-          key: review.id
+          key: i
         }, review.body, " by ", review.author.username, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           src: review.author.imageUrl
-        }));
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Rating: ", review.rating));
       }))), reviewForm);
     }
   }]);
@@ -705,7 +705,7 @@ var mapStateToProps = function mapStateToProps(state, _ref) {
   var course = state.entities.courses[courseId];
   var instructor = Object.keys(state.entities.users).length !== 0 ? state.entities.users[course.mentorId] : null;
   var tags = Object(_reducers_selectors__WEBPACK_IMPORTED_MODULE_3__["selectCourseTagsNames"])(state);
-  var reviews = Object(_reducers_selectors__WEBPACK_IMPORTED_MODULE_3__["selectReviewsForCourse"])(state);
+  var reviews = Object(_reducers_selectors__WEBPACK_IMPORTED_MODULE_3__["selectReviewsForCourse"])(state, courseId);
   return {
     courseId: courseId,
     course: course,
@@ -794,9 +794,12 @@ var CourseIndex = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this = this;
+
       if (!this.props.courses) return null;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.props.courses.map(function (course) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_course_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          fetchCourse: _this.props.fetchCourse,
           key: course.id,
           course: course
         });
@@ -842,7 +845,8 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     fetchCourses: function fetchCourses() {
       return dispatch(Object(_actions_course_actions__WEBPACK_IMPORTED_MODULE_1__["fetchCourses"])());
-    } // fetchUsers:() => dispatch(fetchUsers()),
+    } // fetchCourse: id => dispatch(fetchCourse(id)),
+    // fetchUsers:() => dispatch(fetchUsers()),
     // fetchRequests: () => dispatch(fetchRequests())
 
   };
@@ -908,8 +912,11 @@ var CourseIndexItem = /*#__PURE__*/function (_React$Component) {
     key: "handleClick",
     value: function handleClick() {
       var courseId = this.props.course.id;
-      this.props.history.push("/courses/".concat(courseId));
-    }
+      this.props.history.push("/courses/".concat(courseId)); // this.props.fetchCourse(courseId);
+    } // componentDidMount(){
+    //   this.props.fetchCourse(this.props.course.id);
+    // }
+
   }, {
     key: "render",
     value: function render() {
@@ -2284,11 +2291,6 @@ var courseReducer = function courseReducer() {
     case _actions_request_actions__WEBPACK_IMPORTED_MODULE_2__["RECEIVE_REQUEST"]:
       nextState[action.payload.course.id] = action.payload.course;
       return nextState;
-    // case RECEIVE_REVIEW:
-    //   const { review } = action;
-    //   nextState[review.courseId].reviewIds.push(review.id);
-    //   // nextState[review.courseId].averageRating = average_rating;
-    //   return nextState;
 
     default:
       return state;
@@ -2512,10 +2514,13 @@ var reviewsReducer = function reviewsReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
+  var nextState = Object.assign({}, state);
 
   switch (action.type) {
     case _actions_course_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_COURSE"]:
-      return Object.assign({}, state, action.payload.reviews);
+      nextState = action.payload.reviews;
+      return nextState;
+    // return Object.assign({}, state, action.payload.reviews);
 
     case _actions_review_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_REVIEW"]:
       var review = action.review;
@@ -2620,15 +2625,14 @@ var selectReceivedRequestsForCurrentUser = function selectReceivedRequestsForCur
 };
 var selectReviewsForCourse = function selectReviewsForCourse(state) {
   return Object.values(state.entities.reviews);
-}; // export const selectCoursesForCurrentUser = (state, currentUser) => {
-//   // when we refresh the index page and then go to dashboard, then the users section is empty
-//   // the course section is always not empty
-//   // Boolean([]) === true 
-//   // Boolean(undefined) === false 
-//   const user = state.entities.users[currentUser.id];
-//   return user ? user.courseIds.map(courseId => 
-//     state.entities.courses[courseId]) : [];
-// };
+}; // export const selectReviewsForCourse = (state, courseId) => {
+//   const course = state.entities.courses[courseId];
+//   if(course && Object.keys(state.entities.reviews).length !== 0 ) {
+//     return course.reviewIds.map(reviewId => state.entities.reviews[reviewId]) 
+//   }else {
+//     return [];
+//   }
+// }
 
 /***/ }),
 
@@ -2853,6 +2857,8 @@ var usersReducer = function usersReducer() {
       nextState[action.payload.sender.id] = action.payload.sender;
       nextState[action.payload.receiver.id] = action.payload.receiver;
       return nextState;
+    // case RECEIVE_REVIEW:
+    //   return Object.assign({}, state, { [action.author.id]: action.author });
 
     default:
       return state;

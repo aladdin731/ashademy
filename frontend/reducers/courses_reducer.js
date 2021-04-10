@@ -20,11 +20,6 @@ const courseReducer = (state = {}, action) => {
     case RECEIVE_REQUEST:
       nextState[action.payload.course.id] = action.payload.course;
       return nextState;
-    // case RECEIVE_REVIEW:
-    //   const { review } = action;
-    //   nextState[review.courseId].reviewIds.push(review.id);
-    //   // nextState[review.courseId].averageRating = average_rating;
-    //   return nextState;
     default:
       return state;
   }

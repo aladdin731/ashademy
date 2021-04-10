@@ -11,7 +11,7 @@
 
 
 User.delete_all
-u1 = User.create!({username: "Demo User", password:"123123"})
+u1 = User.create!({username: "Demo User", password:"123123", image_url:"https://timesofindia.indiatimes.com/photo/67586673.cms"})
 u2 = User.create!({username:"user2", password:"123123"})
 u3 = User.create!({username:"user3", password:"123123"})
 u4 = User.create!({username:"user4", password:"123123"})

@@ -13,7 +13,7 @@ const mapStateToProps = (state, {match}) => {
   const course = state.entities.courses[courseId];
   const instructor = Object.keys(state.entities.users).length !== 0 ? state.entities.users[course.mentorId] : null ;
   const tags = selectCourseTagsNames(state);
-  const reviews = selectReviewsForCourse(state);
+  const reviews = selectReviewsForCourse(state, courseId);
   return {
     courseId, course, instructor, tags, currentUser, reviews
   }
