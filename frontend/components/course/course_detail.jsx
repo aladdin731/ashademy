@@ -1,4 +1,5 @@
 import React from 'react';
+import ReviewFormContainer from './review_form_container';
 
 class CourseDetail extends React.Component{
   constructor(props) {
@@ -41,13 +42,14 @@ class CourseDetail extends React.Component{
 
   render(){
     if(!this.props.instructor) return null;
-    let form;
+    
+    let requestForm;
     if(!this.props.currentUser) {
-      form = <p>Please log in to make request</p>
+      requestForm = <p>Please log in to make request</p>
     }else if (this.props.instructor.id === this.props.currentUser.id){
-      form = <h3>This course if made by you!</h3> 
+      requestForm = <h3>This course is made by you!</h3> 
     }else {
-      form = (<div>
+      requestForm = (<div>
       <h3>Make Request</h3>
         <form onSubmit={this.handleSubmit}>
           <label>Start Date
@@ -69,10 +71,19 @@ class CourseDetail extends React.Component{
         </form>
     </div>)
     }
+
+    let reviewForm;
+    if(!this.props.currentUser) {
+      reviewForm = ""
+    }else if (this.props.instructor.id === this.props.currentUser.id){
+      reviewForm = <h3>Look at the reviews of your course!</h3> 
+    }else {
+      reviewForm = <ReviewFormContainer />
+    }
      
     return (
-      <section>
-        {form}
+      <div>
+        {requestForm}
         <figure>
           <img src={this.props.course.imageUrl} alt={this.props.course.courseName} />
         </figure>
@@ -89,9 +100,9 @@ class CourseDetail extends React.Component{
           <ul>
             {this.props.reviews.map(review => <li key={review.id}>{review.body} by {review.author.username}</li>)}
           </ul>
-          
         </div>
-      </section>
+        {reviewForm}
+      </div>
     )
   }
 }

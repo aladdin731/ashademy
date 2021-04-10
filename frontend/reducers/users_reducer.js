@@ -18,7 +18,7 @@ const usersReducer = (state = {}, action) => {
       nextState[action.payload.user.id] = action.payload.user;
       return nextState;
     case RECEIVE_COURSE:
-      nextState = Object.assign({}, state, action.authors);
+      nextState = Object.assign({}, state);
       nextState[action.payload.instructor.id] = action.payload.instructor;
       return nextState;
     case REMOVE_COURSE:
@@ -36,10 +36,8 @@ const usersReducer = (state = {}, action) => {
       nextState[action.payload.sender.id] = action.payload.sender;
       nextState[action.payload.receiver.id] = action.payload.receiver;
       return nextState;
-    case RECEIVE_REVIEW:
-      nextState = Object.assign({}, state);
-      nextState[action.author.id] = action.author;
-      return nextState;
+    // case RECEIVE_REVIEW:
+    //   return Object.assign({}, state, { [action.author.id]: action.author });
     default:
       return state;
   }
