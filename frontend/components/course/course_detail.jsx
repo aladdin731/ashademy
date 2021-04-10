@@ -100,7 +100,12 @@ class CourseDetail extends React.Component{
         <div>
           <h3>Reviews</h3>
           <ul>
-            {this.props.reviews.map(review => <li key={review.id}>{review.body} by {review.author.username}</li>)}
+            {this.props.reviews.map(review => 
+              <li key={review.id}> 
+                {review.body} by {review.author.username} 
+                <img src={review.author.imageUrl}></img>
+              </li>
+            )}
           </ul>
         </div>
         {reviewForm}

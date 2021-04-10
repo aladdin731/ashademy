@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import {fetchCourse} from './../../actions/course_actions';
 
 import { createReview } from '../../actions/review_actions';
 import ReviewForm from './review_form';
@@ -10,7 +11,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   createReview: review => dispatch(createReview(review)),
-  fetchUser: id => dispatch(fetchUser(id))
+  fetchUser: id => dispatch(fetchUser(id)),
+  fetchCourse: (courseId) => dispatch(fetchCourse(courseId)),
 });
 
 export default connect(
