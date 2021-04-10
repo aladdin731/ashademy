@@ -788,8 +788,7 @@ var CourseIndex = /*#__PURE__*/function (_React$Component) {
   _createClass(CourseIndex, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchCourses(); // this.props.fetchUsers();
-      // this.props.fetchRequests();
+      this.props.fetchCourses();
     }
   }, {
     key: "render",
@@ -836,7 +835,6 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    // courses: selectAllCourses(state),
     courses: Object.values(state.entities.courses)
   };
 };
@@ -845,10 +843,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     fetchCourses: function fetchCourses() {
       return dispatch(Object(_actions_course_actions__WEBPACK_IMPORTED_MODULE_1__["fetchCourses"])());
-    } // fetchCourse: id => dispatch(fetchCourse(id)),
-    // fetchUsers:() => dispatch(fetchUsers()),
-    // fetchRequests: () => dispatch(fetchRequests())
-
+    }
   };
 };
 
@@ -912,11 +907,8 @@ var CourseIndexItem = /*#__PURE__*/function (_React$Component) {
     key: "handleClick",
     value: function handleClick() {
       var courseId = this.props.course.id;
-      this.props.history.push("/courses/".concat(courseId)); // this.props.fetchCourse(courseId);
-    } // componentDidMount(){
-    //   this.props.fetchCourse(this.props.course.id);
-    // }
-
+      this.props.history.push("/courses/".concat(courseId));
+    }
   }, {
     key: "render",
     value: function render() {

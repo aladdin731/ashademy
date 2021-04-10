@@ -8,8 +8,6 @@ class CourseIndex extends React.Component{
 
   componentDidMount(){
     this.props.fetchCourses();
-    // this.props.fetchUsers();
-    // this.props.fetchRequests();
   }
   
   render(){
