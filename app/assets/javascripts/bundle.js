@@ -990,8 +990,7 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
         course_id: courseId,
         reviewer_id: this.props.currentUser.id
       });
-      this.props.createReview(review).then(alert("Submitted!"));
-      this.props.fetchUsers();
+      this.props.createReview(review).then(alert("Submitted!")); // this.props.fetchUsers();
     }
   }, {
     key: "update",
@@ -1059,10 +1058,8 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     createReview: function createReview(review) {
       return dispatch(Object(_actions_review_actions__WEBPACK_IMPORTED_MODULE_1__["createReview"])(review));
-    },
-    fetchUsers: function fetchUsers() {
-      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_3__["fetchUsers"])());
-    }
+    } // fetchUsers: () => dispatch(fetchUsers())
+
   };
 };
 
@@ -2838,8 +2835,6 @@ var usersReducer = function usersReducer() {
       nextState[action.payload.sender.id] = action.payload.sender;
       nextState[action.payload.receiver.id] = action.payload.receiver;
       return nextState;
-    // case RECEIVE_REVIEW:
-    //   return Object.assign({}, state, { [action.author.id]: action.author });
 
     default:
       return state;

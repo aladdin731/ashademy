@@ -18,7 +18,7 @@ class ReviewForm extends React.Component {
       course_id: courseId, reviewer_id: this.props.currentUser.id 
     });
     this.props.createReview(review).then(alert("Submitted!"));
-    this.props.fetchUsers();
+    // this.props.fetchUsers();
   }
 
   update(property) {

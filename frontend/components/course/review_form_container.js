@@ -10,7 +10,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   createReview: review => dispatch(createReview(review)),
-  fetchUsers: () => dispatch(fetchUsers())
+  // fetchUsers: () => dispatch(fetchUsers())
 });
 
 export default connect(

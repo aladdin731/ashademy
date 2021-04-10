@@ -36,8 +36,6 @@ const usersReducer = (state = {}, action) => {
       nextState[action.payload.sender.id] = action.payload.sender;
       nextState[action.payload.receiver.id] = action.payload.receiver;
       return nextState;
-    // case RECEIVE_REVIEW:
-    //   return Object.assign({}, state, { [action.author.id]: action.author });
     default:
       return state;
   }
