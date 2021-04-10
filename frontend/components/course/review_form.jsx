@@ -17,7 +17,13 @@ class ReviewForm extends React.Component {
     const review = Object.assign({}, this.state, {
       course_id: courseId, reviewer_id: this.props.currentUser.id 
     });
+    this.setState({
+      rating: 5,
+      body:"",
+    })
+    
     this.props.createReview(review).then(alert("Submitted!"));
+    this.props.fetchUser(this.props.currentUser.id)
     // this.props.fetchUsers();
   }
 

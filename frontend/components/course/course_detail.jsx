@@ -1,5 +1,6 @@
 import React from 'react';
 import ReviewFormContainer from './review_form_container';
+import { withRouter } from 'react-router-dom';
 
 class CourseDetail extends React.Component{
   constructor(props) {
@@ -12,7 +13,8 @@ class CourseDetail extends React.Component{
   }
 
   componentDidMount(){
-    this.props.fetchCourse(this.props.courseId);
+    const courseId = parseInt(this.props.match.params.courseId);
+    this.props.fetchCourse(courseId);
     if(this.props.currentUser) {
       this.props.fetchUser(this.props.currentUser.id)
     }else {
@@ -107,6 +109,6 @@ class CourseDetail extends React.Component{
   }
 }
 
-export default CourseDetail;
+export default withRouter(CourseDetail);
 
 

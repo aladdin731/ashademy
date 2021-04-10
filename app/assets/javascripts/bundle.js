@@ -536,6 +536,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _review_form_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./review_form_container */ "./frontend/components/course/review_form_container.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -563,6 +564,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var CourseDetail = /*#__PURE__*/function (_React$Component) {
   _inherits(CourseDetail, _React$Component);
 
@@ -585,7 +587,8 @@ var CourseDetail = /*#__PURE__*/function (_React$Component) {
   _createClass(CourseDetail, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchCourse(this.props.courseId);
+      var courseId = parseInt(this.props.match.params.courseId);
+      this.props.fetchCourse(courseId);
 
       if (this.props.currentUser) {
         this.props.fetchUser(this.props.currentUser.id);
@@ -667,7 +670,7 @@ var CourseDetail = /*#__PURE__*/function (_React$Component) {
   return CourseDetail;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (CourseDetail);
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(CourseDetail));
 
 /***/ }),
 
@@ -990,7 +993,12 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
         course_id: courseId,
         reviewer_id: this.props.currentUser.id
       });
-      this.props.createReview(review).then(alert("Submitted!")); // this.props.fetchUsers();
+      this.setState({
+        rating: 5,
+        body: ""
+      });
+      this.props.createReview(review).then(alert("Submitted!"));
+      this.props.fetchUser(this.props.currentUser.id); // this.props.fetchUsers();
     }
   }, {
     key: "update",
@@ -1058,8 +1066,10 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     createReview: function createReview(review) {
       return dispatch(Object(_actions_review_actions__WEBPACK_IMPORTED_MODULE_1__["createReview"])(review));
-    } // fetchUsers: () => dispatch(fetchUsers())
-
+    },
+    fetchUser: function fetchUser(id) {
+      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_3__["fetchUser"])(id));
+    }
   };
 };
 
