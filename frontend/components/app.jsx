@@ -18,7 +18,7 @@ import CourseDetailContainer from '../components/course/course_detail_container'
 import CourseIndexContainer from '../components/course/course_index_container';
 import DashboardContainer from '../components/dashboard/dashboard_container';
 import Modal from './modal/modal';
-
+import SearchContainer from './search/search_container';
 
 const App = () => (
   <div>
@@ -28,9 +28,10 @@ const App = () => (
       <GreetingContainer />
     </header>
     <Switch>
-      <Route exact path="/" component={CourseIndexContainer} />
       <Route path="/courses/:courseId" component={CourseDetailContainer}/>
+      <Route exact path="/courses" component={CourseIndexContainer} />
       <ProtectedRoute path="/dashboard" component={DashboardContainer}/>
+      <Route exact path="/" component={SearchContainer}/>
       <Redirect to="/"/>
     </Switch>
     

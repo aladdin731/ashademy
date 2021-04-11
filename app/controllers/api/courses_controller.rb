@@ -1,6 +1,8 @@
 class Api::CoursesController < ApplicationController
     def index 
-        @courses = Course.all 
+        courses = Course.all 
+        selected = courses.where(course_type: ctype)
+        @courses = selected.length == 0 ? courses : selected 
         render :index 
     end
 
@@ -55,5 +57,10 @@ class Api::CoursesController < ApplicationController
     def course_params
         params.require(:course).permit(:course_name, :description, :course_type, :mentor_id, :image_url)
     end
+
+    def ctype 
+        params[:ctype]
+    end
+
 
 end

@@ -47,6 +47,10 @@ export const selectReviewsForCourse = (state) => {
   return Object.values(state.entities.reviews);
 }
 
+export const asArray = ({ courses }) => (
+  Object.keys(courses).map(key => courses[key])
+);
+
 // export const selectReviewsForCourse = (state, courseId) => {
 //   const course = state.entities.courses[courseId];
 //   if(course && Object.keys(state.entities.reviews).length !== 0 ) {

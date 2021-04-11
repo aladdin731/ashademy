@@ -11,8 +11,8 @@ const receiveCourses = (courses) => ({
     courses
 })
 
-export const fetchCourses = () => dispatch => 
-    CourseAPI.fetchCourses().then((courses) => 
+export const fetchCourses = (filters) => dispatch => 
+    CourseAPI.fetchCourses(filters).then((courses) => 
     dispatch(receiveCourses(courses)))
 
 
