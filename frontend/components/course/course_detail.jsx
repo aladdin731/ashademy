@@ -94,6 +94,7 @@ class CourseDetail extends React.Component{
           <li>Type: {this.props.course.courseType}</li>
           <li>Description: {this.props.course.description}</li>
           <li>Instructor: {this.props.instructor.username}</li>
+          <img src={this.props.instructor.imageUrl} alt="no profile yet"></img>
           <li>Tags: {this.props.tags.join(' ')}</li>
           <li>Average Rating: {this.props.course.averageRating === 0 ? "No Rating Yet" : this.props.course.averageRating}</li>
         </ul>
