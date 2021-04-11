@@ -5,14 +5,15 @@ import { Link, NavLink, withRouter } from 'react-router-dom';
 class Greeting extends React.Component {
     constructor(props) {
       super(props);
-      // this.handleClick = this.handleClick.bind(this);
+      this.handleClick = this.handleClick.bind(this);
     }
 
-    // handleClick(e) {
-    //   e.preventDefault();
-    //   this.props.fetchUser(this.props.currentUser.id);
-    //   this.props.history.push("/dashboard/");
-    // }
+    handleClick(e) {
+      e.preventDefault();
+      this.props.updateFilter("ctype", "");
+      // this.props.fetchUser(this.props.currentUser.id);
+      this.props.history.push("/dashboard/");
+    }
 
     render () {
       const {currentUser, logout, openModal} = this.props;
@@ -36,7 +37,8 @@ class Greeting extends React.Component {
         </hgroup>
         <NavLink exact activeClassName="active" to="/" >Main Button with logo</NavLink>
         <br></br>
-         <NavLink exact activeClassName="active" to="/dashboard" >Dashboard</NavLink>
+         
+         <button onClick={this.handleClick}>Dashboard1</button>
          <br></br>
          <NavLink exact activeClassName="active" to="/courses" >All Courses</NavLink>
         <h2>Hi, {currentUser.username}!</h2>
@@ -49,3 +51,4 @@ class Greeting extends React.Component {
 
 
 export default withRouter(Greeting);
+// <NavLink exact activeClassName="active" to="/dashboard" >Dashboard</NavLink>

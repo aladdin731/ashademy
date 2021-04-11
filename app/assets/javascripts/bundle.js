@@ -1531,13 +1531,13 @@ var Dashboard = /*#__PURE__*/function (_React$Component) {
         }, "Delete"));
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.handleClick
-      }, "Add Course"), form), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "My requests status "), requests.map(function (request) {
+      }, "Add Course"), form), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "My requests status "), requests.map(function (request, i) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-          key: request.id
+          key: i
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Start From: ", request.startTime), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "End To: ", request.endTime), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Status: ", request.status), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Course: ", request.course), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Instructor: ", request.receiver));
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Received requests to deal with "), receivedRequests.map(function (request) {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Received requests to deal with "), receivedRequests.map(function (request, i) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-          key: request.id
+          key: i
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Start From: ", request.startTime), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "End To: ", request.endTime), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Course: ", request.course), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Sender: ", request.sender), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Status: ", request.status), request.status === "PENDING" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           onClick: function onClick() {
             return updateRequest({
@@ -1684,19 +1684,28 @@ var Greeting = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(Greeting);
 
   function Greeting(props) {
+    var _this;
+
     _classCallCheck(this, Greeting);
 
-    return _super.call(this, props); // this.handleClick = this.handleClick.bind(this);
-  } // handleClick(e) {
-  //   e.preventDefault();
-  //   this.props.fetchUser(this.props.currentUser.id);
-  //   this.props.history.push("/dashboard/");
-  // }
-
+    _this = _super.call(this, props);
+    _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this));
+    return _this;
+  }
 
   _createClass(Greeting, [{
+    key: "handleClick",
+    value: function handleClick(e) {
+      e.preventDefault();
+      this.props.updateFilter("ctype", ""); // this.props.fetchUser(this.props.currentUser.id);
+
+      this.props.history.push("/dashboard/");
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       var _this$props = this.props,
           currentUser = _this$props.currentUser,
           logout = _this$props.logout,
@@ -1734,11 +1743,9 @@ var Greeting = /*#__PURE__*/function (_React$Component) {
           exact: true,
           activeClassName: "active",
           to: "/"
-        }, "Main Button with logo"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
-          exact: true,
-          activeClassName: "active",
-          to: "/dashboard"
-        }, "Dashboard"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
+        }, "Main Button with logo"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: _this2.handleClick
+        }, "Dashboard1"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
           exact: true,
           activeClassName: "active",
           to: "/courses"
@@ -1753,7 +1760,7 @@ var Greeting = /*#__PURE__*/function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 ;
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(Greeting));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(Greeting)); // <NavLink exact activeClassName="active" to="/dashboard" >Dashboard</NavLink>
 
 /***/ }),
 
@@ -1771,6 +1778,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
 /* harmony import */ var _greeting__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./greeting */ "./frontend/components/greeting/greeting.jsx");
 /* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+/* harmony import */ var _actions_course_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/course_actions */ "./frontend/actions/course_actions.js");
+/* harmony import */ var _actions_filter_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../actions/filter_actions */ "./frontend/actions/filter_actions.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
 
 
 
@@ -1785,15 +1798,25 @@ var mapStateToProps = function mapStateToProps(_ref) {
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
+  return _defineProperty({
     logout: function logout() {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["logout"])());
     },
-    // fetchUser: (currentUserId) => fetchUser(currentUserId)
+    fetchUser: function fetchUser(currentUserId) {
+      return Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_1__["fetchUser"])(currentUserId);
+    },
     openModal: function openModal(modal) {
       return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__["openModal"])(modal));
+    },
+    fetchCourses: function fetchCourses() {
+      return dispatch(Object(_actions_course_actions__WEBPACK_IMPORTED_MODULE_5__["fetchCourses"])());
+    },
+    updateFilter: function updateFilter(filter, value) {
+      return dispatch(Object(_actions_filter_actions__WEBPACK_IMPORTED_MODULE_6__["updateFilter"])(filter, value));
     }
-  };
+  }, "fetchUser", function fetchUser(id) {
+    return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_1__["fetchUser"])(id));
+  });
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_greeting__WEBPACK_IMPORTED_MODULE_3__["default"]));
@@ -1940,9 +1963,7 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 
- // const handleChange = (filter, updateFilter) => e => (
-//   updateFilter(filter, e.currentTarget.value)
-// );
+
 
 var FilterForm = /*#__PURE__*/function (_React$Component) {
   _inherits(FilterForm, _React$Component);
@@ -1956,7 +1977,7 @@ var FilterForm = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      ctype: ""
+      ctype: _this.props.ctype
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
@@ -1979,9 +2000,17 @@ var FilterForm = /*#__PURE__*/function (_React$Component) {
       this.props.history.push("/searchResults");
     }
   }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      if (!this.state.ctype) {
+        this.props.updateFilter("ctype", "All");
+      } else {
+        this.props.updateFilter("ctype", this.state.ctype);
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
-      var ctype = this.props.ctype;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Course Type", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -1996,7 +2025,9 @@ var FilterForm = /*#__PURE__*/function (_React$Component) {
   }]);
 
   return FilterForm;
-}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component); // const FilterForm = ({ ctype, updateFilter }) => (
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(FilterForm)); // const FilterForm = ({ ctype, updateFilter }) => (
 //   <div>
 //     <br></br>
 //     <form>
@@ -2014,9 +2045,7 @@ var FilterForm = /*#__PURE__*/function (_React$Component) {
 //     <br></br>
 //   </div>
 // );
-
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(FilterForm)); // <form>
+// <form>
 //   <select
 //         value={ctype}
 //         onChange={handleChange('ctype', updateFilter)}
@@ -2085,19 +2114,16 @@ var Search = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(Search, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.props.fetchCourses();
-    }
-  }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
           ctype = _this$props.ctype,
-          updateFilter = _this$props.updateFilter;
+          updateFilter = _this$props.updateFilter,
+          fetchCourses = _this$props.fetchCourses;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_filter_form__WEBPACK_IMPORTED_MODULE_1__["default"], {
         ctype: ctype,
-        updateFilter: updateFilter
+        updateFilter: updateFilter,
+        fetchCourses: fetchCourses
       }));
     }
   }]);
@@ -2162,6 +2188,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _course_course_index_item__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../course/course_index_item */ "./frontend/components/course/course_index_item.jsx");
+/* harmony import */ var _filter_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./filter_form */ "./frontend/components/search/filter_form.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2187,6 +2214,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var SearchResult = /*#__PURE__*/function (_React$Component) {
   _inherits(SearchResult, _React$Component);
 
@@ -2196,24 +2224,32 @@ var SearchResult = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, SearchResult);
 
     return _super.call(this, props);
-  }
+  } // componentDidMount(){
+  //   // if(this.props.currentUser) {
+  //   //   this.props.fetchUser(this.props.currentUser.id)
+  //   // }else {
+  //   //   this.props.fetchUsers()
+  //   // }
+  //   // this.props.fetchCourses()
+  //   if(this.props.ctype) {
+  //     this.props.fetchCourses()
+  //   }
+  // }
+
 
   _createClass(SearchResult, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      if (this.props.currentUser) {
-        this.props.fetchUser(this.props.currentUser.id);
-      } else {
-        this.props.fetchUsers();
-      }
-
-      this.props.fetchCourses();
-    }
-  }, {
     key: "render",
     value: function render() {
-      var courses = this.props.courses;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Courses You are interested in: "), courses.map(function (course) {
+      var _this$props = this.props,
+          ctype = _this$props.ctype,
+          updateFilter = _this$props.updateFilter,
+          courses = _this$props.courses,
+          fetchCourses = _this$props.fetchCourses;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_filter_form__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        ctype: ctype,
+        updateFilter: updateFilter,
+        fetchCourses: fetchCourses
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Courses You are interested in: "), courses.map(function (course) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_course_course_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
           course: course,
           key: course.id
@@ -2223,18 +2259,7 @@ var SearchResult = /*#__PURE__*/function (_React$Component) {
   }]);
 
   return SearchResult;
-}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component); // const SearchResult = ({ courses }) => (
-//   <div>
-//     <h1>Courses You are interested in: </h1>
-//     {courses.map(course => (
-//       <CourseIndexItem
-//         course={course}
-//         key={course.id}
-//       />
-//     ))}
-//   </div>
-// );
-
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (SearchResult);
 
@@ -2254,6 +2279,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _search_result__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./search_result */ "./frontend/components/search/search_result.jsx");
 /* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/user_actions */ "./frontend/actions/user_actions.js");
 /* harmony import */ var _actions_course_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../actions/course_actions */ "./frontend/actions/course_actions.js");
+/* harmony import */ var _actions_filter_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../../actions/filter_actions */ "./frontend/actions/filter_actions.js");
+
 
 
 
@@ -2261,9 +2288,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state) {
+  var courses = Object.values(state.entities.courses);
+  var currentUser = state.session.currentUser;
+  var ctype = state.ui.filters.ctype;
   return {
-    courses: Object(_reducers_selectors__WEBPACK_IMPORTED_MODULE_1__["asArray"])(state.entities),
-    currentUser: state.session.currentUser
+    courses: courses,
+    currentUser: currentUser,
+    ctype: ctype
   };
 };
 
@@ -2277,6 +2308,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     fetchCourses: function fetchCourses() {
       return dispatch(Object(_actions_course_actions__WEBPACK_IMPORTED_MODULE_4__["fetchCourses"])());
+    },
+    updateFilter: function updateFilter(filter, value) {
+      return dispatch(Object(_actions_filter_actions__WEBPACK_IMPORTED_MODULE_5__["updateFilter"])(filter, value));
     }
   };
 };
@@ -2667,6 +2701,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/user_actions */ "./frontend/actions/user_actions.js");
 /* harmony import */ var _actions_request_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/request_actions */ "./frontend/actions/request_actions.js");
 /* harmony import */ var _actions_review_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../actions/review_actions */ "./frontend/actions/review_actions.js");
+/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
+
 
 
 
@@ -2696,6 +2732,8 @@ var courseReducer = function courseReducer() {
     case _actions_request_actions__WEBPACK_IMPORTED_MODULE_2__["RECEIVE_REQUEST"]:
       nextState[action.payload.course.id] = action.payload.course;
       return nextState;
+    // case RECEIVE_CURRENT_USER:
+    //   return Object.assign({}, state, action.currentUser.courses);
 
     default:
       return state;
@@ -3030,7 +3068,11 @@ var selectCoursesForCurrentUser = function selectCoursesForCurrentUser(state, cu
 
   if (user && user.courseIds && Object.keys(state.entities.courses).length !== 0) {
     return user.courseIds.map(function (courseId) {
-      return state.entities.courses[courseId];
+      if (!state.entities.courses[courseId]) {
+        return [];
+      } else {
+        return state.entities.courses[courseId];
+      }
     });
   } else {
     return [];
@@ -3039,9 +3081,14 @@ var selectCoursesForCurrentUser = function selectCoursesForCurrentUser(state, cu
 var selectRequestsForCurrentUser = function selectRequestsForCurrentUser(state, currentUser) {
   var user = state.entities.users[currentUser.id];
 
-  if (user && user.requestIds && Object.keys(state.entities.requests).length !== 0) {
+  if (user && user.requestIds && Object.keys(state.entities.requests).length !== 0 && Object.keys(state.entities.courses).length !== 0) {
     return user.requestIds.map(function (requestId) {
       var request = state.entities.requests[requestId];
+
+      if (!state.entities.courses[request.courseId]) {
+        return [];
+      }
+
       request.course = state.entities.courses[request.courseId].courseName;
       request.receiver = request.username;
       return request;
@@ -3053,9 +3100,14 @@ var selectRequestsForCurrentUser = function selectRequestsForCurrentUser(state, 
 var selectReceivedRequestsForCurrentUser = function selectReceivedRequestsForCurrentUser(state, currentUser) {
   var user = state.entities.users[currentUser.id];
 
-  if (user && user.receivedRequestsids && Object.keys(state.entities.requests).length !== 0) {
+  if (user && user.receivedRequestsids && Object.keys(state.entities.requests).length !== 0 && Object.keys(state.entities.courses).length !== 0) {
     return user.receivedRequestsids.map(function (requestId) {
       var request = state.entities.requests[requestId];
+
+      if (!state.entities.courses[request.courseId]) {
+        return [];
+      }
+
       request.course = state.entities.courses[request.courseId].courseName;
       request.sender = request.username;
       return request;

@@ -87,8 +87,8 @@ class Dashboard extends React.Component{
                 </div>
                 <div>
                     <h1>My requests status </h1>
-                    {requests.map(request => (
-                        <li key={request.id}>
+                    {requests.map((request,i) => (
+                        <li key={i}>
                             <h3>Start From: {request.startTime}</h3>
                             <h3>End To: {request.endTime}</h3>
                             <h3>Status: {request.status}</h3>
@@ -99,8 +99,8 @@ class Dashboard extends React.Component{
                 </div>
                 <div>
                     <h1>Received requests to deal with </h1>
-                    {receivedRequests.map(request => (
-                        <li key={request.id}>
+                    {receivedRequests.map((request,i) => (
+                        <li key={i}>
                             <h3>Start From: {request.startTime}</h3>
                             <h3>End To: {request.endTime}</h3>
                             <h3>Course: {request.course}</h3>

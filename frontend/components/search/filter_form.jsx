@@ -1,15 +1,13 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
-// const handleChange = (filter, updateFilter) => e => (
-//   updateFilter(filter, e.currentTarget.value)
-// );
+
 
 class FilterForm extends React.Component{
   constructor(props) {
     super(props);
     this.state={
-      ctype:""
+      ctype:this.props.ctype 
     }
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -26,8 +24,15 @@ class FilterForm extends React.Component{
     this.props.history.push("/searchResults");
   }
 
+    componentDidMount(){
+      if(!this.state.ctype) {
+        this.props.updateFilter("ctype", "All");
+      }else {
+        this.props.updateFilter("ctype", this.state.ctype);
+      }
+    }
+
   render(){
-    const { ctype } = this.props;
     return(
       <div>
         <br></br>
@@ -47,6 +52,8 @@ class FilterForm extends React.Component{
     )
   }
 }
+
+export default withRouter(FilterForm);
 
 // const FilterForm = ({ ctype, updateFilter }) => (
 //   <div>
@@ -70,7 +77,7 @@ class FilterForm extends React.Component{
 //   </div>
 // );
 
-export default withRouter(FilterForm);
+
 
     // <form>
     //   <select

@@ -9,7 +9,13 @@ export const selectCourseTagsNames = (state) => {
 export const selectCoursesForCurrentUser = (state, currentUser) => {
   const user = state.entities.users[currentUser.id];
   if(user && user.courseIds && Object.keys(state.entities.courses).length !== 0 ) {
-    return user.courseIds.map(courseId => state.entities.courses[courseId])
+    return user.courseIds.map(courseId => {
+      if(!state.entities.courses[courseId]){
+        return [];
+      }else {
+        return state.entities.courses[courseId]
+      }
+    })
   }else {
     return [];
   }
@@ -17,9 +23,12 @@ export const selectCoursesForCurrentUser = (state, currentUser) => {
 
 export const selectRequestsForCurrentUser = (state, currentUser) => {
   const user = state.entities.users[currentUser.id];
-  if(user && user.requestIds && Object.keys(state.entities.requests).length !== 0 ) {
+  if(user && user.requestIds && Object.keys(state.entities.requests).length !== 0 && Object.keys(state.entities.courses).length !== 0 ) {
     return user.requestIds.map(requestId => {
         let request = state.entities.requests[requestId];
+        if(!state.entities.courses[request.courseId]) {
+          return [];
+        }
         request.course = state.entities.courses[request.courseId].courseName;
         request.receiver = request.username;
         return request;
@@ -31,9 +40,12 @@ export const selectRequestsForCurrentUser = (state, currentUser) => {
 
 export const selectReceivedRequestsForCurrentUser = (state, currentUser) => {
   const user = state.entities.users[currentUser.id];
-  if(user && user.receivedRequestsids && Object.keys(state.entities.requests).length !== 0 ) {
+  if(user && user.receivedRequestsids && Object.keys(state.entities.requests).length !== 0 && Object.keys(state.entities.courses).length !== 0) {
     return user.receivedRequestsids.map(requestId => {
         let request = state.entities.requests[requestId];
+        if(!state.entities.courses[request.courseId]) {
+          return [];
+        }
         request.course = state.entities.courses[request.courseId].courseName;
         request.sender = request.username;
         return request;
@@ -48,6 +60,7 @@ export const selectReviewsForCourse = (state) => {
 }
 
 export const asArray = ({ courses }) => (
+
   Object.keys(courses).map(key => courses[key])
 );
 

@@ -2,6 +2,7 @@ import { RECEIVE_ALL_COURSES, RECEIVE_COURSE, REMOVE_COURSE} from '../actions/co
 import {RECEIVE_USER} from '../actions/user_actions';
 import {RECEIVE_REQUEST} from '../actions/request_actions';
 import {RECEIVE_REVIEW} from '../actions/review_actions';
+import {RECEIVE_CURRENT_USER} from '../actions/session_actions'
 
 const courseReducer = (state = {}, action) => {
   Object.freeze(state);
@@ -20,6 +21,8 @@ const courseReducer = (state = {}, action) => {
     case RECEIVE_REQUEST:
       nextState[action.payload.course.id] = action.payload.course;
       return nextState;
+    // case RECEIVE_CURRENT_USER:
+    //   return Object.assign({}, state, action.currentUser.courses);
     default:
       return state;
   }
