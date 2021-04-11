@@ -9,7 +9,6 @@ import {
 } from 'react-router-dom';
 
 import GreetingContainer from "./greeting/greeting_container";
-import Home from './home/home';
 import SignUpFormContainer from './session_form/signup_form_container';
 import LogInFormContainer from './session_form/login_form_container';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
