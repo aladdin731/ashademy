@@ -18,6 +18,7 @@ import CourseIndexContainer from '../components/course/course_index_container';
 import DashboardContainer from '../components/dashboard/dashboard_container';
 import Modal from './modal/modal';
 import SearchContainer from './search/search_container';
+import SearchResultContainer from './search/search_result_container.js';
 
 const App = () => (
   <div>
@@ -31,6 +32,7 @@ const App = () => (
       <Route exact path="/courses" component={CourseIndexContainer} />
       <ProtectedRoute path="/dashboard" component={DashboardContainer}/>
       <Route exact path="/" component={SearchContainer}/>
+      <Route exact path="/searchResults" component={SearchResultContainer}/>
       <Redirect to="/"/>
     </Switch>
     
