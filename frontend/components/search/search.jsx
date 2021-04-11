@@ -9,6 +9,7 @@ class Search extends React.Component{
     this.props.fetchCourses();
   }
   render(){
+    const {ctype, updateFilter} = this.props;
     return(
       <div >
         <FilterForm

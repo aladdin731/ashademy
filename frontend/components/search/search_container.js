@@ -4,7 +4,9 @@ import { updateFilter } from '../../actions/filter_actions';
 import { asArray } from '../../reducers/selectors';
 import Search from './search';
 
-
+const mapStateToProps = state => ({
+  ctype: state.ui.filters.ctype,
+});
 
 const mapDispatchToProps = dispatch => ({
   updateFilter: (filter, value) => dispatch(updateFilter(filter, value)),
@@ -12,6 +14,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Search);
