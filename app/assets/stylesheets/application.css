@@ -452,6 +452,11 @@ template {
   }
 
 
+  .btn.header-button:hover {
+    background-color: rgb(154, 146, 146);
+  }
+
+
 
 
  /* main part */
