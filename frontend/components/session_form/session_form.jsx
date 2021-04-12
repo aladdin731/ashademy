@@ -39,6 +39,7 @@ class SessionForm extends React.Component {
   }
 
   render() {
+    let text = this.props.formType === "Log in" ? "Don't have an account?" : "Already have an account?"
     return (
       <div className="modal-container">
 
@@ -80,7 +81,7 @@ class SessionForm extends React.Component {
 
         </form>
         <div className="modal-footer">
-          <span className="modal-footer-title">Don't have an account? {this.props.otherForm}</span>
+          <span className="modal-footer-title">{text} {this.props.otherForm}</span>
           <button className="btn modal-footer-demo" onClick={() => this.props.handleDemo().then(this.props.closeModal())}>Log In as Demo User</button>
         </div>
       </div>

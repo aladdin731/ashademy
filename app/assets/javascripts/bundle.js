@@ -2536,6 +2536,7 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
+      var text = this.props.formType === "Log in" ? "Don't have an account?" : "Already have an account?";
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "modal-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2578,7 +2579,7 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
         className: "modal-footer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "modal-footer-title"
-      }, "Don't have an account? ", this.props.otherForm), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, text, " ", this.props.otherForm), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "btn modal-footer-demo",
         onClick: function onClick() {
           return _this3.props.handleDemo().then(_this3.props.closeModal());
