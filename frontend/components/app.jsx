@@ -24,18 +24,18 @@ const App = () => (
   <div>
     <Modal />
     <header>
-      <h1>Welcome to ashademy!</h1>
       <GreetingContainer />
     </header>
-    <Switch>
-      <Route path="/courses/:courseId" component={CourseDetailContainer}/>
-      <Route exact path="/courses" component={CourseIndexContainer} />
-      <ProtectedRoute path="/dashboard" component={DashboardContainer}/>
-      <Route exact path="/" component={SearchContainer}/>
-      <Route exact path="/searchResults" component={SearchResultContainer}/>
-      <Redirect to="/"/>
-    </Switch>
-    
+    <main>
+      <Switch>
+        <Route path="/courses/:courseId" component={CourseDetailContainer}/>
+        <Route exact path="/courses" component={CourseIndexContainer} />
+        <ProtectedRoute path="/dashboard" component={DashboardContainer}/>
+        <Route exact path="/" component={SearchContainer}/>
+        <Route exact path="/searchResults" component={SearchResultContainer}/>
+        <Redirect to="/"/>
+      </Switch>
+    </main>
     <Footer />
   </div>
 );

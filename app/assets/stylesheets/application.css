@@ -391,8 +391,73 @@ template {
     border-radius: .2em;
   }
 
+  /* header part */
+
+  body {
+    background-color: black;
+  }
+
+  .header {
+    box-sizing: border-box;
+    height:80px;
+    background-color: black;
+    display: flex;
+    justify-content: space-between; 
+    padding: 0, 1rem;
+    align-items: center;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
 
 
+  .logo-section{
+    /* background-color: violet; */
+    margin-left:1rem;
+    margin-top: .5rem;
+  }
+
+  .domain {
+    display: flex;
+    justify-content: space-between; 
+    padding: 0, 1rem;
+    align-items: center;
+    text-decoration: none;
+  }
+
+  .website-name{
+    color: white;
+    font-size: 1.5rem;
+    /* background-color:teal; */
+  }
+
+  .icon.logo-icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 20px;
+  }
+
+
+  .login-section{
+    /* background-color: violet; */
+  }
+
+
+  .btn.header-button {
+    border-radius: .5rem;
+    background-color: black;
+    border: 1px solid white;
+    padding: .5rem;
+    margin: 10px;
+    margin-right: 20px;
+  }
+
+
+
+
+ /* main part */
+ main {
+   background-color: greenyellow;
+ }
 
   /* footer part */
 

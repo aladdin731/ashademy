@@ -20,30 +20,34 @@ class Greeting extends React.Component {
     render () {
       const {currentUser, logout, openModal} = this.props;
       const sessionLinks = () => (
-      <div>
-
-        <NavLink exact activeClassName="active" to="/" >Main Button with logo</NavLink>
-        <br></br>
-        <nav className="login-signup">
-          <button onClick={() => openModal('login')}>Login</button>
-          &nbsp;or&nbsp;
-          <button onClick={() => openModal('signup')}>Signup</button>
-        </nav>
+      <div className="header">
+        <div className="logo-section">
+          <Link to="/" className="domain">
+            <img className="icon logo-icon" src={window.logo} alt="ashademy"/>
+            <span className="website-name"> Ashademy </span>
+          </Link>
+        </div>
+        
+        <div className="login-section">
+          <button className="btn header-button" onClick={() => openModal('login')}>Login</button>
+          <button className="btn header-button" onClick={() => openModal('signup')}>Signup</button>
+        </div>
 
       </div>
     );
     const personalGreeting = () => (
-      <div>
-        <hgroup className="header-group">
-          <button className="header-button" onClick={logout}>Log Out</button>
-        </hgroup>
-        <NavLink exact activeClassName="active" to="/" >Main Button with logo</NavLink>
-        <br></br>
-         
-         <button onClick={this.handleClick}>Dashboard1</button>
-         <br></br>
+      <div className="header">
+        <div className="logo-section">
+          <Link to="/" className="domain">
+            <img className="icon logo-icon" src={window.logo} alt="ashademy"/>
+             <span className="website-name"> Ashademy </span>
+          </Link>
+        </div>
 
-        <h2>Hi, {currentUser.username}!</h2>
+        <div className="login-section">
+          <button className="btn header-button" onClick={this.handleClick}>Dashboard</button>
+          <button className="btn header-button" onClick={logout}>Log Out</button>
+        </div>
       </div>
     );
 
