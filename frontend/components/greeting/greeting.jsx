@@ -15,6 +15,8 @@ class Greeting extends React.Component {
       this.props.history.push("/dashboard/");
     }
 
+
+
     render () {
       const {currentUser, logout, openModal} = this.props;
       const sessionLinks = () => (
@@ -27,7 +29,7 @@ class Greeting extends React.Component {
           &nbsp;or&nbsp;
           <button onClick={() => openModal('signup')}>Signup</button>
         </nav>
-         <NavLink exact activeClassName="active" to="/courses" >All Courses</NavLink>
+
       </div>
     );
     const personalGreeting = () => (
@@ -40,7 +42,7 @@ class Greeting extends React.Component {
          
          <button onClick={this.handleClick}>Dashboard1</button>
          <br></br>
-         <NavLink exact activeClassName="active" to="/courses" >All Courses</NavLink>
+
         <h2>Hi, {currentUser.username}!</h2>
       </div>
     );
@@ -51,4 +53,3 @@ class Greeting extends React.Component {
 
 
 export default withRouter(Greeting);
-// <NavLink exact activeClassName="active" to="/dashboard" >Dashboard</NavLink>

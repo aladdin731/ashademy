@@ -1,7 +1,7 @@
 import React from 'react';
 
 import FilterForm from './filter_form';
-
+import TypeItem from './type_item'
 
 
 class Search extends React.Component{
@@ -17,6 +17,12 @@ class Search extends React.Component{
           updateFilter={updateFilter}
           fetchCourses={fetchCourses}
         />
+
+        <div>
+          <ul>
+            {COURSE_TYPES.map((type, i) => <TypeItem type={type} key={i} updateFilter={updateFilter}/>)}
+          </ul>
+        </div>
       </div>
     )
   }

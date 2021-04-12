@@ -7,18 +7,6 @@ class SearchResult extends React.Component{
     super(props);
   }
 
-  // componentDidMount(){
-  //   // if(this.props.currentUser) {
-  //   //   this.props.fetchUser(this.props.currentUser.id)
-  //   // }else {
-  //   //   this.props.fetchUsers()
-  //   // }
-  //   // this.props.fetchCourses()
-  //   if(this.props.ctype) {
-  //     this.props.fetchCourses()
-  //   }
-  // }
-
   render(){
     const {ctype, updateFilter, courses, fetchCourses} = this.props;
     return(
