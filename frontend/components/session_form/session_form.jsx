@@ -45,7 +45,7 @@ class SessionForm extends React.Component {
         <form onSubmit={this.handleSubmit} className="login-form-box">
           Welcome to Ashademy!
           <br/>
-          <div onClick={this.props.closeModal} className="close-x">Close</div>
+          <div onClick={this.props.closeModal} className="close-x">&times;</div>
           {this.renderErrors()}
           <div className="login-form">
             <br/>
