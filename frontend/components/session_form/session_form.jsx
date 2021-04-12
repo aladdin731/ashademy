@@ -40,37 +40,49 @@ class SessionForm extends React.Component {
 
   render() {
     return (
-      <div className="login-form-container">
-      Please {this.props.formType} or {this.props.otherForm}
-        <form onSubmit={this.handleSubmit} className="login-form-box">
-          Welcome to Ashademy!
-          <br/>
-          <div onClick={this.props.closeModal} className="close-x">&times;</div>
-          {this.renderErrors()}
-          <div className="login-form">
-            <br/>
-            <label>Username:
-              <input type="text"
-                value={this.state.username}
-                onChange={this.update('username')}
-                className="login-input"
-              />
-            </label>
-            <br/>
-            <label>Password:
-              <input type="password"
-                value={this.state.password}
-                onChange={this.update('password')}
-                className="login-input"
-              />
-            </label>
-            <br/>
-            <input className="session-submit" type="submit" value={this.props.formType} />
+      <div className="modal-container">
+
+        <div className="modal-header">
+          <button onClick={this.props.closeModal} className="close-x">&times;</button>
+          <span className="modal-title">{this.props.formType}</span>
+          
+        </div>
+
+        <form onSubmit={this.handleSubmit} className="modal-form">
+          
+          <div className="modal-form-input">
+            <div className="modal-input-block">
+              <label className="modal-input-label">Username
+              <br></br>
+                <input type="text"
+                  value={this.state.username}
+                  onChange={this.update('username')}
+                  className="input modal-input"
+                />
+              </label>
+            </div>
+
+            <div className="modal-input-block">
+              <label className="modal-input-label">Password
+              <br></br>
+                <input type="password"
+                  value={this.state.password}
+                  onChange={this.update('password')}
+                  className="input modal-input"
+                />
+              </label>
+            </div>
+            
+            <span className="modal-error"> {this.renderErrors()} </span>
+            <input className="btn modal-submit" type="submit" value={this.props.formType} />
             <br/>
           </div>
+
         </form>
-        
-        <button onClick={() => this.props.handleDemo().then(this.props.closeModal())}>Log In as Demo User</button>
+        <div className="modal-footer">
+          <span className="modal-footer-title">Don't have an account? {this.props.otherForm}</span>
+          <button className="btn modal-footer-demo" onClick={() => this.props.handleDemo().then(this.props.closeModal())}>Log In as Demo User</button>
+        </div>
       </div>
     );
   }

@@ -9,7 +9,7 @@ import { openModal, closeModal } from '../../actions/modal_actions';
 const mapStateToProps = ({ errors }) => {
   return {
     errors: errors.session,
-    formType: 'signup',
+    formType: 'Sign up',
     // navLink: <Link to="/login">log in instead</Link>,
   };
 };
@@ -20,9 +20,9 @@ const mapDispatchToProps = dispatch => {
     processForm: (user) => dispatch(signup(user)),
     clearErrors: () => dispatch(clearErrors()),
     otherForm: (
-      <button onClick={() => dispatch(openModal('login'))}>
-        Login
-      </button>
+      <span className="modal-footer-other" onClick={() => dispatch(openModal('login'))}>
+        Log in
+      </span>
     ),
     closeModal: () => dispatch(closeModal())
   };
