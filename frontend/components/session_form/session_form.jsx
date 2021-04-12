@@ -44,7 +44,7 @@ class SessionForm extends React.Component {
       <div className="modal-container">
 
         <div className="modal-header">
-          <button onClick={this.props.closeModal} className="close-x">&times;</button>
+          <button className="close-x" onClick={this.props.closeModal}>&times;</button>
           <span className="modal-title">{this.props.formType}</span>
           
         </div>
@@ -76,7 +76,6 @@ class SessionForm extends React.Component {
             
             <span className="modal-error"> {this.renderErrors()} </span>
             <input className="btn modal-submit" type="submit" value={this.props.formType} />
-            <br/>
           </div>
 
         </form>
