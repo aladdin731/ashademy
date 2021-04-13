@@ -60,61 +60,72 @@ class Dashboard extends React.Component{
         const form = this.state.addCourse ? <CreateCourseFormContainer /> : ""
         const {currentUser, courses, deleteCourse, updateRequest, requests, receivedRequests} = this.props;
         const photo = this.state.wantToChangeProfile ? 
-        <div>
+        <div className="profile">
             <form onSubmit={this.addProfile}>
-                <input type="text" value={this.state.imageUrl}  placeholder="Image Url" onChange={this.update("imageUrl")}/>
-                <button>Confirm</button>
+                <input className="input input-profile" type="text" value={this.state.imageUrl}  placeholder="Image Url" onChange={this.update("imageUrl")}/>
+                <br></br>
+                <button className="btn btn-profile">Confirm</button>
+                <button className="btn btn-profile" onClick={this.originalProfile}>I want the original one</button>
             </form>
-            <button onClick={this.originalProfile}>Don't want to change</button>
         </div> : ""
         
         return(
-            <div>
-                <img src={this.state.imageUrl} loading="lazy" alt="no profile yet" />
-                <button onClick={this.wannaChangeProfile}>Change Profile</button>
-                {photo}
-                <div>
-                    <h1>My courses</h1>
-                    {courses.map(course => (
-                        <li key={course.id}>
-                            <img src={course.imageUrl}/>
-                            <h3>{course.courseName}</h3>
-                            <button onClick={() => deleteCourse(course.id)}>Delete</button>
-                        </li>
-                    ))}
-                    <button onClick={this.handleClick}>Add Course</button> 
-                    {form}
+            <div className="dashboard">
+                <div className="profile-section">
+                     <img className="img profile-img" src={this.state.imageUrl} loading="lazy" alt="no profile yet" />
+                     <div className="hello-change">
+                        <p>Hi, {currentUser.username}</p>
+                        <button className="btn btn-profile"  onClick={this.wannaChangeProfile}>Change Profile</button>
+                        {photo}
+                     </div>
+                    
                 </div>
-                <div>
+
+                
+                
+                <div className="request-section">
                     <h1>My requests status </h1>
                     {requests.map((request,i) => (
-                        <li key={i}>
-                            <h3>Start From: {request.startTime}</h3>
-                            <h3>End To: {request.endTime}</h3>
-                            <h3>Status: {request.status}</h3>
-                            <h3>Course: {request.course}</h3>
-                            <h3>Instructor: {request.receiver}</h3>
+                        <li key={i} className="request">
+                            <span className="request-detail">Course {request.course} of {request.receiver} from {request.startTime} to {request.endTime} is</span>
+                            <span className="request-status"> {request.status}</span>
                         </li>
                     ))}
                 </div>
-                <div>
+                <div className="received-request-section">
                     <h1>Received requests to deal with </h1>
                     {receivedRequests.map((request,i) => (
-                        <li key={i}>
-                            <h3>Start From: {request.startTime}</h3>
-                            <h3>End To: {request.endTime}</h3>
-                            <h3>Course: {request.course}</h3>
-                            <h3>Sender: {request.sender}</h3>
-                            <h3>Status: {request.status}</h3>
+                        <li key={i} className="request">
+                            <span className="request-detail">Course {request.course} from {request.sender} from {request.startTime} to {request.endTime} is </span>
+                            <span className="request-status">{request.status}</span>
                             {request.status === "PENDING" ? 
-                                (<div>
-                                    <button onClick={() => updateRequest({id:request.id, status:"APPROVED"})}>Accept</button>
-                                    <button onClick={() => updateRequest({id:request.id, status:"DENIED"})}>Deny</button>
-                                </div>
+                                (<span className="request-decision">
+                                    <button className="btn btn-request" onClick={() => updateRequest({id:request.id, status:"APPROVED"})}>Accept</button>
+                                    <button className="btn btn-request" onClick={() => updateRequest({id:request.id, status:"DENIED"})}>Deny</button>
+                                </span>
                                 ) : "" 
                             }  
                         </li>
                     ))}
+                </div>
+                               
+                <div className="course-add-course">
+                    <h1>Courses</h1>
+                    <ul className="courses-section">
+                        {courses.map(course => (
+                            <li className="course-block" key={course.id}>
+                                <img className="img course-img" src={course.imageUrl}/>
+                                <div className="course-delete">
+                                    <h3 className="course-title">{course.courseName}</h3>
+                                    <button className="btn btn-profile" onClick={() => deleteCourse(course.id)}>Delete</button>
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                    <div className="add-course">
+                        <button className="btn btn-add-course" onClick={this.handleClick}>Add Course</button> 
+                        {form}
+                    </div>
                 </div>
             </div>
         )

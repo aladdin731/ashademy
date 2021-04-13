@@ -40,7 +40,7 @@ class CourseForm extends React.Component{
 
   render(){
     return (
-    <div >
+    <div className="course-form">
       <form onSubmit={this.handleSubmit}>
 
         <input
@@ -48,6 +48,7 @@ class CourseForm extends React.Component{
           value={this.state.course_name}
           placeholder="Name"
           onChange={this.update("course_name")}
+          className="input add-course-input"
         />
 
         <input
@@ -55,12 +56,13 @@ class CourseForm extends React.Component{
           value={this.state.image_url}
           placeholder="Image Url"
           onChange={this.update("image_url")}
+          className="input add-course-input"
         />
 
         <select
           value={this.state.course_type}
           onChange={this.update("course_type")}
-
+          className="input add-course-input"
         >
         {COURSE_TYPES.map((type, i) => {
           return (
@@ -76,6 +78,7 @@ class CourseForm extends React.Component{
           value={this.state.description}
           placeholder="Description"
           onChange={this.update("description")}
+          className="input add-course-input"
         />
 
 
@@ -84,6 +87,7 @@ class CourseForm extends React.Component{
           value={this.state.tag_1}
           placeholder="Tag 1"
           onChange={this.update("tag_1")}
+          className="input add-course-input"
         />
 
         <input
@@ -91,9 +95,10 @@ class CourseForm extends React.Component{
           value={this.state.tag_2}
           placeholder="Tag 2"
           onChange={this.update("tag_2")}
+          className="input add-course-input"
         />
 
-        <button>Create Course</button>
+        <button className="btn btn-profile">Create Course</button>
 
       </form>
     </div>
