@@ -473,6 +473,7 @@ template {
     width: 80%;
     margin-left: 10%;
     margin-right: 80%;
+    color:hsl(270, 2%, 20%);
   }
 
   .profile-section {
@@ -579,27 +580,22 @@ template {
   border-radius: .5rem;
   margin-right:20%;
   /* background-color: lightcoral; */
+  display: flex;
+  justify-content: space-between;
 }
 
 .request-detail {
   font-size: 1.5rem;
 }
 
-.request-status {
-  font-weight: bold;
-  font-size: 1.5rem;
-}
+
 
 .request-decision {
-  margin-top: 10px;
   margin-right: 5%;
-  margin-left:10%;
+  margin-left:5%;
   /* background-color: lightblue; */
+  display: flex;
 }
-
-
-
-
 
 
 /* search page */
@@ -875,9 +871,8 @@ input.type-input:focus {
 
  .btn.btn-request{
    background-color: hsl(350, 93%, 56%);
-
    margin-right:5%;
-   margin-bottom: 5%;
+   /* margin-bottom: 5%; */
  }
 
   .btn.btn-request:hover{

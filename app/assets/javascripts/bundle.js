@@ -1613,9 +1613,7 @@ var Dashboard = /*#__PURE__*/function (_React$Component) {
           className: "request"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
           className: "request-detail"
-        }, "Course ", request.course, " of ", request.receiver, " from ", request.startTime, " to ", request.endTime, " is"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-          className: "request-status"
-        }, " ", request.status));
+        }, "Course ", request.course, " of ", request.receiver, " from ", request.startTime, " to ", request.endTime, " is ", request.status));
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "received-request-section"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Received requests to deal with "), receivedRequests.map(function (request, i) {
@@ -1624,9 +1622,7 @@ var Dashboard = /*#__PURE__*/function (_React$Component) {
           className: "request"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
           className: "request-detail"
-        }, "Course ", request.course, " from ", request.sender, " from ", request.startTime, " to ", request.endTime, " is "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-          className: "request-status"
-        }, request.status), request.status === "PENDING" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        }, "Course ", request.course, " from ", request.sender, " from ", request.startTime, " to ", request.endTime, " is ", request.status), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, request.status === "PENDING" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
           className: "request-decision"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           className: "btn btn-request",
@@ -1644,7 +1640,7 @@ var Dashboard = /*#__PURE__*/function (_React$Component) {
               status: "DENIED"
             });
           }
-        }, "Deny")) : "");
+        }, "Deny")) : ""));
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "course-add-course"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Courses"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {

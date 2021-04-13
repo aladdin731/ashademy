@@ -87,8 +87,7 @@ class Dashboard extends React.Component{
                     <h1>My requests status </h1>
                     {requests.map((request,i) => (
                         <li key={i} className="request">
-                            <span className="request-detail">Course {request.course} of {request.receiver} from {request.startTime} to {request.endTime} is</span>
-                            <span className="request-status"> {request.status}</span>
+                            <span className="request-detail">Course {request.course} of {request.receiver} from {request.startTime} to {request.endTime} is {request.status}</span>
                         </li>
                     ))}
                 </div>
@@ -96,15 +95,16 @@ class Dashboard extends React.Component{
                     <h1>Received requests to deal with </h1>
                     {receivedRequests.map((request,i) => (
                         <li key={i} className="request">
-                            <span className="request-detail">Course {request.course} from {request.sender} from {request.startTime} to {request.endTime} is </span>
-                            <span className="request-status">{request.status}</span>
-                            {request.status === "PENDING" ? 
-                                (<span className="request-decision">
-                                    <button className="btn btn-request" onClick={() => updateRequest({id:request.id, status:"APPROVED"})}>Accept</button>
-                                    <button className="btn btn-request" onClick={() => updateRequest({id:request.id, status:"DENIED"})}>Deny</button>
-                                </span>
-                                ) : "" 
-                            }  
+                            <span className="request-detail">Course {request.course} from {request.sender} from {request.startTime} to {request.endTime} is {request.status}</span>
+                            <div>
+                                 {request.status === "PENDING" ? 
+                                    (<span className="request-decision">
+                                        <button className="btn btn-request" onClick={() => updateRequest({id:request.id, status:"APPROVED"})}>Accept</button>
+                                        <button className="btn btn-request" onClick={() => updateRequest({id:request.id, status:"DENIED"})}>Deny</button>
+                                    </span>
+                                    ) : "" 
+                                }  
+                            </div>
                         </li>
                     ))}
                 </div>
