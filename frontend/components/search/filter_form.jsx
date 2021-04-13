@@ -34,21 +34,17 @@ class FilterForm extends React.Component{
 
   render(){
     return(
-      <div>
-        <br></br>
-        <form onSubmit={this.handleSubmit}>
-          <label>Course Type
+        <form onSubmit={this.handleSubmit} className="search-form">
             <input
               type="text"
               value={this.state.ctype}
               onChange={this.update("ctype")}
+              placeholder="Course Type"
+              className="type-input"
             />
-          </label>
-          <input type="submit" value="Search"/>
-        
+          <input type="submit" value="Search" className="btn btn-search"/>
         </form>
-
-      </div>
+        
     )
   }
 }

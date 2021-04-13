@@ -16,8 +16,8 @@ class TypeItem extends React.Component{
     render(){
         return (
             <div>
-                <li onClick={this.handleClick}>
-                    {this.props.type}
+                <li className="type" onClick={this.handleClick}>
+                    <button className="btn btn-type" >{this.props.type}</button>
                 </li>
             </div>
         )

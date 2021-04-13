@@ -4,7 +4,6 @@ class Course < ApplicationRecord
         'Backend',
         'Fullstack',
         'Big Data',
-        'Project',
         'Resume',
         'Leetcode',
         'Interview',
