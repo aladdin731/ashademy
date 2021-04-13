@@ -44,13 +44,11 @@ class SessionForm extends React.Component {
       <div className="modal-container">
 
         <div className="modal-header">
-          <button className="close-x" onClick={this.props.closeModal}>&times;</button>
           <span className="modal-title">{this.props.formType}</span>
-          
         </div>
 
         <form onSubmit={this.handleSubmit} className="modal-form">
-          
+          <button className="close-x" onClick={this.props.closeModal}>&times;</button>
           <div className="modal-form-input">
             <div className="modal-input-block">
               <label className="modal-input-label">Username

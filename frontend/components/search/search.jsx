@@ -25,6 +25,12 @@ class Search extends React.Component{
             {COURSE_TYPES.map((type, i) => <TypeItem type={type} key={i} updateFilter={updateFilter}/>)}
           </ul>
         </div>
+        <div className="intro">
+          <div className="intro-p intro-p1">Share experience you got </div>
+          <div className="intro-p intro-p2">from your work experience </div>
+          <div className="intro-p intro-p3">and get other's wisdom</div>
+          <img className="intro-img" src="https://a0.muscache.com/im/pictures/59c2cdc5-c78c-48dc-8adf-647a62e77d75.jpg?im_w=1440"></img>
+        </div>
       </div>
     )
   }
