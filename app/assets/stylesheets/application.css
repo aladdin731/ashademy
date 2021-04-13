@@ -38,6 +38,7 @@ html {
 
 body {
   margin: 0;
+  outline: none 
 }
 
 /**
@@ -381,6 +382,7 @@ template {
     border: none;
     color: white;
     cursor: pointer;
+    outline: none;
   }
 
   .input {
@@ -492,10 +494,11 @@ template {
   box-shadow: 0 0 5px 0 hsl(0, 0%, 70%);
   z-index: 100;
   cursor: pointer;
+  outline: none;
 }
 
-.type-input:focus {
-  border: none;
+input.type-input:focus {
+  /* border: none; */
 }
 
 .btn.btn-search {
