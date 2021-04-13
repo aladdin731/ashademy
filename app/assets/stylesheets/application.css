@@ -686,6 +686,11 @@ input.type-input:focus {
   justify-content: space-around;
  }
 
+ .author-info{
+   font-size: 1.5rem;
+   font-weight: bold;
+ }
+
 
 
  .course-name {
@@ -696,7 +701,7 @@ input.type-input:focus {
  }
 
   .request-form{
-  background-color:hsl(300, 17%, 89%);
+  background-color:hsl(300, 12%, 95%);
   border-radius: .5rem;
   width: 30%;
   height: 20%;
@@ -727,11 +732,16 @@ input.type-input:focus {
  }
 
  .btn.btn-request{
-   background-color: hsl(350, 29%, 55%);
+   background-color: hsl(350, 93%, 56%);
    margin-left:5%;
    margin-right:5%;
    width:90%;
    margin-bottom: 5%;
+ }
+
+  .btn.btn-request:hover{
+   background-color: hsl(350, 93%, 36%);
+   /* background: linear-gradient(to right,  hsl(96, 68%, 70%),  hsl(55, 79%, 58%)); */
  }
 
 
@@ -756,8 +766,8 @@ input.type-input:focus {
 
 img.profile-img{
   margin-left: 5%;
-  width: 50px;
-  height: 50px;
+  width: 70px;
+  height: 70px;
   border-radius: 1000000px;
 }
 
@@ -766,13 +776,76 @@ img.profile-img{
   font-weight: bold;
 }
 
+.review-title{
+  margin-left: 5%;
+  border-bottom: 1px solid black;
+}
+
  .review-section{
-   background-color: darksalmon;
+   /* background-color: darksalmon; */
+   
  }
 
- .review-form {
-   background-color: darkseagreen;
 
+ .review-info{
+   list-style: none;
+ }
+
+ .reviewer-info{
+   font-size: 1rem;
+   display: flex;
+   justify-content: flex-start;
+ }
+
+ .reviewer-name {
+   margin-left:1rem;
+   margin-top:.5rem;
+   /* background-color: hsl(350, 29%, 55%); */
+ }
+
+ .reviewer-time{
+   display: flex;
+   flex-direction: column;
+   margin-left:1rem;
+   margin-top:.5rem;
+ }
+
+ .review-body{
+   margin-left:2rem;
+ }
+
+ /* review form */
+
+  .review-form {
+   /* background-color: darkseagreen; */
+   margin-left: 5%;
+ }
+
+ .review-input{
+   border-radius: .5rem;
+   margin-top:2%;
+   margin-bottom:5%;
+   outline:none;
+   margin-left: 5%;
+   margin-right: 5%;
+   width: 80%;
+   cursor: pointer;
+   resize: none;
+ }
+
+ .review-col{
+   margin-left: 5%;
+ }
+
+ .btn.review-btn {
+  border-radius: .5rem;
+   margin-bottom:5%;
+   outline:none;
+   margin-left: 5%;
+   margin-right: 5%;
+   width: 80%;
+   cursor: pointer;
+   background-color: hsl(350, 93%, 56%);
  }
 
   /* footer part */

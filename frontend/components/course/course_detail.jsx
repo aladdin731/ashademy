@@ -108,13 +108,21 @@ class CourseDetail extends React.Component{
           </div>
 
         <div className="review-section">
-          <h3>Reviews</h3>
+          <h1 className="review-title">Reviews</h1>
           <ul>
             {this.props.reviews.map((review,i) => 
-              <li key={i}> 
-                {review.body} by {review.author.username} 
-                <img className="img profile-img" src={review.author.imageUrl} alt="no profile yet"></img>
-                <p>Rating: {review.rating}</p>
+              <li className="review-info" key={i}> 
+              <div className="reviewer-info">
+                 <img className="img profile-img" src={review.author.imageUrl} alt="no profile yet"></img>
+                 <div className="reviewer-time">
+                    <span className="reviewer-name">{review.author.username} </span>
+                    <span className="reviewer-time">{review.createdAt.slice(0,10)} </span>
+                 </div>
+              </div>
+              <div className="review-body">
+                <p>{review.body}</p>
+                <p>	&#127775;: {review.rating}</p>
+              </div>
               </li>
             )}
           </ul>

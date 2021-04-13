@@ -1,2 +1,2 @@
-json.extract! review, :id, :rating, :body, :course_id, :reviewer_id
+json.extract! review, :id, :rating, :body, :course_id, :reviewer_id, :created_at
 

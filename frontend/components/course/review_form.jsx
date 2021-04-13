@@ -35,27 +35,26 @@ class ReviewForm extends React.Component {
   render() {
     return (
       <div className="review-form">
+        <h1>Leave Review or Questions</h1>
         <form onSubmit={this.handleSubmit}>
-          <label>Rating</label>
-          <br/>
+          <label className="review-col">Rating</label>
           <input
             type="number"
             value={this.state.rating}
             onChange={this.update("rating")}
+            className="input review-input"
           />
-          <br/>
 
-          <label>Comment</label>
-          <br/>
-
+          <label className="review-col">Comment</label>
           <textarea
             cols="30"
             rows="10"
             value={this.state.body}
             onChange={this.update("body")}
+            className="input review-input"
           />
           <br/>
-          <input type="submit" />
+          <input className="btn review-btn" type="submit" />
         </form>
       </div>
     );
