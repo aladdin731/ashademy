@@ -47,29 +47,31 @@ class CourseDetail extends React.Component{
     
     let requestForm;
     if(!this.props.currentUser) {
-      requestForm = <p>Please log in to make request</p>
+      requestForm = <p className="no-request-form">Please log in to make request</p>
     }else if (this.props.instructor.id === this.props.currentUser.id){
-      requestForm = <h3>This course is made by you!</h3> 
+      requestForm = <h3 className="no-request-form">This course is made by you!</h3> 
     }else {
-      requestForm = (<div>
-      <h3>Make Request</h3>
+      requestForm = (<div className="request-form">
+      <h3 className="make-request-title">Make Request</h3>
         <form onSubmit={this.handleSubmit}>
-          <label>Start Date
+          <label className="date">Start Date
             <input
               type="date"
               value={this.state.start_time}
-              onChange={this.update("start_time")} />
+              onChange={this.update("start_time")}
+              className="input request-input" />
             <br/>
           </label>
 
-          <label>End Date
+          <label className="date">End Date
             <input
                 type="date"
                 value={this.state.end_time}
-                onChange={this.update("end_time")} />
+                onChange={this.update("end_time")}
+                className="input request-input" />
               <br/>
           </label>
-          <input type="submit" />
+          <input className="btn btn-request" type="submit" />
         </form>
     </div>)
     }
@@ -78,33 +80,40 @@ class CourseDetail extends React.Component{
     if(!this.props.currentUser) {
       reviewForm = ""
     }else if (this.props.instructor.id === this.props.currentUser.id){
-      reviewForm = <h3>Look at the reviews of your course!</h3> 
+      reviewForm = <h3 className="no-review-form">Look at the reviews of your course!</h3> 
     }else {
       reviewForm = <ReviewFormContainer />
     }
      
     return (
-      <div>
-        {requestForm}
-        <figure>
-          <img src={this.props.course.imageUrl} alt={this.props.course.courseName} />
-        </figure>
-        <ul>   
-          <li><h2>{this.props.course.courseName}</h2></li>
-          <li>Type: {this.props.course.courseType}</li>
-          <li>Description: {this.props.course.description}</li>
-          <li>Instructor: {this.props.instructor.username}</li>
-          <img src={this.props.instructor.imageUrl} alt="no profile yet"></img>
-          <li>Tags: {this.props.tags.join(' ')}</li>
-          <li>Average Rating: {this.props.course.averageRating === 0 ? "No Rating Yet" : this.props.course.averageRating}</li>
-        </ul>
-        <div>
+      <div className="course-detail-page">
+        <h2 className="course-name">{this.props.course.courseName}</h2>
+        <div className="course-detail">
+           
+          <img className="img course-detail-img" src={this.props.course.imageUrl} alt={this.props.course.courseName} />
+          {requestForm}
+         
+        </div>
+        <div className="course-detail-info">   
+            <div className="author-section">
+              <span className="author-info">{this.props.course.courseName} by {this.props.instructor.username}</span>
+              <img className="img profile-img" src={this.props.instructor.imageUrl} alt="no profile yet"></img>
+            </div>
+            <div className="course-info">
+              <p>&#128655;: {this.props.course.courseType}</p>
+              <p>&#9999;: {this.props.course.description}</p>
+              <p>&#127991;: {this.props.tags.join(' ')}</p>
+              <p>&#127775;: {this.props.course.averageRating === 0 ? "No Rating Yet" : this.props.course.averageRating}</p>
+            </div>
+          </div>
+
+        <div className="review-section">
           <h3>Reviews</h3>
           <ul>
             {this.props.reviews.map((review,i) => 
               <li key={i}> 
                 {review.body} by {review.author.username} 
-                <img src={review.author.imageUrl} alt="no profile yet"></img>
+                <img className="img profile-img" src={review.author.imageUrl} alt="no profile yet"></img>
                 <p>Rating: {review.rating}</p>
               </li>
             )}

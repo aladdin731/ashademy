@@ -668,6 +668,113 @@ input.type-input:focus {
   
  }
 
+ /* course-detail-show */
+
+
+ .course-detail-page {
+  width: 70%;
+  margin-top: 5%;
+  margin-left: 15%;
+  margin-right: 15%;
+  /* background-color: darkkhaki; */
+  /* position: relative; */
+ }
+
+ .course-detail {
+  /* background-color: darkolivegreen; */
+  display: flex;
+  justify-content: space-around;
+ }
+
+
+
+ .course-name {
+   /* padding-top: 5%; */
+   margin-left: 5%;
+   font-weight: bold;
+   font-size: 3rem;
+ }
+
+  .request-form{
+  background-color:hsl(300, 17%, 89%);
+  border-radius: .5rem;
+  width: 30%;
+  height: 20%;
+  margin-top: 5%;
+ }
+
+ .make-request-title{
+   margin-left: 5%;
+ }
+
+ .date {
+   margin-left: 5%;
+ }
+
+ input.request-input{
+   /* background-color: hsl(350, 29%, 55%); */
+   border-radius: .5rem;
+   margin-top:5%;
+   margin-bottom:5%;
+   outline:none;
+   margin-left: 5%;
+   margin-right: 5%;
+   width: 80%;
+ }
+
+  input.request-input:hover{
+   cursor: pointer;
+ }
+
+ .btn.btn-request{
+   background-color: hsl(350, 29%, 55%);
+   margin-left:5%;
+   margin-right:5%;
+   width:90%;
+   margin-bottom: 5%;
+ }
+
+
+
+ img.course-detail-img {
+    width: 300px;
+    height: 300px;
+    border-radius: .5rem;
+ }
+
+ .course-detail-info {
+   list-style: none;
+   /* background-color: darkslateblue; */
+   margin-left: 5%;
+   margin-top: 5%;
+ }
+
+ .author-section{
+   border-bottom: 1px solid black;
+   /* background-color: blueviolet; */
+ }
+
+img.profile-img{
+  margin-left: 5%;
+  width: 50px;
+  height: 50px;
+  border-radius: 1000000px;
+}
+
+.course-info {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+ .review-section{
+   background-color: darksalmon;
+ }
+
+ .review-form {
+   background-color: darkseagreen;
+
+ }
+
   /* footer part */
 
   .footer {
