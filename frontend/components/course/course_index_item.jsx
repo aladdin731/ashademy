@@ -15,11 +15,16 @@ class CourseIndexItem extends React.Component{
 
 
   render(){
+    let averageRating = Math.round(this.props.course.averageRating*10)/10;
+    let time = this.props.course.reviewIds.length <= 1 ? "review" : "reviews"
     return(
-      <li onClick={this.handleClick}>
-          <img src={this.props.course.imageUrl}/>
-          <h3>{this.props.course.courseName}</h3>
-          <h3>Average Rating: {this.props.course.averageRating === 0 ? "No Rating Yet" : this.props.course.averageRating}</h3>
+      <li onClick={this.handleClick} className="searched-course">
+          <img src={this.props.course.imageUrl} className="img course-img"/>
+          <div className="course-sintro">
+            <h2>{this.props.course.courseName}</h2>
+            <span>{this.props.course.description} {time}</span>
+            <p>&#127775;{this.props.course.averageRating === 0 ? "" : averageRating} ({this.props.course.reviewIds.length} {time})</p>
+          </div>
       </li>
     )
   }

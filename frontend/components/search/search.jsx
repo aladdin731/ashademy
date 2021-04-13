@@ -17,8 +17,11 @@ class Search extends React.Component{
           updateFilter={updateFilter}
           fetchCourses={fetchCourses}
         />
-        <img className="img home-img" src="https://a0.muscache.com/im/pictures/1c18c4c8-5ecb-4a94-9301-1e02b061339b.jpg?im_w=1440"></img>
-        <h3 className="slogan">Switch Between Mentor and Mentee</h3>
+        <div className="background-section">
+          <img className="img home-img" src="https://images.unsplash.com/photo-1543269865-cbf427effbad?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2100&q=80"></img>
+          <h3 className="slogan">Switch Between Mentor and Mentee</h3>
+        </div>
+        
         <div className="explore">
           <h1>Explore diffent types of courses</h1>
           <ul className="types">

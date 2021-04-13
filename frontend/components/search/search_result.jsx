@@ -16,13 +16,19 @@ class SearchResult extends React.Component{
           updateFilter={updateFilter}
           fetchCourses={fetchCourses}
         />
-        <h1>Courses You are interested in: </h1>
-        {courses.map(course => (
-          <CourseIndexItem
-            course={course}
-            key={course.id}
-          />
-        ))}
+        <div className="searched-course-section">
+          <h1 className="searched-title">Courses you are interested in: </h1>
+          <ul className="searched-courses">
+            {courses.map(course => (
+              <CourseIndexItem
+                course={course}
+                key={course.id}
+              />
+            ))}
+          </ul>
+          
+        </div>
+        
       </div>
     )
   }

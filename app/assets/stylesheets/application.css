@@ -467,7 +467,7 @@ template {
 
 /* search page */
 .search-page {
-
+  /* background-color: black; */
 }
 
 
@@ -511,12 +511,19 @@ input.type-input:focus {
   background-color: hsl(350, 57%, 38%);
 }
 
+.background-section {
+  background-color: black;
+}
+
 .home-img {
   margin-top: -40px;
-  width:100%;
-  height: 25%;
+  width:80%;
+  height: 65vh;
   background-color: black;
   margin-bottom: -3px;
+  margin-left: 10%;
+  margin-right: 10%;
+  border-radius: .5rem;
 }
 
 .slogan {
@@ -541,7 +548,8 @@ input.type-input:focus {
 
  .explore {
   margin-left: 10%;
-   margin-right: 10%;
+  margin-right: 10%;
+  background-color: white;
  }
 
  .types {
@@ -610,8 +618,55 @@ input.type-input:focus {
 .intro-p3 {
   top:45%;
 }
- 
 
+
+/* search results */
+ .searched-course-section{
+  width:90%;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 3em;
+  /* background-color: brown; */
+ }
+
+ .searched-title {
+
+ }
+
+ .searched-courses {
+   list-style: none;
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+ }
+
+ .searched-course {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 3em;
+  /* background-color:coral; */
+ }
+
+.searched-course:hover {
+  background-color: rgb(235, 212, 212);
+  cursor: pointer;
+}
+
+
+
+ img.course-img {
+  /* background-color: burlywood; */
+  width:150px;
+  height: 150px;
+  border-radius: 1rem;
+ }
+
+
+ .course-sintro {
+  /* background-color: chartreuse; */
+  margin-right: 15%;
+  margin-left: 15%;
+  
+ }
 
   /* footer part */
 
