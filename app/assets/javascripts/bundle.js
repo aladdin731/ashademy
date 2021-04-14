@@ -650,7 +650,6 @@ var CourseDetail = /*#__PURE__*/function (_React$Component) {
         end_time: ""
       });
       this.props.createRequest(request);
-      alert("Submitted!");
     }
   }, {
     key: "update",
@@ -1098,7 +1097,7 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
         rating: 5,
         body: ""
       });
-      this.props.createReview(review).then(alert("Submitted!"));
+      this.props.createReview(review);
       this.props.fetchCourse(courseId);
       this.props.fetchUser(this.props.currentUser.id); // this.props.fetchUsers();
     }

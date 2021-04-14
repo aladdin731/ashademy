@@ -33,7 +33,6 @@ class CourseDetail extends React.Component{
       end_time:"",
     })
     this.props.createRequest(request);
-    alert("Submitted!")
   }
 
 

@@ -22,7 +22,7 @@ class ReviewForm extends React.Component {
       body:"",
     })
     
-    this.props.createReview(review).then(alert("Submitted!"));
+    this.props.createReview(review);
     this.props.fetchCourse(courseId);
     this.props.fetchUser(this.props.currentUser.id);
     // this.props.fetchUsers();
