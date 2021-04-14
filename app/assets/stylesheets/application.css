@@ -651,12 +651,12 @@ input.type-input:focus {
 
 .home-img {
   margin-top: -40px;
-  width:80%;
-  height: 65vh;
+  width:90%;
+  height: 55vh;
   background-color: black;
   margin-bottom: -3px;
-  margin-left: 10%;
-  margin-right: 10%;
+  margin-left: 5%;
+  margin-right: 5%;
   /* border-radius: .5rem; */
 }
 
@@ -685,8 +685,8 @@ input.type-input:focus {
   /* margin-right: 10%; */
   width: 80%;
   background-color: white;
-  margin-top:10%;
-  margin-bottom: 10%;
+  margin-top:50px;
+  margin-bottom: 50px;
  }
 
  .types {
@@ -729,7 +729,7 @@ input.type-input:focus {
   width:80%;
   margin-left:10%;
   margin-right:10%;
-  height: 450px;
+  height: 40vh;
   margin-bottom: -3px;
   padding-bottom: 2rem;
   border-radius: 1rem;
@@ -779,13 +779,16 @@ input.type-input:focus {
 
  .searched-course {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   margin-bottom: 3em;
   /* background-color:coral; */
+  /* width:80%;
+  margin-left: 10%;
+  margin-right: 10%; */
  }
 
 .searched-course:hover {
-  background-color: rgb(235, 212, 212);
+  background-color: rgba(244, 241, 241, 0.73);
   cursor: pointer;
 }
 
@@ -800,10 +803,7 @@ input.type-input:focus {
 
 
  .course-sintro {
-  /* background-color: chartreuse; */
-  margin-right: 15%;
-  margin-left: 15%;
-  
+  margin-left: 20%;
  }
 
  /* course-detail-show */
