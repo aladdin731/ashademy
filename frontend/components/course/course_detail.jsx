@@ -121,7 +121,7 @@ class CourseDetail extends React.Component{
                  <img className="img profile-img" src={review.author.imageUrl} alt="no profile yet"></img>
                  <div className="reviewer-time">
                     <span className="reviewer-name">{review.author.username} </span>
-                    <span className="reviewer-time">{review.createdAt.slice(0,10)} </span>
+                    <span className="reviewer-name">{review.createdAt.slice(0,10)} </span>
                  </div>
               </div>
               <div className="review-body">
