@@ -1831,6 +1831,7 @@ var Greeting = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this));
+    _this.goBack = _this.goBack.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1841,6 +1842,13 @@ var Greeting = /*#__PURE__*/function (_React$Component) {
       this.props.updateFilter("ctype", ""); // this.props.fetchUser(this.props.currentUser.id);
 
       this.props.history.push("/dashboard/");
+    }
+  }, {
+    key: "goBack",
+    value: function goBack(e) {
+      e.preventDefault();
+      this.props.updateFilter("ctype", "");
+      this.props.history.push("/");
     }
   }, {
     key: "render",
@@ -1865,7 +1873,8 @@ var Greeting = /*#__PURE__*/function (_React$Component) {
           src: window.logo,
           alt: "ashademy"
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-          className: "website-name"
+          className: "website-name",
+          onClick: _this2.goBack
         }, " Ashademy "))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "login-section"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -1894,7 +1903,8 @@ var Greeting = /*#__PURE__*/function (_React$Component) {
           src: window.logo,
           alt: "ashademy"
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-          className: "website-name"
+          className: "website-name",
+          onClick: _this2.goBack
         }, " Ashademy "))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "login-section"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {

@@ -6,6 +6,7 @@ class Greeting extends React.Component {
     constructor(props) {
       super(props);
       this.handleClick = this.handleClick.bind(this);
+      this.goBack = this.goBack.bind(this);
     }
 
     handleClick(e) {
@@ -13,6 +14,12 @@ class Greeting extends React.Component {
       this.props.updateFilter("ctype", "");
       // this.props.fetchUser(this.props.currentUser.id);
       this.props.history.push("/dashboard/");
+    }
+
+    goBack(e){
+      e.preventDefault();
+      this.props.updateFilter("ctype", "");
+      this.props.history.push("/");
     }
 
 
@@ -24,7 +31,7 @@ class Greeting extends React.Component {
         <div className="logo-section">
           <Link to="/" className="domain">
             <img className="icon logo-icon" src={window.logo} alt="ashademy"/>
-            <span className="website-name"> Ashademy </span>
+            <span className="website-name" onClick={this.goBack}> Ashademy </span>
           </Link>
         </div>
         
@@ -40,7 +47,7 @@ class Greeting extends React.Component {
         <div className="logo-section">
           <Link to="/" className="domain">
             <img className="icon logo-icon" src={window.logo} alt="ashademy"/>
-             <span className="website-name"> Ashademy </span>
+             <span className="website-name" onClick={this.goBack}> Ashademy </span>
           </Link>
         </div>
 

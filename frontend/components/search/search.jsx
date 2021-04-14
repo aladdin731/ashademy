@@ -7,7 +7,6 @@ import TypeItem from './type_item'
 class Search extends React.Component{
 
 
-
   render(){
     const {ctype, updateFilter, fetchCourses} = this.props;
     return(
