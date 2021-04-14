@@ -45,6 +45,7 @@ class Greeting extends React.Component {
         </div>
 
         <div className="login-section">
+          
           <button className="btn header-button" onClick={this.handleClick}>Dashboard</button>
           <button className="btn header-button" onClick={logout}>Log Out</button>
         </div>

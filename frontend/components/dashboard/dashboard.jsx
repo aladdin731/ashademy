@@ -82,9 +82,11 @@ class Dashboard extends React.Component{
                 </div>
 
                 
-                
                 <div className="request-section">
-                    <h1>My requests status </h1>
+                    <h1>My Requests Status </h1>
+                    <h3 className="no-request">
+                        {requests.length === 0 ? "You did not make any request" : ""}
+                    </h3>
                     {requests.map((request,i) => (
                         <li key={i} className="request">
                             <span className="request-detail">Course {request.course} of {request.receiver} from {request.startTime} to {request.endTime} is {request.status}</span>
@@ -92,7 +94,10 @@ class Dashboard extends React.Component{
                     ))}
                 </div>
                 <div className="received-request-section">
-                    <h1>Received requests to deal with </h1>
+                    <h1>Received Requests</h1>
+                    <h3 className="no-request">
+                        {receivedRequests.length === 0 ? "You did not receive any request" : ""}
+                    </h3>
                     {receivedRequests.map((request,i) => (
                         <li key={i} className="request">
                             <span className="request-detail">Course {request.course} from {request.sender} from {request.startTime} to {request.endTime} is {request.status}</span>

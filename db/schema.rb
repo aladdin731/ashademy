@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_09_214302) do
+ActiveRecord::Schema.define(version: 2021_04_14_171712) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2021_04_09_214302) do
     t.string "course_name", null: false
     t.text "description", null: false
     t.string "course_type", null: false
-    t.string "image_url"
+    t.string "image_url", null: false
     t.integer "mentor_id", null: false
     t.index ["mentor_id"], name: "index_courses_on_mentor_id"
   end
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 2021_04_09_214302) do
   end
 
   create_table "tags", force: :cascade do |t|
-    t.string "tag_name", null: false
+    t.string "tag_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["tag_name"], name: "index_tags_on_tag_name", unique: true

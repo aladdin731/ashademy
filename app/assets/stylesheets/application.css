@@ -511,7 +511,7 @@ template {
   }
 
   .course-add-course {
-    height: 650px;
+  
     /* max-height: 600px; */
     /* background-color: khaki; */
     /* border-radius: .5rem; */
@@ -859,11 +859,8 @@ input.type-input:focus {
  input.request-input{
    /* background-color: hsl(350, 29%, 55%); */
    border-radius: .5rem;
-   margin-top:5%;
-   margin-bottom:5%;
+   margin:5%;
    outline:none;
-   margin-left: 10%;
-   margin-right: 5%;
    width: 80%;
  }
 
@@ -873,8 +870,9 @@ input.type-input:focus {
 
  .btn.btn-request{
    background-color: hsl(350, 93%, 56%);
-   margin-right:5%;
-   /* margin-bottom: 5%; */
+   /* margin-right:25%; */
+   margin-bottom: 5%;
+   margin-left: 5%;
  }
 
   .btn.btn-request:hover{
@@ -882,13 +880,19 @@ input.type-input:focus {
    /* background: linear-gradient(to right,  hsl(96, 68%, 70%),  hsl(55, 79%, 58%)); */
  }
 
+ .no-request-form {
+   font-size: 1.5rem;
+   /* background-color: hsl(350, 29%, 55%); */
+ }
+
+
 
 
  img.course-detail-img {
     width: 275px;
     height: 275px;
     border-radius: .5rem;
-    background-color: hsl(350, 29%, 55%);
+    /* background-color: hsl(350, 29%, 55%); */
  }
 
  .course-detail-info {

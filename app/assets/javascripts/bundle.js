@@ -739,7 +739,9 @@ var CourseDetail = /*#__PURE__*/function (_React$Component) {
         className: "review-section"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
         className: "review-title"
-      }, "Reviews"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.props.reviews.map(function (review, i) {
+      }, "Reviews"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+        className: "no-review-form"
+      }, this.props.reviews.length === 0 ? "No Review Yet" : ""), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.props.reviews.map(function (review, i) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           className: "review-info",
           key: i
@@ -1606,7 +1608,9 @@ var Dashboard = /*#__PURE__*/function (_React$Component) {
         onClick: this.wannaChangeProfile
       }, "Change Profile"), photo)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "request-section"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "My requests status "), requests.map(function (request, i) {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "My Requests Status "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+        className: "no-request"
+      }, requests.length === 0 ? "You did not make any request" : ""), requests.map(function (request, i) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: i,
           className: "request"
@@ -1615,7 +1619,9 @@ var Dashboard = /*#__PURE__*/function (_React$Component) {
         }, "Course ", request.course, " of ", request.receiver, " from ", request.startTime, " to ", request.endTime, " is ", request.status));
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "received-request-section"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Received requests to deal with "), receivedRequests.map(function (request, i) {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Received Requests"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+        className: "no-request"
+      }, receivedRequests.length === 0 ? "You did not receive any request" : ""), receivedRequests.map(function (request, i) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: i,
           className: "request"
@@ -2162,13 +2168,19 @@ var FilterForm = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit,
         className: "search-form"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "text",
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
         value: this.state.ctype,
         onChange: this.update("ctype"),
-        placeholder: "Course Type",
         className: "type-input"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "All",
+        key: "10086"
+      }, "All"), COURSE_TYPES.map(function (type, i) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+          value: type,
+          key: i
+        }, type);
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "submit",
         value: "Search",
         className: "btn btn-search"
@@ -2198,22 +2210,14 @@ var FilterForm = /*#__PURE__*/function (_React$Component) {
 //   </div>
 // );
 // <form>
-//   <select
-//         value={ctype}
-//         onChange={handleChange('ctype', updateFilter)}
-//       >
-//       <option value={ctype} key="10086">
-//         All
-//         </option>
-//       {COURSE_TYPES.map((type, i) => {
-//         return (
-//         <option value={ctype} key={i}>
-//         {type}
-//         </option>
-//         );
-//       })}
-//   </select>
 // </form>
+//     <input
+//   type="text"
+//   value={this.state.ctype}
+//   onChange={this.update("ctype")}
+//   placeholder="Course Type"
+//   className="type-input"
+// />
 
 /***/ }),
 
@@ -2315,7 +2319,7 @@ var Search = /*#__PURE__*/function (_React$Component) {
   return Search;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (Search); // <CourseIndex courses={courses} />
+/* harmony default export */ __webpack_exports__["default"] = (Search);
 
 /***/ }),
 

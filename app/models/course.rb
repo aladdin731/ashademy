@@ -11,7 +11,7 @@ class Course < ApplicationRecord
         'System Design',
     ].sort.freeze
 
-    validates :course_name, :description, :course_type, presence:true 
+    validates :course_name, :description, :course_type, :image_url, presence:true 
     validates :course_name, uniqueness:true 
     validates :course_type, inclusion: { in: TYPES }
 

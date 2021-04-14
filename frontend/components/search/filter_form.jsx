@@ -7,7 +7,7 @@ class FilterForm extends React.Component{
   constructor(props) {
     super(props);
     this.state={
-      ctype:this.props.ctype 
+      ctype: this.props.ctype 
     }
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -35,13 +35,20 @@ class FilterForm extends React.Component{
   render(){
     return(
         <form onSubmit={this.handleSubmit} className="search-form">
-            <input
-              type="text"
-              value={this.state.ctype}
-              onChange={this.update("ctype")}
-              placeholder="Course Type"
-              className="type-input"
-            />
+            <select
+                  value={this.state.ctype}
+                  onChange={this.update("ctype")}
+                  className="type-input"
+                >
+                <option value="All" key="10086">All</option>
+                {COURSE_TYPES.map((type, i) => {
+                  return (
+                  <option value={type} key={i}>
+                  {type}
+                  </option>
+                  );
+                })}
+            </select>
           <input type="submit" value="Search" className="btn btn-search"/>
         </form>
         
@@ -76,20 +83,14 @@ export default withRouter(FilterForm);
 
 
     // <form>
-    //   <select
-    //         value={ctype}
-    //         onChange={handleChange('ctype', updateFilter)}
 
-    //       >
-    //       <option value={ctype} key="10086">
-    //         All
-    //         </option>
-    //       {COURSE_TYPES.map((type, i) => {
-    //         return (
-    //         <option value={ctype} key={i}>
-    //         {type}
-    //         </option>
-    //         );
-    //       })}
-    //   </select>
     // </form>
+
+
+            //     <input
+            //   type="text"
+            //   value={this.state.ctype}
+            //   onChange={this.update("ctype")}
+            //   placeholder="Course Type"
+            //   className="type-input"
+            // />

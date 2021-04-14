@@ -108,6 +108,12 @@ class CourseDetail extends React.Component{
 
         <div className="review-section">
           <h1 className="review-title">Reviews</h1>
+          <h3 className="no-review-form">
+            {
+            this.props.reviews.length === 0 ? "No Review Yet" : ""
+            }
+          </h3>
+          
           <ul>
             {this.props.reviews.map((review,i) => 
               <li className="review-info" key={i}> 

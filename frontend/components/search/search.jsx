@@ -42,4 +42,3 @@ class Search extends React.Component{
 
 
 export default Search;
-// <CourseIndex courses={courses} />
