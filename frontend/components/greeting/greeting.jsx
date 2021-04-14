@@ -24,40 +24,35 @@ class Greeting extends React.Component {
 
 
     render () {
-      const {currentUser, logout, openModal} = this.props;
-      const sessionLinks = () => (
-      <div className="header">
-        <div className="logo-section">
-          <Link to="/" className="domain">
-            <img className="icon logo-icon" src={window.logo} alt="ashademy"/>
-            <span className="website-name" onClick={this.goBack}> Ashademy </span>
-          </Link>
-        </div>
-        
-        <div className="login-section">
-          <button className="btn header-button" onClick={() => openModal('login')}>Login</button>
-          <button className="btn header-button" onClick={() => openModal('signup')}>Signup</button>
-        </div>
+        const {currentUser, logout, openModal} = this.props;
+        const sessionLinks = () => (
+            <div className="menu">
+                <div className="link" onClick={() => openModal('login')}>Log in</div>
+                <div className="link" onClick={() => openModal('signup')}>Sign up</div>
+            </div>
+        );
+        const personalGreeting = () => (
+            
+            <div className="menu">
+                <div className="link" onClick={this.handleClick}>Dashboard</div>
+                <div className="link" onClick={logout}>Log Out</div>
+            </div>
+        );
 
-      </div>
-    );
-    const personalGreeting = () => (
-      <div className="header">
-        <div className="logo-section">
-          <Link to="/" className="domain">
-            <img className="icon logo-icon" src={window.logo} alt="ashademy"/>
-             <span className="website-name" onClick={this.goBack}> Ashademy </span>
-          </Link>
-        </div>
-
-        <div className="login-section">
-          <button className="btn header-button" onClick={this.handleClick}>Dashboard</button>
-          <button className="btn header-button" onClick={logout}>Log Out</button>
-        </div>
-      </div>
-    );
-
-    return currentUser ? personalGreeting(currentUser, logout) : sessionLinks()
+        return (
+            <div className="header">
+                <div className="logo-section">
+                    <Link to="/" className="domain">
+                        <img className="icon logo-icon" src={window.logo} alt="ashademy"/>
+                        <span className="website-name" onClick={this.goBack}> Ashademy </span>
+                    </Link>
+                </div>
+                <div className="dropdown">
+                    <button className="click btn header-button">&#9776;<img className="icon profile-icon" src={window.profile}/></button>
+                    {currentUser ? personalGreeting() : sessionLinks()}
+                </div>
+            </div>
+        )
     }
 };
 
