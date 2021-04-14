@@ -29,7 +29,7 @@ class Search extends React.Component{
         </div>
         <div className="intro">
           <div className="intro-p intro-p1">Share experience you got </div>
-          <div className="intro-p intro-p2">from your work experience </div>
+          <div className="intro-p intro-p2">from your work </div>
           <div className="intro-p intro-p3">and get other's wisdom</div>
           <img className="intro-img" src="https://a0.muscache.com/im/pictures/48893cdc-221e-4eaf-b624-8956600550db.jpg?im_w=2560"></img>
         </div>

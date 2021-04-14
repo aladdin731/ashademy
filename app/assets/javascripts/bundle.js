@@ -2319,7 +2319,7 @@ var Search = /*#__PURE__*/function (_React$Component) {
         className: "intro-p intro-p1"
       }, "Share experience you got "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "intro-p intro-p2"
-      }, "from your work experience "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "from your work "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "intro-p intro-p3"
       }, "and get other's wisdom"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "intro-img",
