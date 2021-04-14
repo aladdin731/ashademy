@@ -12,12 +12,10 @@
 
 User.delete_all
 u1 = User.create!({username: "Demo User", password:"123123", image_url:"https://timesofindia.indiatimes.com/photo/67586673.cms"})
-u2 = User.create!({username:"user2", password:"123123"})
-u3 = User.create!({username:"user3", password:"123123"})
-u4 = User.create!({username:"user4", password:"123123"})
-u5 = User.create!({username:"user5", password:"123123"})
-u6 = User.create!({username:"user6", password:"123123"})
-u7 = User.create!({username:"user7", password:"123123"})
+u2 = User.create!({username:"user2", password:"123123", image_url:"https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1952&q=80"})
+u3 = User.create!({username:"user3", password:"123123", image_url:"https://images.unsplash.com/photo-1457449940276-e8deed18bfff?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"})
+u4 = User.create!({username:"user4", password:"123123", image_url:"https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80"})
+
 
 
 Course.delete_all
@@ -29,72 +27,148 @@ Tag.destroy_all
 
   courses = {
     '1' => {
-      'course_name' => 'python',
-      'description' => "best python course",
+      'course_name' => 'Python',
+      'description' => "Best python course",
       'course_type' => "Frontend",
       'mentor_id' => u1.id,
       'image_url' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png',
       'tags' => [
-     'tag1_haha',
-     'tag2_lala'
+     'Django',
+     'Flask'
       ],
     },
     '2' => {
-      'course_name' => 'redux',
-      'description' => "best redux course",
+      'course_name' => 'Redux',
+      'description' => "Best redux course",
       'course_type' => "Frontend",
       'mentor_id' => u1.id,
       'image_url' => 'https://miro.medium.com/max/800/1*4sxOPaVNwxrfZ9uxVbUaKg.jpeg',
       'tags' => [
-     'tag1_haha',
-     'tag2_lolo'
+     'Redux-thunk',
+     'React'
       ],
     },
     '3' => {
-      'course_name' => 'rails',
-      'description' => "best rails course",
+      'course_name' => 'Rails',
+      'description' => "Best rails course",
       'course_type' => "Backend",
       'mentor_id' => u2.id,
       'image_url' => 'https://hackernoon.com/drafts/3b3t3yqt.png',
       'tags' => [
-     'tag1_zozo',
-     'tag2_gogo'
+     'Ruby',
+     'Rails'
       ],
     },
     '4' => {
-      'course_name' => 'ruby',
-      'description' => "best ruby course",
+      'course_name' => 'Ruby',
+      'description' => "Best ruby course",
       'course_type' => "Backend",
       'mentor_id' => u2.id,
       'image_url' => 'https://portswigger.net/cms/images/f5/d7/61c1d398bde7-article-main.jpg',
       'tags' => [
-     'tag1_zozo',
-     'tag2_gogo'
+     'Ruby',
+     'Sytax'
       ],
     },
     '5' => {
-      'course_name' => 'resume',
-      'description' => "best resume course",
+      'course_name' => 'Resume',
+      'description' => "Best resume course",
       'course_type' => "Resume",
       'mentor_id' => u3.id,
       'image_url' => 'https://image.slidesharecdn.com/presentation-150219211039-conversion-gate01/95/professional-resume-open-door-to-oportunity-3-638.jpg?cb=1424380396',
       'tags' => [
-     'tag1_tutu',
-     'tag2_zuzu'
+     'Resume',
+     'Cover Letter'
       ],
     },
     '6' => {
-      'course_name' => 'test course',
-      'description' => "best test course",
-      'course_type' => "Resume",
-      'mentor_id' => u1.id,
+      'course_name' => 'Testing',
+      'description' => "Best testing course",
+      'course_type' => "Fullstack",
+      'mentor_id' => u4.id,
       'image_url' => 'https://www.testingtime.com/app/uploads/2017/07/Grundregeln_fuer_User_Testing-750x500.jpg',
       'tags' => [
-     'tag1_tutu',
-     'tag2_zuzu'
+     'Ruby',
+     'Testing'
       ],
     },
-
+     '7' => {
+      'course_name' => 'System Design',
+      'description' => "Best system design course",
+      'course_type' => "System Design",
+      'mentor_id' => u4.id,
+      'image_url' => 'https://uxmisfit.com/wp-content/uploads/2019/03/design_systems_featured.jpg',
+      'tags' => [
+     'System Desigm',
+     'Senior Engineer'
+      ],
+    },
+     '8' => {
+      'course_name' => 'OOD',
+      'description' => "Best OOD course",
+      'course_type' => "OOD",
+      'mentor_id' => u1.id,
+      'image_url' => 'https://i.ytimg.com/vi/AopCPq2cZlA/maxresdefault.jpg',
+      'tags' => [
+     'Orited object design',
+     'Junior Engineer'
+      ],
+    },
+     '9' => {
+      'course_name' => 'Machine Learning',
+      'description' => "Best testing course",
+      'course_type' => "Data",
+      'mentor_id' => u4.id,
+      'image_url' => 'https://images.unsplash.com/photo-1485796826113-174aa68fd81b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1950&q=80',
+      'tags' => [
+     'Machine Learning',
+     'Big Data'
+      ],
+    },
+     '10' => {
+      'course_name' => 'Mock Interview',
+      'description' => "Best interview course",
+      'course_type' => "Interview",
+      'mentor_id' => u2.id,
+      'image_url' => 'https://images.unsplash.com/photo-1573497491208-6b1acb260507?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80',
+      'tags' => [
+     'Mock',
+     'Interview'
+      ],
+    },
+     '11' => {
+      'course_name' => 'Algorithms',
+      'description' => "Best testing course",
+      'course_type' => "Leetcode",
+      'mentor_id' => u3.id,
+      'image_url' => 'https://yolken.net/assets/leetcode.png',
+      'tags' => [
+     'Leetcode',
+     'Algorithms'
+      ],
+    },
+     '12' => {
+      'course_name' => 'Data Structure',
+      'description' => "Best data structure course",
+      'course_type' => "Leetcode",
+      'mentor_id' => u4.id,
+      'image_url' => 'https://miro.medium.com/max/1050/1*VIVTp1hgwjTHQ7cVUUQetA.png',
+      'tags' => [
+     'Data Structure',
+     'Leetcode'
+      ],
+    },
+     '13' => {
+      'course_name' => 'Java',
+      'description' => "Best java course",
+      'course_type' => "Backend",
+      'mentor_id' => u4.id,
+      'image_url' => 'https://4a7efb2d53317100f611-1d7064c4f7b6de25658a4199efb34975.ssl.cf1.rackcdn.com/patch-or-perish-java-ftc-tells-oracle-showcase_image-1-p-2014.jpg',
+      'tags' => [
+     'Java',
+     'Spring'
+      ],
+    },
   }
 
     courses.map do |num, stats|

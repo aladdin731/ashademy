@@ -3,7 +3,7 @@ class Course < ApplicationRecord
         'Frontend',
         'Backend',
         'Fullstack',
-        'Big Data',
+        'Data',
         'Resume',
         'Leetcode',
         'Interview',
