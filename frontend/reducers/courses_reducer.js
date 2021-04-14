@@ -23,6 +23,9 @@ const courseReducer = (state = {}, action) => {
       return nextState;
     // case RECEIVE_CURRENT_USER:
     //   return Object.assign({}, state, action.currentUser.courses);
+    case RECEIVE_REVIEW:
+      nextState[action.review.courseId].reviewIds.push(action.review.id);
+      return nextState;
     default:
       return state;
   }

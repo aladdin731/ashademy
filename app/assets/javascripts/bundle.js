@@ -713,6 +713,7 @@ var CourseDetail = /*#__PURE__*/function (_React$Component) {
         reviewForm = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_review_form_container__WEBPACK_IMPORTED_MODULE_1__["default"], null);
       }
 
+      var averageRating = Math.round(this.props.course.averageRating * 10) / 10;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "course-detail-page"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
@@ -735,7 +736,7 @@ var CourseDetail = /*#__PURE__*/function (_React$Component) {
         alt: "no profile yet"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "course-info"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\uD83D\uDE8F: ", this.props.course.courseType), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\u270F: ", this.props.course.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\uD83C\uDFF7: ", this.props.tags.join(' ')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\uD83C\uDF1F: ", this.props.course.averageRating === 0 ? "No Rating Yet" : this.props.course.averageRating))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\uD83D\uDE8F: ", this.props.course.courseType), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\u270F: ", this.props.course.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\uD83C\uDFF7: ", this.props.tags.join(' ')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\uD83C\uDF1F: ", this.props.course.averageRating === 0 ? "No Rating Yet" : averageRating))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "review-section"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
         className: "review-title"
@@ -3028,6 +3029,10 @@ var courseReducer = function courseReducer() {
       return nextState;
     // case RECEIVE_CURRENT_USER:
     //   return Object.assign({}, state, action.currentUser.courses);
+
+    case _actions_review_actions__WEBPACK_IMPORTED_MODULE_3__["RECEIVE_REVIEW"]:
+      nextState[action.review.courseId].reviewIds.push(action.review.id);
+      return nextState;
 
     default:
       return state;

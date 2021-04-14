@@ -83,6 +83,8 @@ class CourseDetail extends React.Component{
     }else {
       reviewForm = <ReviewFormContainer />
     }
+
+    let averageRating = Math.round(this.props.course.averageRating*10)/10;
      
     return (
       <div className="course-detail-page">
@@ -102,7 +104,7 @@ class CourseDetail extends React.Component{
               <p>&#128655;: {this.props.course.courseType}</p>
               <p>&#9999;: {this.props.course.description}</p>
               <p>&#127991;: {this.props.tags.join(' ')}</p>
-              <p>&#127775;: {this.props.course.averageRating === 0 ? "No Rating Yet" : this.props.course.averageRating}</p>
+              <p>&#127775;: {this.props.course.averageRating === 0 ? "No Rating Yet" : averageRating}</p>
             </div>
           </div>
 
