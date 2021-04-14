@@ -630,6 +630,9 @@ template {
   z-index: 100;
   cursor: pointer;
   outline: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 input.type-input:focus {
