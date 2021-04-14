@@ -32,6 +32,7 @@ class Greeting1 extends React.Component {
             </div>
         );
         const personalGreeting = () => (
+            
             <div className="menu">
                 <div className="link" onClick={this.handleClick}>Dashboard</div>
                 <div className="link" onClick={logout}>Log Out</div>
