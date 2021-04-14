@@ -1903,13 +1903,17 @@ var Greeting = /*#__PURE__*/function (_React$Component) {
         className: "website-name",
         onClick: this.goBack
       }, " Ashademy "))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "left-section"
+      }, currentUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+        className: "hello-message"
+      }, "Hi ! ", currentUser.username) : "", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "dropdown"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "click btn header-button"
       }, "\u2630", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "icon profile-icon",
         src: window.profile
-      })), currentUser ? personalGreeting() : sessionLinks()));
+      })), currentUser ? personalGreeting() : sessionLinks())));
     }
   }]);
 

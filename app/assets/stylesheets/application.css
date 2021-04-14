@@ -459,6 +459,20 @@ template {
 
   }
 
+  .hello-message {
+    margin-top: 35px;
+    margin-right: 20px;
+    color: white;
+    /* background-color: yellow; */
+    font-size: normal;
+    font-weight: normal;
+  }
+
+  .left-section {
+    display: flex;
+    justify-content: flex-end;
+  }
+
 
   .btn.header-button {
     border-radius: 100000px;

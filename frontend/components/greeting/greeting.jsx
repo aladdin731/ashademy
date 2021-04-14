@@ -47,10 +47,14 @@ class Greeting extends React.Component {
                         <span className="website-name" onClick={this.goBack}> Ashademy </span>
                     </Link>
                 </div>
-                <div className="dropdown">
-                    <button className="click btn header-button">&#9776;<img className="icon profile-icon" src={window.profile}/></button>
-                    {currentUser ? personalGreeting() : sessionLinks()}
+                <div className="left-section">
+                    {currentUser? <h3 className="hello-message">Hi ! {currentUser.username}</h3> : ""}
+                    <div className="dropdown">
+                        <button className="click btn header-button">&#9776;<img className="icon profile-icon" src={window.profile}/></button>
+                        {currentUser ? personalGreeting() : sessionLinks()}
+                    </div>
                 </div>
+                
             </div>
         )
     }
