@@ -443,7 +443,7 @@ template {
   .icon.logo-icon {
     width: 40px;
     height: 40px;
-    margin-right: 20px;
+    /* margin-left: 20px; */
   }
 
 
@@ -451,19 +451,81 @@ template {
     /* background-color: violet; */
   }
 
+  .icon.profile-icon {
+    width: 30px;
+    height: 30px;
+    margin-left: 15px;
+    margin-top: 0;
+
+  }
+
 
   .btn.header-button {
-    border-radius: .5rem;
-    background-color: black;
+    border-radius: 100000px;
+    background-color: #FFFFFF ;
     border: 1px solid white;
-    padding: .5rem;
+    padding: .3rem;
+    padding-left: .6rem;
     margin: 10px;
     margin-right: 20px;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
 
   .btn.header-button:hover {
     background-color: rgb(154, 146, 146);
+  }
+
+
+  /* dropdown */
+
+  .dropdown {
+    position: relative;
+    z-index: 100;
+    /* background-color: blue; */
+    margin-top:25px;
+  }
+
+  .dropdown:hover .menu {
+    display: block;
+    top: 100%;
+    right: 20px;
+  }
+
+  .link {
+    font-size: 1rem;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgb(231, 228, 228);
+  }
+
+  .link:last-child{
+    margin-top: -5px;
+    margin-bottom: 5px;
+    border-bottom: none;
+    border-bottom-left-radius:.5rem;
+    border-bottom-right-radius: .5rem;
+  }
+
+  .link:hover {
+    background-color: rgb(231, 228, 228);
+  }
+
+  .click{
+  }
+
+  .menu {
+    position: absolute;
+    display: none;
+    z-index: 5;
+    background-color: white;
+    border-radius: .5rem;
+    width: 200px;
+
   }
 
 
@@ -616,6 +678,8 @@ template {
   margin:0;
   /* background-color: cadetblue; */
   align-items: center;
+  /* color: #777; */
+  z-index: 2;
 }
 
 .type-input {
@@ -627,13 +691,15 @@ template {
   /* border: none; */
   border-color:black;
   box-shadow: 0 0 5px 0 hsl(0, 0%, 70%);
-  z-index: 100;
+  z-index: 2;
   cursor: pointer;
   outline: none;
   -moz-appearance: none;
   -webkit-appearance: none;
   appearance: none;
 }
+
+
 
 input.type-input:focus {
   /* border: none; */
@@ -642,7 +708,7 @@ input.type-input:focus {
 .btn.btn-search {
   background-color: hsl(350, 62%, 49%);
   border-color: hsl(350, 57%, 43%);
-  z-index: 100;
+  z-index: 2;
 }
 
 .btn.btn-search:hover {
@@ -1167,6 +1233,8 @@ input.modal-input:last-child {
   background-color: hsl(290, 3%, 20%);
   background: linear-gradient(to right,  hsl(96, 68%, 50%),  hsl(55, 79%, 40%));
 }
+
+
 
 
 

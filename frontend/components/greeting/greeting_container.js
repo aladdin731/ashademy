@@ -6,6 +6,8 @@ import { openModal } from '../../actions/modal_actions';
 import {fetchCourses} from '../../actions/course_actions'
 import {updateFilter} from '../../actions/filter_actions';
 
+import Greeting1 from './greeting1';
+
 const mapStateToProps = ({ session}) => ({
     currentUser: session.currentUser 
 });
@@ -22,4 +24,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Greeting);
+)(Greeting1);
