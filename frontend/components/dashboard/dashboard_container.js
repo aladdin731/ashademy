@@ -7,7 +7,7 @@ import {updateRequest} from '../../actions/request_actions';
 
 
 const mapStateToProps = state => {
-    const currentUser = state.session.currentUser;
+    const currentUser = state.entities.users[state.session.currentUser.id];
     const courses = selectCoursesForCurrentUser(state, currentUser);
     const requests = selectRequestsForCurrentUser(state, currentUser);
     const receivedRequests = selectReceivedRequestsForCurrentUser(state, currentUser);

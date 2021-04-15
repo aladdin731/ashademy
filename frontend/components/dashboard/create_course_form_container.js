@@ -4,7 +4,7 @@ import CourseForm from './course_form';
 import {fetchUser} from '../../actions/user_actions';
 
 const mapStateToProps = state => ({
-    currentUser: state.session.currentUser,
+    currentUser: state.entities.users[state.session.currentUser.id]
 })
 
 

@@ -813,7 +813,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state, _ref) {
   var match = _ref.match;
-  var currentUser = state.session.currentUser;
+  var currentUser = state.entities.users[state.session.currentUser.id];
   var courseId = parseInt(match.params.courseId);
   var course = state.entities.courses[courseId];
   var instructor = Object.keys(state.entities.users).length !== 0 ? state.entities.users[course.mentorId] : null;
@@ -1190,7 +1190,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    currentUser: state.session.currentUser
+    currentUser: state.entities.users[state.session.currentUser.id]
   };
 };
 
@@ -1451,7 +1451,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    currentUser: state.session.currentUser
+    currentUser: state.entities.users[state.session.currentUser.id]
   };
 };
 
@@ -1744,7 +1744,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state) {
-  var currentUser = state.session.currentUser;
+  var currentUser = state.entities.users[state.session.currentUser.id];
   var courses = Object(_reducers_selectors__WEBPACK_IMPORTED_MODULE_3__["selectCoursesForCurrentUser"])(state, currentUser);
   var requests = Object(_reducers_selectors__WEBPACK_IMPORTED_MODULE_3__["selectRequestsForCurrentUser"])(state, currentUser);
   var receivedRequests = Object(_reducers_selectors__WEBPACK_IMPORTED_MODULE_3__["selectReceivedRequestsForCurrentUser"])(state, currentUser);
@@ -3582,22 +3582,6 @@ var sessionReducer = function sessionReducer() {
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["LOGOUT_CURRENT_USER"]:
       return _nullUser;
-    // case RECEIVE_ALL_COURSES:
-    //   return { currentUser: action.currentUser.user };
-
-    case REMOVE_COURSE:
-      nextState = Object.assign({}, state);
-      var userId = action.payload.instructor.id;
-      var arr1 = nextState[userId].courseIds;
-      arr1.splice(arr1.indexOf(action.payload.course.id), 1);
-      var arr2 = nextState[userId].receivedRequestsids;
-      var ids = action.payload.course.receivedRequestsids;
-
-      for (var i = 0; i < ids.length; i++) {
-        arr2.splice(arr2.indexOf(ids[i]), 1);
-      }
-
-      return nextState;
 
     default:
       return state;
