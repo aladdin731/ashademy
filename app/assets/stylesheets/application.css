@@ -517,6 +517,7 @@ template {
     margin-bottom: 1rem;
     border-bottom: 1px solid rgb(231, 228, 228);
     /* background-color: chartreuse; */
+    cursor: pointer;
   }
 
   .link:last-child{

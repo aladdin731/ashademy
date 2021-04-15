@@ -645,11 +645,7 @@ var CourseDetail = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       var courseId = parseInt(this.props.match.params.courseId);
-      this.props.fetchCourse(courseId); // if(this.props.currentUser) {
-      //   this.props.fetchUser(this.props.currentUser.id)
-      // }else {
-      //   this.props.fetchUsers()
-      // }
+      this.props.fetchCourse(courseId);
     }
   }, {
     key: "componentDidUpdate",
