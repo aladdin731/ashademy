@@ -14,7 +14,7 @@ const courseReducer = (state = {}, action) => {
       nextState[action.payload.course.id] = action.payload.course;
       return nextState;
     case REMOVE_COURSE:
-      delete nextState[action.courseId]
+      delete nextState[action.payload.course.id]
       return nextState;
     case RECEIVE_USER:
       return Object.assign({}, state, action.payload.courses, action.payload.requestedCourses);

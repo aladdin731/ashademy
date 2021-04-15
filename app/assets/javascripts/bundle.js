@@ -3069,7 +3069,7 @@ var courseReducer = function courseReducer() {
       return nextState;
 
     case _actions_course_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_COURSE"]:
-      delete nextState[action.courseId];
+      delete nextState[action.payload.course.id];
       return nextState;
 
     case _actions_user_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_USER"]:
