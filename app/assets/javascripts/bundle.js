@@ -1744,7 +1744,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state) {
-  var currentUser = state.entities.users[state.session.currentUser.id];
+  var currentUser = state.session.currentUser;
   var courses = Object(_reducers_selectors__WEBPACK_IMPORTED_MODULE_3__["selectCoursesForCurrentUser"])(state, currentUser);
   var requests = Object(_reducers_selectors__WEBPACK_IMPORTED_MODULE_3__["selectRequestsForCurrentUser"])(state, currentUser);
   var receivedRequests = Object(_reducers_selectors__WEBPACK_IMPORTED_MODULE_3__["selectReceivedRequestsForCurrentUser"])(state, currentUser);
