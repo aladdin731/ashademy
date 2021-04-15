@@ -3585,6 +3585,20 @@ var sessionReducer = function sessionReducer() {
     // case RECEIVE_ALL_COURSES:
     //   return { currentUser: action.currentUser.user };
 
+    case REMOVE_COURSE:
+      nextState = Object.assign({}, state);
+      var userId = action.payload.instructor.id;
+      var arr1 = nextState[userId].courseIds;
+      arr1.splice(arr1.indexOf(action.payload.course.id), 1);
+      var arr2 = nextState[userId].receivedRequestsids;
+      var ids = action.payload.course.receivedRequestsids;
+
+      for (var i = 0; i < ids.length; i++) {
+        arr2.splice(arr2.indexOf(ids[i]), 1);
+      }
+
+      return nextState;
+
     default:
       return state;
   }

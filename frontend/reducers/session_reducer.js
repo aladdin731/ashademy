@@ -18,6 +18,17 @@ const sessionReducer = (state = _nullUser, action) => {
       return _nullUser;
     // case RECEIVE_ALL_COURSES:
     //   return { currentUser: action.currentUser.user };
+    case REMOVE_COURSE:
+      nextState = Object.assign({}, state);
+      let userId = action.payload.instructor.id;
+      let arr1 = nextState[userId].courseIds;
+      arr1.splice(arr1.indexOf(action.payload.course.id), 1);
+      let arr2 = nextState[userId].receivedRequestsids;
+      let ids = action.payload.course.receivedRequestsids;
+      for(let i = 0; i < ids.length;i++) {
+        arr2.splice(arr2.indexOf(ids[i]), 1);
+      }
+    return nextState;
     default:
       return state;
   }
