@@ -1,11 +1,14 @@
 
 import {RECEIVE_COURSE} from '../actions/course_actions';
-import {RECEIVE_REVIEW} from '../actions/review_actions';
+import {RECEIVE_REVIEW, RECEIVE_REVIEWS} from '../actions/review_actions';
+
 
 const reviewsReducer = (state = {}, action) => {
   Object.freeze(state);
   let nextState = Object.assign({}, state);
   switch (action.type) {
+    case RECEIVE_REVIEWS:
+      return Object.assign({}, state, action.reviews);
     case RECEIVE_COURSE:
       // nextState = action.payload.reviews;
       // return nextState;

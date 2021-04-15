@@ -60,11 +60,10 @@ export const selectReviewsForCourse = (state, courseId) => {
   let course = state.entities.courses[courseId];
   if(course && course.reviewIds && Object.keys(state.entities.reviews).length !== 0 && Object.keys(state.entities.courses).length !== 0) {
     return course.reviewIds.map(id => {
-      let review = state.entities.reviews[id];
-      if(!review) {
+      if(!state.entities.reviews[id]) {
           return [];
       }
-      return review;
+      return state.entities.reviews[id];
     })
   }else {
     return [];

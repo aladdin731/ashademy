@@ -7,8 +7,13 @@ class SearchResult extends React.Component{
     super(props);
   }
 
+  componentDidMount(){
+    // this.props.fetchCourses();
+    this.props.fetchReviews();
+  }
+
   render(){
-    const {ctype, updateFilter, courses, fetchCourses} = this.props;
+    const {ctype, updateFilter, courses, fetchCourses, fetchCourse} = this.props;
     return(
       <div>
         <FilterForm
@@ -23,6 +28,7 @@ class SearchResult extends React.Component{
               <CourseIndexItem
                 course={course}
                 key={course.id}
+                fetchCourse={fetchCourse}
               />
             ))}
           </ul>

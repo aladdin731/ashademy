@@ -22,6 +22,12 @@ class CourseDetail extends React.Component{
     // }
   }
 
+  componentDidUpdate(prevState){
+    if (prevState.reviews.length !== this.props.reviews.length){
+      this.props.fetchCourse(this.props.match.params.courseId);
+    }
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     const request = Object.assign({}, this.state, {
@@ -119,17 +125,17 @@ class CourseDetail extends React.Component{
           <ul>
             {this.props.reviews.map((review,i) => 
               <li className="review-info" key={i}> 
-              <div className="reviewer-info">
-                 <img className="img profile-img" src={review.author.imageUrl} alt="no profile yet"></img>
-                 <div className="reviewer-time">
-                    <span className="reviewer-name">{review.author.username} </span>
-                    <span className="reviewer-name">{review.createdAt.slice(0,10)} </span>
-                 </div>
-              </div>
-              <div className="review-body">
-                <p>{review.body}</p>
-                <p>	&#127775;: {review.rating}</p>
-              </div>
+                <div className="reviewer-info">
+                  <img className="img profile-img" src={review.author.imageUrl} alt="no profile yet"></img>
+                  <div className="reviewer-time">
+                      <span className="reviewer-name">{review.author.username} </span>
+                      <span className="reviewer-name">{review.createdAt.slice(0,10)} </span>
+                  </div>
+                </div>
+                <div className="review-body">
+                  <p>{review.body}</p>
+                  <p>	&#127775;: {review.rating}</p>
+                </div>
               </li>
             )}
           </ul>

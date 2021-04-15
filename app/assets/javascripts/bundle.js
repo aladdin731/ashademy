@@ -320,30 +320,46 @@ var updateRequest = function updateRequest(request) {
 /*!********************************************!*\
   !*** ./frontend/actions/review_actions.js ***!
   \********************************************/
-/*! exports provided: RECEIVE_REVIEW, receiveReview, createReview */
+/*! exports provided: RECEIVE_REVIEW, RECEIVE_REVIEWS, receiveReview, createReview, fetchReviews */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_REVIEW", function() { return RECEIVE_REVIEW; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_REVIEWS", function() { return RECEIVE_REVIEWS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveReview", function() { return receiveReview; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createReview", function() { return createReview; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchReviews", function() { return fetchReviews; });
 /* harmony import */ var _util_review_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/review_api_util */ "./frontend/util/review_api_util.js");
 
 var RECEIVE_REVIEW = 'RECEIVE_REVIEW';
+var RECEIVE_REVIEWS = 'RECEIVE_REVIEWS';
 var receiveReview = function receiveReview(_ref) {
-  var review = _ref.review,
-      author = _ref.author;
+  var review = _ref.review;
   return {
     type: RECEIVE_REVIEW,
-    review: review,
-    author: author
+    review: review
   };
 };
 var createReview = function createReview(review) {
   return function (dispatch) {
     return _util_review_api_util__WEBPACK_IMPORTED_MODULE_0__["createReview"](review).then(function (review) {
       return dispatch(receiveReview(review));
+    });
+  };
+};
+
+var receiveReviews = function receiveReviews(reviews) {
+  return {
+    type: RECEIVE_REVIEWS,
+    reviews: reviews
+  };
+};
+
+var fetchReviews = function fetchReviews() {
+  return function (dispatch) {
+    return _util_review_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchReviews"]().then(function (reviews) {
+      return dispatch(receiveReviews(reviews));
     });
   };
 };
@@ -634,6 +650,13 @@ var CourseDetail = /*#__PURE__*/function (_React$Component) {
       // }else {
       //   this.props.fetchUsers()
       // }
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevState) {
+      if (prevState.reviews.length !== this.props.reviews.length) {
+        this.props.fetchCourse(this.props.match.params.courseId);
+      }
     }
   }, {
     key: "handleSubmit",
@@ -1001,6 +1024,7 @@ var CourseIndexItem = /*#__PURE__*/function (_React$Component) {
     key: "handleClick",
     value: function handleClick() {
       var courseId = this.props.course.id;
+      this.props.fetchCourse(courseId);
       this.props.history.push("/courses/".concat(courseId));
     }
   }, {
@@ -1083,14 +1107,12 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
-  }
+  } // componentDidMount(){
+  //   this.props.fetchCourse(this.props.match.params.courseId);
+  // }
+
 
   _createClass(ReviewForm, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.props.fetchCourse(this.props.match.params.courseId);
-    }
-  }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
@@ -1103,9 +1125,7 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
         rating: 5,
         body: ""
       });
-      this.props.createReview(review); // this.props.fetchCourse(courseId);
-      // this.props.fetchUser(this.props.currentUser.id);
-      // this.props.fetchUsers();
+      this.props.createReview(review);
     }
   }, {
     key: "update",
@@ -2430,13 +2450,20 @@ var SearchResult = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(SearchResult, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      // this.props.fetchCourses();
+      this.props.fetchReviews();
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
           ctype = _this$props.ctype,
           updateFilter = _this$props.updateFilter,
           courses = _this$props.courses,
-          fetchCourses = _this$props.fetchCourses;
+          fetchCourses = _this$props.fetchCourses,
+          fetchCourse = _this$props.fetchCourse;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_filter_form__WEBPACK_IMPORTED_MODULE_2__["default"], {
         ctype: ctype,
         updateFilter: updateFilter,
@@ -2450,7 +2477,8 @@ var SearchResult = /*#__PURE__*/function (_React$Component) {
       }, courses.map(function (course) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_course_course_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
           course: course,
-          key: course.id
+          key: course.id,
+          fetchCourse: fetchCourse
         });
       }))));
     }
@@ -2478,6 +2506,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/user_actions */ "./frontend/actions/user_actions.js");
 /* harmony import */ var _actions_course_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../actions/course_actions */ "./frontend/actions/course_actions.js");
 /* harmony import */ var _actions_filter_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../../actions/filter_actions */ "./frontend/actions/filter_actions.js");
+/* harmony import */ var _actions_review_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../actions/review_actions */ "./frontend/actions/review_actions.js");
+
 
 
 
@@ -2509,6 +2539,12 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     updateFilter: function updateFilter(filter, value) {
       return dispatch(Object(_actions_filter_actions__WEBPACK_IMPORTED_MODULE_5__["updateFilter"])(filter, value));
+    },
+    fetchCourse: function fetchCourse(id) {
+      return dispatch(Object(_actions_course_actions__WEBPACK_IMPORTED_MODULE_4__["fetchCourse"])(id));
+    },
+    fetchReviews: function fetchReviews() {
+      return dispatch(Object(_actions_review_actions__WEBPACK_IMPORTED_MODULE_6__["fetchReviews"])());
     }
   };
 };
@@ -3033,7 +3069,8 @@ var courseReducer = function courseReducer() {
     //   return Object.assign({}, state, action.currentUser.courses);
 
     case _actions_review_actions__WEBPACK_IMPORTED_MODULE_3__["RECEIVE_REVIEW"]:
-      nextState[action.review.courseId].reviewIds.push(action.review.id);
+      nextState[action.review.courseId].reviewIds.push(action.review.id); // nextState[action.review.courseId].averageRating = action.average_rating;
+
       return nextState;
 
     default:
@@ -3296,6 +3333,9 @@ var reviewsReducer = function reviewsReducer() {
   var nextState = Object.assign({}, state);
 
   switch (action.type) {
+    case _actions_review_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_REVIEWS"]:
+      return Object.assign({}, state, action.reviews);
+
     case _actions_course_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_COURSE"]:
       // nextState = action.payload.reviews;
       // return nextState;
@@ -3423,13 +3463,11 @@ var selectReviewsForCourse = function selectReviewsForCourse(state, courseId) {
 
   if (course && course.reviewIds && Object.keys(state.entities.reviews).length !== 0 && Object.keys(state.entities.courses).length !== 0) {
     return course.reviewIds.map(function (id) {
-      var review = state.entities.reviews[id];
-
-      if (!review) {
+      if (!state.entities.reviews[id]) {
         return [];
       }
 
-      return review;
+      return state.entities.reviews[id];
     });
   } else {
     return [];
@@ -3812,12 +3850,19 @@ var updateRequest = function updateRequest(request) {
 /*!******************************************!*\
   !*** ./frontend/util/review_api_util.js ***!
   \******************************************/
-/*! exports provided: createReview */
+/*! exports provided: fetchReviews, createReview */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchReviews", function() { return fetchReviews; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createReview", function() { return createReview; });
+var fetchReviews = function fetchReviews() {
+  return $.ajax({
+    method: "GET",
+    url: "/api/reviews"
+  });
+};
 var createReview = function createReview(review) {
   return $.ajax({
     method: 'POST',
