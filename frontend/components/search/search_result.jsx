@@ -8,7 +8,6 @@ class SearchResult extends React.Component{
   }
 
   componentDidMount(){
-    // this.props.fetchCourses();
     this.props.fetchReviews();
   }
 

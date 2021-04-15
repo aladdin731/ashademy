@@ -2462,7 +2462,6 @@ var SearchResult = /*#__PURE__*/function (_React$Component) {
   _createClass(SearchResult, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      // this.props.fetchCourses();
       this.props.fetchReviews();
     }
   }, {
