@@ -30,7 +30,7 @@ if @user.requests.length != 0
   json.requests do 
     @user.requests.each do |request| 
       json.set! request.id do 
-        json.partial! "api/users/info", user: request.receiver 
+        json.receiver request.receiver.username
         json.partial! "api/requests/request", request: request
       end
     end
@@ -43,7 +43,7 @@ if @user.received_requests.length != 0
   json.received_requests do 
     @user.received_requests.each do |received_request| 
       json.set! received_request.id do 
-        json.partial! "api/users/info", user: received_request.sender   
+        json.sender received_request.sender.username
         json.partial! "api/requests/request", request: received_request
       end
     end

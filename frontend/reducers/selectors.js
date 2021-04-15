@@ -30,7 +30,7 @@ export const selectRequestsForCurrentUser = (state, currentUser) => {
           return [];
         }
         request.course = state.entities.courses[request.courseId].courseName;
-        request.receiver = request.username;
+        // request.receiver = request.username;
         return request;
     })
   }else {
@@ -38,22 +38,40 @@ export const selectRequestsForCurrentUser = (state, currentUser) => {
   }
 };
 
+
 export const selectReceivedRequestsForCurrentUser = (state, currentUser) => {
   const user = state.entities.users[currentUser.id];
   if(user && user.receivedRequestsids && Object.keys(state.entities.requests).length !== 0 && Object.keys(state.entities.courses).length !== 0) {
     return user.receivedRequestsids.map(requestId => {
         let request = state.entities.requests[requestId];
-        if(!state.entities.courses[request.courseId]) {
+        if(!request || !state.entities.courses[request.courseId]) {
           return [];
         }
         request.course = state.entities.courses[request.courseId].courseName;
-        request.sender = request.username;
+        // request.sender = request.sender;
         return request;
     }) 
   }else {
     return [];
   }
 };
+
+// export const selectReceivedRequestsForCurrentUser = (state, currentUser) => {
+//   const user = state.entities.users[currentUser.id];
+//   if(user && user.receivedRequestsids && Object.keys(state.entities.requests).length !== 0 && Object.keys(state.entities.courses).length !== 0) {
+//     return user.receivedRequestsids.map(requestId => {
+//         let request = state.entities.requests[requestId];
+//         if(!request || !state.entities.courses[request.courseId]) {
+//           return [];
+//         }
+//         request.course = state.entities.courses[request.courseId].courseName;
+//         request.sender = request.username;
+//         return request;
+//     }) 
+//   }else {
+//     return [];
+//   }
+// };
 
 export const selectReviewsForCourse = (state, courseId) => {
   // return Object.values(state.entities.reviews);

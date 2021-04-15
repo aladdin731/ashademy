@@ -99,7 +99,7 @@ class Dashboard extends React.Component{
                             </thead>
                             <tbody>
                                 {requests.map((request,i) => (
-                                    <tr>
+                                    <tr key={i}>
                                         <td>{request.course}</td>
                                         <td>{request.receiver}</td>
                                         <td>{request.startTime}</td>
@@ -133,7 +133,7 @@ class Dashboard extends React.Component{
                             </thead>
                             <tbody>
                                 {receivedRequests.map((request,i) => (
-                                    <tr>
+                                    <tr key={i}>
                                         <td>{request.course}</td>
                                         <td>{request.sender}</td>
                                         <td>{request.startTime}</td>
