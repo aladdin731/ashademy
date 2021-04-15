@@ -3726,7 +3726,7 @@ var usersReducer = function usersReducer() {
 
     case _actions_course_actions__WEBPACK_IMPORTED_MODULE_2__["REMOVE_COURSE"]:
       nextState = Object.assign({}, state);
-      var userId = action.payload.course.mentorId;
+      var userId = action.payload.instructor.id;
       var arr1 = Object.values(nextState)[userId].courseIds;
       arr1.splice(arr1.indexOf(action.payload.course.id), 1);
       var arr2 = Object.values(nextState)[userId].receivedRequestsids;
