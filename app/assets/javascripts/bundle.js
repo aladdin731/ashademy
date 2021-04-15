@@ -813,7 +813,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state, _ref) {
   var match = _ref.match;
-  var currentUser = state.entities.users[state.session.currentUser.id];
+  var currentUser = state.session.currentUser;
   var courseId = parseInt(match.params.courseId);
   var course = state.entities.courses[courseId];
   var instructor = Object.keys(state.entities.users).length !== 0 ? state.entities.users[course.mentorId] : null;

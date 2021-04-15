@@ -8,7 +8,7 @@ import {fetchUser, fetchUsers} from '../../actions/user_actions';
 
 
 const mapStateToProps = (state, {match}) => {
-  const currentUser = state.entities.users[state.session.currentUser.id];
+  const currentUser = state.session.currentUser;
   const courseId = parseInt(match.params.courseId);
   const course = state.entities.courses[courseId];
   const instructor = Object.keys(state.entities.users).length !== 0 ? state.entities.users[course.mentorId] : null ;
