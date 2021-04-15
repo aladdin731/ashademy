@@ -40,7 +40,7 @@ class FilterForm extends React.Component{
                   onChange={this.update("ctype")}
                   className="type-input"
                 >
-                <option value="" key="10088" selected disabled>Course Type</option>
+                <option value="" key="10088"  disabled>Course Type</option>
                 <option value="All" key="10086">All</option>
                 {COURSE_TYPES.map((type, i) => {
                   return (

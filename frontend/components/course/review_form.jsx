@@ -11,6 +11,10 @@ class ReviewForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentDidMount(){
+    this.props.fetchCourse(this.props.match.params.courseId);
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     const courseId = parseInt(this.props.match.params.courseId);
@@ -23,8 +27,8 @@ class ReviewForm extends React.Component {
     })
     
     this.props.createReview(review);
-    this.props.fetchCourse(courseId);
-    this.props.fetchUser(this.props.currentUser.id);
+    // this.props.fetchCourse(courseId);
+    // this.props.fetchUser(this.props.currentUser.id);
     // this.props.fetchUsers();
   }
 

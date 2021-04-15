@@ -55,8 +55,20 @@ export const selectReceivedRequestsForCurrentUser = (state, currentUser) => {
   }
 };
 
-export const selectReviewsForCourse = (state) => {
-  return Object.values(state.entities.reviews);
+export const selectReviewsForCourse = (state, courseId) => {
+  // return Object.values(state.entities.reviews);
+  let course = state.entities.courses[courseId];
+  if(course && course.reviewIds && Object.keys(state.entities.reviews).length !== 0 && Object.keys(state.entities.courses).length !== 0) {
+    return course.reviewIds.map(id => {
+      let review = state.entities.reviews[id];
+      if(!review) {
+          return [];
+      }
+      return review;
+    })
+  }else {
+    return [];
+  }
 }
 
 export const asArray = ({ courses }) => (

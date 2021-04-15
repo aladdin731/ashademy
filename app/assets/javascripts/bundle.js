@@ -629,13 +629,11 @@ var CourseDetail = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       var courseId = parseInt(this.props.match.params.courseId);
-      this.props.fetchCourse(courseId);
-
-      if (this.props.currentUser) {
-        this.props.fetchUser(this.props.currentUser.id);
-      } else {
-        this.props.fetchUsers();
-      }
+      this.props.fetchCourse(courseId); // if(this.props.currentUser) {
+      //   this.props.fetchUser(this.props.currentUser.id)
+      // }else {
+      //   this.props.fetchUsers()
+      // }
     }
   }, {
     key: "handleSubmit",
@@ -1088,6 +1086,11 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(ReviewForm, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchCourse(this.props.match.params.courseId);
+    }
+  }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
@@ -1100,9 +1103,9 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
         rating: 5,
         body: ""
       });
-      this.props.createReview(review);
-      this.props.fetchCourse(courseId);
-      this.props.fetchUser(this.props.currentUser.id); // this.props.fetchUsers();
+      this.props.createReview(review); // this.props.fetchCourse(courseId);
+      // this.props.fetchUser(this.props.currentUser.id);
+      // this.props.fetchUsers();
     }
   }, {
     key: "update",
@@ -2183,7 +2186,6 @@ var FilterForm = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "",
         key: "10088",
-        selected: true,
         disabled: true
       }, "Course Type"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "All",
@@ -3295,9 +3297,9 @@ var reviewsReducer = function reviewsReducer() {
 
   switch (action.type) {
     case _actions_course_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_COURSE"]:
-      nextState = action.payload.reviews;
-      return nextState;
-    // return Object.assign({}, state, action.payload.reviews);
+      // nextState = action.payload.reviews;
+      // return nextState;
+      return Object.assign({}, state, action.payload.reviews);
 
     case _actions_review_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_REVIEW"]:
       var review = action.review;
@@ -3415,8 +3417,23 @@ var selectReceivedRequestsForCurrentUser = function selectReceivedRequestsForCur
     return [];
   }
 };
-var selectReviewsForCourse = function selectReviewsForCourse(state) {
-  return Object.values(state.entities.reviews);
+var selectReviewsForCourse = function selectReviewsForCourse(state, courseId) {
+  // return Object.values(state.entities.reviews);
+  var course = state.entities.courses[courseId];
+
+  if (course && course.reviewIds && Object.keys(state.entities.reviews).length !== 0 && Object.keys(state.entities.courses).length !== 0) {
+    return course.reviewIds.map(function (id) {
+      var review = state.entities.reviews[id];
+
+      if (!review) {
+        return [];
+      }
+
+      return review;
+    });
+  } else {
+    return [];
+  }
 };
 var asArray = function asArray(_ref) {
   var courses = _ref.courses;

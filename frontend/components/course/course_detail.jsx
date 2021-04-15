@@ -15,11 +15,11 @@ class CourseDetail extends React.Component{
   componentDidMount(){
     const courseId = parseInt(this.props.match.params.courseId);
     this.props.fetchCourse(courseId);
-    if(this.props.currentUser) {
-      this.props.fetchUser(this.props.currentUser.id)
-    }else {
-      this.props.fetchUsers()
-    }
+    // if(this.props.currentUser) {
+    //   this.props.fetchUser(this.props.currentUser.id)
+    // }else {
+    //   this.props.fetchUsers()
+    // }
   }
 
   handleSubmit(e) {
