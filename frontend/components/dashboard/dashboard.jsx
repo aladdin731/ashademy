@@ -68,6 +68,7 @@ class Dashboard extends React.Component{
                 <button className="btn btn-profile" onClick={this.originalProfile}>I want the original one</button>
             </form>
         </div> : ""
+
         
         return(
             <div className="dashboard">
@@ -78,40 +79,80 @@ class Dashboard extends React.Component{
                         <button className="btn btn-profile"  onClick={this.wannaChangeProfile}>Change Profile</button>
                         {photo}
                      </div>
-                    
                 </div>
-
                 
                 <div className="request-section">
                     <h1>My Requests Status </h1>
                     <h3 className="no-request">
                         {requests.length === 0 ? "You did not make any request" : ""}
                     </h3>
-                    {requests.map((request,i) => (
-                        <li key={i} className="request">
-                            <span className="request-detail">Course {request.course} of {request.receiver} from {request.startTime} to {request.endTime} is {request.status}</span>
-                        </li>
-                    ))}
+                    <div className="table-section">
+                        <table className="real-table">
+                            <thead className="real-thead">
+                                <tr>
+                                    <th>Course</th>
+                                    <th>Instructor</th>
+                                    <th>Start Date</th>
+                                    <th>End Date</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {requests.map((request,i) => (
+                                    <tr>
+                                        <td>{request.course}</td>
+                                        <td>{request.receiver}</td>
+                                        <td>{request.startTime}</td>
+                                        <td>{request.endTime}</td>
+                                        <td><p className={request.status === "PENDING" ? "status-pending" : (request.status === "APPROVED" ? "status-approve" : "status-deny")}>{request.status}</p></td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
+
+
+
                 <div className="received-request-section">
                     <h1>Received Requests</h1>
                     <h3 className="no-request">
                         {receivedRequests.length === 0 ? "You did not receive any request" : ""}
                     </h3>
-                    {receivedRequests.map((request,i) => (
-                        <li key={i} className="request">
-                            <span className="request-detail">Course {request.course} from {request.sender} from {request.startTime} to {request.endTime} is {request.status}</span>
-                            <div>
-                                 {request.status === "PENDING" ? 
-                                    (<span className="request-decision">
-                                        <button className="btn btn-request" onClick={() => updateRequest({id:request.id, status:"APPROVED"})}>Accept</button>
-                                        <button className="btn btn-request" onClick={() => updateRequest({id:request.id, status:"DENIED"})}>Deny</button>
-                                    </span>
-                                    ) : "" 
-                                }  
-                            </div>
-                        </li>
-                    ))}
+                    <div className="table-section">
+                        <table className="real-table">
+                            <thead className="real-thead">
+                                <tr>
+                                    <th>Course</th>
+                                    <th>Mentee</th>
+                                    <th>Start Date</th>
+                                    <th>End Date</th>
+                                    <th>Status</th>
+                                    <th>Decision</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {receivedRequests.map((request,i) => (
+                                    <tr>
+                                        <td>{request.course}</td>
+                                        <td>{request.sender}</td>
+                                        <td>{request.startTime}</td>
+                                        <td>{request.endTime}</td>
+                                        <td><p className={request.status === "PENDING" ? "status-pending" : (request.status === "APPROVED" ? "status-approve" : "status-deny")}>{request.status}</p></td>
+                                        <td>
+                                            {request.status === "PENDING" ? 
+                                            (<span className="request-decision">
+                                                <button className="btn btn-request" onClick={() => updateRequest({id:request.id, status:"APPROVED"})}>Accept</button>
+                                                <button className="btn btn-request" onClick={() => updateRequest({id:request.id, status:"DENIED"})}>Deny</button>
+                                            </span>
+                                            ) : "" 
+                                            }  
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                                
                 <div className="course-add-course">
@@ -138,3 +179,12 @@ class Dashboard extends React.Component{
 }
 
 export default Dashboard;
+    // <div>
+    //     {request.status === "PENDING" ? 
+    //     (<span className="request-decision">
+    //         <button className="btn btn-request" onClick={() => updateRequest({id:request.id, status:"APPROVED"})}>Accept</button>
+    //         <button className="btn btn-request" onClick={() => updateRequest({id:request.id, status:"DENIED"})}>Deny</button>
+    //     </span>
+    //     ) : "" 
+    //     }  
+    // </div>

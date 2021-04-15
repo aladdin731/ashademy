@@ -91,23 +91,21 @@ class CourseDetail extends React.Component{
       <div className="course-detail-page">
         <h2 className="course-name">{this.props.course.courseName}</h2>
         <div className="course-detail">
-           
           <img className="img course-detail-img" src={this.props.course.imageUrl} alt={this.props.course.courseName} />
           {requestForm}
-         
         </div>
         <div className="course-detail-info">   
-            <div className="author-section">
-              <span className="author-info">{this.props.course.courseName} by {this.props.instructor.username}</span>
-              <img className="img profile-img" src={this.props.instructor.imageUrl} alt="no profile yet"></img>
-            </div>
-            <div className="course-info">
-              <p>&#128655;: {this.props.course.courseType}</p>
-              <p>&#9999;: {this.props.course.description}</p>
-              <p>&#127991;: {this.props.tags.join(' ')}</p>
-              <p>&#127775;: {this.props.course.averageRating === 0 ? "No Rating Yet" : averageRating}</p>
-            </div>
+          <div className="author-section">
+            <span className="author-info">{this.props.course.courseName} by {this.props.instructor.username}</span>
+            <img className="img profile-img" src={this.props.instructor.imageUrl} alt="no profile yet"></img>
           </div>
+          <div className="course-info">
+            <p>&#128655;: {this.props.course.courseType}</p>
+            <p>&#9999;: {this.props.course.description}</p>
+            <p>&#127991;: {this.props.tags.join(' ')}</p>
+            <p>&#127775;: {this.props.course.averageRating === 0 ? "No Rating Yet" : averageRating}</p>
+          </div>
+        </div>
 
         <div className="review-section">
           <h1 className="review-title">Reviews</h1>
