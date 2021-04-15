@@ -3439,7 +3439,7 @@ var selectRequestsForCurrentUser = function selectRequestsForCurrentUser(state, 
     return user.requestIds.map(function (requestId) {
       var request = state.entities.requests[requestId];
 
-      if (!state.entities.courses[request.courseId]) {
+      if (!request || !state.entities.courses[request.courseId]) {
         return [];
       }
 

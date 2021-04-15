@@ -26,7 +26,7 @@ export const selectRequestsForCurrentUser = (state, currentUser) => {
   if(user && user.requestIds && Object.keys(state.entities.requests).length !== 0 && Object.keys(state.entities.courses).length !== 0 ) {
     return user.requestIds.map(requestId => {
         let request = state.entities.requests[requestId];
-        if(!state.entities.courses[request.courseId]) {
+        if(!request || !state.entities.courses[request.courseId]) {
           return [];
         }
         request.course = state.entities.courses[request.courseId].courseName;
