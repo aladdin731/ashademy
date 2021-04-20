@@ -20,6 +20,7 @@ import Modal from './modal/modal';
 import SearchContainer from './search/search_container';
 import SearchResultContainer from './search/search_result_container.js';
 
+
 const App = () => (
   <div>
     <Modal />
