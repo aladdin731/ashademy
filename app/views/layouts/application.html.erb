@@ -7,6 +7,15 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+     <meta property="og:title" content="Project Title" />
+     <meta property='og:image' content="<%= image_url('ashademy.png') %>"/>
+     <meta property="og:description"
+       content="A brief description of your project."
+     />
+     <meta property="og:url"
+       content="https://ashademy.herokuapp.com/#/"
+     />
+
     <link rel="icon" href=<%= image_url('logo.png') %>>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Source+Sans+Pro:wght@300&display=swap" rel="stylesheet">
