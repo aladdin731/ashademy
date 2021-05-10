@@ -1087,8 +1087,6 @@ img.profile-img{
 
 .course-info {
   font-size: 1.2rem;
-  /* font-weight: bold; */
-  /* box-shadow: 0 5px 10px rgb(235, 188, 188); */
   box-shadow: 0 5px 10px rgb(195, 197, 194);
   border-radius: .5rem;
 }
@@ -1100,18 +1098,22 @@ img.profile-img{
 
  .review-section{
    /* background-color: darksalmon; */
-   
+   /* margin-left: 5%; */
  }
 
  .no-review-form {
    margin-left: 5%;
  }
 
+ .reviews {
+  margin-left: 2%;
+ }
 
  .review-info{
    list-style: none;
    box-shadow: 0 5px 10px rgb(195, 197, 194);
    border-radius: .5rem;
+   margin-bottom: 15px;
  }
 
  .reviewer-info{
@@ -1119,6 +1121,8 @@ img.profile-img{
    font-size: 1rem;
    display: flex;
    justify-content: flex-start;
+   padding-top:3px;
+   /* margin-bottom: 15px; */
    /* box-shadow: 0 5px 10px rgb(235, 188, 188); */
  }
 
@@ -1138,13 +1142,15 @@ img.profile-img{
 
  .review-body{
    margin-left:2rem;
+   padding-bottom: 1px;
+   /* background-color: blueviolet; */
  }
 
  /* review form */
 
   .review-form {
    /* background-color: darkseagreen; */
-   margin-left: 5%;
+   margin-left: 1%;
  }
 
  .review-input{

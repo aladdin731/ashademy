@@ -115,7 +115,7 @@ class CourseDetail extends React.Component{
             }
           </h3>
           
-          <ul>
+          <ul className="reviews">
             {this.props.reviews.map((review,i) => 
               <li className="review-info" key={i}> 
                 <div className="reviewer-info">

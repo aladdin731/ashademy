@@ -759,7 +759,9 @@ var CourseDetail = /*#__PURE__*/function (_React$Component) {
         className: "review-title"
       }, "Reviews"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "no-review-form"
-      }, this.props.reviews.length === 0 ? "No Review Yet" : ""), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.props.reviews.map(function (review, i) {
+      }, this.props.reviews.length === 0 ? "No Review Yet" : ""), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "reviews"
+      }, this.props.reviews.map(function (review, i) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           className: "review-info",
           key: i
