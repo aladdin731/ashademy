@@ -13,3 +13,5 @@ https://ashademy.herokuapp.com/#/
 2. Be mentee to request a course
 3. Leave a review or question for some course 
 4. Search for a specific type of course
+   
+# npm start & rails s to run the app

@@ -1210,12 +1210,13 @@ img.profile-img{
    background-color:white;
    border-radius: 0.5rem;
    width:400px;
-   height: 400px;
+   height: 450px;
  }
 
 .modal-container {
   display: flex;
   flex-direction: column;
+  /* background-color: aqua; */
 }
 
 .modal-header {
@@ -1248,7 +1249,8 @@ img.profile-img{
   justify-content: center;
   border-bottom: 1px solid #777;
   padding:1rem;
-
+  padding-bottom: 2rem;
+  /* background-color: blueviolet; */
 }
 
 .modal-form-input {
@@ -1258,6 +1260,7 @@ img.profile-img{
 
 .modal-input-block {
   width:100%;
+  /* background-color: aquamarine; */
 }
 
 .modal-input-label{
@@ -1279,7 +1282,12 @@ input.modal-input:last-child {
   margin-bottom: none;
 }
 
+.error-list {
+  margin-top: -12px;
+}
+
 .modal-error {
+  margin-top: -100px;
   margin-left:10%;
 }
 
@@ -1289,7 +1297,7 @@ input.modal-input:last-child {
   margin-top: -2rem;
   margin-left: 10%;
   margin-right: 10%;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   background-color: hsl(350, 69%, 50%);
   border-color: hsl(350, 69%, 40%);
   cursor: pointer;
@@ -1306,6 +1314,8 @@ input.modal-input:last-child {
 .modal-footer {
   display: flex;
   flex-direction: column;
+  /* background-color: blueviolet; */
+  margin-top: 20px;
 }
 
 .modal-footer-title {
