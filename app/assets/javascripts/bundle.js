@@ -643,10 +643,10 @@ var CourseDetail = /*#__PURE__*/function (_React$Component) {
   _createClass(CourseDetail, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchUsers();
-      this.props.fetchReviews();
       var courseId = parseInt(this.props.match.params.courseId);
+      this.props.fetchUsers();
       this.props.fetchCourse(courseId);
+      this.props.fetchReviews();
     }
   }, {
     key: "componentDidUpdate",
@@ -1549,6 +1549,7 @@ var Dashboard = /*#__PURE__*/function (_React$Component) {
   _createClass(Dashboard, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      this.props.fetchUsers();
       this.props.fetchUser(this.props.currentUser.id);
       this.props.fetchCourses();
       this.props.fetchRequests();
@@ -1764,6 +1765,9 @@ var mapStateToProps = function mapStateToProps(state) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
+    fetchUsers: function fetchUsers() {
+      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_1__["fetchUsers"])());
+    },
     fetchUser: function fetchUser(currentUserId) {
       return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_1__["fetchUser"])(currentUserId));
     },

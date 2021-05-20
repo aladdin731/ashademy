@@ -19,6 +19,7 @@ class Dashboard extends React.Component{
     }
 
     componentDidMount(){
+        this.props.fetchUsers();
         this.props.fetchUser(this.props.currentUser.id);
         this.props.fetchCourses();
         this.props.fetchRequests();

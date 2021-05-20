@@ -13,10 +13,10 @@ class CourseDetail extends React.Component{
   }
 
   componentDidMount(){
-    this.props.fetchUsers();
-    this.props.fetchReviews();
     const courseId = parseInt(this.props.match.params.courseId);
+    this.props.fetchUsers();
     this.props.fetchCourse(courseId);
+    this.props.fetchReviews();
   }
 
   componentDidUpdate(prevState){

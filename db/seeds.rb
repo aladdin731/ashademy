@@ -53,7 +53,7 @@ Tag.destroy_all
       'description' => "Best rails course",
       'course_type' => "Backend",
       'mentor_id' => u2.id,
-      'image_url' => 'https://hackernoon.com/drafts/3b3t3yqt.png',
+      'image_url' => 'https://miro.medium.com/max/400/0*hbmyPCa0Nv_YEgaS.png',
       'tags' => [
      'Ruby',
      'Rails'
