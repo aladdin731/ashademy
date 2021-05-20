@@ -21,20 +21,20 @@ export const receiveErrors = (errors) => ({
     errors
 })
 
-const removeCourse = payload => ({
+const removeCourse = course => ({
     type: REMOVE_COURSE,
-    payload  
+    course  
 })
 
-const receiveCourse = (payload) => ({
+const receiveCourse = (course) => ({
     type: RECEIVE_COURSE,
-    payload
+    course
 })
 
 export const fetchCourse = (courseId) => (dispatch) => (
     CourseAPI.fetchCourse(courseId)
-    .then(payload => {
-        dispatch(receiveCourse(payload))
+    .then(course => {
+        dispatch(receiveCourse(course))
     })
     .fail(err => {
         dispatch(receiveErrors(err.responseJSON))
@@ -43,8 +43,8 @@ export const fetchCourse = (courseId) => (dispatch) => (
 
 export const createCourse = (course) => (dispatch) => (
     CourseAPI.createCourse(course)
-    .then(payload => {
-        dispatch(receiveCourse(payload))
+    .then(course => {
+        dispatch(receiveCourse(course))
     })
     .fail(err => {
         dispatch(receiveErrors(err.responseJSON))
@@ -53,8 +53,8 @@ export const createCourse = (course) => (dispatch) => (
 
 export const updateCourse = (course) => (dispatch) => (
     CourseAPI.updateCourse(course)
-    .then(payload => {
-        dispatch(receiveCourse(payload))
+    .then(course => {
+        dispatch(receiveCourse(course))
     })
     .fail(err => {
         dispatch(receiveErrors(err.responseJSON))
@@ -64,8 +64,8 @@ export const updateCourse = (course) => (dispatch) => (
 
 export const deleteCourse = (courseId) => (dispatch) => (
     CourseAPI.deleteCourse(courseId)
-    .then((payload) => {
-        dispatch(removeCourse(payload))
+    .then((course) => {
+        dispatch(removeCourse(course))
     })
     .fail(err => {
         dispatch(receiveErrors(err.responseJSON))

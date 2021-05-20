@@ -8,11 +8,13 @@ class SearchResult extends React.Component{
   }
 
   componentDidMount(){
+    this.props.fetchUsers();
+    this.props.fetchCourses();
     this.props.fetchReviews();
   }
 
   render(){
-    const {ctype, updateFilter, courses, fetchCourses, fetchCourse} = this.props;
+    const {ctype, updateFilter, courses, fetchCourses, fetchCourse, fetchUsers} = this.props;
     return(
       <div>
         <FilterForm
@@ -28,6 +30,7 @@ class SearchResult extends React.Component{
                 course={course}
                 key={course.id}
                 fetchCourse={fetchCourse}
+                fetchUsers={fetchUsers}
               />
             ))}
           </ul>

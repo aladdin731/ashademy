@@ -10,35 +10,28 @@ const usersReducer = (state = {}, action) => {
   let nextState;
   switch(action.type) {
     case RECEIVE_CURRENT_USER:
-      return Object.assign({}, state, { [action.currentUser.user.id]: action.currentUser.user });
+      return Object.assign({}, state, { [action.currentUser.id]: action.currentUser });
     case RECEIVE_USERS:
       return Object.assign({}, action.users, state);
     case RECEIVE_USER:
       nextState = Object.assign({}, state);
-      nextState[action.payload.user.id] = action.payload.user;
+      nextState[action.user.id] = action.user;
       return nextState;
     case RECEIVE_COURSE:
       nextState = Object.assign({}, state);
-      nextState[action.payload.instructor.id] = action.payload.instructor;
+      nextState[action.course.mentorId].courseIds.push(action.course.id);
       return nextState;
     case REMOVE_COURSE:
       nextState = Object.assign({}, state);
-      let userId = action.payload.instructor.id;
-      let arr1 = nextState[userId].courseIds;
-      arr1.splice(arr1.indexOf(action.payload.course.id), 1);
-      let arr2 = nextState[userId].receivedRequestsids;
-      let ids = action.payload.course.receivedRequestsids;
-      for(let i = 0; i < ids.length;i++) {
-        arr2.splice(arr2.indexOf(ids[i]), 1);
-      }
+      let userId = action.course.mentorId;
+      let arr = nextState[userId].courseIds;
+      arr.splice(arr.indexOf(action.course.id), 1);
       return nextState;
     case RECEIVE_REQUEST:
       nextState = Object.assign({}, state);
-      nextState[action.payload.sender.id] = action.payload.sender;
-      nextState[action.payload.receiver.id] = action.payload.receiver;
+      nextState[action.request.menteeId].requestIds.push(action.request.id);
+      nextState[action.request.receiver.id].receivedRequestsids.push(action.request.id);
       return nextState;
-    // case RECEIVE_REVIEW:
-    //   return Object.assign({}, state, { [action.author.id]: action.author });
     default:
       return state;
   }

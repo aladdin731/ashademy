@@ -11,21 +11,13 @@ const courseReducer = (state = {}, action) => {
     case RECEIVE_ALL_COURSES:
       return action.courses;
     case RECEIVE_COURSE:
-      nextState[action.payload.course.id] = action.payload.course;
+      nextState[action.course.id] = action.course;
       return nextState;
     case REMOVE_COURSE:
-      delete nextState[action.payload.course.id]
+      delete nextState[action.course.id]
       return nextState;
-    case RECEIVE_USER:
-      return Object.assign({}, state, action.payload.courses, action.payload.requestedCourses);
-    case RECEIVE_REQUEST:
-      nextState[action.payload.course.id] = action.payload.course;
-      return nextState;
-    // case RECEIVE_CURRENT_USER:
-    //   return Object.assign({}, state, action.currentUser.courses);
     case RECEIVE_REVIEW:
       nextState[action.review.courseId].reviewIds.push(action.review.id);
-      // nextState[action.review.courseId].averageRating = action.average_rating;
       return nextState;
     default:
       return state;

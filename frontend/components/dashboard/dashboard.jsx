@@ -20,6 +20,8 @@ class Dashboard extends React.Component{
 
     componentDidMount(){
         this.props.fetchUser(this.props.currentUser.id);
+        this.props.fetchCourses();
+        this.props.fetchRequests();
     }
 
     handleClick(e){
@@ -100,8 +102,8 @@ class Dashboard extends React.Component{
                             <tbody>
                                 {requests.map((request,i) => (
                                     <tr key={i}>
-                                        <td>{request.course}</td>
-                                        <td>{request.receiver}</td>
+                                        <td>{request.course.courseName}</td>
+                                        <td>{request.receiver.username}</td>
                                         <td>{request.startTime}</td>
                                         <td>{request.endTime}</td>
                                         <td><p className={request.status === "PENDING" ? "status-pending" : (request.status === "APPROVED" ? "status-approve" : "status-deny")}>{request.status}</p></td>
@@ -134,8 +136,8 @@ class Dashboard extends React.Component{
                             <tbody>
                                 {receivedRequests.map((request,i) => (
                                     <tr key={i}>
-                                        <td>{request.course}</td>
-                                        <td>{request.sender}</td>
+                                        <td>{request.course.courseName}</td>
+                                        <td>{request.sender.userName}</td>
                                         <td>{request.startTime}</td>
                                         <td>{request.endTime}</td>
                                         <td><p className={request.status === "PENDING" ? "status-pending" : (request.status === "APPROVED" ? "status-approve" : "status-deny")}>{request.status}</p></td>
@@ -159,7 +161,7 @@ class Dashboard extends React.Component{
                     <h1>Courses</h1>
                     <ul className="courses-section">
                         {courses.map(course => (
-                            <li className="course-block" key={course.id}>
+                            <li key={course.id} className="course-block" key={course.id}>
                                 <img className="img course-img" src={course.imageUrl}/>
                                 <div className="course-delete">
                                     <h3 className="course-title">{course.courseName}</h3>
@@ -179,12 +181,3 @@ class Dashboard extends React.Component{
 }
 
 export default Dashboard;
-    // <div>
-    //     {request.status === "PENDING" ? 
-    //     (<span className="request-decision">
-    //         <button className="btn btn-request" onClick={() => updateRequest({id:request.id, status:"APPROVED"})}>Accept</button>
-    //         <button className="btn btn-request" onClick={() => updateRequest({id:request.id, status:"DENIED"})}>Deny</button>
-    //     </span>
-    //     ) : "" 
-    //     }  
-    // </div>

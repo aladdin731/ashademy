@@ -10,30 +10,8 @@ const requestReducer = (state = {}, action) => {
     case RECEIVE_REQUESTS:
       return action.requests;
     case RECEIVE_REQUEST:
-      nextState[action.payload.request.id] = action.payload.request;
+      nextState[action.request.id] = action.request;
       return nextState;
-    case RECEIVE_USER:
-      return Object.assign({}, state, action.payload.requests, action.payload.receivedRequests);
-    case RECEIVE_COURSE:
-      return Object.assign({}, state, action.payload.receivedRequests);
-    // case REMOVE_COURSE:
-    //   let keys = Object.keys(nextState);
-    //   for(let i = 0; i < keys.length; i++) {
-    //     if(nextState[keys[i]].courseId === action.courseId) {
-    //       delete nextState[keys[i]]
-    //     }
-    //   }
-    //   return nextState;
-    case REMOVE_COURSE:
-      let keys = Object.keys(nextState);
-      for(let i = 0; i < keys.length; i++) {
-        if(nextState[keys[i]].courseId === action.payload.course.id) {
-          delete nextState[keys[i]]
-        }
-      }
-      return nextState;
-    case RECEIVE_CURRENT_USER:
-      return Object.assign({}, state, action.currentUser.requests, action.currentUser.receivedRequests);
     default:
       return state;
   }

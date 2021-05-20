@@ -3,7 +3,7 @@ import * as ReviewAPI from '../util/review_api_util';
 export const RECEIVE_REVIEW = 'RECEIVE_REVIEW';
 export const RECEIVE_REVIEWS = 'RECEIVE_REVIEWS';
 
-export const receiveReview = ({ review}) => ({
+export const receiveReview = (review) => ({
   type: RECEIVE_REVIEW,
   review,
 });

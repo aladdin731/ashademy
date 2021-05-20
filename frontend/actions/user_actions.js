@@ -9,9 +9,9 @@ const receiveUsers = users => ({
     users
 })
 
-const receiveUser = (payload) => ({
+const receiveUser = (user) => ({
     type: RECEIVE_USER,
-    payload 
+    user 
 })
 
 export const receiveErrors = errors => ({
@@ -26,8 +26,8 @@ export const fetchUsers = () => dispatch => (
 
 export const fetchUser = (userId) => (dispatch) => (
     UserAPI.fetchUser(userId)
-    .then(payload => {
-        dispatch(receiveUser(payload))
+    .then(user => {
+        dispatch(receiveUser(user))
     })
     .fail(err => {
         dispatch(receiveErrors(err.responseJSON))

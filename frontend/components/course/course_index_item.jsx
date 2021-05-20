@@ -8,6 +8,7 @@ class CourseIndexItem extends React.Component{
   }
 
   handleClick() {
+    this.props.fetchUsers();
     const courseId = this.props.course.id;
     this.props.fetchCourse(courseId);
     this.props.history.push(`/courses/${courseId}`);

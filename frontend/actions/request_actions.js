@@ -9,9 +9,9 @@ const receiveRequests = (requests) => ({
     requests
 })
 
-const receiveRequest = (payload) => ({
+const receiveRequest = (request) => ({
     type: RECEIVE_REQUEST,
-    payload
+    request
 })
 
 
@@ -28,8 +28,8 @@ export const fetchRequests = () => dispatch =>
 
 export const createRequest = (request) => (dispatch) => (
     RequestAPI.createRequest(request)
-    .then(payload => {
-        dispatch(receiveRequest(payload))
+    .then(request => {
+        dispatch(receiveRequest(request))
     })
     .fail(err => {
         dispatch(receiveErrors(err.responseJSON))
@@ -38,8 +38,8 @@ export const createRequest = (request) => (dispatch) => (
 
 export const updateRequest = (request) => (dispatch) => (
     RequestAPI.updateRequest(request)
-    .then(payload => {
-        dispatch(receiveRequest(payload))
+    .then(request => {
+        dispatch(receiveRequest(request))
     })
     .fail(err => {
         dispatch(receiveErrors(err.responseJSON))

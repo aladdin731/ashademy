@@ -13,13 +13,17 @@ class CourseDetail extends React.Component{
   }
 
   componentDidMount(){
+    this.props.fetchUsers();
+    this.props.fetchReviews();
     const courseId = parseInt(this.props.match.params.courseId);
     this.props.fetchCourse(courseId);
   }
 
   componentDidUpdate(prevState){
     if (prevState.reviews.length !== this.props.reviews.length){
+      this.props.fetchUsers();
       this.props.fetchCourse(this.props.match.params.courseId);
+      this.props.fetchReviews();
     }
   }
 
@@ -43,12 +47,12 @@ class CourseDetail extends React.Component{
 
 
   render(){
-    if(!this.props.instructor ||!this.props.reviews) return null;
+    if(!this.props.user || !this.props.course ||!this.props.reviews) return null;
     
     let requestForm;
     if(!this.props.currentUser) {
       requestForm = <p className="no-request-form">Please log in to make request</p>
-    }else if (this.props.instructor.id === this.props.currentUser.id){
+    }else if (this.props.course.instructor.id === this.props.currentUser.id){
       requestForm = <h3 className="no-request-form">This course is made by you!</h3> 
     }else {
       requestForm = (<div className="request-form">
@@ -79,7 +83,7 @@ class CourseDetail extends React.Component{
     let reviewForm;
     if(!this.props.currentUser) {
       reviewForm = ""
-    }else if (this.props.instructor.id === this.props.currentUser.id){
+    }else if (this.props.course.instructor.id === this.props.currentUser.id){
       reviewForm = <h3 className="no-review-form">Look at the reviews of your course!</h3> 
     }else {
       reviewForm = <ReviewFormContainer />
@@ -96,8 +100,8 @@ class CourseDetail extends React.Component{
         </div>
         <div className="course-detail-info">   
           <div className="author-section">
-            <span className="author-info">{this.props.course.courseName} by {this.props.instructor.username}</span>
-            <img className="img profile-img" src={this.props.instructor.imageUrl} alt="no profile yet"></img>
+            <span className="author-info">{this.props.course.courseName} by {this.props.course.instructor.username}</span>
+            <img className="img profile-img" src={this.props.course.instructor.imageUrl} alt="no profile yet"></img>
           </div>
           <div className="course-info">
             <p>&#128655;: {this.props.course.courseType}</p>

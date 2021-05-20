@@ -10,8 +10,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     createCourse: (course) => dispatch(createCourse(course)),
-    // fetchUser: (id) => dispatch(fetchUser(id))
-
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CourseForm);

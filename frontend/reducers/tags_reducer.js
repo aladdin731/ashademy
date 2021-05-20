@@ -5,7 +5,7 @@ const tagsReducer = (state = {}, action) => {
   let nextState = Object.assign({}, state);
   switch(action.type){
     case RECEIVE_COURSE:
-      nextState = action.payload.tags;
+      nextState = action.course.tags;
       return nextState;
     default:
       return state;

@@ -11,6 +11,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   fetchCourses: () => dispatch(fetchCourses()),
+  fetchUsers: () => dispatch(fetchUsers())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CourseIndex)

@@ -23,15 +23,13 @@ export const selectCoursesForCurrentUser = (state, currentUser) => {
 
 export const selectRequestsForCurrentUser = (state, currentUser) => {
   const user = state.entities.users[currentUser.id];
-  if(user && user.requestIds && Object.keys(state.entities.requests).length !== 0 && Object.keys(state.entities.courses).length !== 0 ) {
+  if(user && user.requestIds && Object.keys(state.entities.requests).length !== 0 ) {
     return user.requestIds.map(requestId => {
-        let request = state.entities.requests[requestId];
-        if(!request || !state.entities.courses[request.courseId]) {
-          return [];
-        }
-        request.course = state.entities.courses[request.courseId].courseName;
-        // request.receiver = request.username;
-        return request;
+      if(!state.entities.requests[requestId]){
+        return [];
+      }else {
+        return state.entities.requests[requestId]
+      }
     })
   }else {
     return [];
@@ -41,42 +39,24 @@ export const selectRequestsForCurrentUser = (state, currentUser) => {
 
 export const selectReceivedRequestsForCurrentUser = (state, currentUser) => {
   const user = state.entities.users[currentUser.id];
-  if(user && user.receivedRequestsids && Object.keys(state.entities.requests).length !== 0 && Object.keys(state.entities.courses).length !== 0) {
+  if(user && user.receivedRequestsids && Object.keys(state.entities.requests).length !== 0 ) {
     return user.receivedRequestsids.map(requestId => {
-        let request = state.entities.requests[requestId];
-        if(!request || !state.entities.courses[request.courseId]) {
-          return [];
-        }
-        request.course = state.entities.courses[request.courseId].courseName;
-        // request.sender = request.sender;
-        return request;
-    }) 
+      if(!state.entities.requests[requestId]){
+        return [];
+      }else {
+        return state.entities.requests[requestId]
+      }
+    })
   }else {
     return [];
   }
 };
 
-// export const selectReceivedRequestsForCurrentUser = (state, currentUser) => {
-//   const user = state.entities.users[currentUser.id];
-//   if(user && user.receivedRequestsids && Object.keys(state.entities.requests).length !== 0 && Object.keys(state.entities.courses).length !== 0) {
-//     return user.receivedRequestsids.map(requestId => {
-//         let request = state.entities.requests[requestId];
-//         if(!request || !state.entities.courses[request.courseId]) {
-//           return [];
-//         }
-//         request.course = state.entities.courses[request.courseId].courseName;
-//         request.sender = request.username;
-//         return request;
-//     }) 
-//   }else {
-//     return [];
-//   }
-// };
+
 
 export const selectReviewsForCourse = (state, courseId) => {
-  // return Object.values(state.entities.reviews);
   let course = state.entities.courses[courseId];
-  if(course && course.reviewIds && Object.keys(state.entities.reviews).length !== 0 && Object.keys(state.entities.courses).length !== 0) {
+  if(course && course.reviewIds && Object.keys(state.entities.reviews).length !== 0) {
     return course.reviewIds.map(id => {
       if(!state.entities.reviews[id]) {
           return [];
@@ -87,21 +67,6 @@ export const selectReviewsForCourse = (state, courseId) => {
     return [];
   }
 }
-
-export const asArray = ({ courses }) => (
-
-  Object.keys(courses).map(key => courses[key])
-);
-
-// export const selectReviewsForCourse = (state, courseId) => {
-//   const course = state.entities.courses[courseId];
-//   if(course && Object.keys(state.entities.reviews).length !== 0 ) {
-//     return course.reviewIds.map(reviewId => state.entities.reviews[reviewId]) 
-//   }else {
-//     return [];
-//   }
-// }
-
 
 
 

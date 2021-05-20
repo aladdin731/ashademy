@@ -8,6 +8,7 @@ class CourseIndex extends React.Component{
 
   componentDidMount(){
     this.props.fetchCourses();
+    this.props.fetchUsers();
   }
   
   render(){
@@ -17,7 +18,7 @@ class CourseIndex extends React.Component{
         <ul>
           {
               this.props.courses.map(course => (
-                  <CourseIndexItem fetchCourse={this.props.fetchCourse} key={course.id} course={course}/>))
+                  <CourseIndexItem fetchUsers={this.props.fetchUsers} fetchCourse={this.props.fetchCourse} key={course.id} course={course}/>))
           }
         </ul>
       </div>
