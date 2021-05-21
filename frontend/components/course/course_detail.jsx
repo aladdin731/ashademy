@@ -17,6 +17,7 @@ class CourseDetail extends React.Component{
   componentDidMount(){
         const courseId = parseInt(this.props.match.params.courseId);
         // this.props.fetchUsersThenCourse(courseId);
+        this.props.fetchCourses();
         this.props.fetchUsers();
         setTimeout(() => this.props.fetchCourse(courseId),200)
         this.props.fetchReviews();

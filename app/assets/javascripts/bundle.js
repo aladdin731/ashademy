@@ -661,6 +661,7 @@ var CourseDetail = /*#__PURE__*/function (_React$Component) {
 
       var courseId = parseInt(this.props.match.params.courseId); // this.props.fetchUsersThenCourse(courseId);
 
+      this.props.fetchCourses();
       this.props.fetchUsers();
       setTimeout(function () {
         return _this2.props.fetchCourse(courseId);
@@ -857,6 +858,9 @@ var mapStateToProps = function mapStateToProps(state, _ref) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
+    fetchCourses: function fetchCourses() {
+      return dispatch(Object(_actions_course_actions__WEBPACK_IMPORTED_MODULE_1__["fetchCourses"])());
+    },
     fetchCourse: function fetchCourse(courseId) {
       return dispatch(Object(_actions_course_actions__WEBPACK_IMPORTED_MODULE_1__["fetchCourse"])(courseId));
     },
