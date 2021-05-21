@@ -20,10 +20,12 @@ class Dashboard extends React.Component{
 
 
     componentDidMount(){
+        this.props.fetchUsers();
         this.props.fetchCourses();
         this.props.fetchRequests();
         this.props.fetchUser(this.props.currentUser.id);
     }
+
 
     handleClick(e){
         e.preventDefault();

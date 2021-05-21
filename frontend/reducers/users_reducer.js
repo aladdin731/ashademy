@@ -29,8 +29,15 @@ const usersReducer = (state = {}, action) => {
       return nextState;
     case RECEIVE_REQUEST:
       nextState = Object.assign({}, state);
-      nextState[action.request.menteeId].requestIds.push(action.request.id);
-      nextState[action.request.receiver.id].receivedRequestsids.push(action.request.id);
+      let requestId = action.request.id;
+      let requestArr = nextState[action.request.menteeId].requestIds;
+      let receivedRequestArr = nextState[action.request.receiver.id].receivedRequestsids;
+      if(!requestArr.includes(requestId)) {
+        requestArr.push(requestIds)
+      }
+      if(!receivedRequestArr.includes(requestId)) {
+        receivedRequestArr.push(requestId)
+      }
       return nextState;
     default:
       return state;

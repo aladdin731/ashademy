@@ -1575,6 +1575,7 @@ var Dashboard = /*#__PURE__*/function (_React$Component) {
   _createClass(Dashboard, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      this.props.fetchUsers();
       this.props.fetchCourses();
       this.props.fetchRequests();
       this.props.fetchUser(this.props.currentUser.id);
@@ -2361,6 +2362,14 @@ var Search = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(Search, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchUsers();
+      this.props.fetchCourses();
+      this.props.fetchReviews();
+      this.props.fetchRequests();
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
@@ -2426,6 +2435,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_filter_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/filter_actions */ "./frontend/actions/filter_actions.js");
 /* harmony import */ var _reducers_selectors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../reducers/selectors */ "./frontend/reducers/selectors.js");
 /* harmony import */ var _search__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./search */ "./frontend/components/search/search.jsx");
+/* harmony import */ var _actions_review_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/review_actions */ "./frontend/actions/review_actions.js");
+/* harmony import */ var _actions_request_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../actions/request_actions */ "./frontend/actions/request_actions.js");
+/* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../actions/user_actions */ "./frontend/actions/user_actions.js");
+
+
+
 
 
 
@@ -2445,6 +2460,15 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     fetchCourses: function fetchCourses() {
       return dispatch(Object(_actions_course_actions__WEBPACK_IMPORTED_MODULE_1__["fetchCourses"])());
+    },
+    fetchUsers: function fetchUsers() {
+      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_7__["fetchUsers"])());
+    },
+    fetchRequests: function fetchRequests() {
+      return dispatch(Object(_actions_request_actions__WEBPACK_IMPORTED_MODULE_6__["fetchRequests"])());
+    },
+    fetchReviews: function fetchReviews() {
+      return dispatch(_actions_review_actions__WEBPACK_IMPORTED_MODULE_5__["fetchReviews"]);
     }
   };
 };
@@ -3695,8 +3719,18 @@ var usersReducer = function usersReducer() {
 
     case _actions_request_actions__WEBPACK_IMPORTED_MODULE_3__["RECEIVE_REQUEST"]:
       nextState = Object.assign({}, state);
-      nextState[action.request.menteeId].requestIds.push(action.request.id);
-      nextState[action.request.receiver.id].receivedRequestsids.push(action.request.id);
+      var requestId = action.request.id;
+      var requestArr = nextState[action.request.menteeId].requestIds;
+      var receivedRequestArr = nextState[action.request.receiver.id].receivedRequestsids;
+
+      if (!requestArr.includes(requestId)) {
+        requestArr.push(requestIds);
+      }
+
+      if (!receivedRequestArr.includes(requestId)) {
+        receivedRequestArr.push(requestId);
+      }
+
       return nextState;
 
     default:
