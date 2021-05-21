@@ -1,4 +1,5 @@
 import * as UserAPI from '../util/user_api_util';
+import { fetchCourse } from './course_actions';
 
 export const RECEIVE_USERS = "RECEIVE_USERS";
 export const RECEIVE_USER = "RECEIVE_USER";
@@ -19,9 +20,17 @@ export const receiveErrors = errors => ({
   errors
 });
 
+
 export const fetchUsers = () => dispatch => (
-  UserAPI.fetchUsers().then(users => dispatch(receiveUsers(users))),
+    UserAPI.fetchUsers()
+    .then(users => {dispatch(receiveUsers(users))}),
   err => dispatch(receiveErrors(err.responseJSON))
+);
+
+export const fetchUsersThenCourse = (courseId) => dispatch => (
+    UserAPI.fetchUsers()
+    .then(users => {dispatch(receiveUsers(users))})
+    .then(res => fetchCourse(courseId))
 );
 
 

@@ -7,54 +7,58 @@ export const selectCourseTagsNames = (state) => {
 
 
 export const selectCoursesForCurrentUser = (state, currentUser) => {
+  if(!state.entities.users) return null;
   const user = state.entities.users[currentUser.id];
   if(user && user.courseIds && Object.keys(state.entities.courses).length !== 0 ) {
     return user.courseIds.map(courseId => {
       if(!state.entities.courses[courseId]){
-        return [];
+        return null;
       }else {
         return state.entities.courses[courseId]
       }
     })
   }else {
-    return [];
+    return null;
   }
 };
 
 export const selectRequestsForCurrentUser = (state, currentUser) => {
+  if(!state.entities.users) return null;
   const user = state.entities.users[currentUser.id];
   if(user && user.requestIds && Object.keys(state.entities.requests).length !== 0 ) {
     return user.requestIds.map(requestId => {
       if(!state.entities.requests[requestId]){
-        return [];
+        return null;
       }else {
         return state.entities.requests[requestId]
       }
     })
   }else {
-    return [];
+    return null;
   }
 };
 
 
 export const selectReceivedRequestsForCurrentUser = (state, currentUser) => {
+  if(!state.entities.users) return null;
   const user = state.entities.users[currentUser.id];
   if(user && user.receivedRequestsids && Object.keys(state.entities.requests).length !== 0 ) {
     return user.receivedRequestsids.map(requestId => {
       if(!state.entities.requests[requestId]){
-        return [];
+        return null;
       }else {
         return state.entities.requests[requestId]
       }
     })
   }else {
-    return [];
+    return null;
   }
 };
 
 
 
 export const selectReviewsForCourse = (state, courseId) => {
+  if(!state.entities.courses) return null;
   let course = state.entities.courses[courseId];
   if(course && course.reviewIds && Object.keys(state.entities.reviews).length !== 0) {
     return course.reviewIds.map(id => {

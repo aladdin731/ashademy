@@ -1,6 +1,7 @@
 import React from 'react';
 import ReviewFormContainer from './review_form_container';
 import { withRouter } from 'react-router-dom';
+import { fetchUsers } from '../../util/user_api_util';
 
 class CourseDetail extends React.Component{
   constructor(props) {
@@ -12,11 +13,12 @@ class CourseDetail extends React.Component{
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+
   componentDidMount(){
-    const courseId = parseInt(this.props.match.params.courseId);
-    this.props.fetchUsers();
-    this.props.fetchCourse(courseId);
-    this.props.fetchReviews();
+        const courseId = parseInt(this.props.match.params.courseId);
+        this.props.fetchUsersThenCourse(courseId);
+        this.props.fetchReviews();
+        this.props.fetchCourse(courseId);
   }
 
   componentDidUpdate(prevState){

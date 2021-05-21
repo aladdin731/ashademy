@@ -445,7 +445,7 @@ var logout = function logout() {
 /*!******************************************!*\
   !*** ./frontend/actions/user_actions.js ***!
   \******************************************/
-/*! exports provided: RECEIVE_USERS, RECEIVE_USER, RECEIVE_USER_ERRORS, receiveErrors, fetchUsers, fetchUser, updateUserInfo */
+/*! exports provided: RECEIVE_USERS, RECEIVE_USER, RECEIVE_USER_ERRORS, receiveErrors, fetchUsers, fetchUsersThenCourse, fetchUser, updateUserInfo */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -455,9 +455,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_USER_ERRORS", function() { return RECEIVE_USER_ERRORS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveErrors", function() { return receiveErrors; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUsers", function() { return fetchUsers; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUsersThenCourse", function() { return fetchUsersThenCourse; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUser", function() { return fetchUser; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateUserInfo", function() { return updateUserInfo; });
 /* harmony import */ var _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/user_api_util */ "./frontend/util/user_api_util.js");
+/* harmony import */ var _course_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./course_actions */ "./frontend/actions/course_actions.js");
+
 
 var RECEIVE_USERS = "RECEIVE_USERS";
 var RECEIVE_USER = "RECEIVE_USER";
@@ -486,10 +489,19 @@ var receiveErrors = function receiveErrors(errors) {
 var fetchUsers = function fetchUsers() {
   return function (dispatch) {
     return _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchUsers"]().then(function (users) {
-      return dispatch(receiveUsers(users));
+      dispatch(receiveUsers(users));
     }), function (err) {
       return dispatch(receiveErrors(err.responseJSON));
     };
+  };
+};
+var fetchUsersThenCourse = function fetchUsersThenCourse(courseId) {
+  return function (dispatch) {
+    return _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchUsers"]().then(function (users) {
+      dispatch(receiveUsers(users));
+    }).then(function (res) {
+      return Object(_course_actions__WEBPACK_IMPORTED_MODULE_1__["fetchCourse"])(courseId);
+    });
   };
 };
 var fetchUser = function fetchUser(userId) {
@@ -593,6 +605,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _review_form_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./review_form_container */ "./frontend/components/course/review_form_container.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _util_user_api_util__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../util/user_api_util */ "./frontend/util/user_api_util.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -621,6 +634,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var CourseDetail = /*#__PURE__*/function (_React$Component) {
   _inherits(CourseDetail, _React$Component);
 
@@ -644,9 +658,9 @@ var CourseDetail = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       var courseId = parseInt(this.props.match.params.courseId);
-      this.props.fetchUsers();
-      this.props.fetchCourse(courseId);
+      this.props.fetchUsersThenCourse(courseId);
       this.props.fetchReviews();
+      this.props.fetchCourse(courseId);
     }
   }, {
     key: "componentDidUpdate",
@@ -849,6 +863,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     fetchReviews: function fetchReviews() {
       return dispatch(Object(_actions_review_actions__WEBPACK_IMPORTED_MODULE_6__["fetchReviews"])());
+    },
+    fetchUsersThenCourse: function fetchUsersThenCourse(courseId) {
+      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_5__["fetchUsersThenCourse"])(courseId));
     }
   };
 };
@@ -1549,10 +1566,9 @@ var Dashboard = /*#__PURE__*/function (_React$Component) {
   _createClass(Dashboard, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchUsers();
-      this.props.fetchUser(this.props.currentUser.id);
       this.props.fetchCourses();
       this.props.fetchRequests();
+      this.props.fetchUser(this.props.currentUser.id);
     }
   }, {
     key: "handleClick",
@@ -3006,6 +3022,7 @@ document.addEventListener("DOMContentLoaded", function () {
   window.fetchUsers = _frontend_actions_user_actions__WEBPACK_IMPORTED_MODULE_6__["fetchUsers"];
   window.fetchCourses = _actions_course_actions__WEBPACK_IMPORTED_MODULE_8__["fetchCourses"];
   window.fetchCourse = _actions_course_actions__WEBPACK_IMPORTED_MODULE_8__["fetchCourse"];
+  window.fetchUsersThenCourse = _frontend_actions_user_actions__WEBPACK_IMPORTED_MODULE_6__["fetchUsersThenCourse"];
   window.signup = _frontend_actions_session_actions__WEBPACK_IMPORTED_MODULE_7__["signup"];
   window.login = _frontend_actions_session_actions__WEBPACK_IMPORTED_MODULE_7__["login"];
   window.logout = _frontend_actions_session_actions__WEBPACK_IMPORTED_MODULE_7__["logout"];
@@ -3393,51 +3410,55 @@ var selectCourseTagsNames = function selectCourseTagsNames(state) {
   return tagNames;
 };
 var selectCoursesForCurrentUser = function selectCoursesForCurrentUser(state, currentUser) {
+  if (!state.entities.users) return null;
   var user = state.entities.users[currentUser.id];
 
   if (user && user.courseIds && Object.keys(state.entities.courses).length !== 0) {
     return user.courseIds.map(function (courseId) {
       if (!state.entities.courses[courseId]) {
-        return [];
+        return null;
       } else {
         return state.entities.courses[courseId];
       }
     });
   } else {
-    return [];
+    return null;
   }
 };
 var selectRequestsForCurrentUser = function selectRequestsForCurrentUser(state, currentUser) {
+  if (!state.entities.users) return null;
   var user = state.entities.users[currentUser.id];
 
   if (user && user.requestIds && Object.keys(state.entities.requests).length !== 0) {
     return user.requestIds.map(function (requestId) {
       if (!state.entities.requests[requestId]) {
-        return [];
+        return null;
       } else {
         return state.entities.requests[requestId];
       }
     });
   } else {
-    return [];
+    return null;
   }
 };
 var selectReceivedRequestsForCurrentUser = function selectReceivedRequestsForCurrentUser(state, currentUser) {
+  if (!state.entities.users) return null;
   var user = state.entities.users[currentUser.id];
 
   if (user && user.receivedRequestsids && Object.keys(state.entities.requests).length !== 0) {
     return user.receivedRequestsids.map(function (requestId) {
       if (!state.entities.requests[requestId]) {
-        return [];
+        return null;
       } else {
         return state.entities.requests[requestId];
       }
     });
   } else {
-    return [];
+    return null;
   }
 };
 var selectReviewsForCourse = function selectReviewsForCourse(state, courseId) {
+  if (!state.entities.courses) return null;
   var course = state.entities.courses[courseId];
 
   if (course && course.reviewIds && Object.keys(state.entities.reviews).length !== 0) {

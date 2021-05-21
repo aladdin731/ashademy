@@ -15,14 +15,14 @@ class Dashboard extends React.Component{
         this.handleClick = this.handleClick.bind(this);
         this.addProfile = this.addProfile.bind(this);
         this.wannaChangeProfile = this.wannaChangeProfile.bind(this);
-        this.originalProfile = this.originalProfile.bind(this)
+        this.originalProfile = this.originalProfile.bind(this);
     }
 
+
     componentDidMount(){
-        this.props.fetchUsers();
-        this.props.fetchUser(this.props.currentUser.id);
         this.props.fetchCourses();
         this.props.fetchRequests();
+        this.props.fetchUser(this.props.currentUser.id);
     }
 
     handleClick(e){

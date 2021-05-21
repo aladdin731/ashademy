@@ -4,7 +4,7 @@ import Root from './components/root';
 import configureStore from './store/store';
 import * as UserAPI from './util/user_api_util';
 import * as SessionAPI from './util/session_api_util';
-import {fetchUser, fetchUsers, updateUserInfo} from '../frontend/actions/user_actions';
+import {fetchUser, fetchUsers, updateUserInfo, fetchUsersThenCourse} from '../frontend/actions/user_actions';
 import {receiveCurrentUser, signup, login, logout} from '../frontend/actions/session_actions';
 import {clearErrors} from './actions/session_actions.js';
 import {updateCourse, deleteCourse, createCourse, fetchCourses, fetchCourse} from './actions/course_actions';
@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.fetchUsers = fetchUsers;
     window.fetchCourses = fetchCourses;
     window.fetchCourse = fetchCourse;
+    window.fetchUsersThenCourse = fetchUsersThenCourse;
     window.signup = signup;
     window.login = login;
     window.logout = logout;
