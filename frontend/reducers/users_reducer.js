@@ -24,8 +24,13 @@ const usersReducer = (state = {}, action) => {
     case REMOVE_COURSE:
       nextState = Object.assign({}, state);
       let userId = action.course.mentorId;
-      let arr = nextState[userId].courseIds;
-      arr.splice(arr.indexOf(action.course.id), 1);
+      let arr1 = nextState[userId].courseIds;
+      arr1.splice(arr1.indexOf(action.course.id), 1);
+      let arr2 = nextState[userId].receivedRequestsids;
+      let requestIds = action.course.requestIds;
+      for(let i = 0; i < requestIds.length; i++) {
+        arr2.splice(arr2.indexOf(requestIds[i]), 1);
+      }
       return nextState;
     case RECEIVE_REQUEST:
       nextState = Object.assign({}, state);

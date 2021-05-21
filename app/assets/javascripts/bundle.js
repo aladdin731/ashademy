@@ -3348,6 +3348,15 @@ var requestReducer = function requestReducer() {
       nextState[action.request.id] = action.request;
       return nextState;
 
+    case _actions_course_actions__WEBPACK_IMPORTED_MODULE_2__["REMOVE_COURSE"]:
+      var removeIds = action.course.requestIds;
+
+      for (var i = 0; i < removeIds.length; i++) {
+        delete nextState[removeIds[i]];
+      }
+
+      return nextState;
+
     default:
       return state;
   }
@@ -3713,8 +3722,15 @@ var usersReducer = function usersReducer() {
     case _actions_course_actions__WEBPACK_IMPORTED_MODULE_2__["REMOVE_COURSE"]:
       nextState = Object.assign({}, state);
       var userId = action.course.mentorId;
-      var arr = nextState[userId].courseIds;
-      arr.splice(arr.indexOf(action.course.id), 1);
+      var arr1 = nextState[userId].courseIds;
+      arr1.splice(arr1.indexOf(action.course.id), 1);
+      var arr2 = nextState[userId].receivedRequestsids;
+      var requestIds = action.course.requestIds;
+
+      for (var i = 0; i < requestIds.length; i++) {
+        arr2.splice(arr2.indexOf(requestIds[i]), 1);
+      }
+
       return nextState;
 
     case _actions_request_actions__WEBPACK_IMPORTED_MODULE_3__["RECEIVE_REQUEST"]:

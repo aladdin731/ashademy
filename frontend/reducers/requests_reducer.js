@@ -12,6 +12,12 @@ const requestReducer = (state = {}, action) => {
     case RECEIVE_REQUEST:
       nextState[action.request.id] = action.request;
       return nextState;
+    case REMOVE_COURSE:
+      let removeIds = action.course.requestIds;
+      for(let i = 0; i < removeIds.length; i++) {
+        delete nextState[removeIds[i]]
+      }
+      return nextState;
     default:
       return state;
   }
