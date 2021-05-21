@@ -16,9 +16,10 @@ class CourseDetail extends React.Component{
 
   componentDidMount(){
         const courseId = parseInt(this.props.match.params.courseId);
-        this.props.fetchUsersThenCourse(courseId);
+        // this.props.fetchUsersThenCourse(courseId);
+        this.props.fetchUsers();
+        setTimeout(() => this.props.fetchCourse(courseId),200)
         this.props.fetchReviews();
-        this.props.fetchCourse(courseId);
   }
 
   componentDidUpdate(prevState){
@@ -49,7 +50,7 @@ class CourseDetail extends React.Component{
 
 
   render(){
-    if(!this.props.user || !this.props.course ||!this.props.reviews) return null;
+    if(!this.props.course ||!this.props.reviews) return null;
     
     let requestForm;
     if(!this.props.currentUser) {

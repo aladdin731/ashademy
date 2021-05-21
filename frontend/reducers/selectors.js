@@ -58,7 +58,7 @@ export const selectReceivedRequestsForCurrentUser = (state, currentUser) => {
 
 
 export const selectReviewsForCourse = (state, courseId) => {
-  if(!state.entities.courses) return null;
+  if(!state.entities.courses) return [];
   let course = state.entities.courses[courseId];
   if(course && course.reviewIds && Object.keys(state.entities.reviews).length !== 0) {
     return course.reviewIds.map(id => {

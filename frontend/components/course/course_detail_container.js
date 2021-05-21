@@ -9,7 +9,7 @@ import { fetchReviews } from '../../actions/review_actions';
 
 const mapStateToProps = (state, {match}) => {
   const currentUser = state.session.currentUser;
-  const user = state.entities.users ? state.entities.users[currentUser.id] : null;
+  const user = state.entities.users && currentUser ? state.entities.users[currentUser.id] : null;
   const courseId = parseInt(match.params.courseId);
   const course = state.entities.courses? state.entities.courses[courseId] : null;
   const tags = selectCourseTagsNames(state);

@@ -3,8 +3,7 @@ import {
   LOGOUT_CURRENT_USER,
 } from '../actions/session_actions';
 
-import 
-{RECEIVE_ALL_COURSES} from '../actions/course_actions'
+
 const _nullUser = Object.freeze({
   currentUser: null
 });

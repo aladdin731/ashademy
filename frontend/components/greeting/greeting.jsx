@@ -12,7 +12,6 @@ class Greeting extends React.Component {
     handleClick(e) {
       e.preventDefault();
       this.props.updateFilter("ctype", "");
-      // this.props.fetchUser(this.props.currentUser.id);
       this.props.history.push("/dashboard/");
     }
 

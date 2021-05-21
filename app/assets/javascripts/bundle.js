@@ -657,10 +657,15 @@ var CourseDetail = /*#__PURE__*/function (_React$Component) {
   _createClass(CourseDetail, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var courseId = parseInt(this.props.match.params.courseId);
-      this.props.fetchUsersThenCourse(courseId);
+      var _this2 = this;
+
+      var courseId = parseInt(this.props.match.params.courseId); // this.props.fetchUsersThenCourse(courseId);
+
+      this.props.fetchUsers();
+      setTimeout(function () {
+        return _this2.props.fetchCourse(courseId);
+      }, 200);
       this.props.fetchReviews();
-      this.props.fetchCourse(courseId);
     }
   }, {
     key: "componentDidUpdate",
@@ -688,16 +693,16 @@ var CourseDetail = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "update",
     value: function update(property) {
-      var _this2 = this;
+      var _this3 = this;
 
       return function (e) {
-        return _this2.setState(_defineProperty({}, property, e.target.value));
+        return _this3.setState(_defineProperty({}, property, e.target.value));
       };
     }
   }, {
     key: "render",
     value: function render() {
-      if (!this.props.user || !this.props.course || !this.props.reviews) return null;
+      if (!this.props.course || !this.props.reviews) return null;
       var requestForm;
 
       if (!this.props.currentUser) {
@@ -835,7 +840,7 @@ __webpack_require__.r(__webpack_exports__);
 var mapStateToProps = function mapStateToProps(state, _ref) {
   var match = _ref.match;
   var currentUser = state.session.currentUser;
-  var user = state.entities.users ? state.entities.users[currentUser.id] : null;
+  var user = state.entities.users && currentUser ? state.entities.users[currentUser.id] : null;
   var courseId = parseInt(match.params.courseId);
   var course = state.entities.courses ? state.entities.courses[courseId] : null;
   var tags = Object(_reducers_selectors__WEBPACK_IMPORTED_MODULE_3__["selectCourseTagsNames"])(state);
@@ -1909,8 +1914,7 @@ var Greeting = /*#__PURE__*/function (_React$Component) {
     key: "handleClick",
     value: function handleClick(e) {
       e.preventDefault();
-      this.props.updateFilter("ctype", ""); // this.props.fetchUser(this.props.currentUser.id);
-
+      this.props.updateFilter("ctype", "");
       this.props.history.push("/dashboard/");
     }
   }, {
@@ -3458,7 +3462,7 @@ var selectReceivedRequestsForCurrentUser = function selectReceivedRequestsForCur
   }
 };
 var selectReviewsForCourse = function selectReviewsForCourse(state, courseId) {
-  if (!state.entities.courses) return null;
+  if (!state.entities.courses) return [];
   var course = state.entities.courses[courseId];
 
   if (course && course.reviewIds && Object.keys(state.entities.reviews).length !== 0) {
@@ -3519,8 +3523,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
-/* harmony import */ var _actions_course_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/course_actions */ "./frontend/actions/course_actions.js");
-
 
 
 var _nullUser = Object.freeze({
