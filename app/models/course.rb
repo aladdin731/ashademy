@@ -29,7 +29,8 @@ class Course < ApplicationRecord
     
     has_many :requests,
         foreign_key: :course_id,
-        class_name: 'Request'
+        class_name: 'Request',
+        dependent: :destroy
 
     has_many :reviews,
         foreign_key: :course_id,

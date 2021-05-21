@@ -3349,10 +3349,10 @@ var requestReducer = function requestReducer() {
       return nextState;
 
     case _actions_course_actions__WEBPACK_IMPORTED_MODULE_2__["REMOVE_COURSE"]:
-      var removeIds = action.course.requestIds;
-
-      for (var i = 0; i < removeIds.length; i++) {
-        delete nextState[removeIds[i]];
+      for (var i in nextState) {
+        if (nextState[i].courseId === action.course.id) {
+          delete nextState[nextState[i].id];
+        }
       }
 
       return nextState;
@@ -3725,10 +3725,12 @@ var usersReducer = function usersReducer() {
       var arr1 = nextState[userId].courseIds;
       arr1.splice(arr1.indexOf(action.course.id), 1);
       var arr2 = nextState[userId].receivedRequestsids;
-      var requestIds = action.course.requestIds;
+      var arr3 = Object.values(nextState[userId].receivedRequests);
 
-      for (var i = 0; i < requestIds.length; i++) {
-        arr2.splice(arr2.indexOf(requestIds[i]), 1);
+      for (var i = 0; i < arr3.length; i++) {
+        if (arr3[i].courseId === action.course.id) {
+          arr2.splice(arr2.indexOf(arr3[i].id), 1);
+        }
       }
 
       return nextState;

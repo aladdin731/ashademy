@@ -27,9 +27,11 @@ const usersReducer = (state = {}, action) => {
       let arr1 = nextState[userId].courseIds;
       arr1.splice(arr1.indexOf(action.course.id), 1);
       let arr2 = nextState[userId].receivedRequestsids;
-      let requestIds = action.course.requestIds;
-      for(let i = 0; i < requestIds.length; i++) {
-        arr2.splice(arr2.indexOf(requestIds[i]), 1);
+      let arr3 = Object.values(nextState[userId].receivedRequests);
+      for(let i = 0; i < arr3.length; i++) {
+        if(arr3[i].courseId === action.course.id) {
+          arr2.splice(arr2.indexOf(arr3[i].id), 1);
+        }
       }
       return nextState;
     case RECEIVE_REQUEST:

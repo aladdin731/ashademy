@@ -5,7 +5,7 @@ import {RECEIVE_CURRENT_USER} from '../actions/session_actions';
 
 const requestReducer = (state = {}, action) => {
   Object.freeze(state);
-  const nextState = Object.assign({}, state);
+  let nextState = Object.assign({}, state);
   switch (action.type){
     case RECEIVE_REQUESTS:
       return action.requests;
@@ -13,9 +13,10 @@ const requestReducer = (state = {}, action) => {
       nextState[action.request.id] = action.request;
       return nextState;
     case REMOVE_COURSE:
-      let removeIds = action.course.requestIds;
-      for(let i = 0; i < removeIds.length; i++) {
-        delete nextState[removeIds[i]]
+      for(let i in nextState) {
+        if(nextState[i].courseId === action.course.id){
+          delete nextState[nextState[i].id]
+        }
       }
       return nextState;
     default:
