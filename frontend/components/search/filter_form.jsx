@@ -25,11 +25,7 @@ class FilterForm extends React.Component{
   }
 
     componentDidMount(){
-      if(!this.state.ctype) {
-        this.props.updateFilter("ctype", "All");
-      }else {
-        this.props.updateFilter("ctype", this.state.ctype);
-      }
+      this.props.updateFilter("ctype", this.state.ctype);
     }
 
   render(){
@@ -60,39 +56,3 @@ class FilterForm extends React.Component{
 
 export default withRouter(FilterForm);
 
-// const FilterForm = ({ ctype, updateFilter }) => (
-//   <div>
-//     <br></br>
-//     <form>
-//        <label>Course Type
-//         <input
-//           type="text"
-//           value={ctype}
-//           placeholder="Type a type you like"
-//           onChange={handleChange('ctype', updateFilter)}
-//         />
-//        </label>
-//        <input type="submit">Search</input>
-     
-//     </form>
-
-//     <br></br>
-//     <br></br>
-
-//   </div>
-// );
-
-
-
-    // <form>
-
-    // </form>
-
-
-            //     <input
-            //   type="text"
-            //   value={this.state.ctype}
-            //   onChange={this.update("ctype")}
-            //   placeholder="Course Type"
-            //   className="type-input"
-            // />

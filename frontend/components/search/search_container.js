@@ -13,7 +13,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   updateFilter: (filter, value) => dispatch(updateFilter(filter, value)),
-  fetchCourses: () => dispatch(fetchCourses()),
+  fetchCourses: (data) => dispatch(fetchCourses(data)),
   fetchUsers: () => dispatch(fetchUsers()),
   fetchRequests: () => dispatch(fetchRequests()),
   fetchReviews:() => dispatch(fetchReviews)

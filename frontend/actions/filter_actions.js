@@ -10,6 +10,6 @@ export const changeFilter = (filter, value) => ({
 
 export const updateFilter = (filter, value) => (dispatch, getState) => {
   dispatch(changeFilter(filter, value));
-  return fetchCourses(getState().ui.filters)(dispatch);
+  return dispatch(fetchCourses(getState().ui.filters));
 };
 

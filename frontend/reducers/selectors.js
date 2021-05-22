@@ -5,6 +5,18 @@ export const selectCourseTagsNames = (state) => {
   return tagNames;
 }
 
+export const selectCourseOfType = (state, ctype) => {
+  const courses = Object.values(state.entities.courses);
+  const typeCourses = [];
+  for(let i = 0; i < courses.length; i++) {
+    console.log(courses[i])
+    if(courses[i].couseType === ctype) {
+      typeCourses.push(courses[i])
+    }
+  }
+  return typeCourses;
+}
+
 
 export const selectCoursesForCurrentUser = (state, currentUser) => {
   if(!state.entities.users) return null;

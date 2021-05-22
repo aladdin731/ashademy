@@ -211,7 +211,7 @@ var changeFilter = function changeFilter(filter, value) {
 var updateFilter = function updateFilter(filter, value) {
   return function (dispatch, getState) {
     dispatch(changeFilter(filter, value));
-    return Object(_course_actions__WEBPACK_IMPORTED_MODULE_0__["fetchCourses"])(getState().ui.filters)(dispatch);
+    return dispatch(Object(_course_actions__WEBPACK_IMPORTED_MODULE_0__["fetchCourses"])(getState().ui.filters));
   };
 };
 
@@ -2237,11 +2237,7 @@ var FilterForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      if (!this.state.ctype) {
-        this.props.updateFilter("ctype", "All");
-      } else {
-        this.props.updateFilter("ctype", this.state.ctype);
-      }
+      this.props.updateFilter("ctype", this.state.ctype);
     }
   }, {
     key: "render",
@@ -2276,33 +2272,7 @@ var FilterForm = /*#__PURE__*/function (_React$Component) {
   return FilterForm;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(FilterForm)); // const FilterForm = ({ ctype, updateFilter }) => (
-//   <div>
-//     <br></br>
-//     <form>
-//        <label>Course Type
-//         <input
-//           type="text"
-//           value={ctype}
-//           placeholder="Type a type you like"
-//           onChange={handleChange('ctype', updateFilter)}
-//         />
-//        </label>
-//        <input type="submit">Search</input>
-//     </form>
-//     <br></br>
-//     <br></br>
-//   </div>
-// );
-// <form>
-// </form>
-//     <input
-//   type="text"
-//   value={this.state.ctype}
-//   onChange={this.update("ctype")}
-//   placeholder="Course Type"
-//   className="type-input"
-// />
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(FilterForm));
 
 /***/ }),
 
@@ -2360,7 +2330,7 @@ var Search = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchUsers();
-      this.props.fetchCourses();
+      this.props.fetchCourses(this.props.ctype);
       this.props.fetchReviews();
       this.props.fetchRequests();
     }
@@ -2453,8 +2423,8 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     updateFilter: function updateFilter(filter, value) {
       return dispatch(Object(_actions_filter_actions__WEBPACK_IMPORTED_MODULE_2__["updateFilter"])(filter, value));
     },
-    fetchCourses: function fetchCourses() {
-      return dispatch(Object(_actions_course_actions__WEBPACK_IMPORTED_MODULE_1__["fetchCourses"])());
+    fetchCourses: function fetchCourses(data) {
+      return dispatch(Object(_actions_course_actions__WEBPACK_IMPORTED_MODULE_1__["fetchCourses"])(data));
     },
     fetchUsers: function fetchUsers() {
       return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_7__["fetchUsers"])());
@@ -2525,8 +2495,8 @@ var SearchResult = /*#__PURE__*/function (_React$Component) {
   _createClass(SearchResult, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchUsers();
-      this.props.fetchCourses(this.props.ctype); // this.props.fetchReviews();
+      // this.props.fetchUsers();
+      this.props.fetchCourses(this.props.ctype);
     }
   }, {
     key: "render",
@@ -2593,7 +2563,8 @@ __webpack_require__.r(__webpack_exports__);
 var mapStateToProps = function mapStateToProps(state) {
   var courses = Object.values(state.entities.courses);
   var currentUser = state.session.currentUser;
-  var ctype = state.ui.filters.ctype;
+  var ctype = state.ui.filters.ctype; // const courses = selectCourseOfType(state, ctype);
+
   return {
     courses: courses,
     currentUser: currentUser,
@@ -2609,17 +2580,14 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     fetchUsers: function fetchUsers() {
       return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_3__["fetchUsers"])());
     },
-    fetchCourses: function fetchCourses() {
-      return dispatch(Object(_actions_course_actions__WEBPACK_IMPORTED_MODULE_4__["fetchCourses"])());
+    fetchCourses: function fetchCourses(data) {
+      return dispatch(Object(_actions_course_actions__WEBPACK_IMPORTED_MODULE_4__["fetchCourses"])(data));
     },
     updateFilter: function updateFilter(filter, value) {
       return dispatch(Object(_actions_filter_actions__WEBPACK_IMPORTED_MODULE_5__["updateFilter"])(filter, value));
     },
     fetchCourse: function fetchCourse(id) {
       return dispatch(Object(_actions_course_actions__WEBPACK_IMPORTED_MODULE_4__["fetchCourse"])(id));
-    },
-    fetchReviews: function fetchReviews() {
-      return dispatch(Object(_actions_review_actions__WEBPACK_IMPORTED_MODULE_6__["fetchReviews"])());
     }
   };
 };
@@ -3428,12 +3396,13 @@ var rootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])(
 /*!****************************************!*\
   !*** ./frontend/reducers/selectors.js ***!
   \****************************************/
-/*! exports provided: selectCourseTagsNames, selectCoursesForCurrentUser, selectRequestsForCurrentUser, selectReceivedRequestsForCurrentUser, selectReviewsForCourse */
+/*! exports provided: selectCourseTagsNames, selectCourseOfType, selectCoursesForCurrentUser, selectRequestsForCurrentUser, selectReceivedRequestsForCurrentUser, selectReviewsForCourse */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectCourseTagsNames", function() { return selectCourseTagsNames; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectCourseOfType", function() { return selectCourseOfType; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectCoursesForCurrentUser", function() { return selectCoursesForCurrentUser; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectRequestsForCurrentUser", function() { return selectRequestsForCurrentUser; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectReceivedRequestsForCurrentUser", function() { return selectReceivedRequestsForCurrentUser; });
@@ -3443,6 +3412,20 @@ var selectCourseTagsNames = function selectCourseTagsNames(state) {
     return tag.tagName;
   });
   return tagNames;
+};
+var selectCourseOfType = function selectCourseOfType(state, ctype) {
+  var courses = Object.values(state.entities.courses);
+  var typeCourses = [];
+
+  for (var i = 0; i < courses.length; i++) {
+    console.log(courses[i]);
+
+    if (courses[i].couseType === ctype) {
+      typeCourses.push(courses[i]);
+    }
+  }
+
+  return typeCourses;
 };
 var selectCoursesForCurrentUser = function selectCoursesForCurrentUser(state, currentUser) {
   if (!state.entities.users) return null;

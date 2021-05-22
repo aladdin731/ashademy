@@ -8,7 +8,7 @@ class Search extends React.Component{
 
   componentDidMount(){
     this.props.fetchUsers();
-    this.props.fetchCourses();
+    this.props.fetchCourses(this.props.ctype);
     this.props.fetchReviews();
     this.props.fetchRequests();
   }
