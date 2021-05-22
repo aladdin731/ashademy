@@ -499,8 +499,7 @@ var fetchUsersThenCourse = function fetchUsersThenCourse(courseId) {
   return function (dispatch) {
     return _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchUsers"]().then(function (users) {
       dispatch(receiveUsers(users));
-    }).then(function (res) {
-      return Object(_course_actions__WEBPACK_IMPORTED_MODULE_1__["fetchCourse"])(courseId);
+      dispatch(Object(_course_actions__WEBPACK_IMPORTED_MODULE_1__["fetchCourse"])(courseId));
     });
   };
 };
@@ -657,15 +656,11 @@ var CourseDetail = /*#__PURE__*/function (_React$Component) {
   _createClass(CourseDetail, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var _this2 = this;
+      var courseId = parseInt(this.props.match.params.courseId);
+      this.props.fetchUsersThenCourse(courseId);
+      this.props.fetchCourses(); // this.props.fetchUsers();
+      // setTimeout(() => this.props.fetchCourse(courseId),200)
 
-      var courseId = parseInt(this.props.match.params.courseId); // this.props.fetchUsersThenCourse(courseId);
-
-      this.props.fetchCourses();
-      this.props.fetchUsers();
-      setTimeout(function () {
-        return _this2.props.fetchCourse(courseId);
-      }, 200);
       this.props.fetchReviews();
     }
   }, {
@@ -694,10 +689,10 @@ var CourseDetail = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "update",
     value: function update(property) {
-      var _this3 = this;
+      var _this2 = this;
 
       return function (e) {
-        return _this3.setState(_defineProperty({}, property, e.target.value));
+        return _this2.setState(_defineProperty({}, property, e.target.value));
       };
     }
   }, {
@@ -2531,8 +2526,7 @@ var SearchResult = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchUsers();
-      this.props.fetchCourses();
-      this.props.fetchReviews();
+      this.props.fetchCourses(this.props.ctype); // this.props.fetchReviews();
     }
   }, {
     key: "render",

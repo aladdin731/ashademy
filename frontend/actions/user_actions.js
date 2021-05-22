@@ -28,9 +28,13 @@ export const fetchUsers = () => dispatch => (
 );
 
 export const fetchUsersThenCourse = (courseId) => dispatch => (
-    UserAPI.fetchUsers()
-    .then(users => {dispatch(receiveUsers(users))})
-    .then(res => fetchCourse(courseId))
+  UserAPI.fetchUsers()
+    .then(
+      users => {
+        dispatch(receiveUsers(users));
+        dispatch(fetchCourse(courseId));
+      }
+    )
 );
 
 

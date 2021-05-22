@@ -12,9 +12,9 @@
 
 User.destroy_all
 u1 = User.create!({username: "Demo User", password:"123123", image_url:"https://timesofindia.indiatimes.com/photo/67586673.cms"})
-u2 = User.create!({username:"user2", password:"123123", image_url:"https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1952&q=80"})
-u3 = User.create!({username:"user3", password:"123123", image_url:"https://images.unsplash.com/photo-1457449940276-e8deed18bfff?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"})
-u4 = User.create!({username:"user4", password:"123123", image_url:"https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80"})
+u2 = User.create!({username:"user2", password:"123123", image_url:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiXuCELL9oXgqfWRGC5Z0R-D_WAEugJc7pBA&usqp=CAU"})
+u3 = User.create!({username:"user3", password:"123123", image_url:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiXuCELL9oXgqfWRGC5Z0R-D_WAEugJc7pBA&usqp=CAU"})
+u4 = User.create!({username:"user4", password:"123123", image_url:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiXuCELL9oXgqfWRGC5Z0R-D_WAEugJc7pBA&usqp=CAU"})
 
 Review.destroy_all
 
@@ -119,7 +119,7 @@ Tag.destroy_all
       'description' => "Best testing course",
       'course_type' => "Data",
       'mentor_id' => u4.id,
-      'image_url' => 'https://images.unsplash.com/photo-1485796826113-174aa68fd81b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1950&q=80',
+      'image_url' => 'https://wordstream-files-prod.s3.amazonaws.com/s3fs-public/styles/simple_image/public/images/machine-learning1.png?SnePeroHk5B9yZaLY7peFkULrfW8Gtaf&itok=yjEJbEKD',
       'tags' => [
      'Machine Learning',
      'Big Data'
@@ -130,7 +130,7 @@ Tag.destroy_all
       'description' => "Best interview course",
       'course_type' => "Interview",
       'mentor_id' => u2.id,
-      'image_url' => 'https://images.unsplash.com/photo-1573497491208-6b1acb260507?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80',
+      'image_url' => 'https://cdn.uconnectlabs.com/wp-content/uploads/sites/17/2018/11/Mock-Interview.jpg',
       'tags' => [
      'Mock',
      'Interview'
