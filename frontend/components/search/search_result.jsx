@@ -14,7 +14,7 @@ class SearchResult extends React.Component{
   }
 
   render(){
-    const {ctype, updateFilter, courses, fetchCourses, fetchCourse, fetchUsers} = this.props;
+    const {ctype, updateFilter, courses, fetchCourse, fetchUsers} = this.props;
     return(
       <div>
         <FilterForm

@@ -2506,7 +2506,6 @@ var SearchResult = /*#__PURE__*/function (_React$Component) {
           ctype = _this$props.ctype,
           updateFilter = _this$props.updateFilter,
           courses = _this$props.courses,
-          fetchCourses = _this$props.fetchCourses,
           fetchCourse = _this$props.fetchCourse,
           fetchUsers = _this$props.fetchUsers;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_filter_form__WEBPACK_IMPORTED_MODULE_2__["default"], {
