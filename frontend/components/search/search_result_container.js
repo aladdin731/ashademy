@@ -22,6 +22,7 @@ const mapDispatchToProps = dispatch => ({
    fetchCourses: (data) => dispatch(fetchCourses(data)),
    updateFilter: (filter, value) => dispatch(updateFilter(filter, value)),
    fetchCourse: id => dispatch(fetchCourse(id)),
+   fetchReviews: () => dispatch(fetchReviews())
 })
 
 export default connect(

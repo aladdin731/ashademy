@@ -9,7 +9,8 @@ class SearchResult extends React.Component{
 
   componentDidMount(){
     // this.props.fetchUsers();
-    this.props.fetchCourses(this.props.ctype);
+    // this.props.fetchCourses(this.props.ctype);
+    this.props.fetchReviews();
   }
 
   render(){
@@ -19,7 +20,6 @@ class SearchResult extends React.Component{
         <FilterForm
           ctype={ctype}
           updateFilter={updateFilter}
-          fetchCourses={fetchCourses}
         />
         <div className="searched-course-section">
           <h1 className="searched-title">Courses you are interested in: </h1>

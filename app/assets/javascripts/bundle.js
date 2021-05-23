@@ -2496,7 +2496,8 @@ var SearchResult = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       // this.props.fetchUsers();
-      this.props.fetchCourses(this.props.ctype);
+      // this.props.fetchCourses(this.props.ctype);
+      this.props.fetchReviews();
     }
   }, {
     key: "render",
@@ -2510,8 +2511,7 @@ var SearchResult = /*#__PURE__*/function (_React$Component) {
           fetchUsers = _this$props.fetchUsers;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_filter_form__WEBPACK_IMPORTED_MODULE_2__["default"], {
         ctype: ctype,
-        updateFilter: updateFilter,
-        fetchCourses: fetchCourses
+        updateFilter: updateFilter
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "searched-course-section"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
@@ -2588,6 +2588,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     fetchCourse: function fetchCourse(id) {
       return dispatch(Object(_actions_course_actions__WEBPACK_IMPORTED_MODULE_4__["fetchCourse"])(id));
+    },
+    fetchReviews: function fetchReviews() {
+      return dispatch(Object(_actions_review_actions__WEBPACK_IMPORTED_MODULE_6__["fetchReviews"])());
     }
   };
 };
@@ -3415,12 +3418,12 @@ var selectCourseTagsNames = function selectCourseTagsNames(state) {
 };
 var selectCourseOfType = function selectCourseOfType(state, ctype) {
   var courses = Object.values(state.entities.courses);
+  if (ctype === "" || ctype === "All") return courses;
   var typeCourses = [];
 
   for (var i = 0; i < courses.length; i++) {
-    console.log(courses[i]);
-
     if (courses[i].couseType === ctype) {
+      console.log(courses[i]);
       typeCourses.push(courses[i]);
     }
   }

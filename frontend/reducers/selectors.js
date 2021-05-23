@@ -7,10 +7,11 @@ export const selectCourseTagsNames = (state) => {
 
 export const selectCourseOfType = (state, ctype) => {
   const courses = Object.values(state.entities.courses);
+  if(ctype === "" || ctype === "All") return courses;
   const typeCourses = [];
   for(let i = 0; i < courses.length; i++) {
-    console.log(courses[i])
     if(courses[i].couseType === ctype) {
+      console.log(courses[i])
       typeCourses.push(courses[i])
     }
   }
